@@ -25705,28 +25705,37 @@ ion-navbar.toolbar {
   width: 96%;
   top: 26%;
   left: 2%;
-  position: relative;
+  position: absolute;
 }
 
 #ad-buy-image {
-  position: absolute;
+  position: relative;
+  width: 60%;
+  height: 200px;
+  right: -20%;
+  top: 10px;
+  display: inline-block;
   background: yellow;
-  width: 80%;
-  height: 30%;
 }
 
-.btn {
-  background: #79a2a2;
+#all-button {
+  position: relative;
+  right: -5%;
+  top: 10px;
+  width: 130%;
+  height: 40%;
 }
 
 .B_on {
   border: 5px solid #10e2e2;
   background: #79a2a2;
+  display: inline-block;
 }
 
 .B_off {
   border: 5px solid transparent;
   background: #79a2a2;
+  display: inline-block;
 }
 
 page-home .scroll-content {

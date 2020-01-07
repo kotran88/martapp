@@ -1,23 +1,22 @@
 <ion-content id="main-view">
   
-  <div>
+  <div id="main-modal">
     <div id="ad-buy-image">
-      <span>a</span>
+      <span>image 광고없는 프리미엄</span>
     </div>
+    
+    <div id="all-button">
+      <div *ngFor="let opt of option; let i = index">
 
-    <div class="buy-option" *ngFor="let opt of option; let i = index">
-
-      <button ion-button (click)="clickbutton(i)"  class="btn"
-        [ngClass]="select_option===i?'B_on':'B_off'"
-        *ngIf="more_info||(i==0||i==3)"
-        style="width: 40%; height: 100px;">
-        {{opt.price}}원
-        <br>
-        {{opt.text}}
-      </button>
-      
+        <button ion-button (click)="clickbutton(i)"
+          [ngClass]="select_option===i?'B_on':'B_off'"
+          *ngIf="more_info||(i==0||i==3)">
+          {{opt.price}}원
+          <br>
+          {{opt.text}}
+        </button>
+      </div>
     </div>
-
 
     <button ion-button *ngIf="more_info===false" (click)="add_menu()">
       더 많은 정보 보기

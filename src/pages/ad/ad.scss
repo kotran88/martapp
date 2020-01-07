@@ -6,27 +6,37 @@
     width:96%;
     top: 26%;
     left:2%;
-    position: relative;
+    position: absolute;
 }
 
 #ad-buy-image{
-    position: absolute;
+    position: relative;
+    width: 60%;
+    height: 200px;
+    right: -20%;
+    top: 10px;
+    display: inline-block;
     background: yellow;
-    width: 80%;
-    height: 30%;
 }
 
-//121 162
-.btn{
-    background: rgb(121,162,162);
+#all-button{
+    position: relative;
+    right: -5%;
+    top: 10px;
+
+    width: 130%;
+    height: 40%;
 }
+
 .B_on{
 //background-color: mediumaquamarine;
     border: 5px solid rgb(16,226,226);
     background: rgb(121,162,162);
+    display: inline-block;
 }
 
 .B_off{
     border: 5px solid transparent;
     background: rgb(121,162,162);
+    display: inline-block;
 }

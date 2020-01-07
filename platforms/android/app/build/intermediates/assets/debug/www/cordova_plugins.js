@@ -93,6 +93,28 @@ module.exports = [
       "cordova.InAppBrowser.open",
       "window.open"
     ]
+  },
+  {
+    "id": "es6-promise-plugin.Promise",
+    "file": "plugins/es6-promise-plugin/www/promise.js",
+    "pluginId": "es6-promise-plugin",
+    "runs": true
+  },
+  {
+    "id": "cordova-plugin-x-socialsharing.SocialSharing",
+    "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
+    "pluginId": "cordova-plugin-x-socialsharing",
+    "clobbers": [
+      "window.plugins.socialsharing"
+    ]
+  },
+  {
+    "id": "cordova-plugin-inapppurchase.InAppBillingV3",
+    "file": "plugins/cordova-plugin-inapppurchase/www/index-android.js",
+    "pluginId": "cordova-plugin-inapppurchase",
+    "merges": [
+      "inAppPurchase"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -110,7 +132,10 @@ module.exports.metadata =
   "mx.ferreyra.callnumber": "0.0.2",
   "cordova-plugin-uniquedeviceid": "1.3.2",
   "cordova-plugin-speechrecognition": "1.1.2",
-  "cordova-plugin-inappbrowser": "3.1.0"
+  "cordova-plugin-inappbrowser": "3.1.0",
+  "es6-promise-plugin": "4.2.2",
+  "cordova-plugin-x-socialsharing": "5.6.3",
+  "cordova-plugin-inapppurchase": "1.1.0"
 };
 // BOTTOM OF METADATA
 });

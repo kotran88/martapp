@@ -27,6 +27,8 @@
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.android.vending.BILLING" />
 
     <application
         android:debuggable="true"
@@ -56,6 +58,24 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-7312977746566747~2506400148" />
+
+        <receiver
+            android:name="nl.xservices.plugins.ShareChooserPendingIntent"
+            android:enabled="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="nl.xservices.plugins.FileProvider"
+            android:authorities="io.ionic.starter.sharing.provider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/sharing_paths" />
+        </provider>
 
         <activity
             android:name="com.google.android.gms.common.api.GoogleApiActivity"

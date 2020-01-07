@@ -25697,6 +25697,14 @@ ion-navbar.toolbar {
   min-height: 46px;
 }
 
+page-ad .B_on {
+  background-color: #72aefc;
+}
+
+page-ad .B_off {
+  background-color: lightgray;
+}
+
 page-home .scroll-content {
   padding: 0px !important;
 }

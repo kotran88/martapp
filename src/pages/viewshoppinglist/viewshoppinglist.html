@@ -5,11 +5,11 @@
 </ion-header>
 <ion-content padding>
     <ion-row>
-        <ion-col col-7>
+        <ion-col col-9>
             {{a.time}}
         </ion-col>
-        <ion-col col-5>
-            <button (click)="insertData()">수정</button><button (click)="save()">저장</button><button (click)="delete($event)">삭제</button><button (click)="sortlist()">정렬</button>
+        <ion-col col-3>
+            <button (click)="save()">저장</button>
         </ion-col>
     </ion-row>
     <ion-row>
@@ -38,42 +38,28 @@
         <ion-input *ngIf="flagInput!=false" style="width: 34%; height: 3.5rem; border-bottom: solid 1px; float: left; margin-right: 2px; margin-left:2px;" [(ngModel)]="quantity" placeholder="수량"></ion-input>
         <ion-input *ngIf="flagInput!=false" style="width: 34%; height: 3.5rem; border-bottom: solid 1px; float: left; margin-left: 2px; margin-right:5px;" [(ngModel)]="price" placeholder="가격"></ion-input>
         <button *ngIf="flagInput!=false" style="height: 3.5rem;background: transparent;border: solid 1px;border-radius: 7px;margin-top: 3px;margin-left: 10px;" (click)="cancel()">취소</button>
-
-
-        <!-- <button *ngIf="flagInput!=false" style="height: 3.5rem;background: transparent;border: solid 1px;border-radius: 7px;margin-top: 5px;margin-left: 4px;" (click)="cancel()">취소</button> -->
-        <!-- <button *ngIf="flagInput!=false" style="width:15%; height: 4rem;background: transparent;border:soild 1px;border-radius:7px;margin-left:10px;margin-top:5px;" (click)="cancel()">취소</button> -->
     </div>
-    <!--기능 구현 X-->
-    <div class="container">
-        <a href="#" class="buttons" tooltip="가나다순 정렬">
-            <i class="ion-logo-game-controller-a"></i>
-        </a>
+</ion-content>
 
-        <a href="#" class="buttons" tooltip="수정하기">
-            <i class="ion-logo-game-controller-a"></i>
-        </a>
-
-        <a href="#" class="buttons" tooltip="삭제하기">
-            <i class="delete($event)"></i>
-        </a>
-
-        <a href="#" class="buttons" tooltip="취소">
-            <i class="ion-logo-game-controller-a"></i>
-        </a>
-
-        <a class="buttons" href="#">
-            <i class="ion-logo-game-controller-a"></i>
-        </a>
-
-        <!-- <ion-fab bottom right edge>
+<ion-footer>
+    <div>
+        <ion-fab bottom right>
             <button ion-fab mini><ion-icon name="add"></ion-icon></button>
             <ion-fab-list side="top">
-                <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
-                <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
-                <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
-                <button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button>
-            </ion-fab-list>
-            </ion-fab> -->
-    </div>
+                <button (click)="sortlist()" ion-fab>
+                    <ion-icon name="list"></ion-icon>
+                    <ion-label>이름순으로 정렬</ion-label>
+                </button>
+                <button (click)="insertData()" ion-fab>
+                    <ion-icon name="build"></ion-icon>
+                    <ion-label>수정하기</ion-label>
+                </button>
+                <button (click)="delete($event)" ion-fab>
+                    <ion-icon name="trash"></ion-icon>
+                    <ion-label>삭제하기</ion-label>
+                </button>
 
-</ion-content>
+            </ion-fab-list>
+        </ion-fab>
+    </div>
+</ion-footer>

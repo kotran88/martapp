@@ -185,34 +185,19 @@ export class ViewshoppinglistPage {
       this.refreshname(); //새로고침
     })
   }
-  
-  /*sort구현 안됨 */
-  sortlist(){
-    // for(var i = 0; i<this.a.list.length; i++)
-    // {
-    //   console.log(this.a.list);
-    //   console.log(this.a.list[i].name);
-    //   var sorted = this.a.list[i].name.sort();
-    //   console.log("Return string is : " + sorted);
-    // }
-    window.alert("정렬되었습니다.");
-    var arr = ['foo', 'bar'];
-    arr.sort();
-    console.log({arr});
 
-    for(var i = 0; i<this.a.list.length; i++)
-    {
-      console.log(this.a.list[i].name);
-      var namelist = [this.a.list[i].name];
-      console.log({namelist});
-      var list = namelist.sort();
-      console.log(list);
+    /*sort구현*/
+    sortlist(){
+      this.a.list.sort(function (name1, name2) { 
+        return name1.name < name2.name ? -1 : name1.name > name2.name ? 1 : 0;  
+      });
+      console.log(this.a.list);
+      window.alert("정렬되었습니다.");
+      this.nextdirectory.child(this.title).child(this.key).child("list").update(this.a.list).then(() => {
+        console.log(this.a.list);
+      });
     }
-    namelist.sort();
-
-
-  }
-
+    
   speeching() {
     let options = {
       "language": "ko-KR",

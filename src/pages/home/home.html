@@ -87,8 +87,8 @@
         </ion-list>
         <ion-list *ngSwitchCase="'tab3'">
 
-            <div>
-                <select style="display: inline-block; width:25%;" id='slt' name="sort">
+            <div style="position: relative;">
+                <select  id='shop-filter-select' name="sort">
                     <option value="rel" selected="selected">랭킹순</option>
                     <option value="price_asc">낮은 가격순</option>
                     <option value="price_dsc">높은 가격순</option>
@@ -96,16 +96,13 @@
                     <option value="review">리뷰 많은순</option>
                 </select>
 
-                <ion-input 
-                    style="margin-right: 0px; width: 60%; display: inline-block; border: 1px solid black;" 
+                <ion-input id="shop-search-box"
                     name='text' type="text" [(ngModel)]='srct.text' 
                     placeholder="검색어를 입력해 주세요.">
                 </ion-input>
 
-                <button ion-button style="float: right; width:30px; height: 30px;" 
-                color="black" outline icon-only (click)='select_sort()'>
-
-                    <ion-icon name='search' is-active="false"></ion-icon>
+                <button id="shop-search-button"icon-only (click)='select_sort()'>
+                    <ion-icon name="search"></ion-icon>
                 </button>
             </div>
         </ion-list>

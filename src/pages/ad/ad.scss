@@ -1,12 +1,32 @@
-page-ad {
+#main-view{
+    background-color: rgb(242,242,242);
+    border: 1px solid rgb(49,185,193);
+    border-radius: 10px;
+    height: 60%;
+    width:96%;
+    top: 26%;
+    left:2%;
+    position: relative;
+}
 
+#ad-buy-image{
+    position: absolute;
+    background: yellow;
+    width: 80%;
+    height: 30%;
+}
 
-    .B_on{
-        //background-color: mediumaquamarine;
-            background-color: rgb(114,174,252);
-        }
-        
-        .B_off{
-            background-color: lightgray;
-        }
+//121 162
+.btn{
+    background: rgb(121,162,162);
+}
+.B_on{
+//background-color: mediumaquamarine;
+    border: 5px solid rgb(16,226,226);
+    background: rgb(121,162,162);
+}
+
+.B_off{
+    border: 5px solid transparent;
+    background: rgb(121,162,162);
 }

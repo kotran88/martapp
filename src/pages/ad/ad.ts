@@ -18,7 +18,7 @@ import { v } from '@angular/core/src/render3';
 export class AdPage {
 
   more_info=false;
-  select_option=-1;
+  select_option=0;
   option=[
     {price:990,text:'1개월'},
     {price:1980,text:'6개월'},

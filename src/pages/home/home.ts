@@ -137,10 +137,10 @@ export class HomePage {
   }
   select_sort() {
 
-    this.srct.url = 'https://msearch.shopping.naver.com/search/all.nhn?origQuery=' + this.srct.text + '&pagingIndex=1&pagingSize=40&viewType=list&sort=' + $("#slt").val() + '&frm=NVSHATC&query=' + this.srct.text;
+    this.srct.url = 'https://msearch.shopping.naver.com/search/all.nhn?origQuery=' + this.srct.text + '&pagingIndex=1&pagingSize=40&viewType=list&sort=' + $("#shop-filter-select").val() + '&frm=NVSHATC&query=' + this.srct.text;
     //            https://search.shopping.naver.com/search/all.nhn?origQuery=신라면&pagingIndex=1&pagingSize=40&viewType=list&sort=review&frm=NVSHATC&query=신라면
 
-    console.log($('#slt').val());
+    console.log($('#shop-filter-select').val());
     console.log(this.srct.text);
     console.log(this.srct.url);
     const browser = this.iab.create(this.srct.url, "_blank", "location=no,toolbar=no");
@@ -176,7 +176,7 @@ export class HomePage {
     this.refreshname();
     $(document).ready(function () {
       console.log("ready!");
-      console.log($("#slt").val())
+      console.log($("#shop-filter-select").val())
     });
 
     setTimeout(() => {

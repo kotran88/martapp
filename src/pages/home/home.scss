@@ -14,15 +14,41 @@ page-home {
     }
 }
 
-select {
-    width: auto;
-    height: 30px;
+
+#shop-filter-select{
+    display: inline-block; 
+    width:25%; 
+    height: 50px; 
+    margin-top: 5px;
+    border: 1px solid rgb(120, 247, 247);;
     border-radius: 5px;
-    background-color: rgb(120, 247, 247);
+    background: white;
+    margin-left: 15px;
     //-webkit-appearance: none;/* 네이티브 외형 감추기 */ 
     //-moz-appearance: none; 
     //appearance: none; 
     //background: url() no-repeat 95% 50%;/* 화살표 모양의 이미지 */ 
+}
+
+#shop-search-box{
+    margin-right: 0px;
+    width: 65%;
+    height: 50px;
+    display: inline-block;
+    border: 1px solid rgb(120, 247, 247);
+    border-radius: 5px;
+}
+
+#shop-search-button{
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    margin-top: 5px;
+    background: white;
+    right: 35px;
+    top: 8px;
+
+    //border:2px solid rgb(120, 247, 247);
 }
 
 

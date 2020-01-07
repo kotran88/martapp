@@ -1,0 +1,31 @@
+<!--
+  Generated template for the AddshopingPage page.
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{title}}</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    {{nowtime}} <button (click)="save()">저장</button>
+    <div class="totaldetail">
+        <p *ngIf="flag==true">{{totalnumber}} 중 {{selected}} </p>
+        <p *ngIf="flag==false">{{totalnumber}}</p>
+    </div>
+    <div class="main">
+        <ion-item *ngFor="let att of addinglist; let idx = index">
+            <ion-icon *ngIf="flag==false" name="close"></ion-icon>
+            <ion-checkbox [(ngModel)]="att.checked" style="z-index: 999999;" (ionChange)="addValue($event)" *ngIf="flag==true" color="dark" slot="start"></ion-checkbox>
+            <ion-input style="width: 20%;float: left;" placeholder="상품명" [(ngModel)]="addinglist[idx].name"></ion-input>
+            <ion-input style="width: 20%;float: right;" placeholder="수량" [(ngModel)]="addinglist[idx].quantity"></ion-input>
+            <ion-input style="width: 20%;float: right;" placeholder="가격" [(ngModel)]="addinglist[idx].price"></ion-input>
+        </ion-item>
+    </div>
+    <div style="position: absolute;bottom: 50px;width: 100%;" class="bottom">
+        <ion-input *ngIf="flag!=true" style="width: 63%;border-bottom: solid 1px;float: left;" [(ngModel)]="adding" placeholder="품목을 입력하세요."></ion-input>
+        <button *ngIf="flag!=true" style="height: 3.5rem;background: transparent;border: solid 1px;border-radius: 7px;margin-top: 5px;margin-left: 10px;" (click)="speeching()">음성</button>
+        <button *ngIf="flag!=true" style="height: 3.5rem;background: transparent;border: solid 1px;border-radius: 7px;margin-top: 5px;margin-left: 3px;" (click)="add()">추가하기</button>
+    </div>
+</ion-content>

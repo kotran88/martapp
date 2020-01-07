@@ -1,0 +1,4 @@
+#Mon Jan 06 09:59:33 JST 2020
+base.0=/Users/limchae/Documents/01ionic/01_02mart/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0
+path.0=classes.dex
+renamed.0=classes.dex

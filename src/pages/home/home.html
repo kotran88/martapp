@@ -1,0 +1,109 @@
+<ion-content padding>
+    <div class="upper">
+        <ion-row style="margin-bottom:0" class="search" >
+            <ion-col width-100>
+                <ion-searchbar style="float:left;width: 50%; padding:6px;" placeholder="입력하세요" [(ngModel)]="startPoint" clearInput></ion-searchbar>
+              
+                <button ion-button icon-only style="margin-right: -10px;" (click)="NoneAd()" color="primary" clear>
+                    <ion-icon class="ad-icon" name="eye-off"></ion-icon>
+                  </button>
+      
+                  <button ion-button icon-only style="margin-right: -10px;" (click)="appstore()" color="primary" clear>
+                    <ion-icon class="appstore-icon" name="star"></ion-icon>
+                  </button>
+      
+                  <button ion-button icon-only style="margin-right: -10px;" (click)="regularShare()" color="primary" clear>
+                    <ion-icon class="share-icon" name="share"></ion-icon>
+                  </button>
+      
+                <button ion-button icon-only (click)="setting()" color='primary' clear>
+                  <ion-icon class="setting-icon" name="settings"></ion-icon>
+                </button>
+      
+           
+            </ion-col>
+        </ion-row>
+    </div>
+
+    <ion-segment style="background:#353c5e;font-size: 16px;letter-spacing: -0.35px" (ionChange)="segmentChanged($event)" [(ngModel)]="tab">
+        <ion-segment-button value="tab1" [ngClass]="tab=='tab1'?'view':'notview'">
+            <span style="font-family: 'notomedium';">즐겨찾는곳</span>
+        </ion-segment-button>
+        <ion-segment-button value="tab2" [ngClass]="tab=='tab2'?'view':'notview'">
+            <span style="font-family: 'notomedium';" class="">쇼핑예정목록</span>
+        </ion-segment-button>
+        <ion-segment-button value="tab3" [ngClass]="tab=='tab3'?'view':'notview'">
+            <span style="font-family: 'notomedium';" class="">인터넷에선얼마?</span>
+        </ion-segment-button>
+
+    </ion-segment>
+    <div [ngSwitch]="tab" style="height:100%;">
+        <ion-list *ngSwitchCase="'tab1'">
+            first tab
+
+        </ion-list>
+        <ion-list *ngSwitchCase="'tab2'">
+            <div class="topselector">
+                <p>쇼핑 목록 만들기! 어디서 쇼핑하실 건가요?</p>
+                <div class="button">
+                    <button style="background-color:#fff;" (click)="addlist()"><img src="assets/imgs/mes.png" alt=""></button><br>
+                    <div><button style="background-color:#fff;" (click)="addlist()">마트</button></div>
+                </div>
+                <div class="button">
+                    <button style="background-color:#fff;" (click)="addlist()"><img src="assets/imgs/mes.png" alt=""></button><br>
+                    <div><button style="background-color:#fff;" (click)="addlist()">백화점</button></div>
+                </div>
+                <div class="button">
+                    <button style="background-color:#fff;" (click)="addlist()"><img src="assets/imgs/mes.png" alt=""></button><br>
+                    <div><button style="background-color:#fff;" (click)="addlist()">아울렛</button></div>
+                </div>
+                <div class="button">
+                    <button style="background-color:#fff;" (click)="addlist()"><img src="assets/imgs/mes.png" alt=""></button><br>
+                    <div><button style="background-color:#fff;" (click)="addlist()">기타</button></div>
+                </div>
+            </div>
+            <div *ngFor="let a of newarraylist" class="eachshopping">
+                <div class="listDB">
+                    <div class="segmentImg">
+                        <button style="background-color:#fff;" (click)="deleteDB(a)">
+                            <img src="assets/imgs/delete (1).png">
+                        </button>
+                    </div>
+                    <div class="segmentText">
+                        <button style="background-color:#fff;" (click)="viewshoppinglist(a)">
+                            {{a.title}}
+                        </button>
+                    </div>
+                    <div>
+                        <button style="background-color:#fff;" (click)="viewshoppinglist(a)">
+                            {{a.time}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div><button style="background-color:#fff;" (click)="addlist()">(image)쇼핑 리스트를 추가해보자라는 말</button></div>
+
+        </ion-list>
+        <ion-list *ngSwitchCase="'tab3'">
+
+            <select style="float: left; width:25%;" id='slt' name="sort">
+            <option value="rel" selected="selected">랭킹순</option>
+            <option value="price_asc">낮은 가격순</option>
+            <option value="price_dsc">높은 가격순</option>
+            <option value="date">등록순</option>
+            <option value="review">리뷰 많은순</option>
+          </select>
+
+            <ion-input style="margin-right: 0px; width: auto; float: left;" name='text' type="text" [(ngModel)]='srct.text' placeholder="검색어를 입력해 주세요.">
+
+            </ion-input>
+
+            <button ion-button style="float:right;" color="black" outline icon-only (click)='select_sort()'>
+            <ion-icon name='search' is-active="false"></ion-icon>
+          </button>
+        </ion-list>
+
+    </div>
+
+</ion-content>

@@ -518,11 +518,9 @@ var ViewshoppinglistPage = /** @class */ (function () {
         var sum = 0;
         this.firemain.child(this.id).child(this.title).child(this.key).child("list").once("value", function (snap) {
             for (var a = 0; a < snap.val().length; a++) {
-                console.log(snap.val()[a]);
                 console.log(snap.val()[a].name, snap.val()[a].checked, snap.val()[a].price, snap.val()[a].quantity);
                 sum += Number(snap.val()[a].quantity) * Number(snap.val()[a].price); //가격 다시 받기
                 _this.printsum = _this.formatNumber(sum);
-                console.log(_this.printsum);
                 _this.a.list.push({ "name": snap.val()[a].name, "checked": snap.val()[a].checked, "price": snap.val()[a].price, "quantity": snap.val()[a].quantity });
             }
             console.log(sum);
@@ -557,8 +555,6 @@ var ViewshoppinglistPage = /** @class */ (function () {
         this.selected = count;
     };
     ViewshoppinglistPage.prototype.save = function () {
-        console.log(this.a.list);
-        console.log("addshoping saving....");
         this.flag = false;
         this.flagInput = false;
         this.firemain.child(this.id).child(this.title).child(this.key).update({ "time": this.nowtime, "flag": "entered", "key": this.key });
@@ -567,37 +563,36 @@ var ViewshoppinglistPage = /** @class */ (function () {
         this.refreshname();
     };
     /*수정*/
-    ViewshoppinglistPage.prototype.insertData = function () {
+    ViewshoppinglistPage.prototype.insertData = function (fab) {
         this.flag = true;
+        fab.close();
     };
     /*삭제*/
-    ViewshoppinglistPage.prototype.delete = function () {
+    ViewshoppinglistPage.prototype.delete = function (fab) {
         var _this = this;
         var newlist = []; //선택된 것을 넣을 수 있는 새로운 배열
         console.log(this.a.list); //this.a.list는 입력을 받은 배열
         for (var i = 0; i < this.a.list.length; i++) {
             /*a.list에 있는 항목이 체크가 되어있으면 newlist에 push*/
             if (this.a.list[i].checked == true) {
+                console.log(this.a.list[i].checked);
                 newlist.push(i);
             }
-            console.log(newlist);
         }
-        console.log(newlist);
-        console.log(this.a.list.splice(newlist, 1)); //선택해서 삭제한 것을 console에 출력해봄
-        for (var i = 0; i < this.a.length; i++) {
+        for (var i = 0; i < newlist.length; i++) {
+            console.log(newlist[i]);
             this.a.list.splice(newlist[i], 1); //a.list에서 선택된 항목을 삭제. splice를 이용해서 범위에 있는 것을 삭제함.
-            console.log(this.a.list.splice(newlist[i], 1));
         }
         console.log(this.a.list);
         /*입력 리스트에서 삭제된 항목을 firebase에서 삭제하기위해 list 삭제*/
         this.nextdirectory.child(this.title).child(this.key).child("list").once("value", function (snap) {
-            // for (var a in snap.val()) {
-            _this.nextdirectory.child(_this.title).child(_this.key).child("list").remove().then(function () {
-                console.log("success");
-            }).catch(function (e) {
-                console.log("error" + e);
-            });
-            // }
+            for (var a in snap.val()) {
+                _this.nextdirectory.child(_this.title).child(_this.key).child("list").remove().then(function () {
+                    console.log("success");
+                }).catch(function (e) {
+                    console.log("error" + e);
+                });
+            }
             /*삭제한 list를 update를 통해 수정된 데이터로 다시 넣어줌 */
             _this.nextdirectory.child(_this.title).child(_this.key).child("list").update(_this.a.list).then(function () {
                 console.log(_this.a.list);
@@ -614,9 +609,10 @@ var ViewshoppinglistPage = /** @class */ (function () {
             _this.selected = count;
             _this.refreshname(); //새로고침
         });
+        fab.close();
     };
     /*sort구현*/
-    ViewshoppinglistPage.prototype.sortlist = function () {
+    ViewshoppinglistPage.prototype.sortlist = function (fab) {
         var _this = this;
         this.a.list.sort(function (name1, name2) {
             return name1.name < name2.name ? -1 : name1.name > name2.name ? 1 : 0;
@@ -626,6 +622,7 @@ var ViewshoppinglistPage = /** @class */ (function () {
         this.nextdirectory.child(this.title).child(this.key).child("list").update(this.a.list).then(function () {
             console.log(_this.a.list);
         });
+        fab.close();
     };
     ViewshoppinglistPage.prototype.speeching = function () {
         var options = {
@@ -655,11 +652,12 @@ var ViewshoppinglistPage = /** @class */ (function () {
         this.speechRecognition.requestPermission()
             .then(function () { return console.log('Granted'); }, function () { return console.log('Denied'); });
     };
+    var _a, _b, _c;
     ViewshoppinglistPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-viewshoppinglist',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/viewshoppinglist/viewshoppinglist.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>{{a.title}}</ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content padding>\n    <ion-row>\n        <ion-col col-9>\n            {{a.time}}\n        </ion-col>\n        <ion-col col-3>\n            <button (click)="save()">저장</button>\n        </ion-col>\n    </ion-row>\n    <ion-row>\n        <ion-col col-8>\n            <span *ngIf="flag==false">{{totalnumber}}개 중 {{selected}}개 선택</span>\n            <span *ngIf="flag==true">{{totalnumber}}개</span>\n        </ion-col>\n        <ion-col col-4>\n            ₩{{printsum}}\n        </ion-col>\n    </ion-row>\n    <div class="main">\n        <ion-item *ngFor="let att of a.list; let idx = index">\n            <ion-icon *ngIf="flag==true" name="close"></ion-icon>\n            <ion-checkbox [(ngModel)]="att.checked" style="z-index: 999999;" (ionChange)="addValue($event)" *ngIf="flag==false" color="dark" slot="start"></ion-checkbox>\n            <ion-input text-center style="width: 20%;float: left;" placeholder="상품명" [(ngModel)]="a.list[idx].name"></ion-input>\n            <ion-input text-center style="width: 20%;float: right;" placeholder="수량" [(ngModel)]="a.list[idx].quantity"></ion-input>\n            <ion-input text-center style="width: 20%;float: right;" placeholder="가격" [(ngModel)]="a.list[idx].price"></ion-input>\n        </ion-item>\n    </div>\n    <div style="bottom: 50px;width: 100%;" class="bottom">\n        <ion-input *ngIf="flag!=false" style="width: 65%;border-bottom: solid 1px;float: left;" [(ngModel)]="adding" placeholder="품목을 입력하세요."></ion-input>\n        <button *ngIf="flag!=false" style="height: 3.5rem;background: transparent;border: solid 1px;border-radius: 7px;margin-left: 4px;" (click)="speeching()">음성</button>\n        <button *ngIf="flag!=false" style="height: 3.5rem;background: transparent;border: solid 1px;border-radius: 7px;margin-top: 5px;margin-left: 3px;" (click)="add()">추가하기</button>\n        <button *ngIf="flag!=false&&flagInput==false" style="height: 3.5rem;background: transparent;border: solid 1px;border-radius: 7px;" (click)="priceandquantity()">가격 및 수량도 입력하기</button>\n        <ion-input *ngIf="flagInput!=false" style="width: 34%; height: 3.5rem; border-bottom: solid 1px; float: left; margin-right: 2px; margin-left:2px;" [(ngModel)]="quantity" placeholder="수량"></ion-input>\n        <ion-input *ngIf="flagInput!=false" style="width: 34%; height: 3.5rem; border-bottom: solid 1px; float: left; margin-left: 2px; margin-right:5px;" [(ngModel)]="price" placeholder="가격"></ion-input>\n        <button *ngIf="flagInput!=false" style="height: 3.5rem;background: transparent;border: solid 1px;border-radius: 7px;margin-top: 3px;margin-left: 10px;" (click)="cancel()">취소</button>\n    </div>\n</ion-content>\n\n<ion-footer>\n    <div>\n        <ion-fab bottom right>\n            <button ion-fab mini><ion-icon name="add"></ion-icon></button>\n            <ion-fab-list side="top">\n                <button (click)="sortlist()" ion-fab>\n                    <ion-icon name="list"></ion-icon>\n                    <ion-label>이름순으로 정렬</ion-label>\n                </button>\n                <button (click)="insertData()" ion-fab>\n                    <ion-icon name="build"></ion-icon>\n                    <ion-label>수정하기</ion-label>\n                </button>\n                <button (click)="delete($event)" ion-fab>\n                    <ion-icon name="trash"></ion-icon>\n                    <ion-label>삭제하기</ion-label>\n                </button>\n\n            </ion-fab-list>\n        </ion-fab>\n    </div>\n</ion-footer>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/viewshoppinglist/viewshoppinglist.html"*/,
+            selector: 'page-viewshoppinglist',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/viewshoppinglist/viewshoppinglist.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>{{a.title}}</ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content padding>\n    <ion-row>\n        <ion-col col-9>\n            {{a.time}}\n        </ion-col>\n        <ion-col col-3>\n            <button (click)="save()">저장</button>\n        </ion-col>\n    </ion-row>\n    <ion-row>\n        <ion-col col-8>\n            <span *ngIf="flag==false">{{totalnumber}}개 중 {{selected}}개 선택</span>\n            <span *ngIf="flag==true">{{totalnumber}}개</span>\n        </ion-col>\n        <ion-col col-4>\n            ₩{{printsum}}\n        </ion-col>\n    </ion-row>\n    <div class="main">\n        <ion-item *ngFor="let att of a.list; let idx = index">\n            <ion-icon *ngIf="flag==true" name="close"></ion-icon>\n            <ion-checkbox [(ngModel)]="att.checked" style="z-index: 999999;" (ionChange)="addValue($event)" *ngIf="flag==false" color="dark" slot="start"></ion-checkbox>\n            <ion-input text-center style="width: 20%;float: left;" placeholder="상품명" [(ngModel)]="a.list[idx].name"></ion-input>\n            <ion-input text-center style="width: 20%;float: right;" placeholder="수량" [(ngModel)]="a.list[idx].quantity"></ion-input>\n            <ion-input text-center style="width: 20%;float: right;" placeholder="가격" [(ngModel)]="a.list[idx].price"></ion-input>\n        </ion-item>\n    </div>\n    <div style="bottom: 50px;width: 100%;" class="bottom">\n        <ion-input *ngIf="flag!=false" style="width: 65%;border-bottom: solid 1px;float: left;" [(ngModel)]="adding" placeholder="품목을 입력하세요."></ion-input>\n        <button *ngIf="flag!=false" style="height: 3.5rem;background: transparent;border: solid 1px;border-radius: 7px;margin-left: 4px;" (click)="speeching()">음성</button>\n        <button *ngIf="flag!=false" style="height: 3.5rem;background: transparent;border: solid 1px;border-radius: 7px;margin-top: 5px;margin-left: 3px;" (click)="add()">추가하기</button>\n        <button *ngIf="flag!=false&&flagInput==false" style="height: 3.5rem;background: transparent;border: solid 1px;border-radius: 7px;" (click)="priceandquantity()">가격 및 수량도 입력하기</button>\n        <ion-input *ngIf="flagInput!=false" style="width: 34%; height: 3.5rem; border-bottom: solid 1px; float: left; margin-right: 2px; margin-left:2px;" [(ngModel)]="quantity" placeholder="수량"></ion-input>\n        <ion-input *ngIf="flagInput!=false" style="width: 34%; height: 3.5rem; border-bottom: solid 1px; float: left; margin-left: 2px; margin-right:5px;" [(ngModel)]="price" placeholder="가격"></ion-input>\n        <button *ngIf="flagInput!=false" style="height: 3.5rem;background: transparent;border: solid 1px;border-radius: 7px;margin-top: 3px;margin-left: 10px;" (click)="cancel()">취소</button>\n    </div>\n</ion-content>\n\n<ion-footer>\n    <div>\n        <ion-fab bottom right #fab>\n            <button ion-fab mini><ion-icon name="add"></ion-icon></button>\n            <ion-fab-list side="top">\n                <button (click)="sortlist(fab)" ion-fab>\n                    <ion-icon name="list"></ion-icon>\n                    <ion-label>이름순으로 정렬</ion-label>\n                </button>\n                <button (click)="insertData(fab)" ion-fab>\n                    <ion-icon name="build"></ion-icon>\n                    <ion-label>수정하기</ion-label>\n                </button>\n                <button (click)="delete(fab)" ion-fab>\n                    <ion-icon name="trash"></ion-icon>\n                    <ion-label>삭제하기</ion-label>\n                </button>\n\n            </ion-fab-list>\n        </ion-fab>\n    </div>\n</ion-footer>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/viewshoppinglist/viewshoppinglist.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" ? _a : Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" ? _b : Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" ? _c : Object])
     ], ViewshoppinglistPage);
     return ViewshoppinglistPage;
 }());

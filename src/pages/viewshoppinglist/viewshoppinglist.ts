@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, FabButton, FabContainer } from 'ionic-angular';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import firebase from 'firebase';
 /**
@@ -31,7 +31,7 @@ export class ViewshoppinglistPage {
   sum: any = 0;
   printsum: any = 0;
   flagInput: boolean = false; //가격 및 수량도 입력하기 버튼을 위한 boolean형 변수
-  
+
   /*숫자에 콤마 찍기*/
   formatNumber(num) {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
@@ -57,11 +57,9 @@ export class ViewshoppinglistPage {
     var sum = 0;
     this.firemain.child(this.id).child(this.title).child(this.key).child("list").once("value", (snap) => {
       for (var a = 0; a < snap.val().length; a++) {
-        console.log(snap.val()[a])
         console.log(snap.val()[a].name, snap.val()[a].checked, snap.val()[a].price, snap.val()[a].quantity)
         sum += Number(snap.val()[a].quantity) * Number(snap.val()[a].price);//가격 다시 받기
         this.printsum = this.formatNumber(sum);
-        console.log(this.printsum);
         this.a.list.push({ "name": snap.val()[a].name, "checked": snap.val()[a].checked, "price": snap.val()[a].price, "quantity": snap.val()[a].quantity });
       }
       console.log(sum);
@@ -125,8 +123,6 @@ export class ViewshoppinglistPage {
   }
 
   save() {
-    console.log(this.a.list);
-    console.log("addshoping saving....")
     this.flag = false;
     this.flagInput = false;
     this.firemain.child(this.id).child(this.title).child(this.key).update({ "time": this.nowtime, "flag": "entered", "key": this.key })
@@ -136,37 +132,38 @@ export class ViewshoppinglistPage {
   }
 
   /*수정*/
-  insertData() {
+  insertData(fab: FabContainer) {
     this.flag = true;
+    fab.close();
   }
 
   /*삭제*/
-  delete() {
+  delete(fab: FabContainer) {
     var newlist = []; //선택된 것을 넣을 수 있는 새로운 배열
     console.log(this.a.list); //this.a.list는 입력을 받은 배열
     for (var i = 0; i < this.a.list.length; i++) {
       /*a.list에 있는 항목이 체크가 되어있으면 newlist에 push*/
       if (this.a.list[i].checked == true) {
-        newlist.push(i); 
+        console.log(this.a.list[i].checked);
+        newlist.push(i);
       }
-      console.log(newlist);
     }
-    console.log(newlist);
-    console.log(this.a.list.splice(newlist, 1));//선택해서 삭제한 것을 console에 출력해봄
-    for (var i = 0; i < this.a.length; i++) {
+
+    for (var i = 0; i < newlist.length; i++) {
+      console.log(newlist[i]);
       this.a.list.splice(newlist[i], 1); //a.list에서 선택된 항목을 삭제. splice를 이용해서 범위에 있는 것을 삭제함.
-      console.log(this.a.list.splice(newlist[i],1))
     }
+
     console.log(this.a.list);
     /*입력 리스트에서 삭제된 항목을 firebase에서 삭제하기위해 list 삭제*/
     this.nextdirectory.child(this.title).child(this.key).child("list").once("value", (snap) => {
-      // for (var a in snap.val()) {
-      this.nextdirectory.child(this.title).child(this.key).child("list").remove().then(() => {
-        console.log("success")
-      }).catch((e) => {
-        console.log("error" + e);
-      })
-      // }
+      for (var a in snap.val()) {
+        this.nextdirectory.child(this.title).child(this.key).child("list").remove().then(() => {
+          console.log("success")
+        }).catch((e) => {
+          console.log("error" + e);
+        })
+      }
       /*삭제한 list를 update를 통해 수정된 데이터로 다시 넣어줌 */
       this.nextdirectory.child(this.title).child(this.key).child("list").update(this.a.list).then(() => {
         console.log(this.a.list);
@@ -184,20 +181,22 @@ export class ViewshoppinglistPage {
       this.selected = count;
       this.refreshname(); //새로고침
     })
+    fab.close();
   }
 
-    /*sort구현*/
-    sortlist(){
-      this.a.list.sort(function (name1, name2) { 
-        return name1.name < name2.name ? -1 : name1.name > name2.name ? 1 : 0;  
-      });
+  /*sort구현*/
+  sortlist(fab: FabContainer) {
+    this.a.list.sort(function (name1, name2) {
+      return name1.name < name2.name ? -1 : name1.name > name2.name ? 1 : 0;
+    });
+    console.log(this.a.list);
+    window.alert("정렬되었습니다.");
+    this.nextdirectory.child(this.title).child(this.key).child("list").update(this.a.list).then(() => {
       console.log(this.a.list);
-      window.alert("정렬되었습니다.");
-      this.nextdirectory.child(this.title).child(this.key).child("list").update(this.a.list).then(() => {
-        console.log(this.a.list);
-      });
-    }
-    
+    });
+    fab.close();
+  }
+
   speeching() {
     let options = {
       "language": "ko-KR",

@@ -43,18 +43,18 @@
 
 <ion-footer>
     <div>
-        <ion-fab bottom right>
+        <ion-fab bottom right #fab>
             <button ion-fab mini><ion-icon name="add"></ion-icon></button>
             <ion-fab-list side="top">
-                <button (click)="sortlist()" ion-fab>
+                <button (click)="sortlist(fab)" ion-fab>
                     <ion-icon name="list"></ion-icon>
                     <ion-label>이름순으로 정렬</ion-label>
                 </button>
-                <button (click)="insertData()" ion-fab>
+                <button (click)="insertData(fab)" ion-fab>
                     <ion-icon name="build"></ion-icon>
                     <ion-label>수정하기</ion-label>
                 </button>
-                <button (click)="delete($event)" ion-fab>
+                <button (click)="delete(fab)" ion-fab>
                     <ion-icon name="trash"></ion-icon>
                     <ion-label>삭제하기</ion-label>
                 </button>

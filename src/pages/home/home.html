@@ -1,26 +1,26 @@
 <ion-content padding>
     <div class="upper">
-        <ion-row style="margin-bottom:0" class="search" >
+        <ion-row style="margin-bottom:0" class="search">
             <ion-col width-100>
                 <ion-searchbar style="float:left;width: 50%; padding:6px;" placeholder="입력하세요" [(ngModel)]="startPoint" clearInput></ion-searchbar>
-              
+
                 <button ion-button icon-only style="margin-right: -10px;" (click)="NoneAd()" color="primary" clear>
                     <ion-icon class="ad-icon" name="eye-off"></ion-icon>
                   </button>
-      
-                  <button ion-button icon-only style="margin-right: -10px;" (click)="appstore()" color="primary" clear>
+
+                <button ion-button icon-only style="margin-right: -10px;" (click)="appstore()" color="primary" clear>
                     <ion-icon class="appstore-icon" name="star"></ion-icon>
                   </button>
-      
-                  <button ion-button icon-only style="margin-right: -10px;" (click)="regularShare()" color="primary" clear>
+
+                <button ion-button icon-only style="margin-right: -10px;" (click)="regularShare()" color="primary" clear>
                     <ion-icon class="share-icon" name="share"></ion-icon>
                   </button>
-      
+
                 <button ion-button icon-only (click)="setting()" color='primary' clear>
                   <ion-icon class="setting-icon" name="settings"></ion-icon>
                 </button>
-      
-           
+
+
             </ion-col>
         </ion-row>
     </div>
@@ -79,6 +79,7 @@
                             {{a.time}}
                         </button>
                     </div>
+
                 </div>
             </div>
 
@@ -96,14 +97,10 @@
                     <option value="review">리뷰 많은순</option>
                 </select>
 
-                <ion-input 
-                    style="margin-right: 0px; width: 60%; display: inline-block; border: 1px solid black;" 
-                    name='text' type="text" [(ngModel)]='srct.text' 
-                    placeholder="검색어를 입력해 주세요.">
+                <ion-input style="margin-right: 0px; width: 60%; display: inline-block; border: 1px solid black;" name='text' type="text" [(ngModel)]='srct.text' placeholder="검색어를 입력해 주세요.">
                 </ion-input>
 
-                <button ion-button style="float: right; width:30px; height: 30px;" 
-                color="black" outline icon-only (click)='select_sort()'>
+                <button ion-button style="float: right; width:30px; height: 30px;" color="black" outline icon-only (click)='select_sort()'>
 
                     <ion-icon name='search' is-active="false"></ion-icon>
                 </button>

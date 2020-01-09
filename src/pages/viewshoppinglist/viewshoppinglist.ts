@@ -149,9 +149,11 @@ export class ViewshoppinglistPage {
       }
     }
 
-    for (var i = 0; i < newlist.length; i++) {
-      console.log(newlist[i]);
-      this.a.list.splice(newlist[i], 1); //a.list에서 선택된 항목을 삭제. splice를 이용해서 범위에 있는 것을 삭제함.
+
+    for (var i = 1; i <= newlist.length; i++) {
+        console.log(newlist.length);
+        console.log(newlist[i]);
+        this.a.list.splice(newlist[i], 1); //a.list에서 선택된 항목을 삭제. splice를 이용해서 범위에 있는 것을 삭제함.
     }
 
     console.log(this.a.list);

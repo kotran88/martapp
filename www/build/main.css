@@ -25996,3 +25996,13 @@ button[ion-fab] ion-label {
   border-radius: 4px;
   font-size: 11px;
 }
+
+.item-cover {
+  left: 0;
+  top: 0;
+  position: absolute;
+  width: 80%;
+  height: 100%;
+  background: transparent;
+  cursor: pointer;
+}

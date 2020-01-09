@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, FabButton, FabContainer } from 'ionic-angular';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 import firebase from 'firebase';
+import * as $ from 'jquery'
+
 /**
  * Generated class for the ViewshoppinglistPage page.
  *
@@ -66,7 +69,12 @@ export class ViewshoppinglistPage {
     })
   }
 
-  constructor(public navParam: NavParams, public navCtrl: NavController, public navParams: NavParams) {
+  public srct = {
+    text: '',
+    url: ''
+  }
+
+  constructor(public navParam: NavParams, public navCtrl: NavController, public navParams: NavParams, private iab: InAppBrowser) {
     this.a = this.navParams.get("obj");
     this.id = this.navParams.get("id");
     this.nextdirectory = this.firemain.child(this.id);
@@ -88,6 +96,10 @@ export class ViewshoppinglistPage {
     this.nowtime = "" + (month + 1) + "월" + date + "일" + (hour) + "시" + minute + "분";
     this.totalnumber = this.a.list.length;
     this.addprice();
+    $(document).ready(function () {
+      console.log("ready!");
+      console.log($("#slt").val())
+    });
   }
 
   add() {
@@ -149,11 +161,10 @@ export class ViewshoppinglistPage {
       }
     }
 
-
     for (var i = 1; i <= newlist.length; i++) {
-        console.log(newlist.length);
-        console.log(newlist[i]);
-        this.a.list.splice(newlist[i], 1); //a.list에서 선택된 항목을 삭제. splice를 이용해서 범위에 있는 것을 삭제함.
+      console.log(newlist.length);
+      console.log(newlist[i]);
+      this.a.list.splice(newlist[i], 1); //a.list에서 선택된 항목을 삭제. splice를 이용해서 범위에 있는 것을 삭제함.
     }
 
     console.log(this.a.list);
@@ -197,6 +208,23 @@ export class ViewshoppinglistPage {
       console.log(this.a.list);
     });
     fab.close();
+  }
+
+  /*가격비교 검색*/
+  select_sort() {
+    for (var i = 0; i < this.a.list.length; i++) {
+      var name = this.a.list[i].name;
+      this.srct.url = 'https://msearch.shopping.naver.com/search/all.nhn?origQuery=' + name + '&pagingIndex=1&pagingSize=40&viewType=list&sort=' + $("#slt").val() + '&frm=NVSHATC&query=' + name;
+
+      console.log($('#slt').val());
+      console.log(this.srct.url);
+      const browser = this.iab.create(this.srct.url, "_blank", "location=no,toolbar=no");
+
+      browser.on('loadstop').subscribe(event => {
+        browser.insertCSS({ code: "body{color: red;" });
+      });
+    }
+
   }
 
   speeching() {

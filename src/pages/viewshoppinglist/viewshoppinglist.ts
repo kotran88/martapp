@@ -98,7 +98,6 @@ export class ViewshoppinglistPage {
     this.addprice();
     $(document).ready(function () {
       console.log("ready!");
-      console.log($("#slt").val())
     });
   }
 
@@ -161,11 +160,19 @@ export class ViewshoppinglistPage {
       }
     }
 
-    for (var i = 1; i <= newlist.length; i++) {
-      console.log(newlist.length);
-      console.log(newlist[i]);
-      this.a.list.splice(newlist[i], 1); //a.list에서 선택된 항목을 삭제. splice를 이용해서 범위에 있는 것을 삭제함.
+    for (var i = 0; i < newlist.length; i++) {
+      this.a.list[newlist[i]] = "NC"
     }
+
+    console.log(this.a.list)
+
+    var filtered = this.a.list.filter(function (value) {
+      console.log(value)
+      return value != "NC";
+
+    });
+    console.log(filtered)
+    this.a.list = filtered
 
     console.log(this.a.list);
     /*입력 리스트에서 삭제된 항목을 firebase에서 삭제하기위해 list 삭제*/
@@ -213,10 +220,9 @@ export class ViewshoppinglistPage {
   /*가격비교 검색*/
   select_sort() {
     for (var i = 0; i < this.a.list.length; i++) {
-      var name = this.a.list[i].name;
-      this.srct.url = 'https://msearch.shopping.naver.com/search/all.nhn?origQuery=' + name + '&pagingIndex=1&pagingSize=40&viewType=list&sort=' + $("#slt").val() + '&frm=NVSHATC&query=' + name;
+    
+      this.srct.url = 'https://msearch.shopping.naver.com/search/all.nhn?origQuery=' + this.a.list[i].name + '&pagingIndex=1&pagingSize=40&viewType=list&sort=' + $("#slt").val() + '&frm=NVSHATC&query=' + this.a.list[i].name;
 
-      console.log($('#slt').val());
       console.log(this.srct.url);
       const browser = this.iab.create(this.srct.url, "_blank", "location=no,toolbar=no");
 
@@ -224,7 +230,6 @@ export class ViewshoppinglistPage {
         browser.insertCSS({ code: "body{color: red;" });
       });
     }
-
   }
 
   speeching() {

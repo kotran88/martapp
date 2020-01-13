@@ -181,16 +181,16 @@ export class ViewshoppinglistPage {
 
     console.log(this.a.list);
     /*입력 리스트에서 삭제된 항목을 firebase에서 삭제하기위해 list 삭제*/
-    this.nextdirectory.child(this.value).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
+    this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
       for (var a in snap.val()) {
-        this.nextdirectory.child(this.value).child(this.shop).child(this.title).child(this.key).child("list").remove().then(() => {
+        this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").remove().then(() => {
           console.log("success")
         }).catch((e) => {
           console.log("error" + e);
         })
       }
       /*삭제한 list를 update를 통해 수정된 데이터로 다시 넣어줌 */
-      this.nextdirectory.child(this.value).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list).then(() => {
+      this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list).then(() => {
         console.log(this.a.list);
       });
 
@@ -217,7 +217,7 @@ export class ViewshoppinglistPage {
     });
     console.log(this.a.list);
     window.alert("정렬되었습니다.");
-    this.nextdirectory.child(this.title).child(this.shop).child(this.key).child("list").update(this.a.list).then(() => {
+    this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list).then(() => {
       console.log(this.a.list);
     });
     fab.close();

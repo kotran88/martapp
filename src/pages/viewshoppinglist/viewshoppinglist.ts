@@ -34,6 +34,8 @@ export class ViewshoppinglistPage {
   sum: any = 0;
   printsum: any = 0;
   flagInput: boolean = false; //가격 및 수량도 입력하기 버튼을 위한 boolean형 변수
+  addvalue: any;
+  shop: any;
 
   /*숫자에 콤마 찍기*/
   formatNumber(num) {
@@ -41,7 +43,7 @@ export class ViewshoppinglistPage {
   }
   addprice() {
     /*가격받아오기*/
-    this.firemain.child(this.id).child(this.title).child(this.key).child("list").once("value", (snap) => {
+    this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
       for (var a = 0; a < snap.val().length; a++) {
         console.log(snap.val()[a])
         console.log(Number(snap.val()[a].quantity) * Number(snap.val()[a].price));
@@ -58,7 +60,7 @@ export class ViewshoppinglistPage {
   refreshname() {
     this.a.list = [];
     var sum = 0;
-    this.firemain.child(this.id).child(this.title).child(this.key).child("list").once("value", (snap) => {
+    this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
       for (var a = 0; a < snap.val().length; a++) {
         console.log(snap.val()[a].name, snap.val()[a].checked, snap.val()[a].price, snap.val()[a].quantity)
         sum += Number(snap.val()[a].quantity) * Number(snap.val()[a].price);//가격 다시 받기
@@ -80,11 +82,13 @@ export class ViewshoppinglistPage {
     this.nextdirectory = this.firemain.child(this.id);
     this.key = this.navParams.get("key");
     this.title = this.a.title;
+    this.shop=this.navParams.get("flag");
+    console.log(this.shop);
     console.log(this.a);
     console.log(this.a.list);
     console.log(this.id);
     console.log(this.title);
-    console.log(this.key);
+    console.log(this.key); 
     var thisday = new Date();
     thisday.toLocaleString('ko-KR', { hour: 'numeric', minute: 'numeric', hour12: true })
     var month = thisday.getMonth();
@@ -136,8 +140,9 @@ export class ViewshoppinglistPage {
   save() {
     this.flag = false;
     this.flagInput = false;
-    this.firemain.child(this.id).child(this.title).child(this.key).update({ "time": this.nowtime, "flag": "entered", "key": this.key })
-    this.firemain.child(this.id).child(this.title).child(this.key).child("list").update(this.a.list);
+    console.log(this.shop);
+    this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).update({ "time": this.nowtime, "flag": "entered", "key": this.key })
+    this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list);
     window.alert("저장되었습니다.");
     this.refreshname();
   }
@@ -176,16 +181,16 @@ export class ViewshoppinglistPage {
 
     console.log(this.a.list);
     /*입력 리스트에서 삭제된 항목을 firebase에서 삭제하기위해 list 삭제*/
-    this.nextdirectory.child(this.title).child(this.key).child("list").once("value", (snap) => {
+    this.nextdirectory.child(this.value).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
       for (var a in snap.val()) {
-        this.nextdirectory.child(this.title).child(this.key).child("list").remove().then(() => {
+        this.nextdirectory.child(this.value).child(this.shop).child(this.title).child(this.key).child("list").remove().then(() => {
           console.log("success")
         }).catch((e) => {
           console.log("error" + e);
         })
       }
       /*삭제한 list를 update를 통해 수정된 데이터로 다시 넣어줌 */
-      this.nextdirectory.child(this.title).child(this.key).child("list").update(this.a.list).then(() => {
+      this.nextdirectory.child(this.value).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list).then(() => {
         console.log(this.a.list);
       });
 
@@ -206,30 +211,29 @@ export class ViewshoppinglistPage {
 
   /*sort구현*/
   sortlist(fab: FabContainer) {
+
     this.a.list.sort(function (name1, name2) {
-      return name1.name < name2.name ? -1 : name1.name > name2.name ? 1 : 0;
+      return name1.name.toLowerCase() < name2.name.toLowerCase() ? -1 : name1.name.toLowerCase() > name2.name.toLowerCase() ? 1 : 0;
     });
     console.log(this.a.list);
     window.alert("정렬되었습니다.");
-    this.nextdirectory.child(this.title).child(this.key).child("list").update(this.a.list).then(() => {
+    this.nextdirectory.child(this.title).child(this.shop).child(this.key).child("list").update(this.a.list).then(() => {
       console.log(this.a.list);
     });
     fab.close();
   }
 
   /*가격비교 검색*/
-  select_sort() {
-    for (var i = 0; i < this.a.list.length; i++) {
-    
-      this.srct.url = 'https://msearch.shopping.naver.com/search/all.nhn?origQuery=' + this.a.list[i].name + '&pagingIndex=1&pagingSize=40&viewType=list&sort=' + $("#slt").val() + '&frm=NVSHATC&query=' + this.a.list[i].name;
+  select_sort(c) {
+    console.log(c);
+      this.srct.url = 'https://msearch.shopping.naver.com/search/all.nhn?origQuery=' + this.a.list[c].name + '&pagingIndex=1&pagingSize=40&viewType=list&sort=' + $("#slt").val() + '&frm=NVSHATC&query=' + this.a.list[c].name;
 
       console.log(this.srct.url);
       const browser = this.iab.create(this.srct.url, "_blank", "location=no,toolbar=no");
 
       browser.on('loadstop').subscribe(event => {
-        browser.insertCSS({ code: "body{color: red;" });
+        browser.insertCSS({ code: "body{color: red;}" });
       });
-    }
   }
 
   speeching() {

@@ -28,7 +28,7 @@
             <ion-input text-center style="width: 20%;float: left;" placeholder="상품명" [(ngModel)]="a.list[idx].name"></ion-input>
             <ion-input text-center style="width: 10%;float: left;" placeholder="수량" [(ngModel)]="a.list[idx].quantity"></ion-input>
             <ion-input text-center style="width: 15%;float: left;" placeholder="가격" [(ngModel)]="a.list[idx].price"></ion-input>
-            <button ion-button outline item-end style="width:10%;" (click)="select_sort()"><ion-icon name='search' is-active="false"></ion-icon></button>
+            <button ion-button outline item-end style="width:10%;" (click)="select_sort(idx)"><ion-icon name='search' is-active="false"></ion-icon></button>
         </ion-item>
     </div>
 

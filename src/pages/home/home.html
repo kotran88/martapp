@@ -46,20 +46,20 @@
             <div class="topselector">
                 <p>쇼핑 목록 만들기! 어디서 쇼핑하실 건가요?</p>
                 <div class="button">
-                    <button style="background-color:#fff;" (click)="addlist()"><img src="assets/imgs/mes.png" alt=""></button><br>
-                    <div><button style="background-color:#fff;" (click)="addlist()">마트</button></div>
+                    <button style="background-color:#fff;" (click)="addlist('mart')"><img src="assets/imgs/mes.png" alt=""></button><br>
+                    <div><button style="background-color:#fff;" (click)="addlist('mart')">마트</button></div>
                 </div>
                 <div class="button">
-                    <button style="background-color:#fff;" (click)="addlist()"><img src="assets/imgs/mes.png" alt=""></button><br>
-                    <div><button style="background-color:#fff;" (click)="addlist()">백화점</button></div>
+                    <button style="background-color:#fff;" (click)="addlist('dep')"><img src="assets/imgs/mes.png" alt=""></button><br>
+                    <div><button style="background-color:#fff;" (click)="addlist('dep')">백화점</button></div>
                 </div>
                 <div class="button">
-                    <button style="background-color:#fff;" (click)="addlist()"><img src="assets/imgs/mes.png" alt=""></button><br>
-                    <div><button style="background-color:#fff;" (click)="addlist()">아울렛</button></div>
+                    <button style="background-color:#fff;" (click)="addlist('outlet')"><img src="assets/imgs/mes.png" alt=""></button><br>
+                    <div><button style="background-color:#fff;" (click)="addlist('outlet')">아울렛</button></div>
                 </div>
                 <div class="button">
-                    <button style="background-color:#fff;" (click)="addlist()"><img src="assets/imgs/mes.png" alt=""></button><br>
-                    <div><button style="background-color:#fff;" (click)="addlist()">기타</button></div>
+                    <button style="background-color:#fff;" (click)="addlist('etc')"><img src="assets/imgs/mes.png" alt=""></button><br>
+                    <div><button style="background-color:#fff;" (click)="addlist('etc')">기타</button></div>
                 </div>
             </div>
             <div *ngFor="let a of newarraylist" class="eachshopping">
@@ -70,6 +70,7 @@
                         </button>
                     </div>
                     <div class="segmentText">
+                        {{a.flag}}
                         <button style="background-color:#fff;" (click)="viewshoppinglist(a)">
                             {{a.title}}
                         </button>
@@ -83,7 +84,7 @@
                 </div>
             </div>
 
-            <div><button style="background-color:#fff;" (click)="addlist()">(image)쇼핑 리스트를 추가해보자라는 말</button></div>
+            <!-- <div><button style="background-color:#fff;" (click)="addlist()">(image)쇼핑 리스트를 추가해보자라는 말</button></div> -->
 
         </ion-list>
         <ion-list *ngSwitchCase="'tab3'">

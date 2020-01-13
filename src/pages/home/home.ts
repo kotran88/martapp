@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController,Platform,ViewController, NavParams, ModalController } from 'ionic-angular';
+import { NavController, AlertController, Platform, ViewController, NavParams, ModalController } from 'ionic-angular';
 import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free'
 import { CallNumber } from '@ionic-native/call-number/';
 import firebase from 'firebase';
@@ -12,16 +12,17 @@ import { ViewshoppinglistPage } from '../viewshoppinglist/viewshoppinglist';
 
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { SettingPage } from '../setting/setting';
-import {AdPage} from '../ad/ad';
+import { AdPage } from '../ad/ad';
 import { RatePage } from '../rate/rate';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-
+  selectedvalue: any;
+  value: any;
   firemain = firebase.database().ref();
-
+  shoppingPlace : any;
   newarraylist = [];
   id: any = "a2f05b91-956a-b480-3525-991002905558"
   tab = "tab2";
@@ -30,15 +31,44 @@ export class HomePage {
   nextdirectory = this.firemain.child(this.id);
   refreshname() {
     this.newarraylist = [];
-    this.firemain.child(this.id).once("value", (snap) => {
+    this.firemain.child(this.id).child("mart").once("value", (snap) => {
       for (var a in snap.val()) {
         for (var b in snap.val()[a]) {
           console.log(snap.val()[a][b]);
-          this.newarraylist.push({"list":snap.val()[a][b].list, "title": a, "time": snap.val()[a][b].time, "key":snap.val()[a][b].key})
+          this.newarraylist.push({"flag":"mart", "list": snap.val()[a][b].list, "title": a, "time": snap.val()[a][b].time, "key": snap.val()[a][b].key })
         }
       }
     })
+
+    this.firemain.child(this.id).child("dep").once("value", (snap) => {
+      for (var a in snap.val()) {
+        for (var b in snap.val()[a]) {
+          console.log(snap.val()[a][b]);
+          this.newarraylist.push({ "flag":"dep", "list": snap.val()[a][b].list, "title": a, "time": snap.val()[a][b].time, "key": snap.val()[a][b].key })
+        }
+      }
+    })
+
+    this.firemain.child(this.id).child("outlet").once("value", (snap) => {
+      for (var a in snap.val()) {
+        for (var b in snap.val()[a]) {
+          console.log(snap.val()[a][b]);
+          this.newarraylist.push({ "flag":"outlet", "list": snap.val()[a][b].list, "title": a, "time": snap.val()[a][b].time, "key": snap.val()[a][b].key })
+        }
+      }
+    })
+
+    this.firemain.child(this.id).child("etc").once("value", (snap) => {
+      for (var a in snap.val()) {
+        for (var b in snap.val()[a]) {
+          console.log(snap.val()[a][b]);
+          this.newarraylist.push({ "flag":"etc", "list": snap.val()[a][b].list, "title": a, "time": snap.val()[a][b].time, "key": snap.val()[a][b].key })
+        }
+      }
+    })
+
   }
+
   public srct = {
     text: '',
     url: ''
@@ -46,20 +76,21 @@ export class HomePage {
   segmentChanged(e) {
     console.log(e);
   }
-  callnumbering(){
+  callnumbering() {
 
     window.alert("call number start")
     this.callnumber.callNumber("0630000000", true)
-    .then(res => console.log('Launched dialer!', res))
-    .catch(err => console.log('Error launching dialer', err));
+      .then(res => console.log('Launched dialer!', res))
+      .catch(err => console.log('Error launching dialer', err));
   }
 
-  regularShare(){
+  regularShare() {
     var msg = "백화점 마트 헛걸음 방지 앱\n '백마헛방'\n 쇼핑가기전엔 언제나\n '백마헛방'";
     console.log(msg)
     this.socialSharing.share(msg, null, null, null);
   }
-  addlist() {
+  addlist(value) {
+    this.selectedvalue = value;
     let alert = this.alertCtrl.create({
       title: '쇼핑 목록 명을 적어주세요',
       inputs: [
@@ -80,11 +111,12 @@ export class HomePage {
           text: '확인',
           handler: data => {
             var key = this.nextdirectory.push().key;
-            this.firemain.child(this.id).child(data.title).child(key).update({ "flag": "notyet" });
-            console.log(data.title)
+            this.firemain.child(this.id).child(value).child(data.title).child(key).update({ "flag": "notyet" });
+            console.log(data.title)//이름
             console.log(key)
-            this.navCtrl.push(AddshopingPage, { "key": key, "id": this.id, "title": data.title }).then(()=>{
-              this.navCtrl.getActive().onDidDismiss(data=>{
+            console.log("selected value" + this.selectedvalue);
+            this.navCtrl.push(AddshopingPage, { "flag": this.selectedvalue, "key": key, "id": this.id, "title": data.title }).then(() => {
+              this.navCtrl.getActive().onDidDismiss(data => {
                 console.log("dismiss detect");
                 this.refreshname();
               })
@@ -94,13 +126,14 @@ export class HomePage {
       ]
     });
     alert.present();
-  }
+    }
 
   deleteDB(key) {
     console.log("delete come");
     console.log(key);
     console.log(this.nextdirectory);
     console.log(key.title);
+    console.log(key.flag);
     let alert = this.alertCtrl.create({
       title: '선택된 품목(들)을 정말로 삭제하시겠습니까?',
       buttons: [
@@ -114,13 +147,48 @@ export class HomePage {
         {
           text: '확인',
           handler: data => {
-            this.nextdirectory.child(key.title).remove().then(() => {
-              window.alert("삭제되었습니다.")
-              console.log("success")
-              this.refreshname();
-            }).catch((e) => {
-              console.log("error" + e);
-            })
+            if(key.flag=="mart")
+            {
+              this.nextdirectory.child("mart").child(key.title).remove().then(() => {
+                window.alert("삭제되었습니다.")
+                console.log("success")
+                this.refreshname();
+              }).catch((e) => {
+                console.log("error" + e);
+              })
+            }
+            if(key.flag=="dep")
+            {
+              this.nextdirectory.child("dep").child(key.title).remove().then(() => {
+                window.alert("삭제되었습니다.")
+                console.log("success")
+                this.refreshname();
+              }).catch((e) => {
+                console.log("error" + e);
+              })
+            }
+            if(key.flag=="outlet")
+            {
+              this.nextdirectory.child("outlet").child(key.title).remove().then(() => {
+                window.alert("삭제되었습니다.")
+                console.log("success")
+                this.refreshname();
+              }).catch((e) => {
+                console.log("error" + e);
+              })
+            }
+            if(key.flag=="etc")
+            {
+              this.nextdirectory.child("etc").child(key.title).remove().then(() => {
+                window.alert("삭제되었습니다.")
+                console.log("success")
+                this.refreshname();
+              }).catch((e) => {
+                console.log("error" + e);
+              })
+            }
+
+            
           }
         }
       ]
@@ -133,7 +201,8 @@ export class HomePage {
     console.log(this.id);
     console.log(a.key);
     console.log(a.list);
-    this.navCtrl.push(ViewshoppinglistPage,{"obj":a,"id":this.id,"key":a.key});
+    this.navCtrl.push(ViewshoppinglistPage, {"flag":a.flag, "obj": a, "id": this.id, "key": a.key });
+    console.log(a.flag);
   }
   select_sort() {
 
@@ -156,21 +225,21 @@ export class HomePage {
   }
 
 
-  setting(){
+  setting() {
     this.navCtrl.push(SettingPage);
   }
 
-  NoneAd(){
-    let modal=this.modal.create(AdPage);
+  NoneAd() {
+    let modal = this.modal.create(AdPage);
     modal.present();
   }
 
-  appstore(){
-    let modal=this.modal.create(RatePage);
+  appstore() {
+    let modal = this.modal.create(RatePage);
     modal.present();
   }
 
-  constructor(public modal:ModalController ,private socialSharing:SocialSharing,private iab: InAppBrowser, public uniqueDeviceID: UniqueDeviceID,
+  constructor(public modal: ModalController, private socialSharing: SocialSharing, private iab: InAppBrowser, public uniqueDeviceID: UniqueDeviceID,
     public alertCtrl: AlertController, public callnumber: CallNumber,
     public admobFree: AdMobFree, public navCtrl: NavController) {
     this.refreshname();
@@ -178,7 +247,6 @@ export class HomePage {
       console.log("ready!");
       console.log($("#slt").val())
     });
-
     setTimeout(() => {
 
       // console.log(this.id);

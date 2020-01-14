@@ -27,6 +27,8 @@ export class AddshopingPage {
   a: any;
   price: any;
   sum: any = 0;
+  value: any;
+  flagg:any;
   printsum: any = 0;
   flagInput: boolean = false;
   nextdirectory = this.firemain.child("id");
@@ -35,7 +37,8 @@ export class AddshopingPage {
     this.a = this.navParams.get("obj");
     this.id=this.navParams.get("id");
     this.title=this.navParams.get("title");
-
+    this.value=this.navParams.get("flag");
+    console.log("this.flag:"+this.value)
     this.key=this.navParams.get("key");
     var thisday = new Date();
     thisday.toLocaleString('ko-KR', { hour: 'numeric', minute: 'numeric', hour12: true })
@@ -89,8 +92,9 @@ export class AddshopingPage {
     console.log(this.addinglist);
     console.log(this.id);
     console.log(this.key);
-    this.firemain.child(this.id).child(this.title).child(this.key).update({"time":this.nowtime,"flag":"entered","key":this.key})
-    this.firemain.child(this.id).child(this.title).child(this.key).child("list").update(this.addinglist);
+    console.log(this.value);
+    this.firemain.child(this.id).child(this.value).child(this.title).child(this.key).update({"time":this.nowtime,"flag":"entered","key":this.key})
+    this.firemain.child(this.id).child(this.value).child(this.title).child(this.key).child("list").update(this.addinglist);
   }
   
   speeching(){

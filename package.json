@@ -23,6 +23,7 @@
     "@ionic-native/admob-free": "^4.20.0",
     "@ionic-native/call-number": "^4.20.0",
     "@ionic-native/core": "~4.20.0",
+    "@ionic-native/date-picker": "^4.20.0",
     "@ionic-native/in-app-browser": "^4.20.0",
     "@ionic-native/in-app-purchase": "^4.20.0",
     "@ionic-native/social-sharing": "^4.20.0",
@@ -37,6 +38,7 @@
     "cordova-admob-sdk": "0.24.1",
     "cordova-android": "8.1.0",
     "cordova-plugin-admob-free": "^0.27.0",
+    "cordova-plugin-datepicker": "^0.9.3",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-inappbrowser": "^3.1.0",
     "cordova-plugin-inapppurchase": "^1.2.0",
@@ -91,7 +93,8 @@
       "cordova-plugin-speechrecognition": {},
       "cordova-plugin-inappbrowser": {},
       "cordova-plugin-x-socialsharing": {},
-      "cordova-plugin-inapppurchase": {}
+      "cordova-plugin-inapppurchase": {},
+      "cordova-plugin-datepicker": {}
     },
     "platforms": [
       "android"

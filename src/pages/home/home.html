@@ -1,26 +1,26 @@
 <ion-content padding>
     <div class="upper">
-        <ion-row style="margin-bottom:0" class="search" >
+        <ion-row style="margin-bottom:0" class="search">
             <ion-col width-100>
                 <ion-searchbar style="float:left;width: 50%; padding:6px;" placeholder="입력하세요" [(ngModel)]="startPoint" clearInput></ion-searchbar>
-              
+
                 <button ion-button icon-only style="margin-right: -10px;" (click)="NoneAd()" color="primary" clear>
                     <ion-icon class="ad-icon" name="eye-off"></ion-icon>
                   </button>
-      
-                  <button ion-button icon-only style="margin-right: -10px;" (click)="appstore()" color="primary" clear>
+
+                <button ion-button icon-only style="margin-right: -10px;" (click)="appstore()" color="primary" clear>
                     <ion-icon class="appstore-icon" name="star"></ion-icon>
                   </button>
-      
-                  <button ion-button icon-only style="margin-right: -10px;" (click)="regularShare()" color="primary" clear>
+
+                <button ion-button icon-only style="margin-right: -10px;" (click)="regularShare()" color="primary" clear>
                     <ion-icon class="share-icon" name="share"></ion-icon>
                   </button>
-      
+
                 <button ion-button icon-only (click)="setting()" color='primary' clear>
                   <ion-icon class="setting-icon" name="settings"></ion-icon>
                 </button>
-      
-           
+
+
             </ion-col>
         </ion-row>
     </div>
@@ -46,20 +46,20 @@
             <div class="topselector">
                 <p>쇼핑 목록 만들기! 어디서 쇼핑하실 건가요?</p>
                 <div class="button">
-                    <button style="background-color:#fff;" (click)="addlist()"><img src="assets/imgs/mes.png" alt=""></button><br>
-                    <div><button style="background-color:#fff;" (click)="addlist()">마트</button></div>
+                    <button style="background-color:#fff;" (click)="addlist('mart')"><img src="assets/imgs/mes.png" alt=""></button><br>
+                    <div><button style="background-color:#fff;" (click)="addlist('mart')">마트</button></div>
                 </div>
                 <div class="button">
-                    <button style="background-color:#fff;" (click)="addlist()"><img src="assets/imgs/mes.png" alt=""></button><br>
-                    <div><button style="background-color:#fff;" (click)="addlist()">백화점</button></div>
+                    <button style="background-color:#fff;" (click)="addlist('dep')"><img src="assets/imgs/mes.png" alt=""></button><br>
+                    <div><button style="background-color:#fff;" (click)="addlist('dep')">백화점</button></div>
                 </div>
                 <div class="button">
-                    <button style="background-color:#fff;" (click)="addlist()"><img src="assets/imgs/mes.png" alt=""></button><br>
-                    <div><button style="background-color:#fff;" (click)="addlist()">아울렛</button></div>
+                    <button style="background-color:#fff;" (click)="addlist('outlet')"><img src="assets/imgs/mes.png" alt=""></button><br>
+                    <div><button style="background-color:#fff;" (click)="addlist('outlet')">아울렛</button></div>
                 </div>
                 <div class="button">
-                    <button style="background-color:#fff;" (click)="addlist()"><img src="assets/imgs/mes.png" alt=""></button><br>
-                    <div><button style="background-color:#fff;" (click)="addlist()">기타</button></div>
+                    <button style="background-color:#fff;" (click)="addlist('etc')"><img src="assets/imgs/mes.png" alt=""></button><br>
+                    <div><button style="background-color:#fff;" (click)="addlist('etc')">기타</button></div>
                 </div>
             </div>
             <div *ngFor="let a of newarraylist" class="eachshopping">
@@ -70,6 +70,7 @@
                         </button>
                     </div>
                     <div class="segmentText">
+                        {{a.flag}}
                         <button style="background-color:#fff;" (click)="viewshoppinglist(a)">
                             {{a.title}}
                         </button>
@@ -79,16 +80,17 @@
                             {{a.time}}
                         </button>
                     </div>
+
                 </div>
             </div>
 
-            <div><button style="background-color:#fff;" (click)="addlist()">(image)쇼핑 리스트를 추가해보자라는 말</button></div>
+            <!-- <div><button style="background-color:#fff;" (click)="addlist()">(image)쇼핑 리스트를 추가해보자라는 말</button></div> -->
 
         </ion-list>
         <ion-list *ngSwitchCase="'tab3'">
 
-            <div style="position: relative;">
-                <select  id='shop-filter-select' name="sort">
+            <div>
+                <select style="display: inline-block; width:25%;" id='slt' name="sort">
                     <option value="rel" selected="selected">랭킹순</option>
                     <option value="price_asc">낮은 가격순</option>
                     <option value="price_dsc">높은 가격순</option>
@@ -96,13 +98,12 @@
                     <option value="review">리뷰 많은순</option>
                 </select>
 
-                <ion-input id="shop-search-box"
-                    name='text' type="text" [(ngModel)]='srct.text' 
-                    placeholder="검색어를 입력해 주세요.">
+                <ion-input style="margin-right: 0px; width: 60%; display: inline-block; border: 1px solid black;" name='text' type="text" [(ngModel)]='srct.text' placeholder="검색어를 입력해 주세요.">
                 </ion-input>
 
-                <button id="shop-search-button"icon-only (click)='select_sort()'>
-                    <ion-icon name="search"></ion-icon>
+                <button ion-button style="float: right; width:30px; height: 30px;" color="black" outline icon-only (click)='select_sort()'>
+
+                    <ion-icon name='search' is-active="false"></ion-icon>
                 </button>
             </div>
         </ion-list>

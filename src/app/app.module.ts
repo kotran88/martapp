@@ -13,6 +13,7 @@ import {AngularFireModule} from 'angularfire2';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
+import { DatePicker } from '@ionic-native/date-picker';
 
 import {AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free'
 import { AddshopingPage } from '../pages/addshoping/addshoping';
@@ -77,6 +78,7 @@ firebase.initializeApp(firebaseConfig);
     CallNumber,
     SplashScreen,
     InAppBrowser,
+    DatePicker,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -5,7 +5,7 @@
       <span>image 광고없는 프리미엄</span>
     </div>
     
-    <div id="all-button">
+    <div id="select-button">
       <div *ngFor="let opt of option; let i = index">
 
         <button ion-button (click)="clickbutton(i)"
@@ -18,15 +18,17 @@
       </div>
     </div>
 
-    <button ion-button *ngIf="more_info===false" (click)="add_menu()">
-      더 많은 정보 보기
-    </button>
-    <button ion-button *ngIf="more_info===true" (click)="dismiss()">
-      닫기
-    </button>
+    <div id="menu-button">
+      <button ion-button *ngIf="more_info===false" (click)="add_menu()">
+        더 많은 정보 보기
+      </button>
+      <button ion-button *ngIf="more_info===true" (click)="dismiss()">
+        닫기
+      </button>
 
-    <button ion-button (click)="purchase()">
-      OK계속하기
-    </button>
+      <button ion-button (click)="purchase()">
+        OK계속하기
+      </button>
+    </div>
   </div>
 </ion-content>

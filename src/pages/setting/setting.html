@@ -26,23 +26,32 @@
         <span>개발자 문의하기</span>
       </ion-item>
 
-      <ion-item (click)="toggleGroup()">
-        <ion-icon name="alarm"></ion-icon>
-        <span>푸시 알람 설정</span>
-        <ion-icon color="success" item-right [name]="shownGroup===true ? 'arrow-dropup' : 'arrow-dropdown'"></ion-icon>
+      <ion-item>
+        <div (click)="toggleGroup()">
+          <ion-icon name="alarm"></ion-icon>
+          <span>푸시 알람 설정</span>
+          <ion-icon item-right [name]="shownGroup===true ? 'arrow-dropup' : 'arrow-dropdown'"></ion-icon>
+        </div>
 
         <div *ngIf="shownGroup">
-          즐겨 찾기 한 매장의 휴무일 푸쉬 알림 받기
-          <div></div>
-          <a class="test" *ngFor="let button of buttontoggle; let i = index">
-
-            <button ion-button (click)="clickButton(i)" [ngClass]="button.check===true?'B_on':'B_off'">
+          <div>즐겨 찾기 한 매장의 휴무일 푸쉬 알림 받기</div>
+          <div class="test" *ngFor="let button of buttontoggle; let i = index">
+            <button ion-button (click)="clickButton(i)" [ngClass]="button.check===true?'B_on':'B_off'" style="width: 20%; display: inline-block;">
               {{button.name}}
             </button>
-            
-          </a>
-          <div></div>
-          <button ion-button (click)="alarmcheck()">완료</button>
+          </div>
+
+          <div *ngIf="checkbutton()===true">
+            <ion-item>
+              <ion-label>Time</ion-label>
+              <ion-datetime  id="date-time" 
+                displayFormat="h:mm A" pickerFormat="h:mm A "
+                [(ngModel)]="DateTime">
+              </ion-datetime>
+            </ion-item>
+          </div>
+
+          <button ion-button (click)="alarmcheck()" style="background: lightgray;">완료</button>
         </div>
       </ion-item>
       
@@ -52,3 +61,4 @@
 
     </ion-list>
 </ion-content>
+<!-- mbsc-col-sm-12 mbsc-col-md-6 -->

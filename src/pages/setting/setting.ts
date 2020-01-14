@@ -8,6 +8,9 @@ import {Http} from '@angular/http';
 import { isTrueProperty } from 'ionic-angular/umd/util/util';
 import { componentFactoryName } from '@angular/compiler';
 import undefined from 'firebase/empty-import';
+import { DatePicker } from '@ionic-native/date-picker';
+import { last } from 'rxjs/operator/last';
+import firebase from 'firebase';
 
 /**
  * Generated class for the SettingPage page.
@@ -24,6 +27,13 @@ export class SettingPage {
   version='V1.10.01';
   shownGroup = null;
 
+  key: any;
+  id: any;
+  title: any;
+  nextdirectory: any;
+  a: any;
+  firemain = firebase.database().ref();
+
   test:any=false;
   buttontoggle=[
     {name:'7일 전',check:false},
@@ -31,6 +41,8 @@ export class SettingPage {
     {name:'1일 전',check:false},
     {name:'받지 않기',check:true},
   ];
+
+  DateTime=({hour:"11",min:"50",apm:"AM"})
 
   toggleGroup() {
     this.shownGroup=!this.shownGroup;
@@ -49,8 +61,16 @@ export class SettingPage {
     console.log(i,this.buttontoggle[i]);
   };
 
-  checkButton(i){
-    return this.buttontoggle[i]
+  checkbutton(){
+    var val=false;
+    for(var i=0; i<this.buttontoggle.length;i++){
+      if(this.buttontoggle[i].check==true)
+      {
+        if(i<3) val=true;
+        else val=false;
+      }
+    }
+
   }
 
   alarmcheck(){
@@ -58,9 +78,30 @@ export class SettingPage {
       console.log(i,this.buttontoggle[i]);
     }
     this.shownGroup=false;
+
+    console.log(this.DateTime)
+    console.log(this.DateTime.hour);
+    console.log(this.DateTime.min);
+    console.log(this.DateTime.apm);
+    this.send_alarm();
   }
 
-  constructor(public modal:ModalController,
+  send_alarm(){
+    this.a = this.navParams.get("obj");
+    console.log(this.a);
+    window.alert('1');
+    this.id = this.navParams.get("id");
+    console.log(this.id)
+    window.alert('a');
+    this.nextdirectory = this.firemain.child(this.id);
+    window.alert('b');
+    this.key = this.navParams.get("key");
+    window.alert('c');
+    this.title = this.a.title;
+    window.alert('d');
+  }
+
+  constructor(public modal:ModalController,private datePicker: DatePicker,
     private iab:InAppBrowser,private socialSharing:SocialSharing,private alertCtrl:AlertController,
     public navCtrl: NavController, public navParams: NavParams) {
   }

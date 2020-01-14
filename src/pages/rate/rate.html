@@ -1,21 +1,25 @@
 <ion-content class="main-view" style="background: transparent;
-  background-color: white;
-  outline-color:black;
+  background-color: rgb(242,242,242);
+  outline-color:rgb(1,166,177);
   border: solid 1px;
   border-radius: 10px;
-  height: 80%;
-  width:80%;
-  top: 10%;
-  left:10%;
+  height: 70%;
+  width:90%;
+  top: 30%;
+  left:5%;
   " padding>
 
-  <div>
-    <button ion-button (click)="dismiss()" ng-show="more_info">
-      닫기
+  <div id="app-assessment-image">
+    <span>앱 평가하러 가기</span>
+  </div>
+
+  <div id="btn-option">
+    <button (click)="dismiss()" style="margin-right: 30%;">
+      아니요
     </button>
 
-    <button ion-button (click)="appstore()">
-      앱 평가하기
+    <button (click)="appstore()">
+      예
     </button>
   </div>
       

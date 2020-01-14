@@ -7,56 +7,58 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "io.ionic.starter"
-    },
-    "cordova-plugin-statusbar": {
+    "cordova-plugin-admob-free": {
+      "ADMOB_APP_ID": "ca-app-pub-7312977746566747~2506400148",
       "PACKAGE_NAME": "io.ionic.starter"
     },
     "cordova-plugin-device": {
       "PACKAGE_NAME": "io.ionic.starter"
     },
-    "cordova-plugin-splashscreen": {
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-plugin-inapppurchase": {
+      "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-plugin-ionic-keyboard": {
       "PACKAGE_NAME": "io.ionic.starter"
     },
     "cordova-plugin-ionic-webview": {
       "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+",
       "PACKAGE_NAME": "io.ionic.starter"
     },
-    "cordova-plugin-ionic-keyboard": {
+    "cordova-plugin-speechrecognition": {
       "PACKAGE_NAME": "io.ionic.starter"
     },
-    "cordova-plugin-admob-free": {
-      "ADMOB_APP_ID": "ca-app-pub-7312977746566747~2506400148",
-      "PLAY_SERVICES_VERSION": "11.0.4",
+    "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "io.ionic.starter"
     },
-    "mx.ferreyra.callnumber": {
+    "cordova-plugin-statusbar": {
       "PACKAGE_NAME": "io.ionic.starter"
     },
     "cordova-plugin-uniquedeviceid": {
       "PACKAGE_NAME": "io.ionic.starter"
     },
-    "cordova-plugin-speechrecognition": {
-      "PACKAGE_NAME": "io.ionic.starter"
-    },
-    "cordova-plugin-inappbrowser": {
+    "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "io.ionic.starter"
     },
     "cordova-plugin-x-socialsharing": {
       "ANDROID_SUPPORT_V4_VERSION": "24.1.1+",
       "PACKAGE_NAME": "io.ionic.starter"
     },
-    "cordova-plugin-inapppurchase": {
+    "mx.ferreyra.callnumber": {
+      "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-plugin-datepicker": {
       "PACKAGE_NAME": "io.ionic.starter"
     }
   },
   "dependent_plugins": {
-    "cordova-promise-polyfill": {
-      "PACKAGE_NAME": "io.ionic.starter"
-    },
     "cordova-admob-sdk": {
       "PLAY_SERVICES_VERSION": "11.0.4",
+      "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-promise-polyfill": {
       "PACKAGE_NAME": "io.ionic.starter"
     },
     "es6-promise-plugin": {

@@ -187,8 +187,6 @@ export class HomePage {
                 console.log("error" + e);
               })
             }
-
-            
           }
         }
       ]
@@ -238,6 +236,15 @@ export class HomePage {
     let modal = this.modal.create(RatePage);
     modal.present();
   }
+
+  /*목록명 변경*/
+  changeName(key) {}
+
+  /*공유*/
+  share(key){}
+
+  /*복사*/
+  copy(key){}
 
   constructor(public modal: ModalController, private socialSharing: SocialSharing, private iab: InAppBrowser, public uniqueDeviceID: UniqueDeviceID,
     public alertCtrl: AlertController, public callnumber: CallNumber,

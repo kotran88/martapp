@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, FabButton, FabContainer } from 'ionic-angular';
+import { NavController, AlertController, NavParams, FabButton, FabContainer } from 'ionic-angular';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import firebase from 'firebase';
 import * as $ from 'jquery'
+import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeBanner } from '@ionic-native/admob-free';
+
 
 /**
  * Generated class for the ViewshoppinglistPage page.
@@ -76,19 +78,21 @@ export class ViewshoppinglistPage {
     url: ''
   }
 
-  constructor(public navParam: NavParams, public navCtrl: NavController, public navParams: NavParams, private iab: InAppBrowser) {
+  constructor(public navParam: NavParams, public navCtrl: NavController,
+    public navParams: NavParams, private iab: InAppBrowser,
+    public alertCtrl: AlertController, private admobFree: AdMobFree) {
     this.a = this.navParams.get("obj");
     this.id = this.navParams.get("id");
     this.nextdirectory = this.firemain.child(this.id);
     this.key = this.navParams.get("key");
     this.title = this.a.title;
-    this.shop=this.navParams.get("flag");
+    this.shop = this.navParams.get("flag");
     console.log(this.shop);
     console.log(this.a);
     console.log(this.a.list);
     console.log(this.id);
     console.log(this.title);
-    console.log(this.key); 
+    console.log(this.key);
     var thisday = new Date();
     thisday.toLocaleString('ko-KR', { hour: 'numeric', minute: 'numeric', hour12: true })
     var month = thisday.getMonth();
@@ -140,11 +144,29 @@ export class ViewshoppinglistPage {
   save() {
     this.flag = false;
     this.flagInput = false;
-    console.log(this.shop);
-    this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).update({ "time": this.nowtime, "flag": "entered", "key": this.key })
-    this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list);
-    window.alert("저장되었습니다.");
-    this.refreshname();
+    let alert = this.alertCtrl.create({
+      title: '작성 중이던 목록을 저장할까요?',
+      buttons: [
+        {
+          text: '아니요',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: '예',
+          handler: data => {
+            console.log(this.shop);
+            this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).update({ "time": this.nowtime, "flag": "entered", "key": this.key })
+            this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list);
+            window.alert("저장되었습니다.");
+            this.refreshname();
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
   /*수정*/
@@ -155,58 +177,76 @@ export class ViewshoppinglistPage {
 
   /*삭제*/
   delete(fab: FabContainer) {
-    var newlist = []; //선택된 것을 넣을 수 있는 새로운 배열
-    console.log(this.a.list); //this.a.list는 입력을 받은 배열
-    for (var i = 0; i < this.a.list.length; i++) {
-      /*a.list에 있는 항목이 체크가 되어있으면 newlist에 push*/
-      if (this.a.list[i].checked == true) {
-        console.log(this.a.list[i].checked);
-        newlist.push(i);
-      }
-    }
+    let alert = this.alertCtrl.create({
+      title: '정말로 삭제하시겠습니까?',
+      buttons: [
+        {
+          text: '취소',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: '확인',
+          handler: data => {
+            var newlist = []; //선택된 것을 넣을 수 있는 새로운 배열
+            console.log(this.a.list); //this.a.list는 입력을 받은 배열
+            for (var i = 0; i < this.a.list.length; i++) {
+              /*a.list에 있는 항목이 체크가 되어있으면 newlist에 push*/
+              if (this.a.list[i].checked == true) {
+                console.log(this.a.list[i].checked);
+                newlist.push(i);
+              }
+            }
 
-    for (var i = 0; i < newlist.length; i++) {
-      this.a.list[newlist[i]] = "NC"
-    }
+            for (var i = 0; i < newlist.length; i++) {
+              this.a.list[newlist[i]] = "NC"
+            }
 
-    console.log(this.a.list)
+            console.log(this.a.list)
 
-    var filtered = this.a.list.filter(function (value) {
-      console.log(value)
-      return value != "NC";
+            var filtered = this.a.list.filter(function (value) {
+              console.log(value)
+              return value != "NC";
 
-    });
-    console.log(filtered)
-    this.a.list = filtered
+            });
+            console.log(filtered)
+            this.a.list = filtered
 
-    console.log(this.a.list);
-    /*입력 리스트에서 삭제된 항목을 firebase에서 삭제하기위해 list 삭제*/
-    this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
-      for (var a in snap.val()) {
-        this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").remove().then(() => {
-          console.log("success")
-        }).catch((e) => {
-          console.log("error" + e);
-        })
-      }
-      /*삭제한 list를 update를 통해 수정된 데이터로 다시 넣어줌 */
-      this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list).then(() => {
-        console.log(this.a.list);
-      });
+            console.log(this.a.list);
+            /*입력 리스트에서 삭제된 항목을 firebase에서 삭제하기위해 list 삭제*/
+            this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
+              for (var a in snap.val()) {
+                this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").remove().then(() => {
+                  console.log("success")
+                }).catch((e) => {
+                  console.log("error" + e);
+                })
+              }
+              /*삭제한 list를 update를 통해 수정된 데이터로 다시 넣어줌 */
+              this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list).then(() => {
+                console.log(this.a.list);
+              });
 
-      window.alert("삭제되었습니다.")
-      /*totalNumber와 Select값 가져오기*/
-      this.totalnumber = this.a.list.length;
-      var count = 0;
-      for (var i = 0; i < this.a.list.length; i++) {
-        if (this.a.list[i].checked == true) {
-          count++;
+              window.alert("삭제되었습니다.")
+              /*totalNumber와 Select값 가져오기*/
+              this.totalnumber = this.a.list.length;
+              var count = 0;
+              for (var i = 0; i < this.a.list.length; i++) {
+                if (this.a.list[i].checked == true) {
+                  count++;
+                }
+              }
+              this.selected = count;
+              this.refreshname(); //새로고침
+            })
+          }
         }
-      }
-      this.selected = count;
-      this.refreshname(); //새로고침
-    })
+      ]
+    });
     fab.close();
+    alert.present();
   }
 
   /*sort구현*/
@@ -226,14 +266,14 @@ export class ViewshoppinglistPage {
   /*가격비교 검색*/
   select_sort(c) {
     console.log(c);
-      this.srct.url = 'https://msearch.shopping.naver.com/search/all.nhn?origQuery=' + this.a.list[c].name + '&pagingIndex=1&pagingSize=40&viewType=list&sort=' + $("#slt").val() + '&frm=NVSHATC&query=' + this.a.list[c].name;
+    this.srct.url = 'https://msearch.shopping.naver.com/search/all.nhn?origQuery=' + this.a.list[c].name + '&pagingIndex=1&pagingSize=40&viewType=list&sort=' + $("#slt").val() + '&frm=NVSHATC&query=' + this.a.list[c].name;
 
-      console.log(this.srct.url);
-      const browser = this.iab.create(this.srct.url, "_blank", "location=no,toolbar=no");
+    console.log(this.srct.url);
+    const browser = this.iab.create(this.srct.url, "_blank", "location=no,toolbar=no");
 
-      browser.on('loadstop').subscribe(event => {
-        browser.insertCSS({ code: "body{color: red;}" });
-      });
+    browser.on('loadstop').subscribe(event => {
+      browser.insertCSS({ code: "body{color: red;}" });
+    });
   }
 
   speeching() {

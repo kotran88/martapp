@@ -80,7 +80,29 @@
                             {{a.time}}
                         </button>
                     </div>
-
+                    <div>
+                        <ion-fab right #fab>
+                            <button ion-fab mini><ion-icon name="add"></ion-icon></button>
+                            <ion-fab-list side="bottom">
+                                <button (click)="changeName(a)" ion-fab>
+                                    <ion-icon name="list"></ion-icon>
+                                    <ion-label>목록명 변경</ion-label>
+                                </button>
+                                <button (click)="share(a)" ion-fab>
+                                    <ion-icon name="build"></ion-icon>
+                                    <ion-label>공유</ion-label>
+                                </button>
+                                <button (click)="deleteDB(a)" ion-fab>
+                                    <ion-icon name="trash"></ion-icon>
+                                    <ion-label>삭제</ion-label>
+                                </button>
+                                <button (click)="copy(a)" ion-fab>
+                                    <ion-icon name="trash"></ion-icon>
+                                    <ion-label>복사</ion-label>
+                                </button>
+                            </ion-fab-list>
+                        </ion-fab>
+                    </div>
                 </div>
             </div>
 

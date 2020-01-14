@@ -55,9 +55,7 @@
       "id": "cordova-plugin-admob-free@^0.27.0"
     },
     "is_top_level": true,
-    "variables": {
-      "ADMOB_APP_ID": "ca-app-pub-7312977746566747~2506400148"
-    }
+    "variables": {}
   },
   "cordova-promise-polyfill": {
     "source": {

@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, NavParams, FabButton, FabContainer } from 'ionic-angular';
+import { NavController, AlertController, NavParams, FabButton, FabContainer, ToastController } from 'ionic-angular';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import firebase from 'firebase';
 import * as $ from 'jquery'
 import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeBanner } from '@ionic-native/admob-free';
+import { HomePage } from '../home/home';
+
 
 
 /**
@@ -80,7 +82,8 @@ export class ViewshoppinglistPage {
 
   constructor(public navParam: NavParams, public navCtrl: NavController,
     public navParams: NavParams, private iab: InAppBrowser,
-    public alertCtrl: AlertController, private admobFree: AdMobFree) {
+    public alertCtrl: AlertController, private admobFree: AdMobFree,
+    public toastCtrl: ToastController) {
     this.a = this.navParams.get("obj");
     this.id = this.navParams.get("id");
     this.nextdirectory = this.firemain.child(this.id);
@@ -103,6 +106,7 @@ export class ViewshoppinglistPage {
     var second = thisday.getSeconds();
     this.nowtime = "" + (month + 1) + "월" + date + "일" + (hour) + "시" + minute + "분";
     this.totalnumber = this.a.list.length;
+    // this.createItem();
     this.addprice();
     $(document).ready(function () {
       console.log("ready!");
@@ -160,8 +164,8 @@ export class ViewshoppinglistPage {
             console.log(this.shop);
             this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).update({ "time": this.nowtime, "flag": "entered", "key": this.key })
             this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list);
-            window.alert("저장되었습니다.");
             this.refreshname();
+            this.showToastWithCloseButton();
           }
         }
       ]
@@ -275,6 +279,16 @@ export class ViewshoppinglistPage {
       browser.insertCSS({ code: "body{color: red;}" });
     });
   }
+
+  /*토스트버튼*/
+  showToastWithCloseButton() {
+    const toast = this.toastCtrl.create({
+      message: this.totalnumber + '개 중' + this.selected + '개 구입 완료.',
+      duration: 2000,
+    });
+    toast.present();
+  }
+
 
   speeching() {
     let options = {

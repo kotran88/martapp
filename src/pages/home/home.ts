@@ -22,20 +22,22 @@ export class HomePage {
   selectedvalue: any;
   value: any;
   firemain = firebase.database().ref();
-  shoppingPlace : any;
+  shoppingPlace: any;
   newarraylist = [];
   id: any = "a2f05b91-956a-b480-3525-991002905558"
   tab = "tab2";
   title: any;
   key: any;
   nextdirectory = this.firemain.child(this.id);
+  count: any;
+  total: any;
   refreshname() {
     this.newarraylist = [];
     this.firemain.child(this.id).child("mart").once("value", (snap) => {
       for (var a in snap.val()) {
         for (var b in snap.val()[a]) {
           console.log(snap.val()[a][b]);
-          this.newarraylist.push({"flag":"mart", "list": snap.val()[a][b].list, "title": a, "time": snap.val()[a][b].time, "key": snap.val()[a][b].key })
+          this.newarraylist.push({ "flag": "mart", "list": snap.val()[a][b].list, "title": a, "time": snap.val()[a][b].time, "key": snap.val()[a][b].key })
         }
       }
     })
@@ -44,7 +46,7 @@ export class HomePage {
       for (var a in snap.val()) {
         for (var b in snap.val()[a]) {
           console.log(snap.val()[a][b]);
-          this.newarraylist.push({ "flag":"dep", "list": snap.val()[a][b].list, "title": a, "time": snap.val()[a][b].time, "key": snap.val()[a][b].key })
+          this.newarraylist.push({ "flag": "dep", "list": snap.val()[a][b].list, "title": a, "time": snap.val()[a][b].time, "key": snap.val()[a][b].key })
         }
       }
     })
@@ -53,7 +55,7 @@ export class HomePage {
       for (var a in snap.val()) {
         for (var b in snap.val()[a]) {
           console.log(snap.val()[a][b]);
-          this.newarraylist.push({ "flag":"outlet", "list": snap.val()[a][b].list, "title": a, "time": snap.val()[a][b].time, "key": snap.val()[a][b].key })
+          this.newarraylist.push({ "flag": "outlet", "list": snap.val()[a][b].list, "title": a, "time": snap.val()[a][b].time, "key": snap.val()[a][b].key })
         }
       }
     })
@@ -62,7 +64,7 @@ export class HomePage {
       for (var a in snap.val()) {
         for (var b in snap.val()[a]) {
           console.log(snap.val()[a][b]);
-          this.newarraylist.push({ "flag":"etc", "list": snap.val()[a][b].list, "title": a, "time": snap.val()[a][b].time, "key": snap.val()[a][b].key })
+          this.newarraylist.push({ "flag": "etc", "list": snap.val()[a][b].list, "title": a, "time": snap.val()[a][b].time, "key": snap.val()[a][b].key })
         }
       }
     })
@@ -126,7 +128,7 @@ export class HomePage {
       ]
     });
     alert.present();
-    }
+  }
 
   deleteDB(key) {
     console.log("delete come");
@@ -147,8 +149,7 @@ export class HomePage {
         {
           text: '확인',
           handler: data => {
-            if(key.flag=="mart")
-            {
+            if (key.flag == "mart") {
               this.nextdirectory.child("mart").child(key.title).remove().then(() => {
                 window.alert("삭제되었습니다.")
                 console.log("success")
@@ -157,8 +158,7 @@ export class HomePage {
                 console.log("error" + e);
               })
             }
-            if(key.flag=="dep")
-            {
+            if (key.flag == "dep") {
               this.nextdirectory.child("dep").child(key.title).remove().then(() => {
                 window.alert("삭제되었습니다.")
                 console.log("success")
@@ -167,8 +167,7 @@ export class HomePage {
                 console.log("error" + e);
               })
             }
-            if(key.flag=="outlet")
-            {
+            if (key.flag == "outlet") {
               this.nextdirectory.child("outlet").child(key.title).remove().then(() => {
                 window.alert("삭제되었습니다.")
                 console.log("success")
@@ -177,8 +176,7 @@ export class HomePage {
                 console.log("error" + e);
               })
             }
-            if(key.flag=="etc")
-            {
+            if (key.flag == "etc") {
               this.nextdirectory.child("etc").child(key.title).remove().then(() => {
                 window.alert("삭제되었습니다.")
                 console.log("success")
@@ -199,7 +197,7 @@ export class HomePage {
     console.log(this.id);
     console.log(a.key);
     console.log(a.list);
-    this.navCtrl.push(ViewshoppinglistPage, {"flag":a.flag, "obj": a, "id": this.id, "key": a.key });
+    this.navCtrl.push(ViewshoppinglistPage, { "flag": a.flag, "obj": a, "id": this.id, "key": a.key });
     console.log(a.flag);
   }
   select_sort() {
@@ -238,17 +236,96 @@ export class HomePage {
   }
 
   /*목록명 변경*/
-  changeName(key) {}
+  changeName(key) {
+    console.log(key);
+    console.log(key.title);
+    let alert = this.alertCtrl.create({
+      title: '쇼핑 목록 명을 적어주세요',
+      inputs: [
+        {
+          name: 'title',
+          placeholder: 'title'
+        }
+      ],
+      buttons: [
+        {
+          text: '취소',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: '확인',
+          handler: data => {
+            if (key.flag == "mart") {
+              console.log(key.title);
+              this.nextdirectory.child("mart").child(key.title).remove().then(() => {
+                console.log("success");
+              });
+              this.firemain.child(this.id).child("mart").child(data.title).child(key.key).update(key).then(() => {
+                console.log(key);
+                console.log(key.key);
+                key.title = data.title;
+                window.alert("변경되었습니다.");
+              })
+            }
+            if (key.flag == "dep") {
+              console.log(key.title);
+              this.nextdirectory.child("dep").child(key.title).remove().then(() => {
+                console.log("success");
+              });
+              this.firemain.child(this.id).child("dep").child(data.title).child(key.key).update(key).then(() => {
+                console.log(key);
+                console.log(key.key);
+                key.title = data.title;
+                window.alert("성공");
+              })
+            }
+            if (key.flag == "outlet") {
+              console.log(key.title);
+              this.nextdirectory.child("outlet").child(key.title).remove().then(() => {
+                console.log("success");
+              });
+              this.firemain.child(this.id).child("outlet").child(data.title).child(key.key).update(key).then(() => {
+                console.log(key);
+                console.log(key.key);
+                key.title = data.title;
+                window.alert("성공");
+              })
+            }
+            if (key.flag == "etc") {
+              console.log(key.title);
+              this.nextdirectory.child("etc").child(key.title).remove().then(() => {
+                console.log("success");
+              });
+              this.firemain.child(this.id).child("etc").child(data.title).child(key.key).update(key).then(() => {
+                console.log(key);
+                console.log(key.key);
+                key.title = data.title;
+                window.alert("성공");
+              })
+            }
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
 
   /*공유*/
-  share(key){}
+  share(key) {
+
+  }
 
   /*복사*/
-  copy(key){}
+  copy(key) {
+
+  }
 
   constructor(public modal: ModalController, private socialSharing: SocialSharing, private iab: InAppBrowser, public uniqueDeviceID: UniqueDeviceID,
     public alertCtrl: AlertController, public callnumber: CallNumber,
-    public admobFree: AdMobFree, public navCtrl: NavController) {
+    public admobFree: AdMobFree, public navCtrl: NavController, public navParams:NavParams) {
     this.refreshname();
     $(document).ready(function () {
       console.log("ready!");

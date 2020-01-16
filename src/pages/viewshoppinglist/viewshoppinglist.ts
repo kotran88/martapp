@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, NavParams, FabButton, FabContainer, ToastController } from 'ionic-angular';
+import { NavController, AlertController, NavParams, FabButton, FabContainer, ToastController, ModalController } from 'ionic-angular';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import firebase from 'firebase';
@@ -60,6 +60,22 @@ export class ViewshoppinglistPage {
     })
   }
 
+  checkedbuy() {
+    var count = 0;
+    this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
+      for (var a = 0; a < snap.val().length; a++) {
+        console.log(snap.val()[a])
+        console.log(snap.val()[a].checked);
+        if (snap.val()[a].checked == true) {
+          count++;
+          console.log(count);
+        }
+      }
+      this.selected = count;
+      console.log(this.selected);
+    })
+  }
+
   /*새로고침*/
   refreshname() {
     this.a.list = [];
@@ -75,6 +91,7 @@ export class ViewshoppinglistPage {
     })
   }
 
+
   public srct = {
     text: '',
     url: ''
@@ -83,7 +100,7 @@ export class ViewshoppinglistPage {
   constructor(public navParam: NavParams, public navCtrl: NavController,
     public navParams: NavParams, private iab: InAppBrowser,
     public alertCtrl: AlertController, private admobFree: AdMobFree,
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController, public modal: ModalController) {
     this.a = this.navParams.get("obj");
     this.id = this.navParams.get("id");
     this.nextdirectory = this.firemain.child(this.id);
@@ -106,8 +123,9 @@ export class ViewshoppinglistPage {
     var second = thisday.getSeconds();
     this.nowtime = "" + (month + 1) + "월" + date + "일" + (hour) + "시" + minute + "분";
     this.totalnumber = this.a.list.length;
-    // this.createItem();
+    this.checkedbuy();
     this.addprice();
+
     $(document).ready(function () {
       console.log("ready!");
     });
@@ -133,16 +151,19 @@ export class ViewshoppinglistPage {
   }
 
   addValue(v) {
-    console.log(v);
     var count = 0;
+    console.log(v);
     console.log(v.checked);
     console.log(this.a.list);
-    for (var i = 0; i < this.a.list.length; i++) {
-      if (this.a.list[i].checked == true) {
-        count++;
-      }
-    }
-    this.selected = count;
+
+
+    // for (var i = 0; i < this.a.list.length; i++) {
+    //   if (this.a.list[i].checked == true) {
+    //     count++;
+    //   }
+    // }
+    // this.selected = count;
+
   }
 
   save() {
@@ -166,6 +187,7 @@ export class ViewshoppinglistPage {
             this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list);
             this.refreshname();
             this.showToastWithCloseButton();
+            this.checkedbuy();
           }
         }
       ]
@@ -282,11 +304,14 @@ export class ViewshoppinglistPage {
 
   /*토스트버튼*/
   showToastWithCloseButton() {
-    const toast = this.toastCtrl.create({
-      message: this.totalnumber + '개 중' + this.selected + '개 구입 완료.',
-      duration: 2000,
-    });
-    toast.present();
+    if (this.selected >= 0) {
+      const toast = this.toastCtrl.create({
+        message: this.totalnumber + '개 중 ' + this.selected + ' 개 구입 완료.',
+        duration: 2000,
+      });
+      toast.present();
+    }
+
   }
 
 

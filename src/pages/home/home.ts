@@ -14,6 +14,7 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 import { SettingPage } from '../setting/setting';
 import { AdPage } from '../ad/ad';
 import { RatePage } from '../rate/rate';
+import { CopymodalPage } from '../copymodal/copymodal';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -200,6 +201,7 @@ export class HomePage {
     this.navCtrl.push(ViewshoppinglistPage, { "flag": a.flag, "obj": a, "id": this.id, "key": a.key });
     console.log(a.flag);
   }
+
   select_sort() {
 
     this.srct.url = 'https://msearch.shopping.naver.com/search/all.nhn?origQuery=' + this.srct.text + '&pagingIndex=1&pagingSize=40&viewType=list&sort=' + $("#slt").val() + '&frm=NVSHATC&query=' + this.srct.text;
@@ -315,6 +317,28 @@ export class HomePage {
 
   /*공유*/
   share(key) {
+    var name ="";
+    console.log(key.flag);
+    console.log(key);
+    for(var i in key.list)
+    {
+      console.log(key.list[i].name);
+      name += "\n"+key.list[i].name;
+      console.log(name);
+    }
+    console.log(name);
+
+
+    var msg = "[백화점 마트 헛걸음 방지 앱\n '백마헛방'\n 쇼핑가기전엔 언제나\n '백마헛방']\n1)구입제목 : " + key.title + "\n2)작성일 : " + key.time + "\n3)리스트\n"+name;
+
+    console.log(msg)
+    console.log(key.title)
+    console.log(key.time)
+    console.log(key.list)
+
+    
+    this.socialSharing.share(msg, null, null, null);
+
 
   }
 
@@ -323,9 +347,16 @@ export class HomePage {
 
   }
 
+  openModal(key) {
+    let modal = this.modal.create(CopymodalPage, key, {
+      cssClass:"modalcopy"
+    })
+    modal.present();
+  }
+
   constructor(public modal: ModalController, private socialSharing: SocialSharing, private iab: InAppBrowser, public uniqueDeviceID: UniqueDeviceID,
     public alertCtrl: AlertController, public callnumber: CallNumber,
-    public admobFree: AdMobFree, public navCtrl: NavController, public navParams:NavParams) {
+    public admobFree: AdMobFree, public navCtrl: NavController, public navParams: NavParams) {
     this.refreshname();
     $(document).ready(function () {
       console.log("ready!");

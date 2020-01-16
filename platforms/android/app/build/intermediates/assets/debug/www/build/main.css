@@ -25720,6 +25720,52 @@ page-home .btnup {
   margin-top: 15px !important;
 }
 
+page-home .fab {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+page-home ion-fab-list {
+  margin: 30px 0;
+  min-width: 35px;
+  background-color: white;
+}
+
+page-home button[ion-fab] {
+  overflow: visible;
+  position: relative;
+  contain: layout;
+}
+
+page-home button[ion-fab] ion-label {
+  position: absolute;
+  top: -5px;
+  right: 30px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  line-height: 20px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-size: 10px;
+}
+
+page-home .label-ios {
+  margin: 5px;
+}
+
+page-home .fab[mini] {
+  margin-top: 0px;
+  margin-right: 10px;
+}
+
+page-home .fab[mini] .fab-close-icon {
+  line-height: 22px;
+}
+
+page-home .fab ion-icon {
+  font-size: 1.8rem;
+}
+
 select {
   width: auto;
   height: 30px;
@@ -25801,7 +25847,7 @@ img.imgindiv {
 div.segmentText {
   position: relative;
   top: 0px;
-  width: 100px;
+  width: 130px;
   height: auto;
   float: left;
 }
@@ -25995,4 +26041,14 @@ button[ion-fab] ion-label {
   padding: 4px 8px;
   border-radius: 4px;
   font-size: 11px;
+}
+
+.item-cover {
+  left: 0;
+  top: 0;
+  position: absolute;
+  width: 80%;
+  height: 100%;
+  background: transparent;
+  cursor: pointer;
 }

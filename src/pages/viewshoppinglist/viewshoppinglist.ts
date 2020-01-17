@@ -41,62 +41,6 @@ export class ViewshoppinglistPage {
   addvalue: any;
   shop: any;
 
-  /*숫자에 콤마 찍기*/
-  formatNumber(num) {
-    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-  }
-  addprice() {
-    /*가격받아오기*/
-    this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
-      for (var a = 0; a < snap.val().length; a++) {
-        console.log(snap.val()[a])
-        console.log(Number(snap.val()[a].quantity) * Number(snap.val()[a].price));
-        console.log(this.sum);
-        this.sum += Number(snap.val()[a].quantity) * Number(snap.val()[a].price);
-        this.printsum = this.formatNumber(this.sum);
-      }
-      console.log(this.sum);
-      console.log(this.printsum);
-    })
-  }
-
-  checkedbuy() {
-    var count = 0;
-    this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
-      for (var a = 0; a < snap.val().length; a++) {
-        console.log(snap.val()[a])
-        console.log(snap.val()[a].checked);
-        if (snap.val()[a].checked == true) {
-          count++;
-          console.log(count);
-        }
-      }
-      this.selected = count;
-      console.log(this.selected);
-    })
-  }
-
-  /*새로고침*/
-  refreshname() {
-    this.a.list = [];
-    var sum = 0;
-    this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
-      for (var a = 0; a < snap.val().length; a++) {
-        console.log(snap.val()[a].name, snap.val()[a].checked, snap.val()[a].price, snap.val()[a].quantity)
-        sum += Number(snap.val()[a].quantity) * Number(snap.val()[a].price);//가격 다시 받기
-        this.printsum = this.formatNumber(sum);
-        this.a.list.push({ "name": snap.val()[a].name, "checked": snap.val()[a].checked, "price": snap.val()[a].price, "quantity": snap.val()[a].quantity });
-      }
-      console.log(sum);
-    })
-  }
-
-
-  public srct = {
-    text: '',
-    url: ''
-  }
-
   constructor(public navParam: NavParams, public navCtrl: NavController,
     public navParams: NavParams, private iab: InAppBrowser,
     public alertCtrl: AlertController, private admobFree: AdMobFree,
@@ -131,6 +75,62 @@ export class ViewshoppinglistPage {
     });
   }
 
+  /*숫자에 콤마 찍기*/
+  formatNumber(num) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+  }
+  addprice() {
+    /*가격받아오기*/
+    this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
+      for (var a = 0; a < snap.val().length; a++) {
+        console.log(snap.val()[a])
+        console.log(Number(snap.val()[a].quantity) * Number(snap.val()[a].price));
+        console.log(this.sum);
+        this.sum += Number(snap.val()[a].quantity) * Number(snap.val()[a].price);
+        this.printsum = this.formatNumber(this.sum);
+      }
+      console.log(this.sum);
+      console.log(this.printsum);
+    })
+  }
+
+  /*check 여부 DB 불러오기 */
+  checkedbuy() {
+    var count = 0;
+    this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
+      for (var a = 0; a < snap.val().length; a++) {
+        console.log(snap.val()[a])
+        console.log(snap.val()[a].checked);
+        if (snap.val()[a].checked == true) {
+          count++;
+          console.log(count);
+        }
+      }
+      this.selected = count;
+      console.log(this.selected);
+    })
+  }
+
+  /*새로고침*/
+  refreshname() {
+    this.a.list = [];
+    var sum = 0;
+    this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
+      for (var a = 0; a < snap.val().length; a++) {
+        console.log(snap.val()[a].name, snap.val()[a].checked, snap.val()[a].price, snap.val()[a].quantity)
+        sum += Number(snap.val()[a].quantity) * Number(snap.val()[a].price);//가격 다시 받기
+        this.printsum = this.formatNumber(sum);
+        this.a.list.push({ "name": snap.val()[a].name, "checked": snap.val()[a].checked, "price": snap.val()[a].price, "quantity": snap.val()[a].quantity });
+      }
+      console.log(sum);
+    })
+  }
+
+  public srct = {
+    text: '',
+    url: ''
+  }
+
   add() {
     console.log(this.a.list);
     this.a.list.push({ "name": this.adding, "checked": false, "price": this.price, "quantity": this.quantity });
@@ -156,14 +156,37 @@ export class ViewshoppinglistPage {
     console.log(v.checked);
     console.log(this.a.list);
 
+    for (var i = 0; i < this.a.list.length; i++) {
+      if (this.a.list[i].checked == true) {
+        count++;
+      }
+    }
+    this.selected = count;
 
-    // for (var i = 0; i < this.a.list.length; i++) {
-    //   if (this.a.list[i].checked == true) {
-    //     count++;
-    //   }
-    // }
-    // this.selected = count;
+    var checked = []; //선택된 것을 넣을 수 있는 새로운 배열
+    var unchecked = []; //선택되지 않은 것을 넣을 수 있는 새로운 배열.
 
+    for (var i = 0; i < this.a.list.length; i++) {
+      if (this.a.list[i].checked == true) {
+        checked.push(this.a.list[i]);
+        console.log(checked);
+      }
+      else if (this.a.list[i].checked == false) {
+        unchecked.push(this.a.list[i]);
+        console.log(unchecked);
+      }
+    }
+    console.log(checked);
+    console.log(unchecked);
+    this.a.list = [];
+    for (var i = 0; i < unchecked.length; i++) {
+      this.a.list.push(unchecked[i])
+    }
+    for (var i = 0; i < checked.length; i++) {
+      this.a.list.push(checked[i])
+    }
+
+    console.log(this.a.list);
   }
 
   save() {
@@ -311,9 +334,7 @@ export class ViewshoppinglistPage {
       });
       toast.present();
     }
-
   }
-
 
   speeching() {
     let options = {

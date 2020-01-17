@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the CopymodalPage page.
@@ -13,14 +14,11 @@ import { NavController, NavParams, ViewController } from 'ionic-angular';
   templateUrl: 'copymodal.html',
 })
 export class CopymodalPage {
-
-  checked : boolean = false;
+  // checked : boolean = false;
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl:ViewController) {
   }
 
   dismiss(){
-    this.viewCtrl.dismiss();
+    this.viewCtrl.dismiss({"data":"value"});
   }
-
-
 }

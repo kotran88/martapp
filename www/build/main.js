@@ -99,7 +99,7 @@ var HomePage = /** @class */ (function () {
         this.nextdirectory = this.firemain.child(this.id);
         this.srct = {
             text: '',
-            url: ''
+            url: '',
         };
         this.refreshname();
         __WEBPACK_IMPORTED_MODULE_8_jquery__(document).ready(function () {
@@ -376,7 +376,7 @@ var HomePage = /** @class */ (function () {
                                 console.log(key);
                                 console.log(key.key);
                                 key.title = data.title;
-                                window.alert("성공");
+                                window.alert("변경되었습니다.");
                             });
                         }
                         if (key.flag == "outlet") {
@@ -427,12 +427,133 @@ var HomePage = /** @class */ (function () {
         console.log(key.list);
         this.socialSharing.share(msg, null, null, null);
     };
-    /*복사*/
-    HomePage.prototype.copy = function (key) {
+    /*전체 항목 복사*/
+    HomePage.prototype.copy1 = function (key) {
+        if (key.flag == "mart") {
+            var a = key.title + "복사본";
+            this.firemain.child(this.id).child("mart").child(a).child(key.key).update(key).then(function () {
+                console.log(key);
+            });
+            this.refreshname();
+        }
+        if (key.flag == "dep") {
+            var a = key.title + "복사본";
+            this.firemain.child(this.id).child("dep").child(a).child(key.key).update(key).then(function () {
+                console.log(key);
+            });
+            this.refreshname();
+        }
+        if (key.flag == "outlet") {
+            var a = key.title + "복사본";
+            this.firemain.child(this.id).child("outlet").child(a).child(key.key).update(key).then(function () {
+                console.log(key);
+            });
+            this.refreshname();
+        }
+        if (key.flag == "etc") {
+            var a = key.title + "복사본";
+            this.firemain.child(this.id).child("etc").child(a).child(key.key).update(key).then(function () {
+                console.log(key);
+            });
+            this.refreshname();
+        }
+    };
+    /*구입한 항목 복사 */
+    HomePage.prototype.copy2 = function (key) {
+        console.log(key);
+        console.log(key.list);
+        var checked = [];
+        for (var i = 0; i < key.list.length; i++) {
+            if (key.list[i].checked == true) {
+                checked.push(key.list[i]);
+                console.log(checked);
+            }
+        }
+        console.log(checked);
+        key.list = [];
+        for (var i = 0; i < checked.length; i++) {
+            key.list.push(checked[i]);
+        }
+        if (key.flag == "mart") {
+            var a = key.title + "복사본";
+            this.firemain.child(this.id).child("mart").child(a).child(key.key).update(key).then(function () {
+                console.log(key);
+            });
+            this.refreshname();
+        }
+        if (key.flag == "dep") {
+            var a = key.title + "복사본";
+            this.firemain.child(this.id).child("dep").child(a).child(key.key).update(key).then(function () {
+                console.log(key);
+            });
+            this.refreshname();
+        }
+        if (key.flag == "outlet") {
+            var a = key.title + "복사본";
+            this.firemain.child(this.id).child("outlet").child(a).child(key.key).update(key).then(function () {
+                console.log(key);
+            });
+            this.refreshname();
+        }
+        if (key.flag == "etc") {
+            var a = key.title + "복사본";
+            this.firemain.child(this.id).child("etc").child(a).child(key.key).update(key).then(function () {
+                console.log(key);
+            });
+            this.refreshname();
+        }
+    };
+    /*구입하지 않은 항목 복사 */
+    HomePage.prototype.copy3 = function (key) {
+        console.log(key);
+        console.log(key.list);
+        var unchecked = [];
+        for (var i = 0; i < key.list.length; i++) {
+            if (key.list[i].checked == false) {
+                unchecked.push(key.list[i]);
+                console.log(unchecked);
+            }
+        }
+        console.log(unchecked);
+        key.list = [];
+        for (var i = 0; i < unchecked.length; i++) {
+            key.list.push(unchecked[i]);
+        }
+        if (key.flag == "mart") {
+            var a = key.title + "복사본";
+            this.firemain.child(this.id).child("mart").child(a).child(key.key).update(key).then(function () {
+                console.log(key);
+            });
+            this.refreshname();
+        }
+        if (key.flag == "dep") {
+            var a = key.title + "복사본";
+            this.firemain.child(this.id).child("dep").child(a).child(key.key).update(key).then(function () {
+                console.log(key);
+            });
+            this.refreshname();
+        }
+        if (key.flag == "outlet") {
+            var a = key.title + "복사본";
+            this.firemain.child(this.id).child("outlet").child(a).child(key.key).update(key).then(function () {
+                console.log(key);
+            });
+            this.refreshname();
+        }
+        if (key.flag == "etc") {
+            var a = key.title + "복사본";
+            this.firemain.child(this.id).child("etc").child(a).child(key.key).update(key).then(function () {
+                console.log(key);
+            });
+            this.refreshname();
+        }
     };
     HomePage.prototype.openModal = function (key) {
         var modal = this.modal.create(__WEBPACK_IMPORTED_MODULE_14__copymodal_copymodal__["a" /* CopymodalPage */], key, {
             cssClass: "modalcopy"
+        });
+        modal.onDidDismiss(function (data) {
+            console.log(data);
         });
         modal.present();
     };
@@ -723,6 +844,7 @@ var ViewshoppinglistPage = /** @class */ (function () {
             console.log(_this.printsum);
         });
     };
+    /*check 여부 DB 불러오기 */
     ViewshoppinglistPage.prototype.checkedbuy = function () {
         var _this = this;
         var count = 0;
@@ -775,12 +897,34 @@ var ViewshoppinglistPage = /** @class */ (function () {
         console.log(v);
         console.log(v.checked);
         console.log(this.a.list);
-        // for (var i = 0; i < this.a.list.length; i++) {
-        //   if (this.a.list[i].checked == true) {
-        //     count++;
-        //   }
-        // }
-        // this.selected = count;
+        for (var i = 0; i < this.a.list.length; i++) {
+            if (this.a.list[i].checked == true) {
+                count++;
+            }
+        }
+        this.selected = count;
+        var checked = []; //선택된 것을 넣을 수 있는 새로운 배열
+        var unchecked = []; //선택되지 않은 것을 넣을 수 있는 새로운 배열.
+        for (var i = 0; i < this.a.list.length; i++) {
+            if (this.a.list[i].checked == true) {
+                checked.push(this.a.list[i]);
+                console.log(checked);
+            }
+            else if (this.a.list[i].checked == false) {
+                unchecked.push(this.a.list[i]);
+                console.log(unchecked);
+            }
+        }
+        console.log(checked);
+        console.log(unchecked);
+        this.a.list = [];
+        for (var i = 0; i < unchecked.length; i++) {
+            this.a.list.push(unchecked[i]);
+        }
+        for (var i = 0; i < checked.length; i++) {
+            this.a.list.push(checked[i]);
+        }
+        console.log(this.a.list);
     };
     ViewshoppinglistPage.prototype.save = function () {
         var _this = this;
@@ -945,12 +1089,14 @@ var ViewshoppinglistPage = /** @class */ (function () {
         this.speechRecognition.requestPermission()
             .then(function () { return console.log('Granted'); }, function () { return console.log('Denied'); });
     };
-    var _a, _b, _c, _d, _e, _f, _g, _h;
     ViewshoppinglistPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-viewshoppinglist',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/viewshoppinglist/viewshoppinglist.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>{{a.title}}</ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content padding>\n    <ion-row>\n        <ion-col col-9>\n            {{a.time}}\n        </ion-col>\n        <ion-col col-3>\n            <button (click)="save()">저장</button>\n        </ion-col>\n    </ion-row>\n    <ion-row>\n        <ion-col col-8>\n            <span *ngIf="flag==false">{{totalnumber}}개 중 {{selected}}개 구입</span>\n            <span *ngIf="flag==true">{{totalnumber}}개</span>\n        </ion-col>\n        <ion-col col-4>\n            ₩{{printsum}}\n        </ion-col>\n    </ion-row>\n    <div class="main">\n        <ion-item *ngFor="let att of a.list; let idx = index">\n            <ion-icon *ngIf="flag==true" name="close"></ion-icon>\n            <ion-checkbox [(ngModel)]="att.checked" style="z-index: 999999;" (ionChange)="addValue($event)" *ngIf="flag==false" color="dark" slot="start"></ion-checkbox>\n            <ion-input text-center style="width: 20%;float: left;" placeholder="상품명" [(ngModel)]="a.list[idx].name"></ion-input>\n            <ion-input text-center style="width: 10%;float: left;" placeholder="수량" [(ngModel)]="a.list[idx].quantity"></ion-input>\n            <ion-input text-center style="width: 15%;float: left;" placeholder="가격" [(ngModel)]="a.list[idx].price"></ion-input>\n            <button ion-button outline item-end style="width:10%;" (click)="select_sort(idx)"><ion-icon name=\'search\' is-active="false"></ion-icon></button>\n        </ion-item>\n    </div>\n\n    <div style="bottom: 50px;width: 100%;" class="bottom">\n        <ion-input *ngIf="flag!=false" style="width: 65%;border-bottom: solid 1px;float: left;" [(ngModel)]="adding" placeholder="품목을 입력하세요."></ion-input>\n        <button *ngIf="flag!=false" style="height: 3.5rem;background: transparent;border: solid 1px;border-radius: 7px;margin-left: 4px;" (click)="speeching()">음성</button>\n        <button *ngIf="flag!=false" style="height: 3.5rem;background: transparent;border: solid 1px;border-radius: 7px;margin-top: 5px;margin-left: 3px;" (click)="add()">추가하기</button>\n        <button *ngIf="flag!=false&&flagInput==false" style="height: 3.5rem;background: transparent;border: solid 1px;border-radius: 7px;" (click)="priceandquantity()">가격 및 수량도 입력하기</button>\n        <ion-input *ngIf="flagInput!=false" style="width: 34%; height: 3.5rem; border-bottom: solid 1px; float: left; margin-right: 2px; margin-left:2px;" [(ngModel)]="quantity" placeholder="수량"></ion-input>\n        <ion-input *ngIf="flagInput!=false" style="width: 34%; height: 3.5rem; border-bottom: solid 1px; float: left; margin-left: 2px; margin-right:5px;" [(ngModel)]="price" placeholder="가격"></ion-input>\n        <button *ngIf="flagInput!=false" style="height: 3.5rem;background: transparent;border: solid 1px;border-radius: 7px;margin-top: 3px;margin-left: 10px;" (click)="cancel()">취소</button>\n    </div>\n</ion-content>\n\n<ion-footer>\n    <div>\n        <ion-fab bottom right #fab>\n            <button ion-fab mini><ion-icon name="add"></ion-icon></button>\n            <ion-fab-list side="top">\n                <button (click)="sortlist(fab)" ion-fab>\n                    <ion-icon name="list"></ion-icon>\n                    <ion-label>이름순으로 정렬</ion-label>\n                </button>\n                <button (click)="insertData(fab)" ion-fab>\n                    <ion-icon name="build"></ion-icon>\n                    <ion-label>수정하기</ion-label>\n                </button>\n                <button (click)="delete(fab)" ion-fab>\n                    <ion-icon name="trash"></ion-icon>\n                    <ion-label>삭제하기</ion-label>\n                </button>\n\n            </ion-fab-list>\n        </ion-fab>\n    </div>\n</ion-footer>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/viewshoppinglist/viewshoppinglist.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" ? _a : Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" ? _b : Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" ? _c : Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__["a" /* InAppBrowser */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__["a" /* InAppBrowser */]) === "function" ? _d : Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" ? _e : Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_native_admob_free__["a" /* AdMobFree */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_native_admob_free__["a" /* AdMobFree */]) === "function" ? _f : Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */]) === "function" ? _g : Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */]) === "function" ? _h : Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__["a" /* InAppBrowser */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_admob_free__["a" /* AdMobFree */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */]])
     ], ViewshoppinglistPage);
     return ViewshoppinglistPage;
 }());
@@ -1285,21 +1431,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var CopymodalPage = /** @class */ (function () {
+    // checked : boolean = false;
     function CopymodalPage(navCtrl, navParams, viewCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.viewCtrl = viewCtrl;
-        this.checked = false;
     }
     CopymodalPage.prototype.dismiss = function () {
-        this.viewCtrl.dismiss();
+        this.viewCtrl.dismiss({ "data": "value" });
     };
-    var _a, _b, _c;
     CopymodalPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-copymodal',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/copymodal/copymodal.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>복사하기</ion-title>\n        <ion-buttons start>\n            <button ion-button (click)="dismiss() ">취소</button>\n        </ion-buttons>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <ion-checkbox></ion-checkbox>\n    <ion-label>구입하지 않은 목록</ion-label>\n\n    <ion-checkbox></ion-checkbox>\n    <ion-label>구입한 목록</ion-label>\n\n    <ion-checkbox></ion-checkbox>\n    <ion-label>전체 목록</ion-label>\n\n    <button>신규로 복사하기</button>\n    <button>기존 목록에 덧붙이기</button>\n\n\n\n</ion-content>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/copymodal/copymodal.html"*/,
+            selector: 'page-copymodal',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/copymodal/copymodal.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>복사하기</ion-title>\n        <ion-buttons start>\n            <button ion-button (click)="dismiss() ">취소</button>\n        </ion-buttons>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <!-- <ion-item>\n    <ion-checkbox name="check1" [(ngModel)]="data1" (ionChange)="yetValue($event)"></ion-checkbox>\n        <ion-label>구입하지 않은 목록</ion-label>\n    </ion-item>\n    <ion-item>\n        <ion-checkbox name="check1" [(ngModel)]="data2" (ionChange)="addValue($event)"></ion-checkbox>\n        <ion-label>구입한 목록</ion-label>\n    </ion-item>\n    <ion-item>\n        <ion-checkbox name="check1" [(ngModel)]="data3" (ionChange)="allValue($event)"></ion-checkbox>\n        <ion-label>전체 목록</ion-label>\n    </ion-item> -->\n\n    <button>신규로 복사하기</button>\n    <button>기존 목록에 덧붙이기</button>\n</ion-content>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/copymodal/copymodal.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" ? _a : Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" ? _b : Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ViewController */]) === "function" ? _c : Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ViewController */]])
     ], CopymodalPage);
     return CopymodalPage;
 }());

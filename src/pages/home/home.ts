@@ -15,6 +15,7 @@ import { SettingPage } from '../setting/setting';
 import { AdPage } from '../ad/ad';
 import { RatePage } from '../rate/rate';
 import { CopymodalPage } from '../copymodal/copymodal';
+import { a } from '@angular/core/src/render3';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -31,7 +32,7 @@ export class HomePage {
   key: any;
   nextdirectory = this.firemain.child(this.id);
   count: any;
-  total: any;
+
   refreshname() {
     this.newarraylist = [];
     this.firemain.child(this.id).child("mart").once("value", (snap) => {
@@ -74,8 +75,9 @@ export class HomePage {
 
   public srct = {
     text: '',
-    url: ''
+    url: '',
   }
+
   segmentChanged(e) {
     console.log(e);
   }
@@ -92,6 +94,7 @@ export class HomePage {
     console.log(msg)
     this.socialSharing.share(msg, null, null, null);
   }
+
   addlist(value) {
     this.selectedvalue = value;
     let alert = this.alertCtrl.create({
@@ -281,7 +284,7 @@ export class HomePage {
                 console.log(key);
                 console.log(key.key);
                 key.title = data.title;
-                window.alert("성공");
+                window.alert("변경되었습니다.");
               })
             }
             if (key.flag == "outlet") {
@@ -317,39 +320,172 @@ export class HomePage {
 
   /*공유*/
   share(key) {
-    var name ="";
+    var name = "";
     console.log(key.flag);
     console.log(key);
-    for(var i in key.list)
-    {
+    for (var i in key.list) {
       console.log(key.list[i].name);
-      name += "\n"+key.list[i].name;
+      name += "\n" + key.list[i].name;
       console.log(name);
     }
     console.log(name);
 
 
-    var msg = "[백화점 마트 헛걸음 방지 앱\n '백마헛방'\n 쇼핑가기전엔 언제나\n '백마헛방']\n1)구입제목 : " + key.title + "\n2)작성일 : " + key.time + "\n3)리스트\n"+name;
+    var msg = "[백화점 마트 헛걸음 방지 앱\n '백마헛방'\n 쇼핑가기전엔 언제나\n '백마헛방']\n1)구입제목 : " + key.title + "\n2)작성일 : " + key.time + "\n3)리스트\n" + name;
 
     console.log(msg)
     console.log(key.title)
     console.log(key.time)
     console.log(key.list)
 
-    
     this.socialSharing.share(msg, null, null, null);
-
-
   }
 
-  /*복사*/
-  copy(key) {
+  /*전체 항목 복사*/
+  copy1(key) {
+    if (key.flag == "mart") {
+      var a = key.title + "복사본"
+      this.firemain.child(this.id).child("mart").child(a).child(key.key).update(key).then(() => {
 
+        console.log(key);
+      })
+      this.refreshname();
+    }
+    if (key.flag == "dep") {
+      var a = key.title + "복사본"
+      this.firemain.child(this.id).child("dep").child(a).child(key.key).update(key).then(() => {
+
+        console.log(key);
+      })
+      this.refreshname();
+    }
+    if (key.flag == "outlet") {
+      var a = key.title + "복사본"
+      this.firemain.child(this.id).child("outlet").child(a).child(key.key).update(key).then(() => {
+
+        console.log(key);
+      })
+      this.refreshname();
+    }
+    if (key.flag == "etc") {
+      var a = key.title + "복사본"
+      this.firemain.child(this.id).child("etc").child(a).child(key.key).update(key).then(() => {
+
+        console.log(key);
+      })
+      this.refreshname();
+    }
+  }
+
+  /*구입한 항목 복사 */
+  copy2(key) {
+    console.log(key);
+    console.log(key.list);
+    var checked = [];
+
+    for (var i = 0; i < key.list.length; i++) {
+      if (key.list[i].checked == true) {
+        checked.push(key.list[i]);
+        console.log(checked);
+      }
+    }
+    console.log(checked);
+    key.list = [];
+    for (var i = 0; i < checked.length; i++) {
+      key.list.push(checked[i])
+    }
+
+    if (key.flag == "mart") {
+      var a = key.title + "복사본";
+      this.firemain.child(this.id).child("mart").child(a).child(key.key).update(key).then(() => {
+        console.log(key);
+      })
+      this.refreshname();
+    }
+
+    if (key.flag == "dep") {
+      var a = key.title + "복사본"
+      this.firemain.child(this.id).child("dep").child(a).child(key.key).update(key).then(() => {
+        console.log(key);
+      })
+      this.refreshname();
+    }
+    if (key.flag == "outlet") {
+      var a = key.title + "복사본"
+      this.firemain.child(this.id).child("outlet").child(a).child(key.key).update(key).then(() => {
+
+        console.log(key);
+      })
+      this.refreshname();
+    }
+    if (key.flag == "etc") {
+      var a = key.title + "복사본"
+      this.firemain.child(this.id).child("etc").child(a).child(key.key).update(key).then(() => {
+
+        console.log(key);
+      })
+      this.refreshname();
+    }
+  }
+
+  /*구입하지 않은 항목 복사 */
+  copy3(key) {
+    console.log(key);
+    console.log(key.list);
+    var unchecked = [];
+
+    for (var i = 0; i < key.list.length; i++) {
+      if (key.list[i].checked == false) {
+        unchecked.push(key.list[i]);
+        console.log(unchecked);
+      }
+    }
+    console.log(unchecked);
+    key.list = [];
+    for (var i = 0; i < unchecked.length; i++) {
+      key.list.push(unchecked[i])
+    }
+
+    if (key.flag == "mart") {
+      var a = key.title + "복사본";
+      this.firemain.child(this.id).child("mart").child(a).child(key.key).update(key).then(() => {
+        console.log(key);
+      })
+      this.refreshname();
+    }
+
+    if (key.flag == "dep") {
+      var a = key.title + "복사본"
+      this.firemain.child(this.id).child("dep").child(a).child(key.key).update(key).then(() => {
+        console.log(key);
+      })
+      this.refreshname();
+    }
+    if (key.flag == "outlet") {
+      var a = key.title + "복사본"
+      this.firemain.child(this.id).child("outlet").child(a).child(key.key).update(key).then(() => {
+
+        console.log(key);
+      })
+      this.refreshname();
+    }
+    if (key.flag == "etc") {
+      var a = key.title + "복사본"
+      this.firemain.child(this.id).child("etc").child(a).child(key.key).update(key).then(() => {
+
+        console.log(key);
+      })
+      this.refreshname();
+    }
   }
 
   openModal(key) {
     let modal = this.modal.create(CopymodalPage, key, {
-      cssClass:"modalcopy"
+      cssClass: "modalcopy"
+    })
+    modal.onDidDismiss(data => {
+      console.log(data);
+
     })
     modal.present();
   }
@@ -362,6 +498,7 @@ export class HomePage {
       console.log("ready!");
       console.log($("#slt").val())
     });
+
     setTimeout(() => {
 
       // console.log(this.id);

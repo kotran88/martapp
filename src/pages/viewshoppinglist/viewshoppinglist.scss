@@ -20,3 +20,13 @@ button[ion-fab] {
     }
     contain: layout;
 }
+
+.item-cover {
+    left: 0;
+    top: 0;
+    position: absolute;
+    width: 80%;
+    height: 100%;
+    background: transparent;
+    cursor: pointer;
+}

@@ -24,6 +24,7 @@ import{SocialSharing}from'@ionic-native/social-sharing';
 import { SettingPage, licenseModalPage, privacyModalPage } from '../pages/setting/setting';
 import { InAppPurchase } from '@ionic-native/in-app-purchase';
 import { RatePage } from '../pages/rate/rate';
+import { CopymodalPage } from '../pages/copymodal/copymodal';
 
 
 var firebaseConfig = {
@@ -48,6 +49,7 @@ firebase.initializeApp(firebaseConfig);
     licenseModalPage,
     privacyModalPage,
     AdPage,
+    CopymodalPage,
   ],
   imports: [
     BrowserModule,
@@ -66,6 +68,7 @@ firebase.initializeApp(firebaseConfig);
     licenseModalPage,
     privacyModalPage,
     AdPage,
+    CopymodalPage,
   ],
   providers: [
     StatusBar,

@@ -14,7 +14,7 @@
     </ion-row>
     <ion-row>
         <ion-col col-8>
-            <span *ngIf="flag==false">{{totalnumber}}개 중 {{selected}}개 선택</span>
+            <span *ngIf="flag==false">{{totalnumber}}개 중 {{selected}}개 구입</span>
             <span *ngIf="flag==true">{{totalnumber}}개</span>
         </ion-col>
         <ion-col col-4>
@@ -26,8 +26,9 @@
             <ion-icon *ngIf="flag==true" name="close"></ion-icon>
             <ion-checkbox [(ngModel)]="att.checked" style="z-index: 999999;" (ionChange)="addValue($event)" *ngIf="flag==false" color="dark" slot="start"></ion-checkbox>
             <ion-input text-center style="width: 20%;float: left;" placeholder="상품명" [(ngModel)]="a.list[idx].name"></ion-input>
-            <ion-input text-center style="width: 20%;float: right;" placeholder="수량" [(ngModel)]="a.list[idx].quantity"></ion-input>
-            <ion-input text-center style="width: 20%;float: right;" placeholder="가격" [(ngModel)]="a.list[idx].price"></ion-input>
+            <ion-input text-center style="width: 10%;float: left;" placeholder="수량" [(ngModel)]="a.list[idx].quantity"></ion-input>
+            <ion-input text-center style="width: 15%;float: left;" placeholder="가격" [(ngModel)]="a.list[idx].price"></ion-input>
+            <button ion-button outline item-end style="width:10%;" (click)="select_sort(idx)"><ion-icon name='search' is-active="false"></ion-icon></button>
         </ion-item>
     </div>
 

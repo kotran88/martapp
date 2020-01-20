@@ -25701,29 +25701,48 @@ ion-navbar.toolbar {
   background-color: #f2f2f2;
   border: 1px solid #01a8b3;
   border-radius: 10px;
-  height: 60%;
+  height: 70%;
   width: 96%;
-  top: 26%;
+  top: 20%;
   left: 2%;
   position: absolute;
 }
 
 #ad-buy-image {
-  position: relative;
-  width: 60%;
-  height: 200px;
-  right: -20%;
-  top: 10px;
   display: inline-block;
-  background: yellow;
+  position: relative;
+  background-image: url(../../assets/imgs/horse.jpeg);
+  background-repeat: round;
+  background-color: transparent;
+  width: 60%;
+  height: 50%;
+  left: 20%;
+  top: 1%;
 }
 
-#select-button {
+#button-area {
+  display: inline-block;
   position: relative;
-  right: -5%;
-  top: 10px;
-  width: 130%;
-  height: 40%;
+  margin: 0;
+  padding: 0;
+  left: 6%;
+  width: 100%;
+}
+
+.option-button button {
+  display: inline-block !important;
+  width: 40% !important;
+  margin: 2% 2%;
+  padding: 0 10%;
+  margin-bottom: 2%;
+}
+
+#menu-button button {
+  display: inline-block;
+  width: 40%;
+  margin: 0;
+  padding: 0;
+  left: 10%;
 }
 
 .B_on {
@@ -25753,34 +25772,11 @@ page-home .btnup {
   margin-top: 15px !important;
 }
 
-#shop-filter-select {
-  display: inline-block;
-  width: 25%;
-  height: 50px;
-  margin-top: 5px;
-  border: 1px solid #78f7f7;
+select {
+  width: auto;
+  height: 30px;
   border-radius: 5px;
-  background: white;
-  margin-left: 15px;
-}
-
-#shop-search-box {
-  margin-right: 0px;
-  width: 65%;
-  height: 50px;
-  display: inline-block;
-  border: 1px solid #78f7f7;
-  border-radius: 5px;
-}
-
-#shop-search-button {
-  width: 40px;
-  height: 40px;
-  position: absolute;
-  margin-top: 5px;
-  background: white;
-  right: 35px;
-  top: 8px;
+  background-color: #78f7f7;
 }
 
 /* IE 10, 11의 네이티브 화살표 숨기기 */
@@ -25857,7 +25853,7 @@ img.imgindiv {
 div.segmentText {
   position: relative;
   top: 0px;
-  width: 100px;
+  width: 130px;
   height: auto;
   float: left;
 }

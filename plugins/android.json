@@ -11,6 +11,9 @@
       "ADMOB_APP_ID": "ca-app-pub-7312977746566747~2506400148",
       "PACKAGE_NAME": "io.ionic.starter"
     },
+    "cordova-plugin-datepicker": {
+      "PACKAGE_NAME": "io.ionic.starter"
+    },
     "cordova-plugin-device": {
       "PACKAGE_NAME": "io.ionic.starter"
     },
@@ -47,9 +50,6 @@
       "PACKAGE_NAME": "io.ionic.starter"
     },
     "mx.ferreyra.callnumber": {
-      "PACKAGE_NAME": "io.ionic.starter"
-    },
-    "cordova-plugin-datepicker": {
       "PACKAGE_NAME": "io.ionic.starter"
     }
   },

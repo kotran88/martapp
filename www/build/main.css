@@ -25701,29 +25701,56 @@ ion-navbar.toolbar {
   background-color: #f2f2f2;
   border: 1px solid #01a8b3;
   border-radius: 10px;
-  height: 60%;
+  height: 70%;
   width: 96%;
-  top: 26%;
+  top: 20%;
   left: 2%;
   position: absolute;
 }
 
 #ad-buy-image {
-  position: relative;
-  width: 60%;
-  height: 200px;
-  right: -20%;
-  top: 10px;
   display: inline-block;
-  background: yellow;
+  position: relative;
+  background-image: url(../../assets/imgs/horse.jpeg);
+  background-repeat: no-repeat;
+  background-color: transparent;
+  width: 60%;
+  height: 50%;
+  left: 20%;
+  top: 1%;
 }
 
-#select-button {
+#button-area {
+  display: inline-block;
   position: relative;
-  right: -5%;
-  top: 10px;
-  width: 130%;
-  height: 40%;
+  margin: 0;
+  padding: 0;
+  left: 6%;
+  width: 100%;
+}
+
+.option-button button {
+  display: inline-block !important;
+  width: 40% !important;
+  margin: 2% 2%;
+  padding: 0 10%;
+  margin-bottom: 2%;
+}
+
+#menu-button button {
+  display: inline-block;
+  width: 30%;
+  margin: 0;
+  padding: 0;
+  left: 10%;
+}
+
+.two_btn {
+  left: 60% !important;
+}
+
+.four_btn {
+  left: 40% !important;
 }
 
 .B_on {
@@ -25840,10 +25867,14 @@ div.segmentText {
 }
 
 #app-assessment-image {
-  margin: 0;
-  background: yellow;
   display: inline-block;
-  width: 100%;
+  position: relative;
+  background-image: url(../../assets/imgs/horse.jpeg);
+  background-repeat: no-repeat;
+  background-color: transparent;
+  margin: 0;
+  width: 50%;
+  left: 25%;
   height: 70%;
 }
 

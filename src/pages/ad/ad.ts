@@ -15,6 +15,7 @@ import { v } from '@angular/core/src/render3';
   selector: 'page-ad',
   templateUrl: 'ad.html',
 })
+
 export class AdPage {
 
   more_info=false;
@@ -47,8 +48,8 @@ export class AdPage {
   }
 
   clickbutton(i){
-    if(this.select_option==i) this.select_option=-1;
-    else this.select_option=i;
+    this.select_option=i;
+    console.log(i);
   }
   
   purchase(){

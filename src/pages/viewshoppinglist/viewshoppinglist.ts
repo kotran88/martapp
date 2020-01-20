@@ -34,11 +34,8 @@ export class ViewshoppinglistPage {
   sum: any = 0;
   printsum: any = 0;
   flagInput: boolean = false; //가격 및 수량도 입력하기 버튼을 위한 boolean형 변수
-<<<<<<< HEAD
   addvalue: any;
   shop: any;
-=======
->>>>>>> 62c73fc6762cbd967c1e93bee0a20ac03c6fa575
 
   /*숫자에 콤마 찍기*/
   formatNumber(num) {
@@ -168,7 +165,6 @@ export class ViewshoppinglistPage {
       }
     }
 
-<<<<<<< HEAD
     for (var i = 0; i < newlist.length; i++) {
       this.a.list[newlist[i]] = "NC"
     }
@@ -187,20 +183,7 @@ export class ViewshoppinglistPage {
     this.nextdirectory.child(this.value).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
       for (var a in snap.val()) {
         this.nextdirectory.child(this.value).child(this.shop).child(this.title).child(this.key).child("list").remove().then(() => {
-=======
 
-    for (var i = 1; i <= newlist.length; i++) {
-        console.log(newlist.length);
-        console.log(newlist[i]);
-        this.a.list.splice(newlist[i], 1); //a.list에서 선택된 항목을 삭제. splice를 이용해서 범위에 있는 것을 삭제함.
-    }
-
-    console.log(this.a.list);
-    /*입력 리스트에서 삭제된 항목을 firebase에서 삭제하기위해 list 삭제*/
-    this.nextdirectory.child(this.title).child(this.key).child("list").once("value", (snap) => {
-      for (var a in snap.val()) {
-        this.nextdirectory.child(this.title).child(this.key).child("list").remove().then(() => {
->>>>>>> 62c73fc6762cbd967c1e93bee0a20ac03c6fa575
           console.log("success")
         }).catch((e) => {
           console.log("error" + e);
@@ -225,7 +208,6 @@ export class ViewshoppinglistPage {
     })
     fab.close();
   }
-<<<<<<< HEAD
 
   /*sort구현*/
   sortlist(fab: FabContainer) {
@@ -252,20 +234,6 @@ export class ViewshoppinglistPage {
       browser.on('loadstop').subscribe(event => {
         browser.insertCSS({ code: "body{color: red;}" });
       });
-=======
-
-  /*sort구현*/
-  sortlist(fab: FabContainer) {
-    this.a.list.sort(function (name1, name2) {
-      return name1.name < name2.name ? -1 : name1.name > name2.name ? 1 : 0;
-    });
-    console.log(this.a.list);
-    window.alert("정렬되었습니다.");
-    this.nextdirectory.child(this.title).child(this.key).child("list").update(this.a.list).then(() => {
-      console.log(this.a.list);
-    });
-    fab.close();
->>>>>>> 62c73fc6762cbd967c1e93bee0a20ac03c6fa575
   }
 
   speeching() {

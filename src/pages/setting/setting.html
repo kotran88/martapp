@@ -41,12 +41,10 @@
             </button>
           </div>
 
-          <div *ngIf="checkbutton()===true">
+          <div ng-if="checkbutton()===true">
             <ion-item>
               <ion-label>Time</ion-label>
-              <ion-datetime  id="date-time" 
-                displayFormat="h:mm A" pickerFormat="h:mm A "
-                [(ngModel)]="DateTime">
+              <ion-datetime displayFormat="h:mm A" pickerFormat="h,mm,A" [(ngModel)]="DateTime">
               </ion-datetime>
             </ion-item>
           </div>

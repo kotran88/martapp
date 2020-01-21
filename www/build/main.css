@@ -25705,6 +25705,17 @@ page-ad .B_off {
   background-color: lightgray;
 }
 
+.modalcopy {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100% !important;
+  height: 50% !important;
+  top: 45%;
+  right: 0% !important;
+  bottom: 0% !important;
+  left: 0% !important;
+}
+
 page-home .scroll-content {
   padding: 0px !important;
 }
@@ -25740,7 +25751,7 @@ page-home button[ion-fab] {
 page-home button[ion-fab] ion-label {
   position: absolute;
   top: -5px;
-  right: 30px;
+  right: 40px;
   color: white;
   background-color: rgba(0, 0, 0, 0.7);
   line-height: 20px;
@@ -25754,8 +25765,8 @@ page-home .label-ios {
 }
 
 page-home .fab[mini] {
-  margin-top: 0px;
-  margin-right: 10px;
+  margin-top: -20px;
+  margin-right: 20px;
 }
 
 page-home .fab[mini] .fab-close-icon {
@@ -25857,7 +25868,7 @@ div.segmentText {
   margin-right: auto;
   width: 100% !important;
   height: 50% !important;
-  top: 45%;
+  top: 50%;
   right: 0% !important;
   bottom: 0% !important;
   left: 0% !important;

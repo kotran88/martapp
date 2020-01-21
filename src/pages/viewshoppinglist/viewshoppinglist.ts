@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, AlertController, NavParams, FabButton, FabContainer, ToastController, ModalController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, Navbar, AlertController, NavParams, FabButton, FabContainer, ToastController, ModalController, ViewController } from 'ionic-angular';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import firebase from 'firebase';
@@ -20,6 +20,8 @@ import { HomePage } from '../home/home';
   templateUrl: 'viewshoppinglist.html',
 })
 export class ViewshoppinglistPage {
+  @ViewChild(Navbar) navBar: Navbar;
+
   [x: string]: any;
   selected: any;
   totalnumber: any = 0;
@@ -40,11 +42,21 @@ export class ViewshoppinglistPage {
   flagInput: boolean = false; //가격 및 수량도 입력하기 버튼을 위한 boolean형 변수
   addvalue: any;
   shop: any;
+  count: any = 0;
+
+  // setBackButtonAction(){
+  //   this.navBar.backButtonClick = () => {
+  //   //Write here wherever you wanna do
+  //   console.log("back"+this.selected);
+  //   this.viewCtrl.dismiss({"flag":"navBack", "value":this.selected})
+  //   }
+  //   this.refreshname();
+  // }
 
   constructor(public navParam: NavParams, public navCtrl: NavController,
     public navParams: NavParams, private iab: InAppBrowser,
     public alertCtrl: AlertController, private admobFree: AdMobFree,
-    public toastCtrl: ToastController, public modal: ModalController) {
+    public toastCtrl: ToastController, public modal: ModalController, public viewCtrl: ViewController) {
     this.a = this.navParams.get("obj");
     this.id = this.navParams.get("id");
     this.nextdirectory = this.firemain.child(this.id);
@@ -74,6 +86,7 @@ export class ViewshoppinglistPage {
       console.log("ready!");
     });
   }
+
 
   /*숫자에 콤마 찍기*/
   formatNumber(num) {
@@ -151,17 +164,16 @@ export class ViewshoppinglistPage {
   }
 
   addValue(v) {
-    var count = 0;
     console.log(v);
     console.log(v.checked);
     console.log(this.a.list);
 
     for (var i = 0; i < this.a.list.length; i++) {
       if (this.a.list[i].checked == true) {
-        count++;
+        this.count++;
       }
     }
-    this.selected = count;
+    this.selected = this.count;
 
     var checked = []; //선택된 것을 넣을 수 있는 새로운 배열
     var unchecked = []; //선택되지 않은 것을 넣을 수 있는 새로운 배열.
@@ -188,6 +200,8 @@ export class ViewshoppinglistPage {
 
     console.log(this.a.list);
   }
+
+  
 
   save() {
     this.flag = false;

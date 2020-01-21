@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ContentChild } from '@angular/core';
 import { NavController, AlertController, Platform, ViewController, NavParams, ModalController } from 'ionic-angular';
 import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free'
 import { CallNumber } from '@ionic-native/call-number/';
@@ -15,7 +15,8 @@ import { SettingPage } from '../setting/setting';
 import { AdPage } from '../ad/ad';
 import { RatePage } from '../rate/rate';
 import { CopymodalPage } from '../copymodal/copymodal';
-import { a } from '@angular/core/src/render3';
+import { snapshotChanges } from 'angularfire2/database';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -25,52 +26,51 @@ export class HomePage {
   value: any;
   firemain = firebase.database().ref();
   shoppingPlace: any;
+
   newarraylist = [];
   id: any = "a2f05b91-956a-b480-3525-991002905558"
   tab = "tab2";
   title: any;
   key: any;
   nextdirectory = this.firemain.child(this.id);
-  count: any;
+  count: any = 0;
+  selected: any;
+  copyflag: any = false;
+  checkedlistlength: any = 0;
+  tocopylist: any;
+  tocopy: any;
 
+  selectedflagtocpy: any;
   refreshname() {
+    console.log(this.newarraylist);
     this.newarraylist = [];
-    this.firemain.child(this.id).child("mart").once("value", (snap) => {
-      for (var a in snap.val()) {
-        for (var b in snap.val()[a]) {
-          console.log(snap.val()[a][b]);
-          this.newarraylist.push({ "flag": "mart", "list": snap.val()[a][b].list, "title": a, "time": snap.val()[a][b].time, "key": snap.val()[a][b].key })
+    this.firemain.child(this.id).once("value", (sn) => {
+      for (var a in sn.val()) {
+        if (a != "setting") {
+          console.log(sn.val()[a]);
+          for (var b in sn.val()[a]) {
+            console.log("b" + b);
+            console.log(sn.val()[a][b]);//73
+            for (var c in sn.val()[a][b]) {
+              console.log("c" + c);
+              console.log(sn.val()[a][b][c]);//75
+              var checked = 0;
+              var listlength = 0;
+              for (var d in sn.val()[a][b][c].list) {
+                console.log(sn.val()[a][b][c].list.length)
+                listlength = sn.val()[a][b][c].list.length;
+                console.log(sn.val()[a][b][c].list[d]);
+                if (sn.val()[a][b][c].list[d].checked == true) {
+                  checked++;
+                }
+              }
+              this.newarraylist.push({ "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key })
+              console.log(this.newarraylist)
+            }
+          }
         }
       }
     })
-
-    this.firemain.child(this.id).child("dep").once("value", (snap) => {
-      for (var a in snap.val()) {
-        for (var b in snap.val()[a]) {
-          console.log(snap.val()[a][b]);
-          this.newarraylist.push({ "flag": "dep", "list": snap.val()[a][b].list, "title": a, "time": snap.val()[a][b].time, "key": snap.val()[a][b].key })
-        }
-      }
-    })
-
-    this.firemain.child(this.id).child("outlet").once("value", (snap) => {
-      for (var a in snap.val()) {
-        for (var b in snap.val()[a]) {
-          console.log(snap.val()[a][b]);
-          this.newarraylist.push({ "flag": "outlet", "list": snap.val()[a][b].list, "title": a, "time": snap.val()[a][b].time, "key": snap.val()[a][b].key })
-        }
-      }
-    })
-
-    this.firemain.child(this.id).child("etc").once("value", (snap) => {
-      for (var a in snap.val()) {
-        for (var b in snap.val()[a]) {
-          console.log(snap.val()[a][b]);
-          this.newarraylist.push({ "flag": "etc", "list": snap.val()[a][b].list, "title": a, "time": snap.val()[a][b].time, "key": snap.val()[a][b].key })
-        }
-      }
-    })
-
   }
 
   public srct = {
@@ -82,7 +82,6 @@ export class HomePage {
     console.log(e);
   }
   callnumbering() {
-
     window.alert("call number start")
     this.callnumber.callNumber("0630000000", true)
       .then(res => console.log('Launched dialer!', res))
@@ -197,16 +196,172 @@ export class HomePage {
   }
 
   viewshoppinglist(a) {
+    console.log(this.copyflag);
     console.log(a);
-    console.log(this.id);
     console.log(a.key);
-    console.log(a.list);
-    this.navCtrl.push(ViewshoppinglistPage, { "flag": a.flag, "obj": a, "id": this.id, "key": a.key });
     console.log(a.flag);
+    console.log(this.tocopylist);
+    console.log(a.list);
+    console.log(a.list.checked);
+
+    console.log("one of three");
+    console.log(this.selectedflagtocpy);
+
+    if (this.copyflag) {
+      /*전체항목 기존복사*/
+      if (this.selectedflagtocpy == 3) {
+        console.log(newarray);
+        var newarray = [];
+        for (var b = 0; b < a.list.length; b++) {
+          newarray.push(a.list[b]);
+        }
+        for (var b = 0; b < this.tocopylist.length; b++) {
+          newarray.push(this.tocopylist[b]);
+        }
+        if (a.flag == "mart") {
+          var name = a.title;
+          this.firemain.child(this.id).child("mart").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+            console.log(a.key);
+          })
+          this.refreshname();
+        }
+
+        if (a.flag == "dep") {
+          var name = a.title;
+          this.firemain.child(this.id).child("dep").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+            console.log(a.key);
+          })
+          this.refreshname();
+        }
+        if (a.flag == "outlet") {
+          var name = a.title;
+          this.firemain.child(this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+            console.log(a.key);
+          })
+          this.refreshname();
+        }
+        if (a.flag == "etc") {
+          var name = a.title;
+          this.firemain.child(this.id).child("etc").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+            console.log(a.key);
+          })
+          this.refreshname();
+        }
+        this.copyflag = false;
+      }
+      /*구입한 항목 기존복사*/
+      else if (this.selectedflagtocpy == 2) {
+        var newarray = [];
+
+        for (var b = 0; b < a.list.length; b++) {
+          newarray.push(a.list[b]);
+        }
+        for (var i = 0; i < this.tocopylist.length; i++){
+          if (this.tocopylist[i].checked == true){
+            newarray.push(this.tocopylist[i]);
+            console.log(newarray);
+          }
+        }
+        console.log(newarray);
+        a.list = [];
+        for (var i = 0; i < newarray.length; i++) {
+          a.list.push(newarray[i])
+        }
+        console.log(newarray);
+
+        if (a.flag == "mart") {
+          var name = a.title;
+          this.firemain.child(this.id).child("mart").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+            console.log(a);
+          })
+          this.refreshname();
+        }
+        if (a.flag == "dep") {
+          var name = a.title;
+          this.firemain.child(this.id).child("dep").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+            console.log(a);
+          })
+          this.refreshname();
+        }
+        if (a.flag == "outlet") {
+          var name = a.title;
+          this.firemain.child(this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+            console.log(a);
+          })
+          this.refreshname();
+        }
+        if (a.flag == "etc") {
+          var name = a.title;
+          this.firemain.child(this.id).child("etc").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+
+            console.log(a);
+          })
+          this.refreshname();
+        }
+        this.copyflag = false;
+      }
+      else if (this.selectedflagtocpy == 1) {
+        var newarray = [];
+
+        for (var b = 0; b < a.list.length; b++) {
+          newarray.push(a.list[b]);
+        }
+        for (var i = 0; i < this.tocopylist.length; i++){
+          if (this.tocopylist[i].checked == false){
+            newarray.push(this.tocopylist[i]);
+            console.log(newarray);
+          }
+        }
+        console.log(newarray);
+        a.list = [];
+        for (var i = 0; i < newarray.length; i++) {
+          a.list.push(newarray[i])
+        }
+        console.log(newarray);
+        if (a.flag == "mart") {
+          var name = a.title;
+          this.firemain.child(this.id).child("mart").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+            console.log(a);
+          })
+          this.refreshname();
+        }
+
+        if (a.flag == "dep") {
+          var name = a.title;
+          this.firemain.child(this.id).child("dep").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+            console.log(a);
+          })
+          this.refreshname();
+        }
+        if (a.flag == "outlet") {
+          var name = a.title;
+          this.firemain.child(this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+            console.log(a);
+          })
+          this.refreshname();
+        }
+        if (a.flag == "etc") {
+          var name = a.title;
+          this.firemain.child(this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+            console.log(a);
+          })
+          this.refreshname();
+        }
+        this.copyflag = false;
+
+      }
+    }
+    else {
+      console.log(a);
+      console.log(this.id);
+      console.log(a.key);
+      console.log(a.list);
+      this.navCtrl.push(ViewshoppinglistPage, { "flag": a.flag, "obj": a, "id": this.id, "key": a.key })
+      console.log(a.flag);
+    }
+
   }
-
   select_sort() {
-
     this.srct.url = 'https://msearch.shopping.naver.com/search/all.nhn?origQuery=' + this.srct.text + '&pagingIndex=1&pagingSize=40&viewType=list&sort=' + $("#slt").val() + '&frm=NVSHATC&query=' + this.srct.text;
     //            https://search.shopping.naver.com/search/all.nhn?origQuery=신라면&pagingIndex=1&pagingSize=40&viewType=list&sort=review&frm=NVSHATC&query=신라면
 
@@ -330,23 +485,16 @@ export class HomePage {
     }
     console.log(name);
 
-
     var msg = "[백화점 마트 헛걸음 방지 앱\n '백마헛방'\n 쇼핑가기전엔 언제나\n '백마헛방']\n1)구입제목 : " + key.title + "\n2)작성일 : " + key.time + "\n3)리스트\n" + name;
-
-    console.log(msg)
-    console.log(key.title)
-    console.log(key.time)
-    console.log(key.list)
 
     this.socialSharing.share(msg, null, null, null);
   }
 
   /*전체 항목 복사*/
-  copy1(key) {
+  newAllcopy(key) {
     if (key.flag == "mart") {
       var a = key.title + "복사본"
       this.firemain.child(this.id).child("mart").child(a).child(key.key).update(key).then(() => {
-
         console.log(key);
       })
       this.refreshname();
@@ -354,7 +502,6 @@ export class HomePage {
     if (key.flag == "dep") {
       var a = key.title + "복사본"
       this.firemain.child(this.id).child("dep").child(a).child(key.key).update(key).then(() => {
-
         console.log(key);
       })
       this.refreshname();
@@ -362,7 +509,6 @@ export class HomePage {
     if (key.flag == "outlet") {
       var a = key.title + "복사본"
       this.firemain.child(this.id).child("outlet").child(a).child(key.key).update(key).then(() => {
-
         console.log(key);
       })
       this.refreshname();
@@ -370,7 +516,6 @@ export class HomePage {
     if (key.flag == "etc") {
       var a = key.title + "복사본"
       this.firemain.child(this.id).child("etc").child(a).child(key.key).update(key).then(() => {
-
         console.log(key);
       })
       this.refreshname();
@@ -378,7 +523,7 @@ export class HomePage {
   }
 
   /*구입한 항목 복사 */
-  copy2(key) {
+  newHavecopy(key) {
     console.log(key);
     console.log(key.list);
     var checked = [];
@@ -429,7 +574,7 @@ export class HomePage {
   }
 
   /*구입하지 않은 항목 복사 */
-  copy3(key) {
+  newWillcopy(key) {
     console.log(key);
     console.log(key.list);
     var unchecked = [];
@@ -448,6 +593,7 @@ export class HomePage {
 
     if (key.flag == "mart") {
       var a = key.title + "복사본";
+
       this.firemain.child(this.id).child("mart").child(a).child(key.key).update(key).then(() => {
         console.log(key);
       })
@@ -479,13 +625,63 @@ export class HomePage {
     }
   }
 
-  openModal(key) {
-    let modal = this.modal.create(CopymodalPage, key, {
-      cssClass: "modalcopy"
-    })
-    modal.onDidDismiss(data => {
-      console.log(data);
+  oldAllcopy(key, flag) {
+    this.selectedflagtocpy = flag;
+    console.log("copy old all")
+    this.copyflag = true;
+  }
 
+  oldHavecopy(key, flag) {
+    this.selectedflagtocpy = flag;
+    console.log("copy old old")
+    this.copyflag = true;
+  }
+
+  oldWillcopy(key, flag) {
+    this.selectedflagtocpy = flag;
+    console.log("copy old will")
+    this.copyflag = true;
+  }
+
+  openModal(key) {
+    console.log(key);
+    this.tocopylist = key.list;
+    this.tocopy = key;
+    console.log(this.tocopylist);
+    let modal = this.modal.create(CopymodalPage, null, {
+      cssClass: "modalcopy"
+    });
+    modal.onDidDismiss(data => {
+      console.log(key);
+      console.log(key.list);
+      if (data.flag == "new") {
+        if (data.value == "1") {
+          console.log(data.value);
+          this.newWillcopy(key);
+        }
+        else if (data.value == "2") {
+          console.log(data.value);
+          this.newHavecopy(key);
+        }
+        else if (data.value == "3") {
+          console.log(data.value);
+          this.newAllcopy(key);
+        }
+      }
+      else if (data.flag == "old") {
+        if (data.value == "1") {
+          console.log(data.value);
+          this.oldWillcopy(key, data.value);
+        }
+        else if (data.value == "2") {
+          console.log(data.value);
+          this.oldHavecopy(key, data.value);
+        }
+        else if (data.value == "3") {
+          console.log(data.value);
+          this.oldAllcopy(key, data.value);
+        }
+      }
     })
     modal.present();
   }
@@ -498,7 +694,6 @@ export class HomePage {
       console.log("ready!");
       console.log($("#slt").val())
     });
-
     setTimeout(() => {
 
       // console.log(this.id);

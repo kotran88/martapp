@@ -1,0 +1,13 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>복사하기</ion-title>
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">취소</button>
+        </ion-buttons>
+    </ion-navbar>
+
+    <ion-content padding>
+        앱의 원활한 구동을 위하여\n(속도,데이터,배터리 절약)\n\n 쇼핑목록은 최대 50개까지 저장 가능합니다. 추가로 저장을 원하실 경우\n 불필요한 쇼팡목록을 삭제하신 후\n 신규로 저장하여 주시기 바랍니다.
+        <button (click)="delete()">기존 목록 한개 삭제하기</button>
+        <button (click)="btn()">닫기</button>
+    </ion-content>

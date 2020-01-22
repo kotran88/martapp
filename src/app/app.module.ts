@@ -25,6 +25,7 @@ import { SettingPage, licenseModalPage, privacyModalPage } from '../pages/settin
 import { InAppPurchase } from '@ionic-native/in-app-purchase';
 import { RatePage } from '../pages/rate/rate';
 import { CopymodalPage } from '../pages/copymodal/copymodal';
+import { ListlimitmodalPage } from '../pages/listlimitmodal/listlimitmodal';
 
 
 var firebaseConfig = {
@@ -50,6 +51,7 @@ firebase.initializeApp(firebaseConfig);
     privacyModalPage,
     AdPage,
     CopymodalPage,
+    ListlimitmodalPage,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +71,7 @@ firebase.initializeApp(firebaseConfig);
     privacyModalPage,
     AdPage,
     CopymodalPage,
+    ListlimitmodalPage,
   ],
   providers: [
     StatusBar,

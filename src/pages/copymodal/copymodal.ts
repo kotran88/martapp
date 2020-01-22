@@ -58,6 +58,6 @@ export class CopymodalPage {
   }
 
   dismiss() {
-    this.viewCtrl.dismiss({ "data": "value" });
+    this.viewCtrl.dismiss();
   }
 }

@@ -7,7 +7,6 @@ import { UniqueDeviceID } from '@ionic-native/unique-device-id';
 import { AddshopingPage } from '../addshoping/addshoping';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import * as $ from 'jquery'
-import { empty } from 'rxjs/Observer';
 import { ViewshoppinglistPage } from '../viewshoppinglist/viewshoppinglist';
 
 import { SocialSharing } from '@ionic-native/social-sharing';
@@ -16,12 +15,14 @@ import { AdPage } from '../ad/ad';
 import { RatePage } from '../rate/rate';
 import { CopymodalPage } from '../copymodal/copymodal';
 import { snapshotChanges } from 'angularfire2/database';
+import { ListlimitmodalPage } from '../listlimitmodal/listlimitmodal';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+  [x: string]: any;
   selectedvalue: any;
   value: any;
   firemain = firebase.database().ref();
@@ -41,6 +42,7 @@ export class HomePage {
   tocopy: any;
   selectedflagtocpy: any;
   fabButtonOpened: boolean;
+  listcount: any = 0;
 
   openFabButton(){
     if(this.fabButtonOpened==false){
@@ -58,6 +60,7 @@ export class HomePage {
         if (a != "setting") {
           console.log(sn.val()[a]);
           for (var b in sn.val()[a]) {
+            this.listcount++;
             console.log("b" + b);
             console.log(sn.val()[a][b]);
             for (var c in sn.val()[a][b]) {
@@ -77,9 +80,11 @@ export class HomePage {
               console.log(this.newarraylist)
             }
           }
+          console.log(this.listcount);
         }
       }
     })
+    this.listcount=0;
   }
 
   public srct = {
@@ -124,10 +129,14 @@ export class HomePage {
         {
           text: '확인',
           handler: data => {
+            console.log(this.listcount);
+            if(this.listcount>=10)
+            {
+              let modal = this.modal.create(ListlimitmodalPage);
+              modal.present();
+            }
             var key = this.nextdirectory.push().key;
             this.firemain.child(this.id).child(value).child(data.title).child(key).update({ "flag": "notyet" });
-            console.log(data.title)//이름
-            console.log(key)
             console.log("selected value" + this.selectedvalue);
             this.navCtrl.push(AddshopingPage, { "flag": this.selectedvalue, "key": key, "id": this.id, "title": data.title }).then(() => {
               this.navCtrl.getActive().onDidDismiss(data => {

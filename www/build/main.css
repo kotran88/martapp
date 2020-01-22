@@ -25751,7 +25751,7 @@ page-home button[ion-fab] {
 
 page-home button[ion-fab] ion-label {
   position: absolute;
-  top: 3px;
+  top: -5px;
   right: 40px;
   color: white;
   background-color: rgba(0, 0, 0, 0.7);

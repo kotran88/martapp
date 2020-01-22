@@ -44,15 +44,6 @@ export class ViewshoppinglistPage {
   shop: any;
   count: any = 0;
 
-  // setBackButtonAction(){
-  //   this.navBar.backButtonClick = () => {
-  //   //Write here wherever you wanna do
-  //   console.log("back"+this.selected);
-  //   this.viewCtrl.dismiss({"flag":"navBack", "value":this.selected})
-  //   }
-  //   this.refreshname();
-  // }
-
   constructor(public navParam: NavParams, public navCtrl: NavController,
     public navParams: NavParams, private iab: InAppBrowser,
     public alertCtrl: AlertController, private admobFree: AdMobFree,

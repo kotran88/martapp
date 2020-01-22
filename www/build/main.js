@@ -104,6 +104,7 @@ var HomePage = /** @class */ (function () {
             text: '',
             url: '',
         };
+        this.fabButtonOpened = false;
         this.refreshname();
         __WEBPACK_IMPORTED_MODULE_8_jquery__(document).ready(function () {
             console.log("ready!");
@@ -150,6 +151,14 @@ var HomePage = /** @class */ (function () {
                 .catch(function (e) { return console.log(e); });
         }, 3000);
     }
+    HomePage.prototype.openFabButton = function () {
+        if (this.fabButtonOpened == false) {
+            this.fabButtonOpened = true;
+        }
+        else {
+            this.fabButtonOpened = false;
+        }
+    };
     HomePage.prototype.refreshname = function () {
         var _this = this;
         console.log(this.newarraylist);
@@ -160,10 +169,10 @@ var HomePage = /** @class */ (function () {
                     console.log(sn.val()[a]);
                     for (var b in sn.val()[a]) {
                         console.log("b" + b);
-                        console.log(sn.val()[a][b]); //73
+                        console.log(sn.val()[a][b]);
                         for (var c in sn.val()[a][b]) {
                             console.log("c" + c);
-                            console.log(sn.val()[a][b][c]); //75
+                            console.log(sn.val()[a][b][c]);
                             var checked = 0;
                             var listlength = 0;
                             for (var d in sn.val()[a][b][c].list) {
@@ -298,151 +307,167 @@ var HomePage = /** @class */ (function () {
         alert.present();
     };
     HomePage.prototype.viewshoppinglist = function (a) {
+        var _this = this;
         console.log(this.copyflag);
         console.log(a);
         console.log(a.key);
         console.log(a.flag);
-        console.log(this.tocopylist);
         console.log(a.list);
-        console.log(a.list.checked);
-        console.log("one of three");
-        console.log(this.selectedflagtocpy);
         if (this.copyflag) {
-            /*전체항목 기존복사*/
-            if (this.selectedflagtocpy == 3) {
-                console.log(newarray);
-                var newarray = [];
-                for (var b = 0; b < a.list.length; b++) {
-                    newarray.push(a.list[b]);
-                }
-                for (var b = 0; b < this.tocopylist.length; b++) {
-                    newarray.push(this.tocopylist[b]);
-                }
-                if (a.flag == "mart") {
-                    var name = a.title;
-                    this.firemain.child(this.id).child("mart").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(function () {
-                        console.log(a.key);
-                    });
-                    this.refreshname();
-                }
-                if (a.flag == "dep") {
-                    var name = a.title;
-                    this.firemain.child(this.id).child("dep").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(function () {
-                        console.log(a.key);
-                    });
-                    this.refreshname();
-                }
-                if (a.flag == "outlet") {
-                    var name = a.title;
-                    this.firemain.child(this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(function () {
-                        console.log(a.key);
-                    });
-                    this.refreshname();
-                }
-                if (a.flag == "etc") {
-                    var name = a.title;
-                    this.firemain.child(this.id).child("etc").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(function () {
-                        console.log(a.key);
-                    });
-                    this.refreshname();
-                }
-                this.copyflag = false;
-            }
-            /*구입한 항목 기존복사*/
-            else if (this.selectedflagtocpy == 2) {
-                var newarray = [];
-                for (var b = 0; b < a.list.length; b++) {
-                    newarray.push(a.list[b]);
-                }
-                for (var i = 0; i < this.tocopylist.length; i++) {
-                    if (this.tocopylist[i].checked == true) {
-                        newarray.push(this.tocopylist[i]);
-                        console.log(newarray);
+            var alert_1 = this.alertCtrl.create({
+                title: '해당 목록에 덧붙이시겠습니까?',
+                buttons: [
+                    {
+                        text: '취소',
+                        role: 'cancel',
+                        handler: function (data) {
+                            console.log('Cancel clicked');
+                        }
+                    },
+                    {
+                        text: '확인',
+                        handler: function (data) {
+                            /*전체항목 기존복사*/
+                            if (_this.selectedflagtocpy == 3) {
+                                console.log(newarray);
+                                var newarray = [];
+                                for (var b = 0; b < a.list.length; b++) {
+                                    newarray.push(a.list[b]);
+                                }
+                                for (var b = 0; b < _this.tocopylist.length; b++) {
+                                    newarray.push(_this.tocopylist[b]);
+                                }
+                                if (a.flag == "mart") {
+                                    var name = a.title;
+                                    _this.firemain.child(_this.id).child("mart").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(function () {
+                                        console.log(a.key);
+                                    });
+                                    _this.refreshname();
+                                }
+                                if (a.flag == "dep") {
+                                    var name = a.title;
+                                    _this.firemain.child(_this.id).child("dep").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(function () {
+                                        console.log(a.key);
+                                    });
+                                    _this.refreshname();
+                                }
+                                if (a.flag == "outlet") {
+                                    var name = a.title;
+                                    _this.firemain.child(_this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(function () {
+                                        console.log(a.key);
+                                    });
+                                    _this.refreshname();
+                                }
+                                if (a.flag == "etc") {
+                                    var name = a.title;
+                                    _this.firemain.child(_this.id).child("etc").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(function () {
+                                        console.log(a.key);
+                                    });
+                                    _this.refreshname();
+                                }
+                                _this.copyflag = false;
+                            }
+                            /*구입한 항목 기존복사*/
+                            else if (_this.selectedflagtocpy == 2) {
+                                var newarray = [];
+                                for (var b = 0; b < a.list.length; b++) {
+                                    newarray.push(a.list[b]);
+                                }
+                                for (var i = 0; i < _this.tocopylist.length; i++) {
+                                    if (_this.tocopylist[i].checked == true) {
+                                        newarray.push(_this.tocopylist[i]);
+                                        console.log(newarray);
+                                    }
+                                }
+                                console.log(newarray);
+                                a.list = [];
+                                for (var i = 0; i < newarray.length; i++) {
+                                    a.list.push(newarray[i]);
+                                }
+                                console.log(newarray);
+                                if (a.flag == "mart") {
+                                    var name = a.title;
+                                    _this.firemain.child(_this.id).child("mart").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(function () {
+                                        console.log(a);
+                                    });
+                                    _this.refreshname();
+                                }
+                                if (a.flag == "dep") {
+                                    var name = a.title;
+                                    _this.firemain.child(_this.id).child("dep").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(function () {
+                                        console.log(a);
+                                    });
+                                    _this.refreshname();
+                                }
+                                if (a.flag == "outlet") {
+                                    var name = a.title;
+                                    _this.firemain.child(_this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(function () {
+                                        console.log(a);
+                                    });
+                                    _this.refreshname();
+                                }
+                                if (a.flag == "etc") {
+                                    var name = a.title;
+                                    _this.firemain.child(_this.id).child("etc").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(function () {
+                                        console.log(a);
+                                    });
+                                    _this.refreshname();
+                                }
+                                _this.copyflag = false;
+                            }
+                            /*구입하지 않은 항목 기존복사 */
+                            else if (_this.selectedflagtocpy == 1) {
+                                var newarray = [];
+                                for (var b = 0; b < a.list.length; b++) {
+                                    newarray.push(a.list[b]);
+                                }
+                                for (var i = 0; i < _this.tocopylist.length; i++) {
+                                    if (_this.tocopylist[i].checked == false) {
+                                        newarray.push(_this.tocopylist[i]);
+                                        console.log(newarray);
+                                    }
+                                }
+                                console.log(newarray);
+                                a.list = [];
+                                for (var i = 0; i < newarray.length; i++) {
+                                    a.list.push(newarray[i]);
+                                }
+                                console.log(newarray);
+                                if (a.flag == "mart") {
+                                    var name = a.title;
+                                    _this.firemain.child(_this.id).child("mart").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(function () {
+                                        console.log(a);
+                                    });
+                                    _this.refreshname();
+                                }
+                                if (a.flag == "dep") {
+                                    var name = a.title;
+                                    _this.firemain.child(_this.id).child("dep").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(function () {
+                                        console.log(a);
+                                    });
+                                    _this.refreshname();
+                                }
+                                if (a.flag == "outlet") {
+                                    var name = a.title;
+                                    _this.firemain.child(_this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(function () {
+                                        console.log(a);
+                                    });
+                                    _this.refreshname();
+                                }
+                                if (a.flag == "etc") {
+                                    var name = a.title;
+                                    _this.firemain.child(_this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(function () {
+                                        console.log(a);
+                                    });
+                                    _this.refreshname();
+                                }
+                                _this.copyflag = false;
+                            }
+                        }
                     }
-                }
-                console.log(newarray);
-                a.list = [];
-                for (var i = 0; i < newarray.length; i++) {
-                    a.list.push(newarray[i]);
-                }
-                console.log(newarray);
-                if (a.flag == "mart") {
-                    var name = a.title;
-                    this.firemain.child(this.id).child("mart").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(function () {
-                        console.log(a);
-                    });
-                    this.refreshname();
-                }
-                if (a.flag == "dep") {
-                    var name = a.title;
-                    this.firemain.child(this.id).child("dep").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(function () {
-                        console.log(a);
-                    });
-                    this.refreshname();
-                }
-                if (a.flag == "outlet") {
-                    var name = a.title;
-                    this.firemain.child(this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(function () {
-                        console.log(a);
-                    });
-                    this.refreshname();
-                }
-                if (a.flag == "etc") {
-                    var name = a.title;
-                    this.firemain.child(this.id).child("etc").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(function () {
-                        console.log(a);
-                    });
-                    this.refreshname();
-                }
-                this.copyflag = false;
-            }
-            else if (this.selectedflagtocpy == 1) {
-                var newarray = [];
-                for (var b = 0; b < a.list.length; b++) {
-                    newarray.push(a.list[b]);
-                }
-                for (var i = 0; i < this.tocopylist.length; i++) {
-                    if (this.tocopylist[i].checked == false) {
-                        newarray.push(this.tocopylist[i]);
-                        console.log(newarray);
-                    }
-                }
-                console.log(newarray);
-                a.list = [];
-                for (var i = 0; i < newarray.length; i++) {
-                    a.list.push(newarray[i]);
-                }
-                console.log(newarray);
-                if (a.flag == "mart") {
-                    var name = a.title;
-                    this.firemain.child(this.id).child("mart").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(function () {
-                        console.log(a);
-                    });
-                    this.refreshname();
-                }
-                if (a.flag == "dep") {
-                    var name = a.title;
-                    this.firemain.child(this.id).child("dep").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(function () {
-                        console.log(a);
-                    });
-                    this.refreshname();
-                }
-                if (a.flag == "outlet") {
-                    var name = a.title;
-                    this.firemain.child(this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(function () {
-                        console.log(a);
-                    });
-                    this.refreshname();
-                }
-                if (a.flag == "etc") {
-                    var name = a.title;
-                    this.firemain.child(this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(function () {
-                        console.log(a);
-                    });
-                    this.refreshname();
-                }
-                this.copyflag = false;
-            }
+                ]
+            });
+            alert_1.present();
         }
         else {
             console.log(a);
@@ -749,12 +774,13 @@ var HomePage = /** @class */ (function () {
         });
         modal.present();
     };
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/home/home.html"*/'<ion-content padding>\n    <div class="upper">\n        <ion-row style="margin-bottom:0" class="search">\n            <ion-col width-100>\n                <ion-searchbar style="float:left;width: 50%; padding:6px;" placeholder="입력하세요" [(ngModel)]="startPoint" clearInput></ion-searchbar>\n\n                <button ion-button icon-only style="margin-right: -10px;" (click)="NoneAd()" color="primary" clear>\n                    <ion-icon class="ad-icon" name="eye-off"></ion-icon>\n                  </button>\n\n                <button ion-button icon-only style="margin-right: -10px;" (click)="appstore()" color="primary" clear>\n                    <ion-icon class="appstore-icon" name="star"></ion-icon>\n                  </button>\n\n                <button ion-button icon-only style="margin-right: -10px;" (click)="regularShare()" color="primary" clear>\n                    <ion-icon class="share-icon" name="share"></ion-icon>\n                  </button>\n\n                <button ion-button icon-only (click)="setting()" color=\'primary\' clear>\n                  <ion-icon class="setting-icon" name="settings"></ion-icon>\n                </button>\n\n\n            </ion-col>\n        </ion-row>\n    </div>\n\n    <ion-segment style="background:#353c5e;font-size: 16px;letter-spacing: -0.35px" (ionChange)="segmentChanged($event)" [(ngModel)]="tab">\n        <ion-segment-button value="tab1" [ngClass]="tab==\'tab1\'?\'view\':\'notview\'">\n            <span style="font-family: \'notomedium\';">즐겨찾는곳</span>\n        </ion-segment-button>\n        <ion-segment-button value="tab2" [ngClass]="tab==\'tab2\'?\'view\':\'notview\'">\n            <span style="font-family: \'notomedium\';" class="">쇼핑예정목록</span>\n        </ion-segment-button>\n        <ion-segment-button value="tab3" [ngClass]="tab==\'tab3\'?\'view\':\'notview\'">\n            <span style="font-family: \'notomedium\';" class="">인터넷에선얼마?</span>\n        </ion-segment-button>\n\n    </ion-segment>\n    <div [ngSwitch]="tab" style="height:100%;">\n        <ion-list *ngSwitchCase="\'tab1\'">\n            first tab\n\n        </ion-list>\n        <ion-list *ngSwitchCase="\'tab2\'">\n            <div class="topselector">\n                <p>쇼핑 목록 만들기! 어디서 쇼핑하실 건가요?</p>\n                <div class="button">\n                    <button style="background-color:#fff;" (click)="addlist(\'mart\')"><img src="assets/imgs/mes.png" alt=""></button><br>\n                    <div><button style="background-color:#fff;" (click)="addlist(\'mart\')">마트</button></div>\n                </div>\n                <div class="button">\n                    <button style="background-color:#fff;" (click)="addlist(\'dep\')"><img src="assets/imgs/mes.png" alt=""></button><br>\n                    <div><button style="background-color:#fff;" (click)="addlist(\'dep\')">백화점</button></div>\n                </div>\n                <div class="button">\n                    <button style="background-color:#fff;" (click)="addlist(\'outlet\')"><img src="assets/imgs/mes.png" alt=""></button><br>\n                    <div><button style="background-color:#fff;" (click)="addlist(\'outlet\')">아울렛</button></div>\n                </div>\n                <div class="button">\n                    <button style="background-color:#fff;" (click)="addlist(\'etc\')"><img src="assets/imgs/mes.png" alt=""></button><br>\n                    <div><button style="background-color:#fff;" (click)="addlist(\'etc\')">기타</button></div>\n                </div>\n            </div>\n            <div *ngFor="let a of newarraylist" class="eachshopping">\n                <div class="listDB">\n                    <div class="segmentImg">\n                        <button style="background-color:#fff;" (click)="deleteDB(a)">\n                            <img src="assets/imgs/delete (1).png">\n                        </button>\n                    </div>\n                    <div class="segmentText">\n                        {{a.flag}}\n                        <button style="background-color:#fff;" (click)="viewshoppinglist(a)">\n                            {{a.title}}\n                        </button>\n                    </div>\n                    <div>\n                        <button style="background-color:#fff;" (click)="viewshoppinglist(a)">\n                            {{a.time}}\n                        </button>\n                    </div>\n                    <div>\n                        {{a.totallist+"개 항목 중 "+a.totalchecked+"개 구입"}}\n                    </div>\n                    <div>\n                        <ion-fab right #fab>\n                            <button ion-fab mini><ion-icon name="add"></ion-icon></button>\n                            <ion-fab-list side="bottom">\n                                <button (click)="changeName(a)" ion-fab>\n                                    <ion-icon name="list"></ion-icon>\n                                    <ion-label>목록명 변경</ion-label>\n                                </button>\n                                <button (click)="share(a)" ion-fab>\n                                    <ion-icon name="share"></ion-icon>\n                                    <ion-label>공유</ion-label>\n                                </button>\n                                <button (click)="deleteDB(a)" ion-fab>\n                                    <ion-icon name="trash"></ion-icon>\n                                    <ion-label>삭제</ion-label>\n                                </button>\n                                <button (click)="openModal(a)" ion-fab>\n                                    <ion-icon name="copy"></ion-icon>\n                                    <ion-label>복사</ion-label>\n                                </button>\n                            </ion-fab-list>\n                        </ion-fab>\n                    </div>\n                </div>\n            </div>\n\n            <!-- <div><button style="background-color:#fff;" (click)="addlist()">(image)쇼핑 리스트를 추가해보자라는 말</button></div> -->\n\n        </ion-list>\n        <ion-list *ngSwitchCase="\'tab3\'">\n\n            <div>\n                <select style="display: inline-block; width:25%;" id=\'slt\' name="sort">\n                    <option value="rel" selected="selected">랭킹순</option>\n                    <option value="price_asc">낮은 가격순</option>\n                    <option value="price_dsc">높은 가격순</option>\n                    <option value="date">등록순</option>\n                    <option value="review">리뷰 많은순</option>\n                </select>\n\n                <ion-input style="margin-right: 0px; width: 60%; display: inline-block; border: 1px solid black;" name=\'text\' type="text" [(ngModel)]=\'srct.text\' placeholder="검색어를 입력해 주세요.">\n                </ion-input>\n\n                <button ion-button style="float: right; width:30px; height: 30px;" color="black" outline icon-only (click)=\'select_sort()\'>\n\n                    <ion-icon name=\'search\' is-active="false"></ion-icon>\n                </button>\n            </div>\n        </ion-list>\n\n    </div>\n\n</ion-content>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/home/home.html"*/'<ion-content padding>\n    <div class="upper">\n        <ion-row style="margin-bottom:0" class="search">\n            <ion-col width-100>\n                <ion-searchbar style="float:left;width: 50%; padding:6px;" placeholder="입력하세요" [(ngModel)]="startPoint" clearInput></ion-searchbar>\n\n                <button ion-button icon-only style="margin-right: -10px;" (click)="NoneAd()" color="primary" clear>\n                    <ion-icon class="ad-icon" name="eye-off"></ion-icon>\n                  </button>\n\n                <button ion-button icon-only style="margin-right: -10px;" (click)="appstore()" color="primary" clear>\n                    <ion-icon class="appstore-icon" name="star"></ion-icon>\n                  </button>\n\n                <button ion-button icon-only style="margin-right: -10px;" (click)="regularShare()" color="primary" clear>\n                    <ion-icon class="share-icon" name="share"></ion-icon>\n                  </button>\n\n                <button ion-button icon-only (click)="setting()" color=\'primary\' clear>\n                  <ion-icon class="setting-icon" name="settings"></ion-icon>\n                </button>\n\n\n            </ion-col>\n        </ion-row>\n    </div>\n\n    <ion-segment style="background:#353c5e;font-size: 16px;letter-spacing: -0.35px" (ionChange)="segmentChanged($event)" [(ngModel)]="tab">\n        <ion-segment-button value="tab1" [ngClass]="tab==\'tab1\'?\'view\':\'notview\'">\n            <span style="font-family: \'notomedium\';">즐겨찾는곳</span>\n        </ion-segment-button>\n        <ion-segment-button value="tab2" [ngClass]="tab==\'tab2\'?\'view\':\'notview\'">\n            <span style="font-family: \'notomedium\';" class="">쇼핑예정목록</span>\n        </ion-segment-button>\n        <ion-segment-button value="tab3" [ngClass]="tab==\'tab3\'?\'view\':\'notview\'">\n            <span style="font-family: \'notomedium\';" class="">인터넷에선얼마?</span>\n        </ion-segment-button>\n\n    </ion-segment>\n    <div [ngSwitch]="tab" style="height:100%;">\n        <ion-list *ngSwitchCase="\'tab1\'">\n            first tab\n\n        </ion-list>\n        <ion-list *ngSwitchCase="\'tab2\'">\n            <div class="topselector">\n                <p>쇼핑 목록 만들기! 어디서 쇼핑하실 건가요?</p>\n                <div class="button">\n                    <button style="background-color:#fff;" (click)="addlist(\'mart\')"><img src="assets/imgs/mes.png" alt=""></button><br>\n                    <div><button style="background-color:#fff;" (click)="addlist(\'mart\')">마트</button></div>\n                </div>\n                <div class="button">\n                    <button style="background-color:#fff;" (click)="addlist(\'dep\')"><img src="assets/imgs/mes.png" alt=""></button><br>\n                    <div><button style="background-color:#fff;" (click)="addlist(\'dep\')">백화점</button></div>\n                </div>\n                <div class="button">\n                    <button style="background-color:#fff;" (click)="addlist(\'outlet\')"><img src="assets/imgs/mes.png" alt=""></button><br>\n                    <div><button style="background-color:#fff;" (click)="addlist(\'outlet\')">아울렛</button></div>\n                </div>\n                <div class="button">\n                    <button style="background-color:#fff;" (click)="addlist(\'etc\')"><img src="assets/imgs/mes.png" alt=""></button><br>\n                    <div><button style="background-color:#fff;" (click)="addlist(\'etc\')">기타</button></div>\n                </div>\n            </div>\n            <div *ngFor="let a of newarraylist" class="eachshopping">\n                <div class="listDB">\n                    <div class="segmentImg">\n                        <button style="background-color:#fff;" (click)="deleteDB(a)">\n                            <img src="assets/imgs/delete (1).png">\n                        </button>\n                    </div>\n                    <div class="segmentText">\n                        {{a.flag}}\n                        <button style="background-color:#fff;" (click)="viewshoppinglist(a)">\n                            {{a.title}}\n                        </button>\n                    </div>\n                    <div>\n                        <button style="background-color:#fff;" (click)="viewshoppinglist(a)">\n                            {{a.time}}\n                        </button>\n                    </div>\n                    <div>\n                        {{a.totallist+"개 항목 중 "+a.totalchecked+"개 구입"}}\n                    </div>\n                    <div>\n                        <ion-fab right>\n                            <button ion-fab mini><ion-icon name="add"></ion-icon></button>\n                            <ion-fab-list side="bottom">\n                                <button (click)="changeName(a)" ion-fab>\n                                    <ion-icon name="list"></ion-icon>\n                                    <ion-label>목록명 변경</ion-label>\n                                </button>\n                                <button (click)="share(a)" ion-fab>\n                                    <ion-icon name="share"></ion-icon>\n                                    <ion-label>공유</ion-label>\n                                </button>\n                                <button (click)="deleteDB(a)" ion-fab>\n                                    <ion-icon name="trash"></ion-icon>\n                                    <ion-label>삭제</ion-label>\n                                </button>\n                                <button (click)="openModal(a)" ion-fab>\n                                    <ion-icon name="copy"></ion-icon>\n                                    <ion-label>복사</ion-label>\n                                </button>\n                            </ion-fab-list>\n                        </ion-fab>\n                    </div>\n                </div>\n            </div>\n\n            <!-- <div><button style="background-color:#fff;" (click)="addlist()">(image)쇼핑 리스트를 추가해보자라는 말</button></div> -->\n\n        </ion-list>\n        <ion-list *ngSwitchCase="\'tab3\'">\n\n            <div>\n                <select style="display: inline-block; width:25%;" id=\'slt\' name="sort">\n                    <option value="rel" selected="selected">랭킹순</option>\n                    <option value="price_asc">낮은 가격순</option>\n                    <option value="price_dsc">높은 가격순</option>\n                    <option value="date">등록순</option>\n                    <option value="review">리뷰 많은순</option>\n                </select>\n\n                <ion-input style="margin-right: 0px; width: 60%; display: inline-block; border: 1px solid black;" name=\'text\' type="text" [(ngModel)]=\'srct.text\' placeholder="검색어를 입력해 주세요.">\n                </ion-input>\n\n                <button ion-button style="float: right; width:30px; height: 30px;" color="black" outline icon-only (click)=\'select_sort()\'>\n\n                    <ion-icon name=\'search\' is-active="false"></ion-icon>\n                </button>\n            </div>\n        </ion-list>\n\n    </div>\n\n</ion-content>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/home/home.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */]) === "function" ? _a : Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_10__ionic_native_social_sharing__["a" /* SocialSharing */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10__ionic_native_social_sharing__["a" /* SocialSharing */]) === "function" ? _b : Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__["a" /* InAppBrowser */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__["a" /* InAppBrowser */]) === "function" ? _c : Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_native_unique_device_id__["a" /* UniqueDeviceID */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_native_unique_device_id__["a" /* UniqueDeviceID */]) === "function" ? _d : Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" ? _e : Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_call_number___["a" /* CallNumber */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_call_number___["a" /* CallNumber */]) === "function" ? _f : Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_admob_free__["a" /* AdMobFree */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_admob_free__["a" /* AdMobFree */]) === "function" ? _g : Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" ? _h : Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" ? _j : Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */], __WEBPACK_IMPORTED_MODULE_10__ionic_native_social_sharing__["a" /* SocialSharing */], __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__["a" /* InAppBrowser */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_unique_device_id__["a" /* UniqueDeviceID */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_call_number___["a" /* CallNumber */],
+            __WEBPACK_IMPORTED_MODULE_2__ionic_native_admob_free__["a" /* AdMobFree */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
     ], HomePage);
     return HomePage;
 }());
@@ -969,14 +995,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var ViewshoppinglistPage = /** @class */ (function () {
-    // setBackButtonAction(){
-    //   this.navBar.backButtonClick = () => {
-    //   //Write here wherever you wanna do
-    //   console.log("back"+this.selected);
-    //   this.viewCtrl.dismiss({"flag":"navBack", "value":this.selected})
-    //   }
-    //   this.refreshname();
-    // }
     function ViewshoppinglistPage(navParam, navCtrl, navParams, iab, alertCtrl, admobFree, toastCtrl, modal, viewCtrl) {
         this.navParam = navParam;
         this.navCtrl = navCtrl;
@@ -1678,12 +1696,11 @@ var CopymodalPage = /** @class */ (function () {
     CopymodalPage.prototype.dismiss = function () {
         this.viewCtrl.dismiss({ "data": "value" });
     };
-    var _a, _b, _c;
     CopymodalPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-copymodal',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/copymodal/copymodal.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>복사하기</ion-title>\n        <ion-buttons start>\n            <button ion-button (click)="dismiss() ">취소</button>\n        </ion-buttons>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <ion-item>\n        <ion-checkbox name="check1" [(ngModel)]="data1" (click)="allValue1()"></ion-checkbox>\n        <ion-label>구입하지 않은 목록</ion-label>\n    </ion-item>\n    <ion-item>\n        <ion-checkbox name="check2" [(ngModel)]="data2" (click)="allValue2()"></ion-checkbox>\n        <ion-label>구입한 목록</ion-label>\n    </ion-item>\n    <ion-item>\n        <ion-checkbox name="check3" [(ngModel)]="data3" (click)="allValue3()"></ion-checkbox>\n        <ion-label>전체 목록</ion-label>\n    </ion-item>\n\n    <button (click)="newCopy()">신규로 복사하기</button>\n    <button (click)="btn()">기존 목록에 덧붙이기</button>\n</ion-content>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/copymodal/copymodal.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" ? _a : Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" ? _b : Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ViewController */]) === "function" ? _c : Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ViewController */]])
     ], CopymodalPage);
     return CopymodalPage;
 }());

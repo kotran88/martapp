@@ -1,5 +1,5 @@
 import { Component, ContentChild } from '@angular/core';
-import { NavController, AlertController, Platform, ViewController, NavParams, ModalController } from 'ionic-angular';
+import { NavController, AlertController, Platform, ViewController, NavParams, ModalController, FabContainer } from 'ionic-angular';
 import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free'
 import { CallNumber } from '@ionic-native/call-number/';
 import firebase from 'firebase';
@@ -39,8 +39,17 @@ export class HomePage {
   checkedlistlength: any = 0;
   tocopylist: any;
   tocopy: any;
-
   selectedflagtocpy: any;
+  fabButtonOpened: boolean;
+
+  openFabButton(){
+    if(this.fabButtonOpened==false){
+      this.fabButtonOpened=true;
+    }else{
+      this.fabButtonOpened=false;
+    }
+  }
+
   refreshname() {
     console.log(this.newarraylist);
     this.newarraylist = [];
@@ -50,10 +59,10 @@ export class HomePage {
           console.log(sn.val()[a]);
           for (var b in sn.val()[a]) {
             console.log("b" + b);
-            console.log(sn.val()[a][b]);//73
+            console.log(sn.val()[a][b]);
             for (var c in sn.val()[a][b]) {
               console.log("c" + c);
-              console.log(sn.val()[a][b][c]);//75
+              console.log(sn.val()[a][b][c]);
               var checked = 0;
               var listlength = 0;
               for (var d in sn.val()[a][b][c].list) {
@@ -200,156 +209,169 @@ export class HomePage {
     console.log(a);
     console.log(a.key);
     console.log(a.flag);
-    console.log(this.tocopylist);
     console.log(a.list);
-    console.log(a.list.checked);
-
-    console.log("one of three");
-    console.log(this.selectedflagtocpy);
 
     if (this.copyflag) {
-      /*전체항목 기존복사*/
-      if (this.selectedflagtocpy == 3) {
-        console.log(newarray);
-        var newarray = [];
-        for (var b = 0; b < a.list.length; b++) {
-          newarray.push(a.list[b]);
-        }
-        for (var b = 0; b < this.tocopylist.length; b++) {
-          newarray.push(this.tocopylist[b]);
-        }
-        if (a.flag == "mart") {
-          var name = a.title;
-          this.firemain.child(this.id).child("mart").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
-            console.log(a.key);
-          })
-          this.refreshname();
-        }
+      let alert = this.alertCtrl.create({
+        title: '해당 목록에 덧붙이시겠습니까?',
+        buttons: [
+          {
+            text: '취소',
+            role: 'cancel',
+            handler: data => {
+              console.log('Cancel clicked');
+            }
+          },
+          {
+            text: '확인',
+            handler: data => {
+              /*전체항목 기존복사*/
+              if (this.selectedflagtocpy == 3) {
+                console.log(newarray);
+                var newarray = [];
+                for (var b = 0; b < a.list.length; b++) {
+                  newarray.push(a.list[b]);
+                }
+                for (var b = 0; b < this.tocopylist.length; b++) {
+                  newarray.push(this.tocopylist[b]);
+                }
+                if (a.flag == "mart") {
+                  var name = a.title;
+                  this.firemain.child(this.id).child("mart").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+                    console.log(a.key);
+                  })
+                  this.refreshname();
+                }
 
-        if (a.flag == "dep") {
-          var name = a.title;
-          this.firemain.child(this.id).child("dep").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
-            console.log(a.key);
-          })
-          this.refreshname();
-        }
-        if (a.flag == "outlet") {
-          var name = a.title;
-          this.firemain.child(this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
-            console.log(a.key);
-          })
-          this.refreshname();
-        }
-        if (a.flag == "etc") {
-          var name = a.title;
-          this.firemain.child(this.id).child("etc").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
-            console.log(a.key);
-          })
-          this.refreshname();
-        }
-        this.copyflag = false;
-      }
-      /*구입한 항목 기존복사*/
-      else if (this.selectedflagtocpy == 2) {
-        var newarray = [];
+                if (a.flag == "dep") {
+                  var name = a.title;
+                  this.firemain.child(this.id).child("dep").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+                    console.log(a.key);
+                  })
+                  this.refreshname();
+                }
+                if (a.flag == "outlet") {
+                  var name = a.title;
+                  this.firemain.child(this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+                    console.log(a.key);
+                  })
+                  this.refreshname();
+                }
+                if (a.flag == "etc") {
+                  var name = a.title;
+                  this.firemain.child(this.id).child("etc").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+                    console.log(a.key);
+                  })
+                  this.refreshname();
+                }
+                this.copyflag = false;
+              }
+              /*구입한 항목 기존복사*/
+              else if (this.selectedflagtocpy == 2) {
+                var newarray = [];
 
-        for (var b = 0; b < a.list.length; b++) {
-          newarray.push(a.list[b]);
-        }
-        for (var i = 0; i < this.tocopylist.length; i++){
-          if (this.tocopylist[i].checked == true){
-            newarray.push(this.tocopylist[i]);
-            console.log(newarray);
+                for (var b = 0; b < a.list.length; b++) {
+                  newarray.push(a.list[b]);
+                }
+                for (var i = 0; i < this.tocopylist.length; i++) {
+                  if (this.tocopylist[i].checked == true) {
+                    newarray.push(this.tocopylist[i]);
+                    console.log(newarray);
+                  }
+                }
+                console.log(newarray);
+                a.list = [];
+                for (var i = 0; i < newarray.length; i++) {
+                  a.list.push(newarray[i])
+                }
+                console.log(newarray);
+
+                if (a.flag == "mart") {
+                  var name = a.title;
+                  this.firemain.child(this.id).child("mart").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+                    console.log(a);
+                  })
+                  this.refreshname();
+                }
+                if (a.flag == "dep") {
+                  var name = a.title;
+                  this.firemain.child(this.id).child("dep").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+                    console.log(a);
+                  })
+                  this.refreshname();
+                }
+                if (a.flag == "outlet") {
+                  var name = a.title;
+                  this.firemain.child(this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+                    console.log(a);
+                  })
+                  this.refreshname();
+                }
+                if (a.flag == "etc") {
+                  var name = a.title;
+                  this.firemain.child(this.id).child("etc").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+
+                    console.log(a);
+                  })
+                  this.refreshname();
+                }
+                this.copyflag = false;
+              }
+              /*구입하지 않은 항목 기존복사 */
+              else if (this.selectedflagtocpy == 1) {
+                var newarray = [];
+
+                for (var b = 0; b < a.list.length; b++) {
+                  newarray.push(a.list[b]);
+                }
+                for (var i = 0; i < this.tocopylist.length; i++) {
+                  if (this.tocopylist[i].checked == false) {
+                    newarray.push(this.tocopylist[i]);
+                    console.log(newarray);
+                  }
+                }
+                console.log(newarray);
+                a.list = [];
+                for (var i = 0; i < newarray.length; i++) {
+                  a.list.push(newarray[i])
+                }
+                console.log(newarray);
+                if (a.flag == "mart") {
+                  var name = a.title;
+                  this.firemain.child(this.id).child("mart").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+                    console.log(a);
+                  })
+                  this.refreshname();
+                }
+
+                if (a.flag == "dep") {
+                  var name = a.title;
+                  this.firemain.child(this.id).child("dep").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+                    console.log(a);
+                  })
+                  this.refreshname();
+                }
+                if (a.flag == "outlet") {
+                  var name = a.title;
+                  this.firemain.child(this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+                    console.log(a);
+                  })
+                  this.refreshname();
+                }
+                if (a.flag == "etc") {
+                  var name = a.title;
+                  this.firemain.child(this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+                    console.log(a);
+                  })
+                  this.refreshname();
+                }
+                this.copyflag = false;
+              }
+            }
           }
-        }
-        console.log(newarray);
-        a.list = [];
-        for (var i = 0; i < newarray.length; i++) {
-          a.list.push(newarray[i])
-        }
-        console.log(newarray);
-
-        if (a.flag == "mart") {
-          var name = a.title;
-          this.firemain.child(this.id).child("mart").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
-            console.log(a);
-          })
-          this.refreshname();
-        }
-        if (a.flag == "dep") {
-          var name = a.title;
-          this.firemain.child(this.id).child("dep").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
-            console.log(a);
-          })
-          this.refreshname();
-        }
-        if (a.flag == "outlet") {
-          var name = a.title;
-          this.firemain.child(this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
-            console.log(a);
-          })
-          this.refreshname();
-        }
-        if (a.flag == "etc") {
-          var name = a.title;
-          this.firemain.child(this.id).child("etc").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
-
-            console.log(a);
-          })
-          this.refreshname();
-        }
-        this.copyflag = false;
-      }
-      else if (this.selectedflagtocpy == 1) {
-        var newarray = [];
-
-        for (var b = 0; b < a.list.length; b++) {
-          newarray.push(a.list[b]);
-        }
-        for (var i = 0; i < this.tocopylist.length; i++){
-          if (this.tocopylist[i].checked == false){
-            newarray.push(this.tocopylist[i]);
-            console.log(newarray);
-          }
-        }
-        console.log(newarray);
-        a.list = [];
-        for (var i = 0; i < newarray.length; i++) {
-          a.list.push(newarray[i])
-        }
-        console.log(newarray);
-        if (a.flag == "mart") {
-          var name = a.title;
-          this.firemain.child(this.id).child("mart").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
-            console.log(a);
-          })
-          this.refreshname();
-        }
-
-        if (a.flag == "dep") {
-          var name = a.title;
-          this.firemain.child(this.id).child("dep").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
-            console.log(a);
-          })
-          this.refreshname();
-        }
-        if (a.flag == "outlet") {
-          var name = a.title;
-          this.firemain.child(this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
-            console.log(a);
-          })
-          this.refreshname();
-        }
-        if (a.flag == "etc") {
-          var name = a.title;
-          this.firemain.child(this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
-            console.log(a);
-          })
-          this.refreshname();
-        }
-        this.copyflag = false;
-
-      }
+        ]
+      });
+      alert.present();
     }
     else {
       console.log(a);
@@ -686,9 +708,11 @@ export class HomePage {
     modal.present();
   }
 
+
   constructor(public modal: ModalController, private socialSharing: SocialSharing, private iab: InAppBrowser, public uniqueDeviceID: UniqueDeviceID,
     public alertCtrl: AlertController, public callnumber: CallNumber,
     public admobFree: AdMobFree, public navCtrl: NavController, public navParams: NavParams) {
+      this.fabButtonOpened=false;
     this.refreshname();
     $(document).ready(function () {
       console.log("ready!");

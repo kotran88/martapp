@@ -107,7 +107,6 @@ export class HomePage {
     console.log(msg)
     this.socialSharing.share(msg, null, null, null);
   }
-
   addlist(value) {
     this.selectedvalue = value;
     let alert = this.alertCtrl.create({
@@ -149,7 +148,7 @@ export class HomePage {
       ]
     });
     alert.present();
-  }
+    }
 
   deleteDB(key) {
     console.log("delete come");

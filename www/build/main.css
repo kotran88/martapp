@@ -25697,12 +25697,45 @@ ion-navbar.toolbar {
   min-height: 46px;
 }
 
-page-ad .B_on {
-  background-color: #72aefc;
+#main-view {
+  background-color: #f2f2f2;
+  border: 1px solid #01a8b3;
+  border-radius: 10px;
+  height: 60%;
+  width: 96%;
+  top: 26%;
+  left: 2%;
+  position: absolute;
 }
 
-page-ad .B_off {
-  background-color: lightgray;
+#ad-buy-image {
+  position: relative;
+  width: 60%;
+  height: 200px;
+  right: -20%;
+  top: 10px;
+  display: inline-block;
+  background: yellow;
+}
+
+#select-button {
+  position: relative;
+  right: -5%;
+  top: 10px;
+  width: 130%;
+  height: 40%;
+}
+
+.B_on {
+  border: 5px solid #10e2e2;
+  background: #79a2a2;
+  display: inline-block;
+}
+
+.B_off {
+  border: 5px solid transparent;
+  background: #79a2a2;
+  display: inline-block;
 }
 
 .modalcopy {
@@ -25894,139 +25927,22 @@ div.segmentText {
   left: 0% !important;
 }
 
-page-setting .image {
-  width: 35%;
-  height: 100%;
-  border: solid 1px;
-  float: left;
+#app-assessment-image {
+  margin: 0;
+  background: yellow;
+  display: inline-block;
+  width: 100%;
+  height: 70%;
 }
 
-page-setting .content_main {
-  width: 80%;
-  text-align: center;
-  height: 20%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-page-setting .btn {
-  background: transparent;
+#btn-option button {
+  padding: 10% 10%;
+  margin: 0;
+  background: #f2f2f2;
+  outline: none;
   color: black;
-  border: solid 1px;
-}
-
-page-setting .img {
-  width: 70%;
-  text-align: center;
-  margin-left: 15%;
-}
-
-page-setting .content {
-  height: 85%;
-  width: 100%;
-}
-
-page-setting .rating_header {
-  margin-top: 0.8rem;
-  text-align: center;
-}
-
-page-setting .content_text {
-  width: 100%;
-  height: 30%;
-}
-
-page-setting .header {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 5px;
-  margin-top: 5px;
-}
-
-page-setting .info {
-  width: 50%;
-  height: 100%;
-  float: right;
-}
-
-page-setting .confirm {
-  width: 100%;
-  background: transparent;
-  color: black;
-  border: solid 1px;
-}
-
-page-setting .main-view {
-  background: transparent;
-}
-
-page-setting .title_title {
-  line-height: 3rem;
-  float: left;
-  padding: 0;
-  width: 25%;
-  margin-left: 20px;
-}
-
-page-setting .title {
-  line-height: 3rem;
-  float: left;
-  padding: 0;
-  width: 25%;
-}
-
-page-setting .btn {
-  border: none;
-  background: aliceblue;
-  border-radius: 10px;
-  margin-top: 1em;
-  margin-right: 1em;
-  min-height: 25px;
-}
-
-page-setting button.nav {
-  background-color: transparent;
-  color: #000;
-  float: left;
-}
-
-page-setting .text-input-md {
-  text-align: center;
-  margin-top: 5px;
-}
-
-page-setting .a {
-  background: transparent;
-  border: solid 1px;
-  margin: 5px;
-  border-radius: 10px;
-}
-
-page-setting .modal_content {
-  text-align: center;
-  background: white;
-  position: absolute;
-  border: solid 1px;
-  left: 0;
-  right: 0;
-  width: 80%;
-  height: 100%;
-  padding: 10px;
-  z-index: 100;
-  margin: 0 auto;
-  padding: 10px;
-  color: #333;
-  height: auto;
-  background: #e8e8e8;
-  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#e8e8e8));
-  background: linear-gradient(to bottom, #fff 0%, #e8e8e8 100%);
-  border-radius: 5px;
-  -webkit-box-shadow: 0 2px 3px rgba(51, 51, 51, 0.35);
-  box-shadow: 0 2px 3px rgba(51, 51, 51, 0.35);
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  overflow: hidden;
+  font-weight: 800;
+  font-size: 20px;
 }
 
 .B_on {
@@ -26037,30 +25953,11 @@ page-setting .modal_content {
   background-color: lightgray;
 }
 
-.accordion {
-  background-color: #eee;
-  color: #444;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  text-align: left;
-  border: none;
-  outline: none;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-}
-
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.active, .accordion:hover {
-  background-color: #ccc;
-}
-
-/* Style the accordion panel. Note: hidden by default */
-.panel {
-  padding: 0 18px;
-  background-color: white;
-  display: none;
-  overflow: hidden;
+.space {
+  width: 200px;
+  height: 200px;
+  background: yellow;
+  display: inline-block;
 }
 
 page-viewshoppinglist ion-list {

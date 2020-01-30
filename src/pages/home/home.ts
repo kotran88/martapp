@@ -43,6 +43,7 @@ export class HomePage {
   selectedflagtocpy: any;
   fabButtonOpened: boolean;
   listcount: any = 0;
+  afterValue: any;
 
   openFabButton(){
     if(this.fabButtonOpened==false){
@@ -130,20 +131,30 @@ export class HomePage {
           text: '확인',
           handler: data => {
             console.log(this.listcount);
+            console.log(value);
+            console.log(this.newarraylist);
             if(this.listcount>=10)
             {
-              let modal = this.modal.create(ListlimitmodalPage);
-              modal.present();
-            }
-            var key = this.nextdirectory.push().key;
-            this.firemain.child(this.id).child(value).child(data.title).child(key).update({ "flag": "notyet" });
-            console.log("selected value" + this.selectedvalue);
-            this.navCtrl.push(AddshopingPage, { "flag": this.selectedvalue, "key": key, "id": this.id, "title": data.title }).then(() => {
-              this.navCtrl.getActive().onDidDismiss(data => {
-                console.log("dismiss detect");
-                this.refreshname();
+              this.navCtrl.push(ListlimitmodalPage, { "flag": this.selectedvalue, "obj":this.newarraylist, "title": data.title, "id": this.id, "key": value.key }).then(()=>{
+                this.navCtrl.getActive().onDidDismiss(data=>{
+                  console.log(data.value);
+                  data.value=[];
+                  /*DB업데이트 */
+
+                })
               })
-            });
+            }
+            else{
+              var key = this.nextdirectory.push().key;
+              this.firemain.child(this.id).child(value).child(data.title).child(key).update({ "flag": "notyet" });
+              console.log("selected value" + this.selectedvalue);
+              this.navCtrl.push(AddshopingPage, { "flag": this.selectedvalue, "key": key, "id": this.id, "title": data.title }).then(() => {
+                this.navCtrl.getActive().onDidDismiss(data => {
+                  console.log("dismiss detect");
+                  this.refreshname();
+                })
+              });
+            }
           }
         }
       ]
@@ -387,8 +398,13 @@ export class HomePage {
       console.log(this.id);
       console.log(a.key);
       console.log(a.list);
-      this.navCtrl.push(ViewshoppinglistPage, { "flag": a.flag, "obj": a, "id": this.id, "key": a.key })
+      this.navCtrl.push(ViewshoppinglistPage, { "flag": a.flag, "obj": a, "id": this.id, "key": a.key }).then(()=>{
+        this.navCtrl.getActive().onDidDismiss(data=>{
+          this.refreshname();
+        })
+      })
       console.log(a.flag);
+
     }
 
   }
@@ -721,7 +737,7 @@ export class HomePage {
   constructor(public modal: ModalController, private socialSharing: SocialSharing, private iab: InAppBrowser, public uniqueDeviceID: UniqueDeviceID,
     public alertCtrl: AlertController, public callnumber: CallNumber,
     public admobFree: AdMobFree, public navCtrl: NavController, public navParams: NavParams) {
-      this.fabButtonOpened=false;
+    this.fabButtonOpened=false;
     this.refreshname();
     $(document).ready(function () {
       console.log("ready!");

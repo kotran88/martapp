@@ -25954,6 +25954,14 @@ div.segmentText {
   left: 0% !important;
 }
 
+.button_bar {
+  display: inline-block;
+  position: relative;
+  width: 10%;
+  margin: 0;
+  padding: 0;
+}
+
 #app-assessment-image {
   display: inline-block;
   position: relative;

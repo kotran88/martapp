@@ -13,12 +13,9 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 import { SettingPage } from '../setting/setting';
 import { AdPage } from '../ad/ad';
 import { RatePage } from '../rate/rate';
-<<<<<<< HEAD
 import { CopymodalPage } from '../copymodal/copymodal';
 import { snapshotChanges } from 'angularfire2/database';
 import { ListlimitmodalPage } from '../listlimitmodal/listlimitmodal';
-=======
->>>>>>> origin/JJH
 
 @Component({
   selector: 'page-home',

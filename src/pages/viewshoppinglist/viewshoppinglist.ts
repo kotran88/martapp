@@ -42,6 +42,7 @@ export class ViewshoppinglistPage {
   flagInput: boolean = false; //가격 및 수량도 입력하기 버튼을 위한 boolean형 변수
   addvalue: any;
   shop: any;
+<<<<<<< HEAD
   count: any = 0;
 
   constructor(public navParam: NavParams, public navCtrl: NavController,
@@ -78,6 +79,8 @@ export class ViewshoppinglistPage {
     });
   }
 
+=======
+>>>>>>> origin/JJH
 
   /*숫자에 콤마 찍기*/
   formatNumber(num) {
@@ -254,9 +257,15 @@ export class ViewshoppinglistPage {
               }
             }
 
+<<<<<<< HEAD
             for (var i = 0; i < newlist.length; i++) {
               this.a.list[newlist[i]] = "NC"
             }
+=======
+    for (var i = 0; i < newlist.length; i++) {
+      this.a.list[newlist[i]] = "NC"
+    }
+>>>>>>> origin/JJH
 
             console.log(this.a.list)
 
@@ -264,6 +273,7 @@ export class ViewshoppinglistPage {
               console.log(value)
               return value != "NC";
 
+<<<<<<< HEAD
             });
             console.log(filtered)
             this.a.list = filtered
@@ -282,6 +292,23 @@ export class ViewshoppinglistPage {
               this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list).then(() => {
                 console.log(this.a.list);
               });
+=======
+    console.log(this.a.list);
+    /*입력 리스트에서 삭제된 항목을 firebase에서 삭제하기위해 list 삭제*/
+    this.nextdirectory.child(this.value).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
+      for (var a in snap.val()) {
+        this.nextdirectory.child(this.value).child(this.shop).child(this.title).child(this.key).child("list").remove().then(() => {
+
+          console.log("success")
+        }).catch((e) => {
+          console.log("error" + e);
+        })
+      }
+      /*삭제한 list를 update를 통해 수정된 데이터로 다시 넣어줌 */
+      this.nextdirectory.child(this.value).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list).then(() => {
+        console.log(this.a.list);
+      });
+>>>>>>> origin/JJH
 
               window.alert("삭제되었습니다.")
               /*totalNumber와 Select값 가져오기*/
@@ -325,6 +352,7 @@ export class ViewshoppinglistPage {
     console.log(this.srct.url);
     const browser = this.iab.create(this.srct.url, "_blank", "location=no,toolbar=no");
 
+<<<<<<< HEAD
     browser.on('loadstop').subscribe(event => {
       browser.insertCSS({ code: "body{color: red;}" });
     });
@@ -339,6 +367,11 @@ export class ViewshoppinglistPage {
       });
       toast.present();
     }
+=======
+      browser.on('loadstop').subscribe(event => {
+        browser.insertCSS({ code: "body{color: red;}" });
+      });
+>>>>>>> origin/JJH
   }
 
   speeching() {

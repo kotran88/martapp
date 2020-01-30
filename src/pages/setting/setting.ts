@@ -27,14 +27,6 @@ export class SettingPage {
   version='V1.10.01';
   shownGroup = null;
 
-  key: any;
-  id: any;
-  title: any;
-  nextdirectory: any;
-  a: any;
-  firemain = firebase.database().ref();
-
-  test:any=false;
   buttontoggle=[
     {name:'7일 전',check:false},
     {name:'3일 전',check:false},
@@ -42,7 +34,7 @@ export class SettingPage {
     {name:'받지 않기',check:true},
   ];
 
-  DateTime=({hour:"11",min:"50",apm:"AM"})
+  DateTime:any;
 
   toggleGroup() {
     this.shownGroup=!this.shownGroup;
@@ -70,35 +62,68 @@ export class SettingPage {
         else val=false;
       }
     }
-
+    return val;
   }
 
   alarmcheck(){
+    this.click(this.DateTime);
+
     for(var i=0;i<4;i++){
       console.log(i,this.buttontoggle[i]);
     }
     this.shownGroup=false;
 
     console.log(this.DateTime)
-    console.log(this.DateTime.hour);
-    console.log(this.DateTime.min);
-    console.log(this.DateTime.apm);
-    this.send_alarm();
+    
+    this.addlist();
+  }
+  
+  click(date){
+  	console.log('click..',date);
+  	let hoursMinutes = date.split(':');
+  	let time = this.formatAMPM(hoursMinutes);
+  	console.log('time',time);
   }
 
-  send_alarm(){
-    this.a = this.navParams.get("obj");
-    console.log(this.a);
-    window.alert('1');
-    this.id = this.navParams.get("id");
-    console.log(this.id)
-    window.alert('a');
-    this.nextdirectory = this.firemain.child(this.id);
-    window.alert('b');
-    this.key = this.navParams.get("key");
-    window.alert('c');
-    this.title = this.a.title;
-    window.alert('d');
+  formatAMPM(date) {
+    var hours = date[0];
+    var minutes = date[1];
+    var ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+    var strTime = hours + ':' + minutes + ' ' + ampm;
+    return strTime;
+  }
+
+  addlist() {
+
+    var val=[];
+    var firemain = firebase.database().ref();
+    var id: any = "a2f05b91-956a-b480-3525-991002905558";
+    var DT=this.DateTime;
+
+
+
+    for(var i=0;i<this.buttontoggle.length;i++){
+      val[i]=this.buttontoggle[i].check;
+    }
+
+    var temp=val[0]+','+val[1]+','+val[2]+','+val[3];
+    firemain.child(id).child("setting").update({'alarm':temp});
+
+    console.log(this.DateTime)
+    var time=this.DateTime;
+    firemain.child(id).child("setting").update({"time":time});
+    
+    console.log(val);
+    console.log(DT);
+    // this.navCtrl.push(AddshopingPage, { "flag": this.selectedvalue, "key": key, "id": this.id, "title": data.title }).then(() => {
+    //   this.navCtrl.getActive().onDidDismiss(data => {
+    //     console.log("dismiss detect");
+    //     this.refreshname();
+    //   })
+    // });
   }
 
   constructor(public modal:ModalController,private datePicker: DatePicker,

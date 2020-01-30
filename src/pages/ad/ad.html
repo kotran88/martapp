@@ -1,34 +1,27 @@
 <ion-content id="main-view">
   
-  <div id="main-modal">
-    <div id="ad-buy-image">
-      <span>image 광고없는 프리미엄</span>
-    </div>
+  <div id="ad-buy-image">
+    <span></span>
+  </div>
     
-    <div id="select-button">
-      <div *ngFor="let opt of option; let i = index">
+  <div id="button-area" class="option-button">
+    <button ion-button (click)="clickbutton(0)" [ngClass]="select_option===0?'B_on':'B_off'">990원<br/>월 정기 구독</button>
+    <button ion-button (click)="clickbutton(1)" [ngClass]="select_option===1?'B_on':'B_off'" *ngIf="more_info">1,980원<br/>6개월 정기 구독</button>
+    <button ion-button (click)="clickbutton(2)" [ngClass]="select_option===2?'B_on':'B_off'" *ngIf="more_info">3,520원<br/>1년 정기 구독</button>
+    <button ion-button (click)="clickbutton(3)" [ngClass]="select_option===3?'B_on':'B_off'">4,730원<br/>평생 프리미엄 혜택</button>
+  </div>
 
-        <button ion-button (click)="clickbutton(i)"
-          [ngClass]="select_option===i?'B_on':'B_off'"
-          *ngIf="more_info||(i==0||i==3)">
-          {{opt.price}}원
-          <br>
-          {{opt.text}}
-        </button>
-      </div>
-    </div>
+  <div id="menu-button">
+    <button ion-button *ngIf="more_info===false" (click)="add_menu()">
+      더 많은 정보 보기
+    </button>
 
-    <div id="menu-button">
-      <button ion-button *ngIf="more_info===false" (click)="add_menu()">
-        더 많은 정보 보기
-      </button>
-      <button ion-button *ngIf="more_info===true" (click)="dismiss()">
-        닫기
-      </button>
+    <!-- <button ion-button *ngIf="more_info===true" (click)="dismiss()">
+      닫기
+    </button> -->
 
-      <button ion-button (click)="purchase()">
-        OK계속하기
-      </button>
-    </div>
+    <button ion-button (click)="purchase()" [ngClass]="more_info===false?'two_btn':'one_btn'">
+      OK계속하기
+    </button>
   </div>
 </ion-content>

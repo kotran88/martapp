@@ -2,30 +2,56 @@
     background-color: rgb(242,242,242);
     border: 1px solid rgb(1,168,179);
     border-radius: 10px;
-    height: 60%;
+    height: 70%;
     width:96%;
-    top: 26%;
+    top: 20%;
     left:2%;
     position: absolute;
 }
 
 #ad-buy-image{
-    position: relative;
-    width: 60%;
-    height: 200px;
-    right: -20%;
-    top: 10px;
     display: inline-block;
-    background: yellow;
+    position: relative;
+    background-image: url(../../assets/imgs/horse.jpeg);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    width: 60%;
+    height: 50%;
+    left: 20%;
+    top: 1%;
 }
 
-#select-button{
+#button-area{
+    display: inline-block;
     position: relative;
-    right: -5%;
-    top: 10px;
+    margin: 0;
+    padding: 0;
+    left: 6%;
+    width: 100%;
+}
 
-    width: 130%;
-    height: 40%;
+.option-button button {
+    display: inline-block !important;
+    width: 40% !important;
+    margin:2% 2%;
+    padding: 0 10%;
+    margin-bottom: 2%;
+}
+
+#menu-button button{
+    display: inline-block;
+    width: 30%;
+    margin: 0;
+    padding: 0;
+    left: 10%;
+}
+
+.two_btn{
+    left: 60% !important;
+}
+
+.four_btn{
+    left: 40% !important;
 }
 
 .B_on{

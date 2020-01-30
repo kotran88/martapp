@@ -3,10 +3,14 @@ page-rate {
 }
 
 #app-assessment-image{
-    margin: 0;
-    background: yellow;
     display: inline-block;
-    width: 100%;
+    position: relative;
+    background-image: url(../../assets/imgs/horse.jpeg);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    margin: 0;
+    width: 50%;
+    left: 25%;
     height: 70%;
 }
 

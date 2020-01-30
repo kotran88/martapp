@@ -4,19 +4,19 @@
             <ion-col width-100>
                 <ion-searchbar style="float:left;width: 50%; padding:6px;" placeholder="입력하세요" [(ngModel)]="startPoint" clearInput></ion-searchbar>
 
-                <button ion-button icon-only style="margin-right: -10px;" (click)="NoneAd()" color="primary" clear>
+                <button class="button_bar" ion-button icon-only (click)="NoneAd()" color="primary" clear>
                     <ion-icon class="ad-icon" name="eye-off"></ion-icon>
                   </button>
 
-                <button ion-button icon-only style="margin-right: -10px;" (click)="appstore()" color="primary" clear>
+                <button class="button_bar" ion-button icon-only (click)="appstore()" color="primary" clear>
                     <ion-icon class="appstore-icon" name="star"></ion-icon>
                   </button>
 
-                <button ion-button icon-only style="margin-right: -10px;" (click)="regularShare()" color="primary" clear>
+                <button class="button_bar" ion-button icon-only (click)="regularShare()" color="primary" clear>
                     <ion-icon class="share-icon" name="share"></ion-icon>
                   </button>
 
-                <button ion-button icon-only (click)="setting()" color='primary' clear>
+                <button class="button_bar" ion-button icon-only (click)="setting()" color='primary' clear>
                   <ion-icon class="setting-icon" name="settings"></ion-icon>
                 </button>
 

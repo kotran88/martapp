@@ -14,6 +14,7 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 import { SettingPage } from '../setting/setting';
 import { AdPage } from '../ad/ad';
 import { RatePage } from '../rate/rate';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -187,8 +188,6 @@ export class HomePage {
                 console.log("error" + e);
               })
             }
-
-            
           }
         }
       ]

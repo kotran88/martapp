@@ -44,17 +44,12 @@ export class ListlimitmodalPage {
         temp = this.value[a];
         this.value[a] = this.value[a + 1];
         this.value[a + 1] = temp;
-        if (this.value[a+1].time == temp) {
-          for (var b = this.value[a+1].time; b < this.value.length - 1; b++) {
-            this.value[b] = this.value[b + 1];
-          }
-        }
+        console.log(this.value);
       }
     }
-    console.log(temp);
-    this.value.length--;
+
     console.log(this.value);
-    this.viewCtrl.dismiss({ "value": this.value })
+    this.viewCtrl.dismiss({ "value": temp })
 
   }
   btn() {

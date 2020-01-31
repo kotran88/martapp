@@ -23,6 +23,11 @@ page-home {
         // min-height: 35px;
         background-color: white;
     }
+    ion-fab {
+        left: 83%;
+        position: absolute;
+        z-index: 999;
+    }
     button[ion-fab] {
         overflow: visible;
         position: relative;

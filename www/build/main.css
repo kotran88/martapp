@@ -25743,6 +25743,12 @@ page-home ion-fab-list {
   background-color: white;
 }
 
+page-home ion-fab {
+  left: 83%;
+  position: absolute;
+  z-index: 999;
+}
+
 page-home button[ion-fab] {
   overflow: visible;
   position: relative;

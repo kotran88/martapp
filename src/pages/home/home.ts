@@ -133,7 +133,7 @@ export class HomePage {
             var limitarray=[];
             console.log(this.listcount);
             console.log(value);
-            if (this.listcount >= 10) {
+            if (this.listcount >= 50) {
               this.navCtrl.push(ListlimitmodalPage, { "flag": this.selectedvalue, "obj": this.newarraylist, "title": data.title, "id": this.id, "key": value.key }).then(() => {
                 this.navCtrl.getActive().onDidDismiss(data => {
                   console.log(data.value);

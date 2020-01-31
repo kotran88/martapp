@@ -155,16 +155,20 @@ export class ViewshoppinglistPage {
   }
 
   addValue(v) {
+    var count = 0;
     console.log(v);
     console.log(v.checked);
     console.log(this.a.list);
+    console.log(this.a.list.length);
 
     for (var i = 0; i < this.a.list.length; i++) {
       if (this.a.list[i].checked == true) {
-        this.count++;
+        count++;
+        console.log(count);
       }
     }
-    this.selected = this.count;
+    this.selected = count;
+    console.log(this.count);
 
     var checked = []; //선택된 것을 넣을 수 있는 새로운 배열
     var unchecked = []; //선택되지 않은 것을 넣을 수 있는 새로운 배열.

@@ -69,6 +69,7 @@ export class AddshopingPage {
     this.flagInput = true;
     this.price = "";
     this.quantity = "";
+
   }
   cancel() {
     this.flagInput = false;
@@ -97,7 +98,7 @@ export class AddshopingPage {
           role: 'cancel',
           handler: data => {
             this.firemain.child(this.id).child(this.value).child(this.title).remove().then(() => {
-              console.log("success");
+              console.log("Cancel");
             })
 
           }
@@ -106,12 +107,21 @@ export class AddshopingPage {
           text: '예',
           handler: data => {
             console.log(this.addinglist);
+            console.log(this.adding);
             console.log(this.id);
             console.log(this.key);
             console.log(this.value);
-            this.firemain.child(this.id).child(this.value).child(this.title).child(this.key).update({ "time": this.nowtime, "flag": "entered", "key": this.key })
-            this.firemain.child(this.id).child(this.value).child(this.title).child(this.key).child("list").update(this.addinglist);
-            window.alert("저장되었습니다.");
+            console.log(this.title);
+
+            if (this.adding == "") {
+              window.alert("목록을 입력해주세요.");
+              this.add();
+            }
+            else {
+              this.firemain.child(this.id).child(this.value).child(this.title).child(this.key).update({ "time": this.nowtime, "flag": "entered", "key": this.key })
+              this.firemain.child(this.id).child(this.value).child(this.title).child(this.key).child("list").update(this.addinglist);
+              window.alert("저장되었습니다.");
+            }
           }
         }
       ]

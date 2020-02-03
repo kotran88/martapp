@@ -121,6 +121,9 @@ export class ViewshoppinglistPage {
     var sum = 0;
     this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
       for (var a = 0; a < snap.val().length; a++) {
+        if(snap.val()[a].name=null){
+          snap.val()[a].name="-"
+        }
         console.log(snap.val()[a].name, snap.val()[a].checked, snap.val()[a].price, snap.val()[a].quantity)
         sum += Number(snap.val()[a].quantity) * Number(snap.val()[a].price);//가격 다시 받기
         this.printsum = this.formatNumber(sum);
@@ -214,12 +217,22 @@ export class ViewshoppinglistPage {
         {
           text: '예',
           handler: data => {
+            for(var v in this.a.list){
+              console.log(this.a.list[v].name)
+              if(this.a.list[v].name == ""){
+                window.alert("목록을 입력해주세요");
+              }
+              else{
+                this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).update({ "time": this.nowtime, "flag": "entered", "key": this.key })
+                this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list);
+                this.refreshname();
+                this.showToastWithCloseButton();
+                this.checkedbuy();
+              }
+            }
+            console.log(this.a.list);
             console.log(this.shop);
-            this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).update({ "time": this.nowtime, "flag": "entered", "key": this.key })
-            this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list);
-            this.refreshname();
-            this.showToastWithCloseButton();
-            this.checkedbuy();
+           
           }
         }
       ]

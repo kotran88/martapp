@@ -9,7 +9,7 @@
     </ion-navbar>
 </ion-header>
 <ion-content padding>
-    {{nowtime}} <button (click)="save()">저장</button>
+    {{nowtime}} <button class="saveButton" (click)="save()">저장</button>
     <div class="totaldetail">
         <p *ngIf="flag==true">{{totalnumber}} 중 {{selected}} </p>
         <p *ngIf="flag==false">{{totalnumber}}</p>

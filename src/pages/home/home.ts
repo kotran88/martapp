@@ -16,6 +16,7 @@ import { RatePage } from '../rate/rate';
 import { CopymodalPage } from '../copymodal/copymodal';
 import { snapshotChanges } from 'angularfire2/database';
 import { ListlimitmodalPage } from '../listlimitmodal/listlimitmodal';
+import { k } from '@angular/core/src/render3';
 
 @Component({
   selector: 'page-home',
@@ -133,19 +134,25 @@ export class HomePage {
             var limitarray=[];
             console.log(this.listcount);
             console.log(value);
-            if (this.listcount >= 50) {
+            if (this.listcount >= 8) {
               this.navCtrl.push(ListlimitmodalPage, { "flag": this.selectedvalue, "obj": this.newarraylist, "title": data.title, "id": this.id, "key": value.key }).then(() => {
                 this.navCtrl.getActive().onDidDismiss(data => {
-                  console.log(data.value);
-                  for(var a = 0; a<this.newarraylist.length; a++) {
-                    console.log(data.value.title);
-                    if(this.newarraylist[a].title == data.value.title)
-                    {
-                      this.nextdirectory.child(this.newarraylist[a].flag).child(this.newarraylist[a].title).remove().then(()=>{
-                        console.log("success");
-                      })
+                  if(data.value){
+                    console.log(data.value);
+                    for(var a = 0; a<this.newarraylist.length; a++) {
+                      console.log(data.value.title);
+                      if(this.newarraylist[a].title == data.value.title)
+                      {
+                        this.nextdirectory.child(this.newarraylist[a].flag).child(this.newarraylist[a].title).remove().then(()=>{
+                          console.log("success");
+                        })
+                      }
                     }
                   }
+                  else{
+                    console.log("success");
+                  }
+
                 })
               })
             }
@@ -544,12 +551,13 @@ export class HomePage {
 
   /*전체 항목 복사*/
   newAllcopy(key) {
+    var count = 1;
     if (key.flag == "mart") {
-      var a = key.title + "복사본"
+      var a = key.title + "복사본";
       this.firemain.child(this.id).child("mart").child(a).child(key.key).update(key).then(() => {
         console.log(key);
       })
-      this.refreshname();
+      this.refreshname();     
     }
     if (key.flag == "dep") {
       var a = key.title + "복사본"

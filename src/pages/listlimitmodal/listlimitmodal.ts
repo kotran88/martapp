@@ -56,7 +56,7 @@ export class ListlimitmodalPage {
     this.viewCtrl.dismiss();
   }
   dismiss() {
-    this.viewCtrl.dismiss();
+    this.viewCtrl.dismiss({"value":""});
   }
 
 }

@@ -30,3 +30,23 @@ button[ion-fab] {
     background: transparent;
     cursor: pointer;
 }
+
+.button {
+    border-radius: 4px;
+}
+
+.saveButton {
+    border-radius: 4px;
+    border: solid 2px #01DFD7;
+    background-color: #9FFAFA;
+    width: 45px;
+    height: 30px;
+    font-size: 15px;
+}
+
+.main {
+    border: solid 2px #D8D8D8;
+    background-color: #FAFAFA;
+    height: 15px;
+    margin-top: 2px;
+}

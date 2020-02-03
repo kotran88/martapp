@@ -236,7 +236,7 @@ var HomePage = /** @class */ (function () {
                         var limitarray = [];
                         console.log(_this.listcount);
                         console.log(value);
-                        if (_this.listcount >= 8) {
+                        if (_this.listcount >= 50) {
                             _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_15__listlimitmodal_listlimitmodal__["a" /* ListlimitmodalPage */], { "flag": _this.selectedvalue, "obj": _this.newarraylist, "title": data.title, "id": _this.id, "key": value.key }).then(function () {
                                 _this.navCtrl.getActive().onDidDismiss(function (data) {
                                     if (data.value) {

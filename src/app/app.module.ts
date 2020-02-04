@@ -7,6 +7,7 @@ import { CallNumber } from '@ionic-native/call-number';
 import  firebase from 'firebase';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { OneSignal } from '@ionic-native/onesignal'
 
 import {AdPage} from '../pages/ad/ad';
 import {AngularFireModule} from 'angularfire2';
@@ -83,6 +84,7 @@ firebase.initializeApp(firebaseConfig);
     CallNumber,
     SplashScreen,
     InAppBrowser,
+    OneSignal,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

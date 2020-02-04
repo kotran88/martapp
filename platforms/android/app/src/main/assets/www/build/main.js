@@ -40,10 +40,10 @@ webpackEmptyAsyncContext.id = 219;
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_admob_free__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_call_number___ = __webpack_require__(263);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_unique_device_id__ = __webpack_require__(266);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__addshoping_addshoping__ = __webpack_require__(267);
@@ -56,6 +56,8 @@ webpackEmptyAsyncContext.id = 219;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ad_ad__ = __webpack_require__(273);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__rate_rate__ = __webpack_require__(275);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__copymodal_copymodal__ = __webpack_require__(276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__listlimitmodal_listlimitmodal__ = __webpack_require__(277);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_onesignal__ = __webpack_require__(278);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -80,8 +82,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var HomePage = /** @class */ (function () {
-    function HomePage(modal, socialSharing, iab, uniqueDeviceID, alertCtrl, callnumber, admobFree, navCtrl, navParams) {
+    function HomePage(modal, socialSharing, iab, uniqueDeviceID, alertCtrl, callnumber, admobFree, navCtrl, platform, navParams, oneSignal) {
         var _this = this;
         this.modal = modal;
         this.socialSharing = socialSharing;
@@ -91,7 +95,9 @@ var HomePage = /** @class */ (function () {
         this.callnumber = callnumber;
         this.admobFree = admobFree;
         this.navCtrl = navCtrl;
+        this.platform = platform;
         this.navParams = navParams;
+        this.oneSignal = oneSignal;
         this.firemain = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.database().ref();
         this.newarraylist = [];
         this.id = "a2f05b91-956a-b480-3525-991002905558";
@@ -100,6 +106,7 @@ var HomePage = /** @class */ (function () {
         this.count = 0;
         this.copyflag = false;
         this.checkedlistlength = 0;
+        this.listcount = 0;
         this.srct = {
             text: '',
             url: '',
@@ -110,6 +117,11 @@ var HomePage = /** @class */ (function () {
             console.log("ready!");
             console.log(__WEBPACK_IMPORTED_MODULE_8_jquery__("#slt").val());
         });
+        setTimeout(function () {
+            if (_this.platform.is("android") || _this.platform.is("ios")) {
+                _this.OneSignalInstall();
+            }
+        }, 5000);
         setTimeout(function () {
             // console.log(this.id);
             // this.firemain.child(this.id).once("value", (snap) => {
@@ -168,6 +180,7 @@ var HomePage = /** @class */ (function () {
                 if (a != "setting") {
                     console.log(sn.val()[a]);
                     for (var b in sn.val()[a]) {
+                        _this.listcount++;
                         console.log("b" + b);
                         console.log(sn.val()[a][b]);
                         for (var c in sn.val()[a][b]) {
@@ -187,9 +200,11 @@ var HomePage = /** @class */ (function () {
                             console.log(_this.newarraylist);
                         }
                     }
+                    console.log(_this.listcount);
                 }
             }
         });
+        this.listcount = 0;
     };
     HomePage.prototype.segmentChanged = function (e) {
         console.log(e);
@@ -227,17 +242,40 @@ var HomePage = /** @class */ (function () {
                 {
                     text: '확인',
                     handler: function (data) {
-                        var key = _this.nextdirectory.push().key;
-                        _this.firemain.child(_this.id).child(value).child(data.title).child(key).update({ "flag": "notyet" });
-                        console.log(data.title); //이름
-                        console.log(key);
-                        console.log("selected value" + _this.selectedvalue);
-                        _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__addshoping_addshoping__["a" /* AddshopingPage */], { "flag": _this.selectedvalue, "key": key, "id": _this.id, "title": data.title }).then(function () {
-                            _this.navCtrl.getActive().onDidDismiss(function (data) {
-                                console.log("dismiss detect");
-                                _this.refreshname();
+                        var limitarray = [];
+                        console.log(_this.listcount);
+                        console.log(value);
+                        if (_this.listcount >= 50) {
+                            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_15__listlimitmodal_listlimitmodal__["a" /* ListlimitmodalPage */], { "flag": _this.selectedvalue, "obj": _this.newarraylist, "title": data.title, "id": _this.id, "key": value.key }).then(function () {
+                                _this.navCtrl.getActive().onDidDismiss(function (data) {
+                                    if (data.value) {
+                                        console.log(data.value);
+                                        for (var a = 0; a < _this.newarraylist.length; a++) {
+                                            console.log(data.value.title);
+                                            if (_this.newarraylist[a].title == data.value.title) {
+                                                _this.nextdirectory.child(_this.newarraylist[a].flag).child(_this.newarraylist[a].title).remove().then(function () {
+                                                    console.log("success");
+                                                });
+                                            }
+                                        }
+                                    }
+                                    else {
+                                        console.log("success");
+                                    }
+                                });
                             });
-                        });
+                        }
+                        else {
+                            var key = _this.nextdirectory.push().key;
+                            _this.firemain.child(_this.id).child(value).child(data.title).child(key).update({ "flag": "notyet" });
+                            console.log("selected value" + _this.selectedvalue);
+                            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__addshoping_addshoping__["a" /* AddshopingPage */], { "flag": _this.selectedvalue, "key": key, "id": _this.id, "title": data.title }).then(function () {
+                                _this.navCtrl.getActive().onDidDismiss(function (data) {
+                                    console.log("dismiss detect");
+                                    _this.refreshname();
+                                });
+                            });
+                        }
                     }
                 }
             ]
@@ -474,7 +512,11 @@ var HomePage = /** @class */ (function () {
             console.log(this.id);
             console.log(a.key);
             console.log(a.list);
-            this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_9__viewshoppinglist_viewshoppinglist__["a" /* ViewshoppinglistPage */], { "flag": a.flag, "obj": a, "id": this.id, "key": a.key });
+            this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_9__viewshoppinglist_viewshoppinglist__["a" /* ViewshoppinglistPage */], { "flag": a.flag, "obj": a, "id": this.id, "key": a.key }).then(function () {
+                _this.navCtrl.getActive().onDidDismiss(function (data) {
+                    _this.refreshname();
+                });
+            });
             console.log(a.flag);
         }
     };
@@ -597,6 +639,7 @@ var HomePage = /** @class */ (function () {
     };
     /*전체 항목 복사*/
     HomePage.prototype.newAllcopy = function (key) {
+        var count = 1;
         if (key.flag == "mart") {
             var a = key.title + "복사본";
             this.firemain.child(this.id).child("mart").child(a).child(key.key).update(key).then(function () {
@@ -774,13 +817,49 @@ var HomePage = /** @class */ (function () {
         });
         modal.present();
     };
+    HomePage.prototype.OneSignalInstall = function () {
+        var _this = this;
+        console.log("start Signal");
+        this.oneSignal.startInit('2a4ab592-b87f-474a-9b98-77a1983d4b38', '552511846926');
+        // this.oneSignal.clearOneSignalNotifications();
+        var iosSettings = {
+            "kOSSettingsKeyAutoPrompt": true,
+            "kOSSettingsKeyInAppLaunchURL": true
+        };
+        this.oneSignal.iOSSettings(iosSettings);
+        this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification);
+        //알림을 받았을때에 아래 함수로
+        this.oneSignal.handleNotificationReceived().subscribe(function (data) {
+            // var hour=data.payload.additionalData.hour;
+            // var min=data.payload.additionalData.minute;
+        });
+        this.oneSignal.handleNotificationOpened().subscribe(function (data) {
+            console.log("data Confirm");
+            console.log(data);
+            console.log(data.notification.payload.additionalData.hour);
+            console.log("opened");
+        });
+        this.oneSignal.getIds().then(function (data) {
+            console.log("get id success" + data.userId);
+            window.alert(data.userId);
+            _this.firemain.child(_this.id).child("setting").update({ "user id": data.userId });
+            var sendData = [];
+            localStorage.setItem("tokenvalue", data.userId);
+            //디비에 토큰값을 넣음
+        }).catch(function (e) {
+            window.alert("onesignal error" + e);
+        });
+        this.oneSignal.endInit();
+    };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/home/home.html"*/'<ion-content padding>\n    <div class="upper">\n        <ion-row style="margin-bottom:0" class="search">\n            <ion-col width-100>\n                <ion-searchbar style="float:left;width: 50%; padding:6px;" placeholder="입력하세요" [(ngModel)]="startPoint" clearInput></ion-searchbar>\n\n                <button ion-button icon-only style="margin-right: -10px;" (click)="NoneAd()" color="primary" clear>\n                    <ion-icon class="ad-icon" name="eye-off"></ion-icon>\n                  </button>\n\n                <button ion-button icon-only style="margin-right: -10px;" (click)="appstore()" color="primary" clear>\n                    <ion-icon class="appstore-icon" name="star"></ion-icon>\n                  </button>\n\n                <button ion-button icon-only style="margin-right: -10px;" (click)="regularShare()" color="primary" clear>\n                    <ion-icon class="share-icon" name="share"></ion-icon>\n                  </button>\n\n                <button ion-button icon-only (click)="setting()" color=\'primary\' clear>\n                  <ion-icon class="setting-icon" name="settings"></ion-icon>\n                </button>\n\n\n            </ion-col>\n        </ion-row>\n    </div>\n\n    <ion-segment style="background:#353c5e;font-size: 16px;letter-spacing: -0.35px" (ionChange)="segmentChanged($event)" [(ngModel)]="tab">\n        <ion-segment-button value="tab1" [ngClass]="tab==\'tab1\'?\'view\':\'notview\'">\n            <span style="font-family: \'notomedium\';">즐겨찾는곳</span>\n        </ion-segment-button>\n        <ion-segment-button value="tab2" [ngClass]="tab==\'tab2\'?\'view\':\'notview\'">\n            <span style="font-family: \'notomedium\';" class="">쇼핑예정목록</span>\n        </ion-segment-button>\n        <ion-segment-button value="tab3" [ngClass]="tab==\'tab3\'?\'view\':\'notview\'">\n            <span style="font-family: \'notomedium\';" class="">인터넷에선얼마?</span>\n        </ion-segment-button>\n\n    </ion-segment>\n    <div [ngSwitch]="tab" style="height:100%;">\n        <ion-list *ngSwitchCase="\'tab1\'">\n            first tab\n\n        </ion-list>\n        <ion-list *ngSwitchCase="\'tab2\'">\n            <div class="topselector">\n                <p>쇼핑 목록 만들기! 어디서 쇼핑하실 건가요?</p>\n                <div class="button">\n                    <button style="background-color:#fff;" (click)="addlist(\'mart\')"><img src="assets/imgs/mes.png" alt=""></button><br>\n                    <div><button style="background-color:#fff;" (click)="addlist(\'mart\')">마트</button></div>\n                </div>\n                <div class="button">\n                    <button style="background-color:#fff;" (click)="addlist(\'dep\')"><img src="assets/imgs/mes.png" alt=""></button><br>\n                    <div><button style="background-color:#fff;" (click)="addlist(\'dep\')">백화점</button></div>\n                </div>\n                <div class="button">\n                    <button style="background-color:#fff;" (click)="addlist(\'outlet\')"><img src="assets/imgs/mes.png" alt=""></button><br>\n                    <div><button style="background-color:#fff;" (click)="addlist(\'outlet\')">아울렛</button></div>\n                </div>\n                <div class="button">\n                    <button style="background-color:#fff;" (click)="addlist(\'etc\')"><img src="assets/imgs/mes.png" alt=""></button><br>\n                    <div><button style="background-color:#fff;" (click)="addlist(\'etc\')">기타</button></div>\n                </div>\n            </div>\n            <div *ngFor="let a of newarraylist" class="eachshopping">\n                <div class="listDB">\n                    <div class="segmentImg">\n                        <button style="background-color:#fff;" (click)="deleteDB(a)">\n                            <img src="assets/imgs/delete (1).png">\n                        </button>\n                    </div>\n                    <div class="segmentText">\n                        {{a.flag}}\n                        <button style="background-color:#fff;" (click)="viewshoppinglist(a)">\n                            {{a.title}}\n                        </button>\n                    </div>\n                    <div>\n                        <button style="background-color:#fff;" (click)="viewshoppinglist(a)">\n                            {{a.time}}\n                        </button>\n                    </div>\n                    <div>\n                        {{a.totallist+"개 항목 중 "+a.totalchecked+"개 구입"}}\n                    </div>\n                    <div>\n                        <ion-fab right>\n                            <button ion-fab mini><ion-icon name="add"></ion-icon></button>\n                            <ion-fab-list side="bottom">\n                                <button (click)="changeName(a)" ion-fab>\n                                    <ion-icon name="list"></ion-icon>\n                                    <ion-label>목록명 변경</ion-label>\n                                </button>\n                                <button (click)="share(a)" ion-fab>\n                                    <ion-icon name="share"></ion-icon>\n                                    <ion-label>공유</ion-label>\n                                </button>\n                                <button (click)="deleteDB(a)" ion-fab>\n                                    <ion-icon name="trash"></ion-icon>\n                                    <ion-label>삭제</ion-label>\n                                </button>\n                                <button (click)="openModal(a)" ion-fab>\n                                    <ion-icon name="copy"></ion-icon>\n                                    <ion-label>복사</ion-label>\n                                </button>\n                            </ion-fab-list>\n                        </ion-fab>\n                    </div>\n                </div>\n            </div>\n\n            <!-- <div><button style="background-color:#fff;" (click)="addlist()">(image)쇼핑 리스트를 추가해보자라는 말</button></div> -->\n\n        </ion-list>\n        <ion-list *ngSwitchCase="\'tab3\'">\n\n            <div>\n                <select style="display: inline-block; width:25%;" id=\'slt\' name="sort">\n                    <option value="rel" selected="selected">랭킹순</option>\n                    <option value="price_asc">낮은 가격순</option>\n                    <option value="price_dsc">높은 가격순</option>\n                    <option value="date">등록순</option>\n                    <option value="review">리뷰 많은순</option>\n                </select>\n\n                <ion-input style="margin-right: 0px; width: 60%; display: inline-block; border: 1px solid black;" name=\'text\' type="text" [(ngModel)]=\'srct.text\' placeholder="검색어를 입력해 주세요.">\n                </ion-input>\n\n                <button ion-button style="float: right; width:30px; height: 30px;" color="black" outline icon-only (click)=\'select_sort()\'>\n\n                    <ion-icon name=\'search\' is-active="false"></ion-icon>\n                </button>\n            </div>\n        </ion-list>\n\n    </div>\n\n</ion-content>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/home/home.html"*/'<ion-content padding>\n    <div class="upper">\n        <ion-row style="margin-bottom:0" class="search">\n            <ion-col width-100>\n                <ion-searchbar style="float:left;width: 50%; padding:6px;" placeholder="입력하세요" [(ngModel)]="startPoint" clearInput></ion-searchbar>\n\n                <button ion-button icon-only style="margin-right: -10px;" (click)="NoneAd()" color="primary" clear>\n                    <ion-icon class="ad-icon" name="eye-off"></ion-icon>\n                  </button>\n\n                <button ion-button icon-only style="margin-right: -10px;" (click)="appstore()" color="primary" clear>\n                    <ion-icon class="appstore-icon" name="star"></ion-icon>\n                  </button>\n\n                <button ion-button icon-only style="margin-right: -10px;" (click)="regularShare()" color="primary" clear>\n                    <ion-icon class="share-icon" name="share"></ion-icon>\n                  </button>\n\n                <button ion-button icon-only (click)="setting()" color=\'primary\' clear>\n                  <ion-icon class="setting-icon" name="settings"></ion-icon>\n                </button>\n\n\n            </ion-col>\n        </ion-row>\n    </div>\n\n    <ion-segment style="background:#353c5e;font-size: 16px;letter-spacing: -0.35px" (ionChange)="segmentChanged($event)" [(ngModel)]="tab">\n        <ion-segment-button value="tab1" [ngClass]="tab==\'tab1\'?\'view\':\'notview\'">\n            <span style="font-family: \'notomedium\';">즐겨찾는곳</span>\n        </ion-segment-button>\n        <ion-segment-button value="tab2" [ngClass]="tab==\'tab2\'?\'view\':\'notview\'">\n            <span style="font-family: \'notomedium\';" class="">쇼핑예정목록</span>\n        </ion-segment-button>\n        <ion-segment-button value="tab3" [ngClass]="tab==\'tab3\'?\'view\':\'notview\'">\n            <span style="font-family: \'notomedium\';" class="">인터넷에선얼마?</span>\n        </ion-segment-button>\n\n    </ion-segment>\n    <div [ngSwitch]="tab" style="height:100%;">\n        <ion-list *ngSwitchCase="\'tab1\'">\n            first tab\n\n        </ion-list>\n        <ion-list *ngSwitchCase="\'tab2\'">\n            <div class="topselector">\n                <p>쇼핑 목록 만들기! 어디서 쇼핑하실 건가요?</p>\n                <div class="button">\n                    <button style="background-color:#fff;" (click)="addlist(\'mart\')"><img src="assets/imgs/mes.png" alt=""></button><br>\n                    <div><button style="background-color:#fff;" (click)="addlist(\'mart\')">마트</button></div>\n                </div>\n                <div class="button">\n                    <button style="background-color:#fff;" (click)="addlist(\'dep\')"><img src="assets/imgs/mes.png" alt=""></button><br>\n                    <div><button style="background-color:#fff;" (click)="addlist(\'dep\')">백화점</button></div>\n                </div>\n                <div class="button">\n                    <button style="background-color:#fff;" (click)="addlist(\'outlet\')"><img src="assets/imgs/mes.png" alt=""></button><br>\n                    <div><button style="background-color:#fff;" (click)="addlist(\'outlet\')">아울렛</button></div>\n                </div>\n                <div class="button">\n                    <button style="background-color:#fff;" (click)="addlist(\'etc\')"><img src="assets/imgs/mes.png" alt=""></button><br>\n                    <div><button style="background-color:#fff;" (click)="addlist(\'etc\')">기타</button></div>\n                </div>\n            </div>\n            <div *ngFor="let a of newarraylist" class="eachshopping">\n                <div class="listDB">\n                    <div class="segmentImg">\n                        <button style="background-color:#fff;" (click)="deleteDB(a)">\n                            <img src="assets/imgs/delete (1).png">\n                        </button>\n                    </div>\n                    <div class="segmentText">\n                        {{a.flag}}\n                        <button style="background-color:#fff;" (click)="viewshoppinglist(a)">\n                            {{a.title}}\n                        </button>\n                    </div>\n                    <div>\n                        <button style="background-color:#fff;" (click)="viewshoppinglist(a)">\n                            {{a.time}}\n                        </button>\n                    </div>\n                    <div>\n                        {{a.totallist+"개 항목 중 "+a.totalchecked+"개 구입"}}\n                    </div>\n                    <div>\n                        <ion-fab>\n                            <button ion-fab mini><ion-icon name="add"></ion-icon></button>\n                            <ion-fab-list side="bottom">\n                                <button (click)="changeName(a)" ion-fab>\n                                    <ion-icon name="list"></ion-icon>\n                                    <ion-label>목록명 변경</ion-label>\n                                </button>\n                                <button (click)="share(a)" ion-fab>\n                                    <ion-icon name="share"></ion-icon>\n                                    <ion-label>공유</ion-label>\n                                </button>\n                                <button (click)="deleteDB(a)" ion-fab>\n                                    <ion-icon name="trash"></ion-icon>\n                                    <ion-label>삭제</ion-label>\n                                </button>\n                                <button (click)="openModal(a)" ion-fab>\n                                    <ion-icon name="copy"></ion-icon>\n                                    <ion-label>복사</ion-label>\n                                </button>\n                            </ion-fab-list>\n                        </ion-fab>\n                    </div>\n                </div>\n            </div>\n\n            <!-- <div><button style="background-color:#fff;" (click)="addlist()">(image)쇼핑 리스트를 추가해보자라는 말</button></div> -->\n\n        </ion-list>\n        <ion-list *ngSwitchCase="\'tab3\'">\n\n            <div>\n                <select style="display: inline-block; width:25%;" id=\'slt\' name="sort">\n                    <option value="rel" selected="selected">랭킹순</option>\n                    <option value="price_asc">낮은 가격순</option>\n                    <option value="price_dsc">높은 가격순</option>\n                    <option value="date">등록순</option>\n                    <option value="review">리뷰 많은순</option>\n                </select>\n\n                <ion-input style="margin-right: 0px; width: 60%; display: inline-block; border: 1px solid black;" name=\'text\' type="text" [(ngModel)]=\'srct.text\' placeholder="검색어를 입력해 주세요.">\n                </ion-input>\n\n                <button ion-button style="float: right; width:30px; height: 30px;" color="black" outline icon-only (click)=\'select_sort()\'>\n\n                    <ion-icon name=\'search\' is-active="false"></ion-icon>\n                </button>\n            </div>\n        </ion-list>\n\n    </div>\n\n</ion-content>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/home/home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */], __WEBPACK_IMPORTED_MODULE_10__ionic_native_social_sharing__["a" /* SocialSharing */], __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__["a" /* InAppBrowser */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_unique_device_id__["a" /* UniqueDeviceID */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_call_number___["a" /* CallNumber */],
-            __WEBPACK_IMPORTED_MODULE_2__ionic_native_admob_free__["a" /* AdMobFree */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+            __WEBPACK_IMPORTED_MODULE_2__ionic_native_admob_free__["a" /* AdMobFree */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_16__ionic_native_onesignal__["a" /* OneSignal */]])
     ], HomePage);
     return HomePage;
 }());
@@ -795,9 +874,9 @@ var HomePage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddshopingPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_speech_recognition__ = __webpack_require__(268);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -896,7 +975,7 @@ var AddshopingPage = /** @class */ (function () {
                     role: 'cancel',
                     handler: function (data) {
                         _this.firemain.child(_this.id).child(_this.value).child(_this.title).remove().then(function () {
-                            console.log("success");
+                            console.log("Cancel");
                         });
                     }
                 },
@@ -904,12 +983,20 @@ var AddshopingPage = /** @class */ (function () {
                     text: '예',
                     handler: function (data) {
                         console.log(_this.addinglist);
+                        console.log(_this.adding);
                         console.log(_this.id);
                         console.log(_this.key);
                         console.log(_this.value);
-                        _this.firemain.child(_this.id).child(_this.value).child(_this.title).child(_this.key).update({ "time": _this.nowtime, "flag": "entered", "key": _this.key });
-                        _this.firemain.child(_this.id).child(_this.value).child(_this.title).child(_this.key).child("list").update(_this.addinglist);
-                        window.alert("저장되었습니다.");
+                        console.log(_this.title);
+                        if (_this.adding == "") {
+                            window.alert("목록을 입력해주세요.");
+                            _this.add();
+                        }
+                        else {
+                            _this.firemain.child(_this.id).child(_this.value).child(_this.title).child(_this.key).update({ "time": _this.nowtime, "flag": "entered", "key": _this.key });
+                            _this.firemain.child(_this.id).child(_this.value).child(_this.title).child(_this.key).child("list").update(_this.addinglist);
+                            window.alert("저장되었습니다.");
+                        }
                     }
                 }
             ]
@@ -949,7 +1036,7 @@ var AddshopingPage = /** @class */ (function () {
     };
     AddshopingPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-addshoping',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/addshoping/addshoping.html"*/'<!--\n  Generated template for the AddshopingPage page.\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-navbar>\n        <ion-title>{{title}}</ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content padding>\n    {{nowtime}} <button (click)="save()">저장</button>\n    <div class="totaldetail">\n        <p *ngIf="flag==true">{{totalnumber}} 중 {{selected}} </p>\n        <p *ngIf="flag==false">{{totalnumber}}</p>\n    </div>\n    <div class="main">\n        <ion-item *ngFor="let att of addinglist; let idx = index">\n            <ion-icon *ngIf="flag==false" name="close"></ion-icon>\n            <ion-checkbox [(ngModel)]="att.checked" style="z-index: 999999;" (ionChange)="addValue($event)" *ngIf="flag==true" color="dark" slot="start"></ion-checkbox>\n            <ion-input style="width: 20%;float: left;" placeholder="상품명" [(ngModel)]="addinglist[idx].name"></ion-input>\n            <ion-input style="width: 20%;float: right;" placeholder="수량" [(ngModel)]="addinglist[idx].quantity"></ion-input>\n            <ion-input style="width: 20%;float: right;" placeholder="가격" [(ngModel)]="addinglist[idx].price"></ion-input>\n        </ion-item>\n    </div>\n    <div style="position: absolute;bottom: 50px;width: 100%;" class="bottom">\n        <ion-input *ngIf="flag!=true" style="width: 63%;border-bottom: solid 1px;float: left;" [(ngModel)]="adding" placeholder="품목을 입력하세요."></ion-input>\n        <button *ngIf="flag!=true" style="height: 3.5rem;background: transparent;border: solid 1px;border-radius: 7px;margin-top: 5px;margin-left: 10px;" (click)="speeching()">음성</button>\n        <button *ngIf="flag!=true" style="height: 3.5rem;background: transparent;border: solid 1px;border-radius: 7px;margin-top: 5px;margin-left: 3px;" (click)="add()">추가하기</button>\n    </div>\n</ion-content>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/addshoping/addshoping.html"*/,
+            selector: 'page-addshoping',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/addshoping/addshoping.html"*/'<!--\n  Generated template for the AddshopingPage page.\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-navbar>\n        <ion-title>{{title}}</ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content padding>\n    {{nowtime}} <button class="saveButton" (click)="save()">저장</button>\n    <div class="totaldetail">\n        <p *ngIf="flag==true">{{totalnumber}} 중 {{selected}} </p>\n        <p *ngIf="flag==false">{{totalnumber}}</p>\n    </div>\n    <div class="main">\n        <ion-item *ngFor="let att of addinglist; let idx = index">\n            <ion-icon *ngIf="flag==false" name="close"></ion-icon>\n            <ion-checkbox [(ngModel)]="att.checked" style="z-index: 999999;" (ionChange)="addValue($event)" *ngIf="flag==true" color="dark" slot="start"></ion-checkbox>\n            <ion-input style="width: 20%;float: left;" placeholder="상품명" [(ngModel)]="addinglist[idx].name"></ion-input>\n            <ion-input style="width: 20%;float: right;" placeholder="수량" [(ngModel)]="addinglist[idx].quantity"></ion-input>\n            <ion-input style="width: 20%;float: right;" placeholder="가격" [(ngModel)]="addinglist[idx].price"></ion-input>\n        </ion-item>\n    </div>\n    <div style="position: absolute;bottom: 50px;width: 100%;" class="bottom">\n        <ion-input *ngIf="flag!=true" style="width: 63%;border-bottom: solid 1px;float: left;" [(ngModel)]="adding" placeholder="품목을 입력하세요."></ion-input>\n        <button *ngIf="flag!=true" style="height: 3.5rem;background: transparent;border: solid 1px;border-radius: 7px;margin-top: 5px;margin-left: 10px;" (click)="speeching()">음성</button>\n        <button *ngIf="flag!=true" style="height: 3.5rem;background: transparent;border: solid 1px;border-radius: 7px;margin-top: 5px;margin-left: 3px;" (click)="add()">추가하기</button>\n    </div>\n</ion-content>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/addshoping/addshoping.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_speech_recognition__["a" /* SpeechRecognition */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], AddshopingPage);
@@ -966,9 +1053,9 @@ var AddshopingPage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewshoppinglistPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery__ = __webpack_require__(269);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_jquery__);
@@ -1088,6 +1175,9 @@ var ViewshoppinglistPage = /** @class */ (function () {
         var sum = 0;
         this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", function (snap) {
             for (var a = 0; a < snap.val().length; a++) {
+                if (snap.val()[a].name = null) {
+                    snap.val()[a].name = "-";
+                }
                 console.log(snap.val()[a].name, snap.val()[a].checked, snap.val()[a].price, snap.val()[a].quantity);
                 sum += Number(snap.val()[a].quantity) * Number(snap.val()[a].price); //가격 다시 받기
                 _this.printsum = _this.formatNumber(sum);
@@ -1113,15 +1203,19 @@ var ViewshoppinglistPage = /** @class */ (function () {
         this.flagInput = false;
     };
     ViewshoppinglistPage.prototype.addValue = function (v) {
+        var count = 0;
         console.log(v);
         console.log(v.checked);
         console.log(this.a.list);
+        console.log(this.a.list.length);
         for (var i = 0; i < this.a.list.length; i++) {
             if (this.a.list[i].checked == true) {
-                this.count++;
+                count++;
+                console.log(count);
             }
         }
-        this.selected = this.count;
+        this.selected = count;
+        console.log(this.count);
         var checked = []; //선택된 것을 넣을 수 있는 새로운 배열
         var unchecked = []; //선택되지 않은 것을 넣을 수 있는 새로운 배열.
         for (var i = 0; i < this.a.list.length; i++) {
@@ -1162,12 +1256,21 @@ var ViewshoppinglistPage = /** @class */ (function () {
                 {
                     text: '예',
                     handler: function (data) {
+                        for (var v in _this.a.list) {
+                            console.log(_this.a.list[v].name);
+                            if (_this.a.list[v].name == "") {
+                                window.alert("목록을 입력해주세요");
+                            }
+                            else {
+                                _this.firemain.child(_this.id).child(_this.shop).child(_this.title).child(_this.key).update({ "time": _this.nowtime, "flag": "entered", "key": _this.key });
+                                _this.firemain.child(_this.id).child(_this.shop).child(_this.title).child(_this.key).child("list").update(_this.a.list);
+                                _this.refreshname();
+                                _this.showToastWithCloseButton();
+                                _this.checkedbuy();
+                            }
+                        }
+                        console.log(_this.a.list);
                         console.log(_this.shop);
-                        _this.firemain.child(_this.id).child(_this.shop).child(_this.title).child(_this.key).update({ "time": _this.nowtime, "flag": "entered", "key": _this.key });
-                        _this.firemain.child(_this.id).child(_this.shop).child(_this.title).child(_this.key).child("list").update(_this.a.list);
-                        _this.refreshname();
-                        _this.showToastWithCloseButton();
-                        _this.checkedbuy();
                     }
                 }
             ]
@@ -1314,7 +1417,7 @@ var ViewshoppinglistPage = /** @class */ (function () {
     ], ViewshoppinglistPage.prototype, "navBar", void 0);
     ViewshoppinglistPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-viewshoppinglist',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/viewshoppinglist/viewshoppinglist.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>{{a.title}}</ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content padding>\n    <ion-row>\n        <ion-col col-9>\n            {{a.time}}\n        </ion-col>\n        <ion-col col-3>\n            <button (click)="save()">저장</button>\n        </ion-col>\n    </ion-row>\n    <ion-row>\n        <ion-col col-8>\n            <span *ngIf="flag==false">{{totalnumber}}개 중 {{selected}}개 구입</span>\n            <span *ngIf="flag==true">{{totalnumber}}개</span>\n        </ion-col>\n        <ion-col col-4>\n            ₩{{printsum}}\n        </ion-col>\n    </ion-row>\n    <div class="main">\n        <ion-item *ngFor="let att of a.list; let idx = index">\n            <ion-icon *ngIf="flag==true" name="close"></ion-icon>\n            <ion-checkbox [(ngModel)]="att.checked" style="z-index: 999999;" (ionChange)="addValue($event)" *ngIf="flag==false" color="dark" slot="start"></ion-checkbox>\n            <ion-input text-center style="width: 20%;float: left;" placeholder="상품명" [(ngModel)]="a.list[idx].name"></ion-input>\n            <ion-input text-center style="width: 10%;float: left;" placeholder="수량" [(ngModel)]="a.list[idx].quantity"></ion-input>\n            <ion-input text-center style="width: 15%;float: left;" placeholder="가격" [(ngModel)]="a.list[idx].price"></ion-input>\n            <button ion-button outline item-end style="width:10%;" (click)="select_sort(idx)"><ion-icon name=\'search\' is-active="false"></ion-icon></button>\n        </ion-item>\n    </div>\n\n    <div style="bottom: 50px;width: 100%;" class="bottom">\n        <ion-input *ngIf="flag!=false" style="width: 65%;border-bottom: solid 1px;float: left;" [(ngModel)]="adding" placeholder="품목을 입력하세요."></ion-input>\n        <button *ngIf="flag!=false" style="height: 3.5rem;background: transparent;border: solid 1px;border-radius: 7px;margin-left: 4px;" (click)="speeching()">음성</button>\n        <button *ngIf="flag!=false" style="height: 3.5rem;background: transparent;border: solid 1px;border-radius: 7px;margin-top: 5px;margin-left: 3px;" (click)="add()">추가하기</button>\n        <button *ngIf="flag!=false&&flagInput==false" style="height: 3.5rem;background: transparent;border: solid 1px;border-radius: 7px;" (click)="priceandquantity()">가격 및 수량도 입력하기</button>\n        <ion-input *ngIf="flagInput!=false" style="width: 34%; height: 3.5rem; border-bottom: solid 1px; float: left; margin-right: 2px; margin-left:2px;" [(ngModel)]="quantity" placeholder="수량"></ion-input>\n        <ion-input *ngIf="flagInput!=false" style="width: 34%; height: 3.5rem; border-bottom: solid 1px; float: left; margin-left: 2px; margin-right:5px;" [(ngModel)]="price" placeholder="가격"></ion-input>\n        <button *ngIf="flagInput!=false" style="height: 3.5rem;background: transparent;border: solid 1px;border-radius: 7px;margin-top: 3px;margin-left: 10px;" (click)="cancel()">취소</button>\n    </div>\n</ion-content>\n\n<ion-footer>\n    <div>\n        <ion-fab bottom right #fab>\n            <button ion-fab mini><ion-icon name="add"></ion-icon></button>\n            <ion-fab-list side="top">\n                <button (click)="sortlist(fab)" ion-fab>\n                    <ion-icon name="list"></ion-icon>\n                    <ion-label>이름순으로 정렬</ion-label>\n                </button>\n                <button (click)="insertData(fab)" ion-fab>\n                    <ion-icon name="build"></ion-icon>\n                    <ion-label>수정하기</ion-label>\n                </button>\n                <button (click)="delete(fab)" ion-fab>\n                    <ion-icon name="trash"></ion-icon>\n                    <ion-label>삭제하기</ion-label>\n                </button>\n\n            </ion-fab-list>\n        </ion-fab>\n    </div>\n</ion-footer>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/viewshoppinglist/viewshoppinglist.html"*/,
+            selector: 'page-viewshoppinglist',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/viewshoppinglist/viewshoppinglist.html"*/'<ion-header>\n    <ion-navbar color="navbar">\n        <span style="color:white; font-size:23px; font-weight: 900">{{a.title}}</span>\n    </ion-navbar>\n</ion-header>\n<ion-content padding>\n    <ion-row>\n        <ion-col col-10>\n            <span style="font-size:18px; color:#42B8B8; font-weight: 900;">{{a.time}}</span>\n        </ion-col>\n        <ion-col col-2>\n            <button class="saveButton" (click)="save()">저장</button>\n        </ion-col>\n    </ion-row>\n    <ion-row style="background-color: #9FFAFA; border-radius: 6px;">\n        <ion-col col-8>\n            <span *ngIf="flag==false" style="color: #42B8B8; font-size:15px; font-weight: 900;">{{totalnumber}}개 중 {{selected}}개 구입</span>\n            <span *ngIf="flag==true" style="color: #42B8B8; font-size:15px; font-weight: 900;">{{totalnumber}}</span>\n        </ion-col>\n        <ion-col col-4>\n            <span style="color: #42B8B8; font-size:15px; font-weight: 900;">₩{{printsum}}</span>\n        </ion-col>\n    </ion-row>\n    <div class>\n        <ion-item *ngFor="let att of a.list; let idx = index" class="main">\n            <ion-icon *ngIf="flag==true" name="close"></ion-icon>\n            <ion-checkbox [(ngModel)]="att.checked" style="z-index: 999999;" (ionChange)="addValue($event)" *ngIf="flag==false" color="dark" slot="start"></ion-checkbox>\n            <ion-input text-center style="width: 20%;float: left;" placeholder="상품명" [(ngModel)]="a.list[idx].name"></ion-input>\n            <ion-input text-center style="width: 10%;float: left;" placeholder="수량" [(ngModel)]="a.list[idx].quantity"></ion-input>\n            <ion-input text-center style="width: 15%;float: left;" placeholder="가격" [(ngModel)]="a.list[idx].price"></ion-input>\n            <button ion-button outline item-end style="width:10%;" (click)="select_sort(idx)"><ion-icon name=\'search\' is-active="false"></ion-icon></button>\n        </ion-item>\n    </div>\n\n    <div style="bottom: 50px;width: 100%; margin-left:0px; margin-right:0px;" class="bottom">\n        <ion-row>\n            <ion-col col-12>\n                <ion-input *ngIf="flag!=false" style="width: 65%;border-bottom: solid 1px;float: left;" [(ngModel)]="adding" placeholder="품목을 입력하세요."></ion-input>\n                <button *ngIf="flag!=false" style="height: 3.5rem;background: transparent;border: solid 1px ;border-radius: 7px;margin-left: 4px;" (click)="speeching()">음성</button>\n                <button *ngIf="flag!=false" style="height: 3.5rem;background: #9FFAFA;border: solid 1px #9FFAFA;border-radius: 7px;margin-top: 5px;margin-left: 4px;" (click)="add()">추가하기</button>\n            </ion-col>\n            <ion-col col-12>\n                <button *ngIf="flag!=false&&flagInput==false" style="height: 3.5rem;background: transparent;border: solid 1px;border-radius: 7px;" (click)="priceandquantity()">가격 및 수량도 입력하기</button>\n                <ion-input *ngIf="flagInput!=false" style="width: 34%; height: 3.5rem; border-bottom: solid 1px; float: left; margin-right: 2px; margin-left:2px;" [(ngModel)]="quantity" placeholder="수량"></ion-input>\n                <ion-input *ngIf="flagInput!=false" style="width: 34%; height: 3.5rem; border-bottom: solid 1px; float: left; margin-left: 2px; margin-right:5px;" [(ngModel)]="price" placeholder="가격"></ion-input>\n                <button *ngIf="flagInput!=false" style="height: 3.5rem;background: transparent;border: solid 1px;border-radius: 7px;margin-top: 3px;margin-left: 10px;" (click)="cancel()">취소</button>\n            </ion-col>\n        </ion-row>\n\n    </div>\n</ion-content>\n\n<ion-footer>\n    <div>\n        <ion-fab bottom right #fab>\n            <button ion-fab mini><ion-icon name="add"></ion-icon></button>\n            <ion-fab-list side="top">\n                <button (click)="sortlist(fab)" ion-fab>\n                    <ion-icon name="list"></ion-icon>\n                    <ion-label>이름순으로 정렬</ion-label>\n                </button>\n                <button (click)="insertData(fab)" ion-fab>\n                    <ion-icon name="build"></ion-icon>\n                    <ion-label>수정하기</ion-label>\n                </button>\n                <button (click)="delete(fab)" ion-fab>\n                    <ion-icon name="trash"></ion-icon>\n                    <ion-label>삭제하기</ion-label>\n                </button>\n\n            </ion-fab-list>\n        </ion-fab>\n    </div>\n</ion-footer>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/viewshoppinglist/viewshoppinglist.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__["a" /* InAppBrowser */],
@@ -1336,7 +1439,7 @@ var ViewshoppinglistPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return licenseModalPage; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return privacyModalPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_social_sharing__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_in_app_browser__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(272);
@@ -1485,7 +1588,7 @@ var privacyModalPage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AdPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_purchase__ = __webpack_require__(274);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1583,7 +1686,7 @@ var AdPage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RatePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(28);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1635,7 +1738,7 @@ var RatePage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CopymodalPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(28);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1696,7 +1799,7 @@ var CopymodalPage = /** @class */ (function () {
         this.viewCtrl.dismiss({ "flag": "old", "value": this.selectedvalue });
     };
     CopymodalPage.prototype.dismiss = function () {
-        this.viewCtrl.dismiss({ "data": "value" });
+        this.viewCtrl.dismiss();
     };
     CopymodalPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
@@ -1711,13 +1814,90 @@ var CopymodalPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 375:
+/***/ 277:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListlimitmodalPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the ListlimitmodalPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var ListlimitmodalPage = /** @class */ (function () {
+    function ListlimitmodalPage(viewCtrl, navCtrl, navParams) {
+        this.viewCtrl = viewCtrl;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.firemain = __WEBPACK_IMPORTED_MODULE_2_firebase___default.a.database().ref();
+        this.id = "a2f05b91-956a-b480-3525-991002905558";
+        this.nextdirectory = this.firemain.child(this.id);
+        this.a = 0;
+        console.log(this.firemain);
+        this.flag = this.navParams.get("flag");
+        this.title = this.navParams.get("title");
+        this.value = this.navParams.get("obj");
+    }
+    ListlimitmodalPage.prototype.delete = function () {
+        var temp;
+        console.log(this.title);
+        console.log(this.value);
+        for (var a = 0; a < this.value.length - 1; a++) {
+            console.log(a + "번째" + this.value[a].time);
+            console.log(a + "번째" + this.value[a + 1].time);
+            if (this.value[a].time < this.value[a + 1].time) {
+                temp = this.value[a];
+                this.value[a] = this.value[a + 1];
+                this.value[a + 1] = temp;
+                console.log(this.value);
+            }
+        }
+        console.log(this.value);
+        this.viewCtrl.dismiss({ "value": temp });
+    };
+    ListlimitmodalPage.prototype.btn = function () {
+        this.viewCtrl.dismiss();
+    };
+    ListlimitmodalPage.prototype.dismiss = function () {
+        this.viewCtrl.dismiss({ "value": "" });
+    };
+    ListlimitmodalPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-listlimitmodal',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/listlimitmodal/listlimitmodal.html"*/'<ion-header>\n</ion-header>\n<ion-content style="background:#9FFAFA;">\n    <div style="text-align:center; background:#9FFAFA">\n        <ion-row>\n            <ion-col col-10 style="margin-left:auto; margin-right:auto;">\n                <span style="font-size:21px; font-weight: 600;">\n                <br><br><br>앱의 원활한 구동을 위하여<br>(속도, 데이터, 배터리 절약)<br><br> "쇼핑 목록"은 최대 50개까지<br> 저장 가능합니다.<br><br> (현재 50개의 품목이 저장되어 계십니다.) <br><br> 추가로 저장을 원하실 경우<br><br> 불필요한 "쇼핑목록"을 삭제하신 후<br><br> 신규로 저장하여 주시기 바랍니다.<br><br>\n            </span>\n            </ion-col>\n\n        </ion-row>\n        <button class="buttonSize" (click)="delete()">기존 목록 한개 삭제하기</button>\n        <button class="buttonSize" (click)="dismiss()">닫기</button>\n    </div>\n\n\n</ion-content>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/listlimitmodal/listlimitmodal.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+    ], ListlimitmodalPage);
+    return ListlimitmodalPage;
+}());
+
+//# sourceMappingURL=listlimitmodal.js.map
+
+/***/ }),
+
+/***/ 377:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(376);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(380);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(378);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(382);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -1725,43 +1905,47 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 380:
+/***/ 382:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(259);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(262);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_call_number__ = __webpack_require__(263);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_firebase__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_firebase__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(432);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(434);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_home_home__ = __webpack_require__(265);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_ad_ad__ = __webpack_require__(273);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_angularfire2__ = __webpack_require__(433);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_angularfire2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_angularfire2__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angularfire2_database__ = __webpack_require__(717);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angularfire2_database___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_angularfire2_database__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_unique_device_id__ = __webpack_require__(266);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_speech_recognition__ = __webpack_require__(268);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_admob_free__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_addshoping_addshoping__ = __webpack_require__(267);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_in_app_browser__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_viewshoppinglist_viewshoppinglist__ = __webpack_require__(270);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_social_sharing__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_setting_setting__ = __webpack_require__(271);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__ionic_native_in_app_purchase__ = __webpack_require__(274);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_rate_rate__ = __webpack_require__(275);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_copymodal_copymodal__ = __webpack_require__(276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_onesignal__ = __webpack_require__(278);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_ad_ad__ = __webpack_require__(273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angularfire2__ = __webpack_require__(435);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angularfire2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_angularfire2__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_angularfire2_database__ = __webpack_require__(719);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_angularfire2_database___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_angularfire2_database__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_unique_device_id__ = __webpack_require__(266);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_speech_recognition__ = __webpack_require__(268);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_admob_free__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_addshoping_addshoping__ = __webpack_require__(267);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_in_app_browser__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_viewshoppinglist_viewshoppinglist__ = __webpack_require__(270);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_social_sharing__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_setting_setting__ = __webpack_require__(271);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__ionic_native_in_app_purchase__ = __webpack_require__(274);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_rate_rate__ = __webpack_require__(275);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_copymodal_copymodal__ = __webpack_require__(276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_listlimitmodal_listlimitmodal__ = __webpack_require__(277);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -1804,46 +1988,49 @@ var AppModule = /** @class */ (function () {
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* MyApp */],
                 __WEBPACK_IMPORTED_MODULE_8__pages_home_home__["a" /* HomePage */],
-                __WEBPACK_IMPORTED_MODULE_21__pages_rate_rate__["a" /* RatePage */],
-                __WEBPACK_IMPORTED_MODULE_19__pages_setting_setting__["a" /* SettingPage */],
-                __WEBPACK_IMPORTED_MODULE_15__pages_addshoping_addshoping__["a" /* AddshopingPage */],
-                __WEBPACK_IMPORTED_MODULE_17__pages_viewshoppinglist_viewshoppinglist__["a" /* ViewshoppinglistPage */],
-                __WEBPACK_IMPORTED_MODULE_19__pages_setting_setting__["b" /* licenseModalPage */],
-                __WEBPACK_IMPORTED_MODULE_19__pages_setting_setting__["c" /* privacyModalPage */],
-                __WEBPACK_IMPORTED_MODULE_9__pages_ad_ad__["a" /* AdPage */],
-                __WEBPACK_IMPORTED_MODULE_22__pages_copymodal_copymodal__["a" /* CopymodalPage */],
+                __WEBPACK_IMPORTED_MODULE_22__pages_rate_rate__["a" /* RatePage */],
+                __WEBPACK_IMPORTED_MODULE_20__pages_setting_setting__["a" /* SettingPage */],
+                __WEBPACK_IMPORTED_MODULE_16__pages_addshoping_addshoping__["a" /* AddshopingPage */],
+                __WEBPACK_IMPORTED_MODULE_18__pages_viewshoppinglist_viewshoppinglist__["a" /* ViewshoppinglistPage */],
+                __WEBPACK_IMPORTED_MODULE_20__pages_setting_setting__["b" /* licenseModalPage */],
+                __WEBPACK_IMPORTED_MODULE_20__pages_setting_setting__["c" /* privacyModalPage */],
+                __WEBPACK_IMPORTED_MODULE_10__pages_ad_ad__["a" /* AdPage */],
+                __WEBPACK_IMPORTED_MODULE_23__pages_copymodal_copymodal__["a" /* CopymodalPage */],
+                __WEBPACK_IMPORTED_MODULE_24__pages_listlimitmodal_listlimitmodal__["a" /* ListlimitmodalPage */],
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* MyApp */], {}, {
                     links: []
                 }),
-                __WEBPACK_IMPORTED_MODULE_11_angularfire2_database__["AngularFireDatabaseModule"],
-                __WEBPACK_IMPORTED_MODULE_10_angularfire2__["AngularFireModule"].initializeApp(firebaseConfig)
+                __WEBPACK_IMPORTED_MODULE_12_angularfire2_database__["AngularFireDatabaseModule"],
+                __WEBPACK_IMPORTED_MODULE_11_angularfire2__["AngularFireModule"].initializeApp(firebaseConfig)
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicApp */]],
             entryComponents: [
                 __WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* MyApp */],
                 __WEBPACK_IMPORTED_MODULE_8__pages_home_home__["a" /* HomePage */],
-                __WEBPACK_IMPORTED_MODULE_15__pages_addshoping_addshoping__["a" /* AddshopingPage */],
-                __WEBPACK_IMPORTED_MODULE_21__pages_rate_rate__["a" /* RatePage */],
-                __WEBPACK_IMPORTED_MODULE_17__pages_viewshoppinglist_viewshoppinglist__["a" /* ViewshoppinglistPage */],
-                __WEBPACK_IMPORTED_MODULE_19__pages_setting_setting__["a" /* SettingPage */],
-                __WEBPACK_IMPORTED_MODULE_19__pages_setting_setting__["b" /* licenseModalPage */],
-                __WEBPACK_IMPORTED_MODULE_19__pages_setting_setting__["c" /* privacyModalPage */],
-                __WEBPACK_IMPORTED_MODULE_9__pages_ad_ad__["a" /* AdPage */],
-                __WEBPACK_IMPORTED_MODULE_22__pages_copymodal_copymodal__["a" /* CopymodalPage */],
+                __WEBPACK_IMPORTED_MODULE_16__pages_addshoping_addshoping__["a" /* AddshopingPage */],
+                __WEBPACK_IMPORTED_MODULE_22__pages_rate_rate__["a" /* RatePage */],
+                __WEBPACK_IMPORTED_MODULE_18__pages_viewshoppinglist_viewshoppinglist__["a" /* ViewshoppinglistPage */],
+                __WEBPACK_IMPORTED_MODULE_20__pages_setting_setting__["a" /* SettingPage */],
+                __WEBPACK_IMPORTED_MODULE_20__pages_setting_setting__["b" /* licenseModalPage */],
+                __WEBPACK_IMPORTED_MODULE_20__pages_setting_setting__["c" /* privacyModalPage */],
+                __WEBPACK_IMPORTED_MODULE_10__pages_ad_ad__["a" /* AdPage */],
+                __WEBPACK_IMPORTED_MODULE_23__pages_copymodal_copymodal__["a" /* CopymodalPage */],
+                __WEBPACK_IMPORTED_MODULE_24__pages_listlimitmodal_listlimitmodal__["a" /* ListlimitmodalPage */],
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__["a" /* StatusBar */],
-                __WEBPACK_IMPORTED_MODULE_13__ionic_native_speech_recognition__["a" /* SpeechRecognition */],
-                __WEBPACK_IMPORTED_MODULE_20__ionic_native_in_app_purchase__["a" /* InAppPurchase */],
-                __WEBPACK_IMPORTED_MODULE_18__ionic_native_social_sharing__["a" /* SocialSharing */],
-                __WEBPACK_IMPORTED_MODULE_14__ionic_native_admob_free__["a" /* AdMobFree */],
-                __WEBPACK_IMPORTED_MODULE_12__ionic_native_unique_device_id__["a" /* UniqueDeviceID */],
+                __WEBPACK_IMPORTED_MODULE_14__ionic_native_speech_recognition__["a" /* SpeechRecognition */],
+                __WEBPACK_IMPORTED_MODULE_21__ionic_native_in_app_purchase__["a" /* InAppPurchase */],
+                __WEBPACK_IMPORTED_MODULE_19__ionic_native_social_sharing__["a" /* SocialSharing */],
+                __WEBPACK_IMPORTED_MODULE_15__ionic_native_admob_free__["a" /* AdMobFree */],
+                __WEBPACK_IMPORTED_MODULE_13__ionic_native_unique_device_id__["a" /* UniqueDeviceID */],
                 __WEBPACK_IMPORTED_MODULE_5__ionic_native_call_number__["a" /* CallNumber */],
                 __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
-                __WEBPACK_IMPORTED_MODULE_16__ionic_native_in_app_browser__["a" /* InAppBrowser */],
+                __WEBPACK_IMPORTED_MODULE_17__ionic_native_in_app_browser__["a" /* InAppBrowser */],
+                __WEBPACK_IMPORTED_MODULE_9__ionic_native_onesignal__["a" /* OneSignal */],
                 { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicErrorHandler */] }
             ]
         })
@@ -1855,13 +2042,13 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 432:
+/***/ 434:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(262);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(259);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(265);
@@ -1901,5 +2088,5 @@ var MyApp = /** @class */ (function () {
 
 /***/ })
 
-},[375]);
+},[377]);
 //# sourceMappingURL=main.js.map

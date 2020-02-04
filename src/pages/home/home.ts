@@ -1,5 +1,5 @@
 import { Component, ContentChild } from '@angular/core';
-import { NavController, AlertController, Platform, ViewController, NavParams, ModalController, FabContainer } from 'ionic-angular';
+import { NavController, AlertController, Platform, ViewController, NavParams, ModalController, FabContainer, UrlSerializer } from 'ionic-angular';
 import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free'
 import { CallNumber } from '@ionic-native/call-number/';
 import firebase from 'firebase';
@@ -16,7 +16,8 @@ import { RatePage } from '../rate/rate';
 import { CopymodalPage } from '../copymodal/copymodal';
 import { snapshotChanges } from 'angularfire2/database';
 import { ListlimitmodalPage } from '../listlimitmodal/listlimitmodal';
-import { k } from '@angular/core/src/render3';
+import { OneSignal } from '@ionic-native/onesignal';
+
 
 @Component({
   selector: 'page-home',
@@ -746,16 +747,64 @@ export class HomePage {
     modal.present();
   }
 
+  OneSignalInstall()
+  {
+    console.log("start Signal")
+    this.oneSignal.startInit('2a4ab592-b87f-474a-9b98-77a1983d4b38', '552511846926');
+    // this.oneSignal.clearOneSignalNotifications();
+    var iosSettings = {
+      "kOSSettingsKeyAutoPrompt" : true,
+      "kOSSettingsKeyInAppLaunchURL" : true
+    };
+    this.oneSignal.iOSSettings(iosSettings);
+    this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification);
+    //알림을 받았을때에 아래 함수로
+    this.oneSignal.handleNotificationReceived().subscribe((data) => {
+      
+    // var hour=data.payload.additionalData.hour;
+    // var min=data.payload.additionalData.minute;
+    });
+
+    this.oneSignal.handleNotificationOpened().subscribe(data => {
+      console.log("data Confirm");
+      console.log(data);
+      console.log(data.notification.payload.additionalData.hour);
+      console.log("opened");
+    });
+
+
+    this.oneSignal.getIds().then(data => {
+      console.log("get id success"+data.userId)
+      window.alert(data.userId);
+      this.firemain.child(this.id).child("setting").update({ "user id": data.userId });
+      let sendData = [];
+      localStorage.setItem("tokenvalue",data.userId);
+      //디비에 토큰값을 넣음
+    }).catch((e)=>{
+    window.alert("onesignal error"+e);
+    })
+    this.oneSignal.endInit();
+  }
+
 
   constructor(public modal: ModalController, private socialSharing: SocialSharing, private iab: InAppBrowser, public uniqueDeviceID: UniqueDeviceID,
     public alertCtrl: AlertController, public callnumber: CallNumber,
-    public admobFree: AdMobFree, public navCtrl: NavController, public navParams: NavParams) {
+    public admobFree: AdMobFree, public navCtrl: NavController,
+    public platform: Platform, public navParams: NavParams,
+    public oneSignal: OneSignal) {
     this.fabButtonOpened = false;
     this.refreshname();
     $(document).ready(function () {
       console.log("ready!");
       console.log($("#slt").val())
     });
+
+    setTimeout(()=>{
+      if(this.platform.is("android")||this.platform.is("ios")){
+        this.OneSignalInstall();
+      }
+    },5000)
+
     setTimeout(() => {
 
       // console.log(this.id);

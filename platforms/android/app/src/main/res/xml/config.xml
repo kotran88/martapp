@@ -1,55 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <feature name="Whitelist">
-        <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
-        <param name="onload" value="true" />
+<widget id="io.ionic.inhand" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <feature name="OneSignalPush">
+        <param name="android-package" value="com.plugin.gcm.OneSignalPush" />
     </feature>
-    <feature name="StatusBar">
-        <param name="android-package" value="org.apache.cordova.statusbar.StatusBar" />
-        <param name="onload" value="true" />
-    </feature>
-    <feature name="Device">
-        <param name="android-package" value="org.apache.cordova.device.Device" />
-    </feature>
-    <feature name="SplashScreen">
-        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
-        <param name="onload" value="true" />
-    </feature>
-    <feature name="AdMob">
-        <param name="android-package" value="name.ratson.cordova.admob.AdMob" />
-        <param name="onload" value="true" />
-    </feature>
-    <feature name="CallNumber">
-        <param name="android-package" value="mx.ferreyra.callnumber.CFCallNumber" />
-    </feature>
-    <feature name="UniqueDeviceID">
-        <param name="android-package" value="hu.dpal.phonegap.plugins.UniqueDeviceID" />
-    </feature>
-    <feature name="SpeechRecognition">
-        <param name="android-package" value="com.pbakondy.SpeechRecognition" />
-    </feature>
-    <feature name="InAppBrowser">
-        <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
-    </feature>
-    <feature name="SocialSharing">
-        <param name="android-package" value="nl.xservices.plugins.SocialSharing" />
-    </feature>
-    <feature name="InAppBillingV3">
-        <param name="android-package" value="com.alexdisler.inapppurchases.InAppBillingV3" />
-    </feature>
-    <allow-navigation href="http://localhost/*" />
-    <allow-navigation href="https://localhost/*" />
-    <allow-navigation href="ionic://*" />
-    <feature name="IonicWebView">
-        <param name="android-package" value="com.ionicframework.cordova.webview.IonicWebView" />
-    </feature>
-    <feature name="CDVIonicKeyboard">
-        <param name="android-package" onload="true" value="io.ionic.keyboard.CDVIonicKeyboard" />
-    </feature>
-    <name>MyApp</name>
+    <name>마트앱</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework.com" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content original-src="index.html" src="http://localhost:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -82,7 +39,6 @@
     <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
     <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
     <preference name="loglevel" value="DEBUG" />
-    <preference name="webView" value="com.ionicframework.cordova.webview.IonicWebViewEngine" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="19" />
     <preference name="BackupWebStorage" value="none" />

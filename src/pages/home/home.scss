@@ -91,12 +91,16 @@ select::-ms-expand {
 
 .topselector {
     width: 350px;
-    height: 120px;
+    height: 160px;
     border: solid 2px rgb(120, 247, 247);
     border-radius: 5px;
     /*[위][오른쪽][아래][왼쪽]*/
     margin: 5px auto;
-    padding: 5px 5px 5px 5px;
+    // padding: 5px 5px 5px 5px;
+}
+
+.nnn {
+    color: black;
 }
 
 .button {
@@ -114,6 +118,7 @@ select::-ms-expand {
     height: 60px;
     opacity: 1;
     float: left;
+    color: black;
 }
 
 img {
@@ -123,7 +128,8 @@ img {
 p {
     font-weight: bold;
     text-align: center;
-    color: #5AD7ED;
+    color: rgb(88, 189, 207);
+    font-size: 15px;
 }
 
 .listDB {
@@ -167,4 +173,26 @@ div.segmentText {
     right: 0% !important;
     bottom: 0% !important;
     left: 0% !important;
+}
+
+.label-md {
+    margin: 0px 0px 0px 0;
+}
+
+.tabstyle {
+    background-color: white;
+    letter-spacing: -0.35px;
+}
+
+.tab-font {
+    font-size: 15px;
+    color: black;
+    font-family: 'notomedium';
+    font-weight: 900;
+}
+
+.segment-md .segment-button.activated,
+.segment-md .segment-button.segment-activated {
+    border-color: #71E8E8;
+    border-bottom-width: 5px;
 }

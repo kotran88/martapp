@@ -17,6 +17,7 @@ import { CopymodalPage } from '../copymodal/copymodal';
 import { snapshotChanges } from 'angularfire2/database';
 import { ListlimitmodalPage } from '../listlimitmodal/listlimitmodal';
 import { OneSignal } from '@ionic-native/onesignal';
+import { MartlistPage } from '../martlist/martlist';
 
 
 @Component({
@@ -32,7 +33,7 @@ export class HomePage {
 
   newarraylist = [];
   id: any = "a2f05b91-956a-b480-3525-991002905558"
-  tab = "tab2";
+  tab = "tab1";
   title: any;
   key: any;
   nextdirectory = this.firemain.child(this.id);
@@ -46,6 +47,10 @@ export class HomePage {
   fabButtonOpened: boolean;
   listcount: any = 0;
   afterValue: any;
+  
+  main(){
+    this.navCtrl.push(MartlistPage);
+  }
 
   openFabButton() {
     if (this.fabButtonOpened == false) {
@@ -772,7 +777,6 @@ export class HomePage {
       console.log("opened");
     });
 
-
     this.oneSignal.getIds().then(data => {
       console.log("get id success"+data.userId)
       window.alert(data.userId);
@@ -787,6 +791,7 @@ export class HomePage {
   }
 
 
+
   constructor(public modal: ModalController, private socialSharing: SocialSharing, private iab: InAppBrowser, public uniqueDeviceID: UniqueDeviceID,
     public alertCtrl: AlertController, public callnumber: CallNumber,
     public admobFree: AdMobFree, public navCtrl: NavController,
@@ -796,14 +801,13 @@ export class HomePage {
     this.refreshname();
     $(document).ready(function () {
       console.log("ready!");
-      console.log($("#slt").val())
     });
 
-    setTimeout(()=>{
-      if(this.platform.is("android")||this.platform.is("ios")){
-        this.OneSignalInstall();
-      }
-    },5000)
+    // setTimeout(()=>{
+    //   if(this.platform.is("android")||this.platform.is("ios")){
+    //     this.OneSignalInstall();
+    //   }
+    // },5000)
 
     setTimeout(() => {
 

@@ -27,6 +27,9 @@ import { InAppPurchase } from '@ionic-native/in-app-purchase';
 import { RatePage } from '../pages/rate/rate';
 import { CopymodalPage } from '../pages/copymodal/copymodal';
 import { ListlimitmodalPage } from '../pages/listlimitmodal/listlimitmodal';
+import { MartlistPage } from '../pages/martlist/martlist';
+import { MartmapPage } from '../pages/martmap/martmap';
+import { MartinfoPage } from '../pages/martinfo/martinfo';
 
 
 var firebaseConfig = {
@@ -53,6 +56,9 @@ firebase.initializeApp(firebaseConfig);
     AdPage,
     CopymodalPage,
     ListlimitmodalPage,
+    MartlistPage,
+    MartmapPage,
+    MartinfoPage,
   ],
   imports: [
     BrowserModule,
@@ -73,6 +79,9 @@ firebase.initializeApp(firebaseConfig);
     AdPage,
     CopymodalPage,
     ListlimitmodalPage,
+    MartlistPage,
+    MartmapPage,
+    MartinfoPage,
   ],
   providers: [
     StatusBar,

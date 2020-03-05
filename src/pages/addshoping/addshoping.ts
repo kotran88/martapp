@@ -113,7 +113,7 @@ export class AddshopingPage {
             console.log(this.value);
             console.log(this.title);
 
-            if (this.adding == "") {
+            if (this.title == "") {
               window.alert("목록을 입력해주세요.");
               this.add();
             }

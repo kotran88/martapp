@@ -40,10 +40,10 @@ webpackEmptyAsyncContext.id = 219;
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_admob_free__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_call_number___ = __webpack_require__(263);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_unique_device_id__ = __webpack_require__(266);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__addshoping_addshoping__ = __webpack_require__(267);
@@ -58,6 +58,7 @@ webpackEmptyAsyncContext.id = 219;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__copymodal_copymodal__ = __webpack_require__(276);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__listlimitmodal_listlimitmodal__ = __webpack_require__(277);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_onesignal__ = __webpack_require__(278);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__martlist_martlist__ = __webpack_require__(279);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -67,6 +68,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -101,7 +103,7 @@ var HomePage = /** @class */ (function () {
         this.firemain = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.database().ref();
         this.newarraylist = [];
         this.id = "a2f05b91-956a-b480-3525-991002905558";
-        this.tab = "tab2";
+        this.tab = "tab1";
         this.nextdirectory = this.firemain.child(this.id);
         this.count = 0;
         this.copyflag = false;
@@ -115,13 +117,12 @@ var HomePage = /** @class */ (function () {
         this.refreshname();
         __WEBPACK_IMPORTED_MODULE_8_jquery__(document).ready(function () {
             console.log("ready!");
-            console.log(__WEBPACK_IMPORTED_MODULE_8_jquery__("#slt").val());
         });
-        setTimeout(function () {
-            if (_this.platform.is("android") || _this.platform.is("ios")) {
-                _this.OneSignalInstall();
-            }
-        }, 5000);
+        // setTimeout(()=>{
+        //   if(this.platform.is("android")||this.platform.is("ios")){
+        //     this.OneSignalInstall();
+        //   }
+        // },5000)
         setTimeout(function () {
             // console.log(this.id);
             // this.firemain.child(this.id).once("value", (snap) => {
@@ -163,6 +164,9 @@ var HomePage = /** @class */ (function () {
                 .catch(function (e) { return console.log(e); });
         }, 3000);
     }
+    HomePage.prototype.main = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_17__martlist_martlist__["a" /* MartlistPage */]);
+    };
     HomePage.prototype.openFabButton = function () {
         if (this.fabButtonOpened == false) {
             this.fabButtonOpened = true;
@@ -853,7 +857,7 @@ var HomePage = /** @class */ (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/home/home.html"*/'<ion-content padding>\n    <div class="upper">\n        <ion-row style="margin-bottom:0" class="search">\n            <ion-col width-100>\n                <ion-searchbar style="float:left;width: 50%; padding:6px;" placeholder="입력하세요" [(ngModel)]="startPoint" clearInput></ion-searchbar>\n\n                <button ion-button icon-only style="margin-right: -10px;" (click)="NoneAd()" color="primary" clear>\n                    <ion-icon class="ad-icon" name="eye-off"></ion-icon>\n                  </button>\n\n                <button ion-button icon-only style="margin-right: -10px;" (click)="appstore()" color="primary" clear>\n                    <ion-icon class="appstore-icon" name="star"></ion-icon>\n                  </button>\n\n                <button ion-button icon-only style="margin-right: -10px;" (click)="regularShare()" color="primary" clear>\n                    <ion-icon class="share-icon" name="share"></ion-icon>\n                  </button>\n\n                <button ion-button icon-only (click)="setting()" color=\'primary\' clear>\n                  <ion-icon class="setting-icon" name="settings"></ion-icon>\n                </button>\n\n\n            </ion-col>\n        </ion-row>\n    </div>\n\n    <ion-segment style="background:#353c5e;font-size: 16px;letter-spacing: -0.35px" (ionChange)="segmentChanged($event)" [(ngModel)]="tab">\n        <ion-segment-button value="tab1" [ngClass]="tab==\'tab1\'?\'view\':\'notview\'">\n            <span style="font-family: \'notomedium\';">즐겨찾는곳</span>\n        </ion-segment-button>\n        <ion-segment-button value="tab2" [ngClass]="tab==\'tab2\'?\'view\':\'notview\'">\n            <span style="font-family: \'notomedium\';" class="">쇼핑예정목록</span>\n        </ion-segment-button>\n        <ion-segment-button value="tab3" [ngClass]="tab==\'tab3\'?\'view\':\'notview\'">\n            <span style="font-family: \'notomedium\';" class="">인터넷에선얼마?</span>\n        </ion-segment-button>\n\n    </ion-segment>\n    <div [ngSwitch]="tab" style="height:100%;">\n        <ion-list *ngSwitchCase="\'tab1\'">\n            first tab\n\n        </ion-list>\n        <ion-list *ngSwitchCase="\'tab2\'">\n            <div class="topselector">\n                <p>쇼핑 목록 만들기! 어디서 쇼핑하실 건가요?</p>\n                <div class="button">\n                    <button style="background-color:#fff;" (click)="addlist(\'mart\')"><img src="assets/imgs/mes.png" alt=""></button><br>\n                    <div><button style="background-color:#fff;" (click)="addlist(\'mart\')">마트</button></div>\n                </div>\n                <div class="button">\n                    <button style="background-color:#fff;" (click)="addlist(\'dep\')"><img src="assets/imgs/mes.png" alt=""></button><br>\n                    <div><button style="background-color:#fff;" (click)="addlist(\'dep\')">백화점</button></div>\n                </div>\n                <div class="button">\n                    <button style="background-color:#fff;" (click)="addlist(\'outlet\')"><img src="assets/imgs/mes.png" alt=""></button><br>\n                    <div><button style="background-color:#fff;" (click)="addlist(\'outlet\')">아울렛</button></div>\n                </div>\n                <div class="button">\n                    <button style="background-color:#fff;" (click)="addlist(\'etc\')"><img src="assets/imgs/mes.png" alt=""></button><br>\n                    <div><button style="background-color:#fff;" (click)="addlist(\'etc\')">기타</button></div>\n                </div>\n            </div>\n            <div *ngFor="let a of newarraylist" class="eachshopping">\n                <div class="listDB">\n                    <div class="segmentImg">\n                        <button style="background-color:#fff;" (click)="deleteDB(a)">\n                            <img src="assets/imgs/delete (1).png">\n                        </button>\n                    </div>\n                    <div class="segmentText">\n                        {{a.flag}}\n                        <button style="background-color:#fff;" (click)="viewshoppinglist(a)">\n                            {{a.title}}\n                        </button>\n                    </div>\n                    <div>\n                        <button style="background-color:#fff;" (click)="viewshoppinglist(a)">\n                            {{a.time}}\n                        </button>\n                    </div>\n                    <div>\n                        {{a.totallist+"개 항목 중 "+a.totalchecked+"개 구입"}}\n                    </div>\n                    <div>\n                        <ion-fab>\n                            <button ion-fab mini><ion-icon name="add"></ion-icon></button>\n                            <ion-fab-list side="bottom">\n                                <button (click)="changeName(a)" ion-fab>\n                                    <ion-icon name="list"></ion-icon>\n                                    <ion-label>목록명 변경</ion-label>\n                                </button>\n                                <button (click)="share(a)" ion-fab>\n                                    <ion-icon name="share"></ion-icon>\n                                    <ion-label>공유</ion-label>\n                                </button>\n                                <button (click)="deleteDB(a)" ion-fab>\n                                    <ion-icon name="trash"></ion-icon>\n                                    <ion-label>삭제</ion-label>\n                                </button>\n                                <button (click)="openModal(a)" ion-fab>\n                                    <ion-icon name="copy"></ion-icon>\n                                    <ion-label>복사</ion-label>\n                                </button>\n                            </ion-fab-list>\n                        </ion-fab>\n                    </div>\n                </div>\n            </div>\n\n            <!-- <div><button style="background-color:#fff;" (click)="addlist()">(image)쇼핑 리스트를 추가해보자라는 말</button></div> -->\n\n        </ion-list>\n        <ion-list *ngSwitchCase="\'tab3\'">\n\n            <div>\n                <select style="display: inline-block; width:25%;" id=\'slt\' name="sort">\n                    <option value="rel" selected="selected">랭킹순</option>\n                    <option value="price_asc">낮은 가격순</option>\n                    <option value="price_dsc">높은 가격순</option>\n                    <option value="date">등록순</option>\n                    <option value="review">리뷰 많은순</option>\n                </select>\n\n                <ion-input style="margin-right: 0px; width: 60%; display: inline-block; border: 1px solid black;" name=\'text\' type="text" [(ngModel)]=\'srct.text\' placeholder="검색어를 입력해 주세요.">\n                </ion-input>\n\n                <button ion-button style="float: right; width:30px; height: 30px;" color="black" outline icon-only (click)=\'select_sort()\'>\n\n                    <ion-icon name=\'search\' is-active="false"></ion-icon>\n                </button>\n            </div>\n        </ion-list>\n\n    </div>\n\n</ion-content>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/home/home.html"*/'<ion-content padding>\n    <!-- <div class="upper">\n        <ion-row style="margin-bottom:0" class="search">\n            <ion-col width-100>\n                <ion-searchbar style="float:left;width: 50%; padding:6px;" placeholder="입력하세요" [(ngModel)]="startPoint" clearInput></ion-searchbar>\n                <button ion-button icon-only style="width:50px; margin-right: -10px;" (click)="NoneAd()" color="primary" clear>\n                    <ion-icon class="ad-icon" name="eye-off"></ion-icon>\n                  </button>\n                <button ion-button icon-only style="width:50px; margin-right: -10px;" (click)="appstore()" color="primary" clear>\n                    <ion-icon class="appstore-icon" name="star"></ion-icon>\n                  </button>\n                <button ion-button icon-only style="width:50px; margin-right: -10px;" (click)="regularShare()" color="primary" clear>\n                    <ion-icon class="share-icon" name="share"></ion-icon>\n                  </button>\n                <button ion-button icon-only style="width:50px; margin-right: -10px;" (click)="setting()" color=\'primary\' clear>\n                  <ion-icon class="setting-icon" name="settings"></ion-icon>\n                </button>\n            </ion-col>\n        </ion-row>\n    </div> -->\n    <div class="upper" style="background-color: #71E8E8; display:flex;">\n        <ion-searchbar style="float:left;width: 55%; padding:6px;" placeholder="검색,즐겨찾기추가" [(ngModel)]="startPoint" clearInput></ion-searchbar>\n        <button style="background-color:#71E8E8;" (click)="NoneAd()"><img src="./assets/imgs/004-버튼-PPT 3페이지의 이미지의 상단 가운데-광고금지.png" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;" (click)="appstore()"><img src="./assets/imgs/005-버튼-PPT 3페이지의 이미지의 상단 우측-평가하기 별점주기.png" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;" (click)="regularShare()"><img src="./assets/imgs/006-버튼-PPT 3페이지의 이미지의 상단 우측-공유하기 점 세개.png" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;" (click)="setting()"><img src="./assets/imgs/007-버튼-PPT 3페이지의 이미지의 상단 우측-설정하기 톱니바퀴.png" style="width:25px;"></button>\n\n    </div>\n\n    <ion-segment class="tabstyle" (ionChange)="segmentChanged($event)" [(ngModel)]="tab">\n        <ion-segment-button value="tab1" [ngClass]="tab==\'tab1\'?\'view\':\'notview\'">\n            <span class="tab-font">즐겨찾는곳</span>\n        </ion-segment-button>\n        <ion-segment-button value="tab2" [ngClass]="tab==\'tab2\'?\'view\':\'notview\'">\n            <span class="tab-font">쇼핑예정목록</span>\n        </ion-segment-button>\n        <ion-segment-button value="tab3" [ngClass]="tab==\'tab3\'?\'view\':\'notview\'">\n            <span class="tab-font">인터넷에선 얼마?</span>\n        </ion-segment-button>\n    </ion-segment>\n    <div [ngSwitch]="tab">\n        <ion-list *ngSwitchCase="\'tab1\'">\n            <div style="margin-top:10%"><button style="background:white" (click)="main();"><img src="./assets/imgs/003-버튼-PPT 3페이지의 이미지의 정가운데-\'랜딩화면\' 다음에 나오는 화면의 \'말+돋보기 버튼\'.png"></button></div>\n        </ion-list>\n        <ion-list *ngSwitchCase=" \'tab2\' ">\n            <div class="topselector">\n                <p>쇼핑 목록 만들기! 어디서 쇼핑하실 건가요?</p>\n                <table style="margin: auto; text-align: center;">\n\n                    <tbody>\n                        <td>\n                            <button style="background-color:#fff; " (click)="addlist(\'mart\') "><img src="./assets/imgs/079-버튼-PPT 27페이지의 가운데 이미지-카트(마트).png " style="width:500px"></button>\n                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold;" (click)="addlist(\'mart\') ">마트</button>\n                        </td>\n                        <td>\n                            <button style="background-color:#fff; " (click)="addlist(\'dep\') "><img src="./assets/imgs/080-버튼-PPT 27페이지의 가운데 이미지-쇼핑백(백화점).png " style="width:500px"></button>\n                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold;" (click)="addlist(\'dep\') ">백화점</button>\n                        </td>\n                        <td>\n                            <button style="background-color:#fff; " (click)="addlist(\'outlet\') "><img src="./assets/imgs/081-버튼-PPT 27페이지의 가운데 이미지-보석+구두(아울렛).png " style="width:500px"></button>\n                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold;" (click)="addlist( \'outlet\') ">아울렛</button>\n                        </td>\n                        <td>\n                            <button style="background-color:#fff; " (click)="addlist(\'etc\') "><img src="./assets/imgs/081-버튼-PPT 27페이지의 가운데 이미지-etc(기타).png " style="width:500px"></button>\n                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold;" (click)="addlist( \'etc\') ">기타</button>\n                        </td>\n                    </tbody>\n                </table>\n\n\n                <!-- <div class="button ">\n                    <button style="background-color:#fff; " (click)="addlist( \'dep\') "><img src="./assets/imgs/080-버튼-PPT 27페이지의 가운데 이미지-쇼핑백(백화점).png " alt=" "></button><br>\n                    <div><button style="background-color:#fff; " (click)="addlist( \'dep\') ">백화점</button></div>\n                </div> -->\n                <!-- <div class="button ">\n                    <button style="background-color:#fff; " (click)="addlist( \'outlet\') "><img src="./assets/imgs/081-버튼-PPT 27페이지의 가운데 이미지-보석+구두(아울렛).png " alt=" "></button><br>\n                    <div><button style="background-color:#fff; " (click)="addlist( \'outlet\') ">아울렛</button></div>\n                </div> -->\n                <!-- <div class="button ">\n                    <button style="background-color:#fff; " (click)="addlist( \'etc\') "><img src="./assets/imgs/081-버튼-PPT 27페이지의 가운데 이미지-etc(기타).png " alt=" "></button><br>\n                    <div><button style="background-color:#fff; " (click)="addlist( \'etc\') ">기타</button></div>\n                </div> -->\n            </div>\n            <div *ngFor="let a of newarraylist " class="eachshopping ">\n                <div class="listDB ">\n                    <div class="segmentImg ">\n                        <button style="background-color:#fff; " (click)="deleteDB(a) ">\n                            <img src="assets/imgs/delete (1).png ">\n                        </button>\n                    </div>\n                    <div class="segmentText ">\n                        {{a.flag}}\n                        <button style="background-color:#fff; " (click)="viewshoppinglist(a) ">\n                            {{a.title}}\n                        </button>\n                    </div>\n                    <div>\n                        <button style="background-color:#fff; " (click)="viewshoppinglist(a) ">\n                            {{a.time}}\n                        </button>\n                    </div>\n                    <div>\n                        {{a.totallist+"개 항목 중 "+a.totalchecked+"개 구입 "}}\n                    </div>\n                    <div>\n                        <ion-fab>\n                            <button ion-fab mini><ion-icon name="add"></ion-icon></button>\n                            <ion-fab-list side="bottom">\n                                <button (click)="changeName(a)" ion-fab>\n                                    <ion-icon name="list"></ion-icon>\n                                    <ion-label>목록명 변경</ion-label>\n                                </button>\n                                <button (click)="share(a)" ion-fab>\n                                    <ion-icon name="share"></ion-icon>\n                                    <ion-label>공유</ion-label>\n                                </button>\n                                <button (click)="deleteDB(a)" ion-fab>\n                                    <ion-icon name="trash"></ion-icon>\n                                    <ion-label>삭제</ion-label>\n                                </button>\n                                <button (click)="openModal(a)" ion-fab>\n                                    <ion-icon name="copy"></ion-icon>\n                                    <ion-label>복사</ion-label>\n                                </button>\n                            </ion-fab-list>\n                        </ion-fab>\n                    </div>\n                </div>\n            </div>\n\n            <!-- <div><button style="background-color:#fff; " (click)="addlist() ">(image)쇼핑 리스트를 추가해보자라는 말</button></div> -->\n\n        </ion-list>\n        <ion-list *ngSwitchCase=" \'tab3\' ">\n\n            <div>\n                <select style="display: inline-block; width:25%; " id=\'slt\' name="sort ">\n                    <option value="rel " selected="selected ">랭킹순</option>\n                    <option value="price_asc ">낮은 가격순</option>\n                    <option value="price_dsc ">높은 가격순</option>\n                    <option value="date ">등록순</option>\n                    <option value="review ">리뷰 많은순</option>\n                </select>\n\n                <ion-input style="margin-right: 0px; width: 60%; display: inline-block; border: 1px solid black; " name=\'text\' type="text " [(ngModel)]=\'srct.text\' placeholder="검색어를 입력해 주세요. ">\n                </ion-input>\n\n                <button ion-button style="float: right; width:30px; height: 30px; " color="black " outline icon-only (click)=\'select_sort()\'>\n\n                    <ion-icon name=\'search\' is-active="false "></ion-icon>\n                </button>\n            </div>\n        </ion-list>\n\n    </div>\n\n</ion-content>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/home/home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */], __WEBPACK_IMPORTED_MODULE_10__ionic_native_social_sharing__["a" /* SocialSharing */], __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__["a" /* InAppBrowser */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_unique_device_id__["a" /* UniqueDeviceID */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_call_number___["a" /* CallNumber */],
@@ -874,9 +878,9 @@ var HomePage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddshopingPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_speech_recognition__ = __webpack_require__(268);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -988,7 +992,7 @@ var AddshopingPage = /** @class */ (function () {
                         console.log(_this.key);
                         console.log(_this.value);
                         console.log(_this.title);
-                        if (_this.adding == "") {
+                        if (_this.title == "") {
                             window.alert("목록을 입력해주세요.");
                             _this.add();
                         }
@@ -1053,9 +1057,9 @@ var AddshopingPage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewshoppinglistPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery__ = __webpack_require__(269);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_jquery__);
@@ -1256,7 +1260,8 @@ var ViewshoppinglistPage = /** @class */ (function () {
                 {
                     text: '예',
                     handler: function (data) {
-                        for (var v in _this.a.list) {
+                        for (var v = 0; v < _this.a.list.length; v++) {
+                            console.log(_this.a.list[v]);
                             console.log(_this.a.list[v].name);
                             if (_this.a.list[v].name == "") {
                                 window.alert("목록을 입력해주세요");
@@ -1439,7 +1444,7 @@ var ViewshoppinglistPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return licenseModalPage; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return privacyModalPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_social_sharing__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_in_app_browser__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(272);
@@ -1588,7 +1593,7 @@ var privacyModalPage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AdPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_purchase__ = __webpack_require__(274);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1686,7 +1691,7 @@ var AdPage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RatePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1738,7 +1743,7 @@ var RatePage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CopymodalPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1820,8 +1825,8 @@ var CopymodalPage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListlimitmodalPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1891,13 +1896,13770 @@ var ListlimitmodalPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 377:
+/***/ 279:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MartlistPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__martmap_martmap__ = __webpack_require__(280);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the MartlistPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var MartlistPage = /** @class */ (function () {
+    function MartlistPage(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+    }
+    MartlistPage.prototype.martmap = function (id) {
+        console.log("hi");
+        console.log(id);
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__martmap_martmap__["a" /* MartmapPage */], { "id": id });
+    };
+    MartlistPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-martlist',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/martlist/martlist.html"*/'<ion-content>\n    <div style="background-color: #71E8E8; margin-bottom:5px; display:flex;">\n        <img src="./assets/imgs/008-버튼-PPT 4페이지의 가운데 이미지의 상단 좌측-말 얼굴.png" style="width:50px; margin:5px;" alt="">\n        <span style="color:white; font-size:18px; font-weight: 900; margin:auto;">매장 유형을 선택해주세요</span>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/004-버튼-PPT 3페이지의 이미지의 상단 가운데-광고금지.png" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/005-버튼-PPT 3페이지의 이미지의 상단 우측-평가하기 별점주기.png" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/006-버튼-PPT 3페이지의 이미지의 상단 우측-공유하기 점 세개.png" style="width:25px;"></button>\n    </div>\n    <div>\n        <ion-item-group>\n            <ion-item-divider color="light">마트</ion-item-divider>\n            <button ion-item (click)="martmap(\'lottemart\')"><img src="./assets/imgs/009-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-롯데마트 CI.png" style="width:15%; height:10%; margin-right:20px;">롯데마트</button>\n            <button ion-item (click)="martmap(\'emart\')"><img src="./assets/imgs/010-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-이마트 CI.png" style="width:15%; margin-right:20px;">이마트</button>\n            <button ion-item (click)="martmap(\'homeplus\')"><img src="./assets/imgs/011-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-홈플러스 CI.png" style="width:15%; margin-right:20px;">홈플러스</button>\n            <button ion-item (click)="martmap(\'costco\')"><img src="./assets/imgs/012-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-코스트코 CI.png" style="width:15%; margin-right:20px;">코스트코</button>\n            <button ion-item (click)="martmap(\'traders\')"><img src="./assets/imgs/013-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-이마트 트레이더스 CI.png" style="width:15%; margin-right:20px;">이마트 트레이더스</button>\n        </ion-item-group>\n        <ion-item-group>\n            <ion-item-divider color="light">백화점</ion-item-divider>\n            <button ion-item (click)="martmap(\'lottedep\')"><img src="./assets/imgs/020-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-롯데백화점 CI.png" style="width:15%; height:10%; margin-right:20px;">롯데 백화점</button>\n            <button ion-item (click)="martmap(\'ssgdep\')"><img src="./assets/imgs/021-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-신세백화점 CI.png" style="width:15%; margin-right:20px;">신세계 백화점</button>\n            <button ion-item (click)="martmap(\'hyundep\')"><img src="./assets/imgs/022-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-현대백화점 CI.png" style="width:15%; margin-right:20px;">현대 백화점</button>\n        </ion-item-group>\n        <ion-item-group>\n            <ion-item-divider color="light">아울렛</ion-item-divider>\n            <button ion-item (click)="martmap(\'lotteout\')"><img src="./assets/imgs/023-버튼-PPT 4페이지의 가운데 이미지의 아울렛별 로고-롯데아울렛 CI.png" style="width:15%; height:10%; margin-right:20px;">롯데 아울렛</button>\n            <button ion-item (click)="martmap(\'ssgout\')"><img src="./assets/imgs/025-버튼-PPT 4페이지의 가운데 이미지의 아울렛별 로고-신세계아울렛 CI.png" style="width:15%; margin-right:20px;">신세계 아울렛</button>\n            <button ion-item (click)="martmap(\'hyunout\')"><img src="./assets/imgs/024-버튼-PPT 4페이지의 가운데 이미지의 아울렛별 로고-현대아울렛 CI.png" style="width:15%; margin-right:20px;">현대 아울렛</button>\n        </ion-item-group>\n    </div>\n</ion-content>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/martlist/martlist.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+    ], MartlistPage);
+    return MartlistPage;
+}());
+
+//# sourceMappingURL=martlist.js.map
+
+/***/ }),
+
+/***/ 280:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MartmapPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__martinfo_martinfo__ = __webpack_require__(281);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the MartmapPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var MartmapPage = /** @class */ (function () {
+    function MartmapPage(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.martflag = 0;
+        this.id = this.navParams.get("id");
+        this.listPrint();
+    }
+    MartmapPage.prototype.listPrint = function () {
+        if (this.id == "lottemart") {
+            this.martflag = "1";
+            this.img = "./assets/imgs/009-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-롯데마트 CI.png";
+            this.name = "롯데마트";
+            this.map = "./assets/imgs/028-버튼-PPT 5페이지의 가운데 이미지의 전국지도 버튼-마트-롯데마트.png";
+        }
+        else if (this.id == "emart") {
+            this.martflag = "2";
+            this.img = "./assets/imgs/010-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-이마트 CI.png";
+            this.name = "이마트";
+            this.map = "./assets/imgs/026-버튼-PPT 5페이지의 가운데 이미지의 전국지도 버튼-마트-이마트.png";
+        }
+        else if (this.id == "homeplus") {
+            this.martflag = "3";
+            this.img = "./assets/imgs/011-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-홈플러스 CI.png";
+            this.name = "홈플러스";
+            this.map = "./assets/imgs/027-버튼-PPT 5페이지의 가운데 이미지의 전국지도 버튼-마트-홈플러스.png";
+        }
+        else if (this.id == "costco") {
+            this.martflag = "4";
+            this.img = "./assets/imgs/012-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-코스트코 CI.png";
+            this.name = "코스트코";
+            this.map = "./assets/imgs/029-버튼-PPT 5페이지의 가운데 이미지의 전국지도 버튼-마트-코스트코.png";
+        }
+        else if (this.id == "traders") {
+            this.martflag = "5";
+            this.img = "./assets/imgs/013-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-이마트 트레이더스 CI.png";
+            this.name = "이마트 트레이더스";
+            this.map = "./assets/imgs/030-버튼-PPT 5페이지의 가운데 이미지의 전국지도 버튼-마트-이마트 트레이더스.png";
+        }
+        else if (this.id == "lottedep") {
+            this.martflag = "6";
+            this.img = "./assets/imgs/020-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-롯데백화점 CI.png";
+            this.name = "롯데 백화점";
+            this.map = "./assets/imgs/037-버튼-PPT 5페이지의 가운데 이미지의 전국지도 버튼-백화점-롯데백화점.png";
+        }
+        else if (this.id == "ssgdep") {
+            this.martflag = "7";
+            this.img = "./assets/imgs/021-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-신세백화점 CI.png";
+            this.name = "신세계 백화점";
+            this.map = "./assets/imgs/038-버튼-PPT 5페이지의 가운데 이미지의 전국지도 버튼-백화점-신세계백화점.png";
+        }
+        else if (this.id == "hyundep") {
+            this.martflag = "8";
+            this.img = "./assets/imgs/022-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-현대백화점 CI.png";
+            this.name = "현대 백화점";
+            this.map = "./assets/imgs/039-버튼-PPT 5페이지의 가운데 이미지의 전국지도 버튼-백화점-현대백화점.png";
+        }
+        else if (this.id == "lotteout") {
+            this.martflag = "9";
+            this.img = "./assets/imgs/023-버튼-PPT 4페이지의 가운데 이미지의 아울렛별 로고-롯데아울렛 CI.png";
+            this.name = "롯데 아울렛";
+            this.map = "./assets/imgs/040-버튼-PPT 5페이지의 가운데 이미지의 전국지도 버튼-아울렛-롯데아울렛.png";
+        }
+        else if (this.id == "ssgout") {
+            this.martflag = "10";
+            this.img = "./assets/imgs/025-버튼-PPT 4페이지의 가운데 이미지의 아울렛별 로고-신세계아울렛 CI.png";
+            this.name = "신세계 아울렛";
+            this.map = "./assets/imgs/041-버튼-PPT 5페이지의 가운데 이미지의 전국지도 버튼-아울렛-신세계아울렛.png";
+        }
+        else if (this.id == "hyunout") {
+            this.martflag = "11";
+            this.img = "./assets/imgs/024-버튼-PPT 4페이지의 가운데 이미지의 아울렛별 로고-현대아울렛 CI.png";
+            this.name = "현대아울렛";
+            this.map = "./assets/imgs/042-버튼-PPT 5페이지의 가운데 이미지의 전국지도 버튼-아울렛-현대아울렛.png";
+        }
+    };
+    MartmapPage.prototype.lottemartlist = function (area) {
+        console.log(area);
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__martinfo_martinfo__["a" /* MartinfoPage */], { "mart": "lottemart", "area": area });
+    };
+    MartmapPage.prototype.emartlist = function (area) {
+        console.log(area);
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__martinfo_martinfo__["a" /* MartinfoPage */], { "mart": "emart", "area": area });
+    };
+    MartmapPage.prototype.homepluslist = function (area) {
+        console.log(area);
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__martinfo_martinfo__["a" /* MartinfoPage */], { "mart": "homeplus", "area": area });
+    };
+    MartmapPage.prototype.costcolist = function (area) {
+        console.log(area);
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__martinfo_martinfo__["a" /* MartinfoPage */], { "mart": "costco", "area": area });
+    };
+    MartmapPage.prototype.traderslist = function (area) {
+        console.log(area);
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__martinfo_martinfo__["a" /* MartinfoPage */], { "mart": "traders", "area": area });
+    };
+    MartmapPage.prototype.lottedeplist = function (area) {
+        console.log(area);
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__martinfo_martinfo__["a" /* MartinfoPage */], { "mart": "lottedep", "area": area });
+    };
+    MartmapPage.prototype.ssgdeplist = function (area) {
+        console.log(area);
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__martinfo_martinfo__["a" /* MartinfoPage */], { "mart": "ssgdep", "area": area });
+    };
+    MartmapPage.prototype.hyundeplist = function (area) {
+        console.log(area);
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__martinfo_martinfo__["a" /* MartinfoPage */], { "mart": "hyundep", "area": area });
+    };
+    MartmapPage.prototype.lotteoutlist = function (area) {
+        console.log(area);
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__martinfo_martinfo__["a" /* MartinfoPage */], { "mart": "lotteout", "area": area });
+    };
+    MartmapPage.prototype.ssgoutlist = function (area) {
+        console.log(area);
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__martinfo_martinfo__["a" /* MartinfoPage */], { "mart": "ssgout", "area": area });
+    };
+    MartmapPage.prototype.hyunoutlist = function (area) {
+        console.log(area);
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__martinfo_martinfo__["a" /* MartinfoPage */], { "mart": "hyunout", "area": area });
+    };
+    MartmapPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-martmap',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/martmap/martmap.html"*/'<ion-content>\n    <div style="background-color: #71E8E8; margin-bottom:5px; display:flex;">\n        <img src="./assets/imgs/008-버튼-PPT 4페이지의 가운데 이미지의 상단 좌측-말 얼굴.png" style="width:50px; margin:5px;" alt="">\n        <span style="color:white; font-size:18px; font-weight: 900; margin:auto;">지역을 선택해주세요</span>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/004-버튼-PPT 3페이지의 이미지의 상단 가운데-광고금지.png" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/005-버튼-PPT 3페이지의 이미지의 상단 우측-평가하기 별점주기.png" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/006-버튼-PPT 3페이지의 이미지의 상단 우측-공유하기 점 세개.png" style="width:25px;"></button>\n    </div>\n    <ion-item-divider color="light"><img src="{{img}}" style="width:50px;margin-right:10px;">{{name}}</ion-item-divider>\n    <div *ngIf="martflag==1">\n        <button (click)="lottemartlist(\'gangwon\')" style="position:absolute; left:47%; top:27%; width:60px; height: 60px; opacity: 0;">강원</button>\n        <button (click)="lottemartlist(\'seoul\')" style="position:absolute; left:22%; top:32%; width:40px; height: 30px; opacity: 0;">서울</button>\n        <button (click)="lottemartlist(\'gyeonggi\')" style="position:absolute; left:26%; top:38%; width:43px; height: 30px; opacity: 0;">경기</button>\n        <button (click)="lottemartlist(\'incheon\')" style="position:absolute; left:9%; top:34%; width:40px; height: 30px; opacity: 0;">인천</button>\n        <button (click)="lottemartlist(\'chungnam\')" style="position:absolute; left:16%; top:48%; width:40px; height: 30px; opacity: 0;">충남</button>\n        <button (click)="lottemartlist(\'chungbuk\')" style="position:absolute; left:40%; top:42%; width:40px; height: 30px; opacity: 0;">충북</button>\n        <!-- <button (click)="lottemartlist(\'sejong\')" style="position:absolute; left:30%; top:47%; width:40px; height: 30px; opacity: 0;">세종</button> -->\n        <button (click)="lottemartlist(\'daejeon\')" style="position:absolute; left:30%; top:53%; width:40px; height: 30px; opacity: 0;">대전</button>\n        <button (click)="lottemartlist(\'gyeongbuk\')" style="position:absolute; left:61%; top:50%; width:40px; height: 30px; opacity: 0;">경북</button>\n        <button (click)="lottemartlist(\'daegu\')" style="position:absolute; left:58%; top:58%; width:40px; height: 30px; opacity: 0;">대구</button>\n        <button (click)="lottemartlist(\'ulsan\')" style="position:absolute; left:71%; top:62%; width:40px; height: 30px; opacity: 0;">울산</button>\n        <button (click)="lottemartlist(\'busan\')" style="position:absolute; left:66%; top:70%; width:40px; height: 30px; opacity: 0;">부산</button>\n        <button (click)="lottemartlist(\'gyeongnam\')" style="position:absolute; left:48%; top:65%; width:40px; height: 30px; opacity: 0;">경남</button>\n        <button (click)="lottemartlist(\'jeonbuk\')" style="position:absolute; left:26%; top:60%; width:40px; height: 30px; opacity: 0;">전북</button>\n        <button (click)="lottemartlist(\'gwangju\')" style="position:absolute; left:19%; top:69%; width:40px; height: 30px; opacity: 0;">광주</button>\n        <button (click)="lottemartlist(\'jeonnam\')" style="position:absolute; left:20%; top:75%; width:40px; height: 30px; opacity: 0;">전남</button>\n        <button (click)="lottemartlist(\'jeju\')" style="position:absolute; left:5%; top:88%; width:40px; height: 30px; opacity: 0;">제주</button>\n        <img src=" {{map}} " style="margin-top:-120px; ">\n    </div>\n    <div *ngIf="martflag==2">\n        <button (click)="emartlist(\'gangwon\')" style="position:absolute; left:47%; top:27%; width:60px; height: 60px; opacity: 0;">강원</button>\n        <button (click)="emartlist(\'seoul\')" style="position:absolute; left:22%; top:32%; width:40px; height: 30px; opacity: 0;">서울</button>\n        <button (click)="emartlist(\'gyeonggi\')" style="position:absolute; left:26%; top:38%; width:43px; height: 30px; opacity: 0;">경기</button>\n        <button (click)="emartlist(\'incheon\')" style="position:absolute; left:9%; top:34%; width:40px; height: 30px; opacity: 0;">인천</button>\n        <button (click)="emartlist(\'chungnam\')" style="position:absolute; left:16%; top:48%; width:40px; height: 30px; opacity: 0;">충남</button>\n        <button (click)="emartlist(\'chungbuk\')" style="position:absolute; left:40%; top:42%; width:40px; height: 30px; opacity: 0;">충북</button>\n        <button (click)="emartlist(\'daejeon\')" style="position:absolute; left:30%; top:53%; width:40px; height: 30px; opacity: 0;">대전</button>\n        <button (click)="emartlist(\'gyeongbuk\')" style="position:absolute; left:61%; top:50%; width:40px; height: 30px; opacity: 0;">경북</button>\n        <button (click)="emartlist(\'daegu\')" style="position:absolute; left:58%; top:58%; width:40px; height: 30px; opacity: 0;">대구</button>\n        <button (click)="emartlist(\'ulsan\')" style="position:absolute; left:71%; top:62%; width:40px; height: 30px; opacity: 0;">울산</button>\n        <button (click)="emartlist(\'busan\')" style="position:absolute; left:66%; top:70%; width:40px; height: 30px; opacity: 0;">부산</button>\n        <button (click)="emartlist(\'gyeongnam\')" style="position:absolute; left:48%; top:65%; width:40px; height: 30px; opacity: 0;">경남</button>\n        <button (click)="emartlist(\'jeonbuk\')" style="position:absolute; left:26%; top:60%; width:40px; height: 30px; opacity: 0;">전북</button>\n        <button (click)="emartlist(\'gwangju\')" style="position:absolute; left:19%; top:69%; width:40px; height: 30px; opacity: 0;">광주</button>\n        <button (click)="emartlist(\'jeonnam\')" style="position:absolute; left:20%; top:75%; width:40px; height: 30px; opacity: 0;">전남</button>\n        <button (click)="emartlist(\'jeju\')" style="position:absolute; left:5%; top:88%; width:40px; height: 30px; opacity: 0;">제주</button>\n        <img src=" {{map}} " style="margin-top:-120px; ">\n    </div>\n    <div *ngIf="martflag==3">\n        <button (click)="homepluslist(\'gangwon\')" style="position:absolute; left:47%; top:27%; width:60px; height: 60px; opacity: 0;">강원</button>\n        <button (click)="homepluslist(\'seoul\')" style="position:absolute; left:22%; top:32%; width:40px; height: 30px; opacity: 0;">서울</button>\n        <button (click)="homepluslist(\'gyeonggi\')" style="position:absolute; left:26%; top:38%; width:43px; height: 30px; opacity: 0;">경기</button>\n        <button (click)="homepluslist(\'incheon\')" style="position:absolute; left:9%; top:34%; width:40px; height: 30px; opacity: 0;">인천</button>\n        <button (click)="homepluslist(\'chungnam\')" style="position:absolute; left:16%; top:48%; width:40px; height: 30px; opacity: 0;">충남</button>\n        <button (click)="homepluslist(\'chungbuk\')" style="position:absolute; left:40%; top:42%; width:40px; height: 30px; opacity: 0;">충북</button>\n        <button (click)="homepluslist(\'sejong\')" style="position:absolute; left:30%; top:47%; width:40px; height: 30px; opacity: 0;">세종</button>\n        <button (click)="homepluslist(\'daejeon\')" style="position:absolute; left:30%; top:53%; width:40px; height: 30px; opacity: 0;">대전</button>\n        <button (click)="homepluslist(\'gyeongbuk\')" style="position:absolute; left:61%; top:50%; width:40px; height: 30px; opacity: 0;">경북</button>\n        <button (click)="homepluslist(\'daegu\')" style="position:absolute; left:58%; top:58%; width:40px; height: 30px; opacity: 0;">대구</button>\n        <button (click)="homepluslist(\'ulsan\')" style="position:absolute; left:71%; top:62%; width:40px; height: 30px; opacity: 0;">울산</button>\n        <button (click)="homepluslist(\'busan\')" style="position:absolute; left:66%; top:70%; width:40px; height: 30px; opacity: 0;">부산</button>\n        <button (click)="homepluslist(\'gyeongnam\')" style="position:absolute; left:48%; top:65%; width:40px; height: 30px; opacity: 0;">경남</button>\n        <button (click)="homepluslist(\'jeonbuk\')" style="position:absolute; left:26%; top:60%; width:40px; height: 30px; opacity: 0;">전북</button>\n        <button (click)="homepluslist(\'gwangju\')" style="position:absolute; left:19%; top:69%; width:40px; height: 30px; opacity: 0;">광주</button>\n        <button (click)="homepluslist(\'jeonnam\')" style="position:absolute; left:20%; top:75%; width:40px; height: 30px; opacity: 0;">전남</button>\n        <button (click)="homepluslist(\'jeju\')" style="position:absolute; left:5%; top:88%; width:40px; height: 30px; opacity: 0;">제주</button>\n        <img src=" {{map}} " style="margin-top:-120px; ">\n    </div>\n    <div *ngIf="martflag==4">\n        <button (click)="costcolist(\'seoul\')" style="position:absolute; left:22%; top:32%; width:40px; height: 30px; opacity: 0;">서울</button>\n        <button (click)="costcolist(\'gyeonggi\')" style="position:absolute; left:26%; top:38%; width:43px; height: 30px; opacity: 0;">경기</button>\n        <button (click)="costcolist(\'incheon\')" style="position:absolute; left:9%; top:34%; width:40px; height: 30px; opacity: 0;">인천</button>\n        <button (click)="costcolist(\'chungnam\')" style="position:absolute; left:16%; top:48%; width:40px; height: 30px; opacity: 0;">충남</button>\n        <button (click)="costcolist(\'sejong\')" style="position:absolute; left:30%; top:47%; width:40px; height: 30px; opacity: 0;">세종</button>\n        <button (click)="costcolist(\'daejeon\')" style="position:absolute; left:30%; top:53%; width:40px; height: 30px; opacity: 0;">대전</button>\n        <button (click)="costcolist(\'daegu\')" style="position:absolute; left:58%; top:58%; width:40px; height: 30px; opacity: 0;">대구</button>\n        <button (click)="costcolist(\'ulsan\')" style="position:absolute; left:71%; top:62%; width:40px; height: 30px; opacity: 0;">울산</button>\n        <button (click)="costcolist(\'busan\')" style="position:absolute; left:66%; top:70%; width:40px; height: 30px; opacity: 0;">부산</button>\n        <img src=" {{map}} " style="margin-top:-120px; ">\n    </div>\n    <div *ngIf="martflag==5">\n        <button (click)="traderslist(\'seoul\')" style="position:absolute; left:22%; top:32%; width:40px; height: 30px; opacity: 0;">서울</button>\n        <button (click)="traderslist(\'gyeonggi\')" style="position:absolute; left:26%; top:38%; width:43px; height: 30px; opacity: 0;">경기</button>\n        <button (click)="traderslist(\'incheon\')" style="position:absolute; left:9%; top:34%; width:40px; height: 30px; opacity: 0;">인천</button>\n        <button (click)="traderslist(\'chungnam\')" style="position:absolute; left:16%; top:48%; width:40px; height: 30px; opacity: 0;">충남</button>\n        <button (click)="traderslist(\'daejeon\')" style="position:absolute; left:30%; top:53%; width:40px; height: 30px; opacity: 0;">대전</button>\n        <button (click)="traderslist(\'daegu\')" style="position:absolute; left:58%; top:58%; width:40px; height: 30px; opacity: 0;">대구</button>\n        <button (click)="traderslist(\'busan\')" style="position:absolute; left:66%; top:70%; width:40px; height: 30px; opacity: 0;">부산</button>\n        <button (click)="traderslist(\'gyeongnam\')" style="position:absolute; left:48%; top:65%; width:40px; height: 30px; opacity: 0;">경남</button>\n        <img src=" {{map}} " style="margin-top:-120px; ">\n\n    </div>\n    <div *ngIf="martflag==6">\n        <button (click)="lottedeplist(\'seoul\')" style="position:absolute; left:22%; top:32%; width:40px; height: 30px; opacity: 0;">서울</button>\n        <button (click)="lottedeplist(\'gyeonggi\')" style="position:absolute; left:26%; top:38%; width:43px; height: 30px; opacity: 0;">경기</button>\n        <button (click)="lottedeplist(\'incheon\')" style="position:absolute; left:9%; top:34%; width:40px; height: 30px; opacity: 0;">인천</button>\n        <button (click)="lottedeplist(\'daejeon\')" style="position:absolute; left:30%; top:53%; width:40px; height: 30px; opacity: 0;">대전</button>\n        <button (click)="lottedeplist(\'gyeongbuk\')" style="position:absolute; left:61%; top:50%; width:40px; height: 30px; opacity: 0;">경북</button>\n        <button (click)="lottedeplist(\'daegu\')" style="position:absolute; left:58%; top:58%; width:40px; height: 30px; opacity: 0;">대구</button>\n        <button (click)="lottedeplist(\'ulsan\')" style="position:absolute; left:71%; top:62%; width:40px; height: 30px; opacity: 0;">울산</button>\n        <button (click)="lottedeplist(\'busan\')" style="position:absolute; left:66%; top:70%; width:40px; height: 30px; opacity: 0;">부산</button>\n        <button (click)="lottedeplist(\'gyeongnam\')" style="position:absolute; left:48%; top:65%; width:40px; height: 30px; opacity: 0;">경남</button>\n        <button (click)="lottedeplist(\'jeonbuk\')" style="position:absolute; left:26%; top:60%; width:40px; height: 30px; opacity: 0;">전북</button>\n        <button (click)="lottedeplist(\'gwangju\')" style="position:absolute; left:19%; top:69%; width:40px; height: 30px; opacity: 0;">광주</button>\n        <img src=" {{map}} " style="margin-top:-120px; ">\n    </div>\n    <div *ngIf="martflag==7">\n        <button (click)="ssgdeplist(\'seoul\')" style="position:absolute; left:22%; top:32%; width:40px; height: 30px; opacity: 0;">서울</button>\n        <button (click)="ssgdeplist(\'gyeonggi\')" style="position:absolute; left:26%; top:38%; width:43px; height: 30px; opacity: 0;">경기</button>\n        <button (click)="ssgdeplist(\'chungnam\')" style="position:absolute; left:16%; top:48%; width:40px; height: 30px; opacity: 0;">충남</button>\n        <button (click)="ssgdeplist(\'daejeon\')" style="position:absolute; left:30%; top:53%; width:40px; height: 30px; opacity: 0;">대전</button>\n        <button (click)="ssgdeplist(\'daegu\')" style="position:absolute; left:58%; top:58%; width:40px; height: 30px; opacity: 0;">대구</button>\n        <button (click)="ssgdeplist(\'busan\')" style="position:absolute; left:66%; top:70%; width:40px; height: 30px; opacity: 0;">부산</button>\n        <button (click)="ssgdeplist(\'gyeongnam\')" style="position:absolute; left:48%; top:65%; width:40px; height: 30px; opacity: 0;">경남</button>\n        <button (click)="ssgdeplist(\'gwangju\')" style="position:absolute; left:19%; top:69%; width:40px; height: 30px; opacity: 0;">광주</button>\n        <img src=" {{map}} " style="margin-top:-120px; ">\n    </div>\n    <div *ngIf="martflag==8">\n        <button (click)="hyundeplist(\'seoul\')" style="position:absolute; left:22%; top:32%; width:40px; height: 30px; opacity: 0;">서울</button>\n        <button (click)="hyundeplist(\'gyeonggi\')" style="position:absolute; left:26%; top:38%; width:43px; height: 30px; opacity: 0;">경기</button>\n        <button (click)="hyundeplist(\'chungbuk\')" style="position:absolute; left:40%; top:42%; width:40px; height: 30px; opacity: 0;">충북</button>\n        <button (click)="hyundeplist(\'daegu\')" style="position:absolute; left:58%; top:58%; width:40px; height: 30px; opacity: 0;">대구</button>\n        <button (click)="hyundeplist(\'ulsan\')" style="position:absolute; left:71%; top:62%; width:40px; height: 30px; opacity: 0;">울산</button>\n        <button (click)="hyundeplist(\'busan\')" style="position:absolute; left:66%; top:70%; width:40px; height: 30px; opacity: 0;">부산</button>\n        <img src=" {{map}} " style="margin-top:-120px; ">\n    </div>\n    <div *ngIf="martflag==9">\n        <button (click)="lotteoutlist(\'seoul\')" style="position:absolute; left:22%; top:32%; width:40px; height: 30px; opacity: 0;">서울</button>\n        <button (click)="lotteoutlist(\'gyeonggi\')" style="position:absolute; left:26%; top:38%; width:43px; height: 30px; opacity: 0;">경기</button>\n        <button (click)="lotteoutlist(\'chungnam\')" style="position:absolute; left:16%; top:48%; width:40px; height: 30px; opacity: 0;">충남</button>\n        <button (click)="lotteoutlist(\'chungbuk\')" style="position:absolute; left:40%; top:42%; width:40px; height: 30px; opacity: 0;">충북</button>\n        <button (click)="lotteoutlist(\'daegu\')" style="position:absolute; left:58%; top:58%; width:40px; height: 30px; opacity: 0;">대구</button>\n        <button (click)="lotteoutlist(\'busan\')" style="position:absolute; left:66%; top:70%; width:40px; height: 30px; opacity: 0;">부산</button>\n        <button (click)="lotteoutlist(\'gyeongnam\')" style="position:absolute; left:48%; top:65%; width:40px; height: 30px; opacity: 0;">경남</button>\n        <button (click)="lotteoutlist(\'jeonbuk\')" style="position:absolute; left:26%; top:60%; width:40px; height: 30px; opacity: 0;">전북</button>\n        <button (click)="lotteoutlist(\'gwangju\')" style="position:absolute; left:19%; top:69%; width:40px; height: 30px; opacity: 0;">광주</button>\n        <button (click)="lotteoutlist(\'jeonnam\')" style="position:absolute; left:20%; top:75%; width:40px; height: 30px; opacity: 0;">전남</button>\n        <img src=" {{map}} " style="margin-top:-120px; ">\n    </div>\n    <div *ngIf="martflag==10">\n        <button (click)="ssgoutlist(\'gyeonggi\')" style="position:absolute; left:26%; top:38%; width:43px; height: 30px; opacity: 0;">경기</button>\n        <button (click)="ssgoutlist(\'busan\')" style="position:absolute; left:66%; top:70%; width:40px; height: 30px; opacity: 0;">부산</button>\n        <img src=" {{map}} " style="margin-top:-120px; ">\n    </div>\n    <div *ngIf="martflag==11">\n        <button (click)="hyunoutlist(\'seoul\')" style="position:absolute; left:22%; top:32%; width:40px; height: 30px; opacity: 0;">서울</button>\n        <button (click)="hyunoutlist(\'gyeonggi\')" style="position:absolute; left:26%; top:38%; width:43px; height: 30px; opacity: 0;">경기</button>\n        <button (click)="hyunoutlist(\'incheon\')" style="position:absolute; left:9%; top:34%; width:40px; height: 30px; opacity: 0;">인천</button>\n        <button (click)="hyunoutlist(\'daegu\')" style="position:absolute; left:58%; top:58%; width:40px; height: 30px; opacity: 0;">대구</button>\n        <img src=" {{map}} " style="margin-top:-120px; ">\n    </div>\n</ion-content>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/martmap/martmap.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+    ], MartmapPage);
+    return MartmapPage;
+}());
+
+//# sourceMappingURL=martmap.js.map
+
+/***/ }),
+
+/***/ 281:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MartinfoPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jquery__ = __webpack_require__(269);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_jquery__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/**
+ * Generated class for the MartinfoPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var MartinfoPage = /** @class */ (function () {
+    function MartinfoPage(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.day = new Date();
+        this.martArray = [];
+        this.firemain = __WEBPACK_IMPORTED_MODULE_2_firebase___default.a.database().ref();
+        this.week = [];
+        this.dayweek = [];
+        this.dayoff = [];
+        this.todayy = [];
+        this.mart = this.navParams.get("mart");
+        this.area = this.navParams.get("area");
+        console.log(this.mart);
+        console.log(this.area);
+        this.martfunc();
+        this.year = this.day.getFullYear();
+        this.month = this.day.getMonth() + 1;
+        this.date = this.day.getDate();
+        this.dayOfweek = this.day.getDay();
+        this.theDate();
+        this.weekAndDay();
+        this.todayy = ['오늘'];
+    }
+    MartinfoPage.prototype.weekAndDay = function () {
+        var date = new Date, days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'], prefixes = ['첫째주', '둘째주', '셋째주', '넷째주', '다섯째주'];
+        this.whatWeek = prefixes[0 | date.getDate() / 7];
+        this.dayy = days[date.getDay()];
+        console.log(this.dayy);
+        // this.whatWeek = '둘째주';
+        console.log(this.whatWeek);
+        var w = prefixes[0 | date.getDate() / 7] + ' ' + days[date.getDay()];
+        console.log(w);
+    };
+    MartinfoPage.prototype.theDate = function () {
+        this.year = this.day.getFullYear();
+        this.month = this.day.getMonth() + 1;
+        this.date = this.day.getDate();
+        this.dayOfweek = this.day.getDay();
+        for (var i = 0; i < 7; i++) {
+            var date = this.day.getDate() + i;
+            console.log(date);
+            this.week.push(date);
+        }
+        console.log(this.day.getDay());
+        if (this.day.getDay() == 0) {
+            var dname = new Array('일', '월', '화', '수', '목', '금', '토');
+            for (var j = 0; j < dname.length; j++) {
+                console.log(dname[j]);
+                this.dayweek.push(dname[j]);
+            }
+            console.log(this.dayweek);
+        }
+        if (this.day.getDay() == 1) {
+            var dname = new Array('월', '화', '수', '목', '금', '토', '일');
+            for (var j = 0; j < dname.length; j++) {
+                console.log(dname[j]);
+                this.dayweek.push(dname[j]);
+            }
+            console.log(this.dayweek);
+        }
+        if (this.day.getDay() == 2) {
+            var dname = new Array('화', '수', '목', '금', '토', '일', '월');
+            for (var j = 0; j < dname.length; j++) {
+                console.log(dname[j]);
+                this.dayweek.push(dname[j]);
+            }
+            console.log(this.dayweek);
+        }
+        if (this.day.getDay() == 3) {
+            var dname = new Array('수', '목', '금', '토', '일', '월', '화');
+            for (var j = 0; j < dname.length; j++) {
+                console.log(dname[j]);
+                this.dayweek.push(dname[j]);
+            }
+            console.log(this.dayweek);
+        }
+        if (this.day.getDay() == 4) {
+            var dname = new Array('목', '금', '토', '일', '월', '화', '수');
+            for (var j = 0; j < dname.length; j++) {
+                console.log(dname[j]);
+                this.dayweek.push(dname[j]);
+            }
+            console.log(this.dayweek);
+        }
+        if (this.day.getDay() == 5) {
+            var dname = new Array('금', '토', '일', '월', '화', '수', '목');
+            for (var j = 0; j < dname.length; j++) {
+                console.log(dname[j]);
+                this.dayweek.push(dname[j]);
+            }
+            console.log(this.dayweek);
+        }
+        if (this.day.getDay() == 6) {
+            var dname = new Array('토', '일', '월', '화', '수', '목', '금');
+            for (var j = 0; j < dname.length; j++) {
+                console.log(dname[j]);
+                this.dayweek.push(dname[j]);
+            }
+            console.log(this.dayweek);
+        }
+        console.log(this.week);
+    };
+    MartinfoPage.prototype.newfunction = function (name) {
+        var _this = this;
+        console.log("hi");
+        this.firemain.child("favorite").child(name).once("value", function (sn) {
+            console.log(name);
+            if (_this.area == "seoul") {
+                for (var a in sn.val()) {
+                    // this.firemain.child("favorite").child(name).child(a).update({"favorite":"false"}); //즐겨찾기 초기화
+                    if (sn.val()[a].addr.indexOf("서울") != -1 && sn.val()[a].addr.indexOf("서울대학로") == -1) {
+                        _this.martArray.push(sn.val()[a]);
+                        console.log(sn.val()[a].name + " : " + sn.val()[a].addr + " 휴일은 " + sn.val()[a].vacation);
+                        if (_this.whatWeek == "첫째주") {
+                            if (sn.val()[a].vacation.indexOf("첫째") != -1) {
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "둘째주") {
+                            console.log(_this.dayy);
+                            if (sn.val()[a].vacation.indexOf("둘째") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "셋째주") {
+                            if (sn.val()[a].vacation.indexOf("셋째") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "넷째주") {
+                            if (sn.val()[a].vacation.indexOf("넷째") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "다섯째주") {
+                            if (sn.val()[a].vacation.indexOf("다섯") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                    }
+                }
+            }
+            if (_this.area == "gyeonggi") {
+                for (var a in sn.val()) {
+                    if (sn.val()[a].addr.indexOf("경기") != -1) {
+                        _this.martArray.push(sn.val()[a]);
+                        if (_this.whatWeek == "첫째주") {
+                            if (sn.val()[a].vacation.indexOf("첫째") != -1 || sn.val()[a].vacation.indexOf("1") != -1) {
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "둘째주") {
+                            if (sn.val()[a].vacation.indexOf("둘째") != -1 || sn.val()[a].vacation.indexOf("2") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "셋째주") {
+                            if (sn.val()[a].vacation.indexOf("셋째") != -1 || sn.val()[a].vacation.indexOf("3") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "넷째주") {
+                            if (sn.val()[a].vacation.indexOf("넷째") != -1 || sn.val()[a].vacation.indexOf("4") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "다섯째주") {
+                            if (sn.val()[a].vacation.indexOf("다섯") != -1 || sn.val()[a].vacation.indexOf("5") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                    }
+                }
+            }
+            if (_this.area == "incheon") {
+                for (var a in sn.val()) {
+                    if (sn.val()[a].addr.indexOf("인천") != -1) {
+                        _this.martArray.push(sn.val()[a]);
+                        if (_this.whatWeek == "첫째주") {
+                            if (sn.val()[a].vacation.indexOf("첫째") != -1 || sn.val()[a].vacation.indexOf("1") != -1) {
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "둘째주") {
+                            if (sn.val()[a].vacation.indexOf("둘째") != -1 || sn.val()[a].vacation.indexOf("2") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "셋째주") {
+                            if (sn.val()[a].vacation.indexOf("셋째") != -1 || sn.val()[a].vacation.indexOf("3") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "넷째주") {
+                            if (sn.val()[a].vacation.indexOf("넷째") != -1 || sn.val()[a].vacation.indexOf("4") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "다섯째주") {
+                            if (sn.val()[a].vacation.indexOf("다섯") != -1 || sn.val()[a].vacation.indexOf("5") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                    }
+                }
+            }
+            if (_this.area == "gangwon") {
+                for (var a in sn.val()) {
+                    if (sn.val()[a].addr.indexOf("강원") != -1) {
+                        _this.martArray.push(sn.val()[a]);
+                        if (_this.whatWeek == "첫째주") {
+                            if (sn.val()[a].vacation.indexOf("첫째") != -1 || sn.val()[a].vacation.indexOf("1") != -1) {
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "둘째주") {
+                            console.log(_this.dayy);
+                            if (sn.val()[a].vacation.indexOf("둘째") != -1 || sn.val()[a].vacation.indexOf("2") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "셋째주") {
+                            if (sn.val()[a].vacation.indexOf("셋째") != -1 || sn.val()[a].vacation.indexOf("3") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "넷째주") {
+                            if (sn.val()[a].vacation.indexOf("넷째") != -1 || sn.val()[a].vacation.indexOf("4") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "다섯째주") {
+                            if (sn.val()[a].vacation.indexOf("다섯") != -1 || sn.val()[a].vacation.indexOf("5") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                    }
+                }
+            }
+            if (_this.area == "chungbuk") {
+                for (var a in sn.val()) {
+                    if (sn.val()[a].addr.indexOf("충북") != -1) {
+                        _this.martArray.push(sn.val()[a]);
+                        if (_this.whatWeek == "첫째주") {
+                            if (sn.val()[a].vacation.indexOf("첫째") != -1 || sn.val()[a].vacation.indexOf("1") != -1) {
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "둘째주") {
+                            console.log(_this.dayy);
+                            if (sn.val()[a].vacation.indexOf("둘째") != -1 || sn.val()[a].vacation.indexOf("2") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "셋째주") {
+                            if (sn.val()[a].vacation.indexOf("셋째") != -1 || sn.val()[a].vacation.indexOf("3") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "넷째주") {
+                            if (sn.val()[a].vacation.indexOf("넷째") != -1 || sn.val()[a].vacation.indexOf("4") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "다섯째주") {
+                            if (sn.val()[a].vacation.indexOf("다섯") != -1 || sn.val()[a].vacation.indexOf("5") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                    }
+                }
+            }
+            if (_this.area == "chungnam") {
+                for (var a in sn.val()) {
+                    if (sn.val()[a].addr.indexOf("충남") != -1) {
+                        _this.martArray.push(sn.val()[a]);
+                        if (_this.whatWeek == "첫째주") {
+                            if (sn.val()[a].vacation.indexOf("첫째") != -1 || sn.val()[a].vacation.indexOf("1") != -1) {
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "둘째주") {
+                            console.log(_this.dayy);
+                            if (sn.val()[a].vacation.indexOf("둘째") != -1 || sn.val()[a].vacation.indexOf("2") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "셋째주") {
+                            if (sn.val()[a].vacation.indexOf("셋째") != -1 || sn.val()[a].vacation.indexOf("3") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "넷째주") {
+                            if (sn.val()[a].vacation.indexOf("넷째") != -1 || sn.val()[a].vacation.indexOf("4") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "다섯째주") {
+                            if (sn.val()[a].vacation.indexOf("다섯") != -1 || sn.val()[a].vacation.indexOf("5") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                    }
+                }
+            }
+            if (_this.area == "daejeon") {
+                for (var a in sn.val()) {
+                    if (sn.val()[a].addr.indexOf("대전") != -1) {
+                        _this.martArray.push(sn.val()[a]);
+                        if (_this.whatWeek == "첫째주") {
+                            if (sn.val()[a].vacation.indexOf("첫째") != -1 || sn.val()[a].vacation.indexOf("1") != -1) {
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "둘째주") {
+                            console.log(_this.dayy);
+                            if (sn.val()[a].vacation.indexOf("둘째") != -1 || sn.val()[a].vacation.indexOf("2") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "셋째주") {
+                            if (sn.val()[a].vacation.indexOf("셋째") != -1 || sn.val()[a].vacation.indexOf("3") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "넷째주") {
+                            if (sn.val()[a].vacation.indexOf("넷째") != -1 || sn.val()[a].vacation.indexOf("4") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "다섯째주") {
+                            if (sn.val()[a].vacation.indexOf("다섯") != -1 || sn.val()[a].vacation.indexOf("5") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                    }
+                }
+            }
+            if (_this.area == "gyeongbuk") {
+                for (var a in sn.val()) {
+                    if (sn.val()[a].addr.indexOf("경북") != -1) {
+                        _this.martArray.push(sn.val()[a]);
+                        if (_this.whatWeek == "첫째주") {
+                            if (sn.val()[a].vacation.indexOf("첫째") != -1 || sn.val()[a].vacation.indexOf("1") != -1) {
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "둘째주") {
+                            console.log(_this.dayy);
+                            if (sn.val()[a].vacation.indexOf("둘째") != -1 || sn.val()[a].vacation.indexOf("2") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "셋째주") {
+                            if (sn.val()[a].vacation.indexOf("셋째") != -1 || sn.val()[a].vacation.indexOf("3") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "넷째주") {
+                            if (sn.val()[a].vacation.indexOf("넷째") != -1 || sn.val()[a].vacation.indexOf("4") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "다섯째주") {
+                            if (sn.val()[a].vacation.indexOf("다섯") != -1 || sn.val()[a].vacation.indexOf("5") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                    }
+                }
+            }
+            if (_this.area == "daegu") {
+                for (var a in sn.val()) {
+                    if (sn.val()[a].addr.indexOf("대구") != -1) {
+                        _this.martArray.push(sn.val()[a]);
+                        if (_this.whatWeek == "첫째주") {
+                            if (sn.val()[a].vacation.indexOf("첫째") != -1 || sn.val()[a].vacation.indexOf("1") != -1) {
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "둘째주") {
+                            console.log(_this.dayy);
+                            if (sn.val()[a].vacation.indexOf("둘째") != -1 || sn.val()[a].vacation.indexOf("2") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "셋째주") {
+                            if (sn.val()[a].vacation.indexOf("셋째") != -1 || sn.val()[a].vacation.indexOf("3") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "넷째주") {
+                            if (sn.val()[a].vacation.indexOf("넷째") != -1 || sn.val()[a].vacation.indexOf("4") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "다섯째주") {
+                            if (sn.val()[a].vacation.indexOf("다섯") != -1 || sn.val()[a].vacation.indexOf("5") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                    }
+                }
+            }
+            if (_this.area == "ulsan") {
+                for (var a in sn.val()) {
+                    if (sn.val()[a].addr.indexOf("울산") != -1) {
+                        _this.martArray.push(sn.val()[a]);
+                        if (_this.whatWeek == "첫째주") {
+                            if (sn.val()[a].vacation.indexOf("첫째") != -1 || sn.val()[a].vacation.indexOf("1") != -1) {
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "둘째주") {
+                            console.log(_this.dayy);
+                            if (sn.val()[a].vacation.indexOf("둘째") != -1 || sn.val()[a].vacation.indexOf("2") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "셋째주") {
+                            if (sn.val()[a].vacation.indexOf("셋째") != -1 || sn.val()[a].vacation.indexOf("3") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "넷째주") {
+                            if (sn.val()[a].vacation.indexOf("넷째") != -1 || sn.val()[a].vacation.indexOf("4") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "다섯째주") {
+                            if (sn.val()[a].vacation.indexOf("다섯") != -1 || sn.val()[a].vacation.indexOf("5") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                    }
+                }
+            }
+            if (_this.area == "busan") {
+                for (var a in sn.val()) {
+                    if (sn.val()[a].addr.indexOf("부산") != -1) {
+                        _this.martArray.push(sn.val()[a]);
+                        if (_this.whatWeek == "첫째주") {
+                            if (sn.val()[a].vacation.indexOf("첫째") != -1 || sn.val()[a].vacation.indexOf("1") != -1) {
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "둘째주") {
+                            console.log(_this.dayy);
+                            if (sn.val()[a].vacation.indexOf("둘째") != -1 || sn.val()[a].vacation.indexOf("2") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "셋째주") {
+                            if (sn.val()[a].vacation.indexOf("셋째") != -1 || sn.val()[a].vacation.indexOf("3") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "넷째주") {
+                            if (sn.val()[a].vacation.indexOf("넷째") != -1 || sn.val()[a].vacation.indexOf("4") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "다섯째주") {
+                            if (sn.val()[a].vacation.indexOf("다섯") != -1 || sn.val()[a].vacation.indexOf("5") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                    }
+                }
+            }
+            if (_this.area == "gyeongnam") {
+                for (var a in sn.val()) {
+                    if (sn.val()[a].addr.indexOf("경남") != -1) {
+                        _this.martArray.push(sn.val()[a]);
+                        if (_this.whatWeek == "첫째주") {
+                            if (sn.val()[a].vacation.indexOf("첫째") != -1 || sn.val()[a].vacation.indexOf("1") != -1) {
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "둘째주") {
+                            console.log(_this.dayy);
+                            if (sn.val()[a].vacation.indexOf("둘째") != -1 || sn.val()[a].vacation.indexOf("2") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "셋째주") {
+                            if (sn.val()[a].vacation.indexOf("셋째") != -1 || sn.val()[a].vacation.indexOf("3") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "넷째주") {
+                            if (sn.val()[a].vacation.indexOf("넷째") != -1 || sn.val()[a].vacation.indexOf("4") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "다섯째주") {
+                            if (sn.val()[a].vacation.indexOf("다섯") != -1 || sn.val()[a].vacation.indexOf("5") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                    }
+                }
+            }
+            if (_this.area == "jeonbuk") {
+                for (var a in sn.val()) {
+                    if (sn.val()[a].addr.indexOf("전북") != -1) {
+                        _this.martArray.push(sn.val()[a]);
+                        if (_this.whatWeek == "첫째주") {
+                            if (sn.val()[a].vacation.indexOf("첫째") != -1 || sn.val()[a].vacation.indexOf("1") != -1) {
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "둘째주") {
+                            console.log(_this.dayy);
+                            if (sn.val()[a].vacation.indexOf("둘째") != -1 || sn.val()[a].vacation.indexOf("2") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "셋째주") {
+                            if (sn.val()[a].vacation.indexOf("셋째") != -1 || sn.val()[a].vacation.indexOf("3") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "넷째주") {
+                            if (sn.val()[a].vacation.indexOf("넷째") != -1 || sn.val()[a].vacation.indexOf("4") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "다섯째주") {
+                            if (sn.val()[a].vacation.indexOf("다섯") != -1 || sn.val()[a].vacation.indexOf("5") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                    }
+                }
+            }
+            if (_this.area == "gwangju") {
+                for (var a in sn.val()) {
+                    if (sn.val()[a].addr.indexOf("광주") != -1) {
+                        _this.martArray.push(sn.val()[a]);
+                        if (_this.whatWeek == "첫째주") {
+                            if (sn.val()[a].vacation.indexOf("첫째") != -1 || sn.val()[a].vacation.indexOf("1") != -1) {
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "둘째주") {
+                            if (sn.val()[a].vacation.indexOf("둘째") != -1 || sn.val()[a].vacation.indexOf("2") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "셋째주") {
+                            if (sn.val()[a].vacation.indexOf("셋째") != -1 || sn.val()[a].vacation.indexOf("3") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "넷째주") {
+                            if (sn.val()[a].vacation.indexOf("넷째") != -1 || sn.val()[a].vacation.indexOf("4") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "다섯째주") {
+                            if (sn.val()[a].vacation.indexOf("다섯") != -1 || sn.val()[a].vacation.indexOf("5") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                    }
+                }
+            }
+            if (_this.area == "jeonnam") {
+                for (var a in sn.val()) {
+                    if (sn.val()[a].addr.indexOf("전남") != -1) {
+                        _this.martArray.push(sn.val()[a]);
+                        if (_this.whatWeek == "첫째주") {
+                            if (sn.val()[a].vacation.indexOf("첫째") != -1 || sn.val()[a].vacation.indexOf("1") != -1) {
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "둘째주") {
+                            if (sn.val()[a].vacation.indexOf("둘째") != -1 || sn.val()[a].vacation.indexOf("2") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "셋째주") {
+                            if (sn.val()[a].vacation.indexOf("셋째") != -1 || sn.val()[a].vacation.indexOf("3") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "넷째주") {
+                            if (sn.val()[a].vacation.indexOf("넷째") != -1 || sn.val()[a].vacation.indexOf("4") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "다섯째주") {
+                            if (sn.val()[a].vacation.indexOf("다섯") != -1 || sn.val()[a].vacation.indexOf("5") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                    }
+                }
+            }
+            if (_this.area == "jeju") {
+                for (var a in sn.val()) {
+                    if (sn.val()[a].addr.indexOf("제주") != -1) {
+                        _this.martArray.push(sn.val()[a]);
+                        if (_this.whatWeek == "첫째주") {
+                            if (sn.val()[a].vacation.indexOf("첫째") != -1 || sn.val()[a].vacation.indexOf("1") != -1) {
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "둘째주") {
+                            if (sn.val()[a].vacation.indexOf("둘째") != -1 || sn.val()[a].vacation.indexOf("2") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "셋째주") {
+                            if (sn.val()[a].vacation.indexOf("셋째") != -1 || sn.val()[a].vacation.indexOf("3") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "넷째주") {
+                            if (sn.val()[a].vacation.indexOf("넷째") != -1 || sn.val()[a].vacation.indexOf("4") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                        if (_this.whatWeek == "다섯째주") {
+                            if (sn.val()[a].vacation.indexOf("다섯") != -1 || sn.val()[a].vacation.indexOf("5") != -1) {
+                                if (sn.val()[a].vacation.indexOf("일요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("월요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("화요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("수요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("목요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("금요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                                if (sn.val()[a].vacation.indexOf("토요일") != -1) {
+                                    if (_this.dayy == '일요일') {
+                                        _this.dayoff = ['휴무', '영업', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '월요일') {
+                                        _this.dayoff = ['영업', '휴무', '영업', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '화요일') {
+                                        _this.dayoff = ['영업', '영업', '휴무', '영업', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '수요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '휴무', '영업', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '목요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '휴무', '영업', '영업'];
+                                    }
+                                    if (_this.dayy == '금요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '휴무', '영업'];
+                                    }
+                                    if (_this.dayy == '토요일') {
+                                        _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '휴무'];
+                                    }
+                                }
+                            }
+                            else {
+                                _this.dayoff = ['영업', '영업', '영업', '영업', '영업', '영업', '영업'];
+                            }
+                            _this.today = _this.dayoff[0];
+                        }
+                    }
+                }
+            }
+        });
+    };
+    MartinfoPage.prototype.martfunc = function () {
+        if (this.mart == "lottemart") {
+            this.name = "롯데마트";
+            this.img = "./assets/imgs/009-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-롯데마트 CI.png";
+            var newnametoinput = "";
+            newnametoinput = "lotte";
+            this.newfunction(newnametoinput);
+        }
+        if (this.mart == "emart") {
+            this.name = "이마트";
+            this.img = "./assets/imgs/010-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-이마트 CI.png";
+            var newnametoinput = "";
+            newnametoinput = "emart";
+            this.newfunction(newnametoinput);
+        }
+        if (this.mart == "homeplus") {
+            this.name = "홈플러스";
+            this.img = "./assets/imgs/011-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-홈플러스 CI.png";
+            var newnametoinput = "";
+            newnametoinput = "homeplus";
+            this.newfunction(newnametoinput);
+        }
+        if (this.mart == "costco") {
+            this.name = "코스트코";
+            this.img = "./assets/imgs/012-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-코스트코 CI.png";
+            var newnametoinput = "";
+            newnametoinput = "costco";
+            this.newfunction(newnametoinput);
+        }
+        if (this.mart == "traders") {
+            this.name = "이마트 트레이더스";
+            this.img = "./assets/imgs/013-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-이마트 트레이더스 CI.png";
+            var newnametoinput = "";
+            newnametoinput = "traders";
+            this.newfunction(newnametoinput);
+        }
+        if (this.mart == "lottedep") {
+            this.name = "롯데 백화점";
+            this.img = "./assets/imgs/020-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-롯데백화점 CI.png";
+            var newnametoinput = "";
+            newnametoinput = "lottedep";
+            this.newfunction(newnametoinput);
+        }
+        if (this.mart == "ssgdep") {
+            this.name = "신세계 백화점";
+            this.img = "./assets/imgs/021-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-신세백화점 CI.png";
+            var newnametoinput = "";
+            newnametoinput = "sinsaegae";
+            this.newfunction(newnametoinput);
+        }
+        if (this.mart == "hyundep") {
+            this.name = "현대 백화점";
+            this.img = "./assets/imgs/022-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-현대백화점 CI.png";
+            var newnametoinput = "";
+            newnametoinput = "hyundai";
+            this.newfunction(newnametoinput);
+        }
+        if (this.mart == "lotteout") {
+            this.name = "롯데 아울렛";
+            this.img = "./assets/imgs/023-버튼-PPT 4페이지의 가운데 이미지의 아울렛별 로고-롯데아울렛 CI.png";
+            var newnametoinput = "";
+            newnametoinput = "lotteoutlet";
+            this.newfunction(newnametoinput);
+        }
+    };
+    MartinfoPage.prototype.favorite = function (a, b) {
+        console.log(a);
+        console.log(this.mart);
+        var newnametoinput = "";
+        if (this.mart == "lottemart") {
+            newnametoinput = "lotte";
+        }
+        if (this.mart == "emart") {
+            newnametoinput = "emart";
+        }
+        if (this.mart == "homeplus") {
+            newnametoinput = "homeplus";
+        }
+        if (this.mart == "costco") {
+            newnametoinput = "costco";
+        }
+        if (this.mart == "traders") {
+            newnametoinput = "traders";
+        }
+        if (this.mart == "lottedep") {
+            newnametoinput = "lottedep";
+        }
+        if (this.mart == "ssgdep") {
+            newnametoinput = "sinsaegae";
+        }
+        if (this.mart == "hyundep") {
+            newnametoinput = "hyundai";
+        }
+        if (this.mart == "lotteout") {
+            newnametoinput = "lotteoutlet";
+        }
+        console.log(newnametoinput);
+        if (b == true) {
+            console.log("true");
+            this.firemain.child("favorite").child(newnametoinput).child(a).update({ "favorite": "true" });
+            __WEBPACK_IMPORTED_MODULE_3_jquery__('#blanktoyellow').attr('src', "./assets/imgs/046-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-노란 하트(즐겨찾기후).png");
+            // $(function () {
+            //   $('.blanktoyellow').click(function () {
+            //     $('.blanktoyellow').attr('src', "./assets/imgs/046-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-노란 하트(즐겨찾기후).png")
+            //   })
+            // })
+        }
+        if (b == false) {
+            console.log("false");
+            this.firemain.child("favorite").child(newnametoinput).child(a).update({ "favorite": "false" });
+            __WEBPACK_IMPORTED_MODULE_3_jquery__('#yellowtoblank').attr('src', "./assets/imgs/045-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-블랭크 하트(즐겨찾기전).png");
+            // $(function () {
+            //   $('.yellowtoblank').click(function () {
+            //     $('.yellowtoblank').attr('src', "./assets/imgs/045-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-블랭크 하트(즐겨찾기전).png")
+            //   })
+            // })
+        }
+    };
+    var _a, _b;
+    MartinfoPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-martinfo',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/martinfo/martinfo.html"*/'<ion-content>\n    <div style="background-color: #71E8E8; margin-bottom:5px; display:flex;">\n        <img src="./assets/imgs/008-버튼-PPT 4페이지의 가운데 이미지의 상단 좌측-말 얼굴.png" style="width:50px; margin:5px;" alt="">\n        <span style="color:white; font-size:18px; font-weight: 900; margin:auto;">즐겨찾기 추가는 "♡"터치</span>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/004-버튼-PPT 3페이지의 이미지의 상단 가운데-광고금지.png" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/005-버튼-PPT 3페이지의 이미지의 상단 우측-평가하기 별점주기.png" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/006-버튼-PPT 3페이지의 이미지의 상단 우측-공유하기 점 세개.png" style="width:25px;"></button>\n    </div>\n    <div style="background-color: #fafafa;">\n        <ion-item-divider color="light"><img src="{{img}}" style="width:50px;margin-right:10px;">{{name}}</ion-item-divider>\n        <ion-item-group style="background-color: #fafafa;">\n            <div *ngFor="let i of martArray" class="border">\n                <button style="background-color: white;" class="btn1">\n                  <table>\n                    <thead>\n                      <th class="martname">\n                        {{i.name}}\n                      </th>\n                      <th class="dayoffimg">\n                        <img *ngIf="today==\'영업\'" src="./assets/imgs/043-버튼-PPT 5페이지의 우측 이미지 영업 알림 버튼-오늘 영업.png" style="width:60%;">\n                        <img *ngIf="today==\'휴무\'" src="./assets/imgs/044-버튼-PPT 5페이지의 우측 이미지 영업 알림 버튼-오늘 휴무.png" style="width:60%;">\n                        <!-- <button (click)="favorite(i.key, false);" style="width:40px; height:40px; background-color: white;"><img src="./assets/imgs/045-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-블랭크 하트(즐겨찾기전).png" style="width:100%;"></button>                -->\n\n                <button *ngIf="i.favorite==\'false\'" (click)="favorite(i.key, true);" style="width:40px; height:40px; background-color: white;"><img src="./assets/imgs/045-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-블랭크 하트(즐겨찾기전).png" style="width:100%;" class="blanktoyellow" id="blanktoyellow"></button>\n                <button *ngIf="i.favorite==\'true\'" (click)="favorite(i.key, false);" style="width:40px; height:40px; background-color: white;"><img src="./assets/imgs/046-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-노란 하트(즐겨찾기후).png" style="width:100%;" class="yellowtoblank" id="yellowtoblank"></button>\n                </th>\n                </thead>\n                </table>\n                <table>\n                    <tbody>\n                        <tr class="datespan">\n                            {{todayy}}\n                        </tr>\n                        <tr class="datespan">\n                            <td *ngFor="let k of dayweek" class="tabletd">\n                                <span class="datespan">{{k}}</span>\n                            </td>\n                        </tr>\n                        <tr class="datespan">\n                            <td *ngFor="let j of week" class="tabletd">\n                                <span>{{month}}/{{j}}</span>\n                            </td>\n                        </tr>\n                        <tr class="datespan">\n                            <td *ngFor="let m of dayoff" class="tabletd">\n                                <span *ngIf="m==\'휴무\'" class="mSpan1">{{m}}</span>\n                                <span *ngIf="m==\'영업\'" class="mSpan2">{{m}}</span>\n                            </td>\n                        </tr>\n                    </tbody>\n                </table>\n                </button>\n            </div>\n        </ion-item-group>\n    </div>\n</ion-content>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/martinfo/martinfo.html"*/,
+        }),
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" ? _a : Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" ? _b : Object])
+    ], MartinfoPage);
+    return MartinfoPage;
+}());
+
+//# sourceMappingURL=martinfo.js.map
+
+/***/ }),
+
+/***/ 380:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(378);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(382);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(381);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(385);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -1905,26 +15667,26 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 382:
+/***/ 385:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(259);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(262);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_call_number__ = __webpack_require__(263);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_firebase__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_firebase__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(434);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(437);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_home_home__ = __webpack_require__(265);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_onesignal__ = __webpack_require__(278);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_ad_ad__ = __webpack_require__(273);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angularfire2__ = __webpack_require__(435);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angularfire2__ = __webpack_require__(438);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angularfire2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_angularfire2__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_angularfire2_database__ = __webpack_require__(719);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_angularfire2_database__ = __webpack_require__(722);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_angularfire2_database___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_angularfire2_database__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_unique_device_id__ = __webpack_require__(266);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_speech_recognition__ = __webpack_require__(268);
@@ -1938,12 +15700,18 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_rate_rate__ = __webpack_require__(275);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_copymodal_copymodal__ = __webpack_require__(276);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_listlimitmodal_listlimitmodal__ = __webpack_require__(277);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_martlist_martlist__ = __webpack_require__(279);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_martmap_martmap__ = __webpack_require__(280);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_martinfo_martinfo__ = __webpack_require__(281);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
 
 
 
@@ -1997,6 +15765,9 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_10__pages_ad_ad__["a" /* AdPage */],
                 __WEBPACK_IMPORTED_MODULE_23__pages_copymodal_copymodal__["a" /* CopymodalPage */],
                 __WEBPACK_IMPORTED_MODULE_24__pages_listlimitmodal_listlimitmodal__["a" /* ListlimitmodalPage */],
+                __WEBPACK_IMPORTED_MODULE_25__pages_martlist_martlist__["a" /* MartlistPage */],
+                __WEBPACK_IMPORTED_MODULE_26__pages_martmap_martmap__["a" /* MartmapPage */],
+                __WEBPACK_IMPORTED_MODULE_27__pages_martinfo_martinfo__["a" /* MartinfoPage */],
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -2019,6 +15790,9 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_10__pages_ad_ad__["a" /* AdPage */],
                 __WEBPACK_IMPORTED_MODULE_23__pages_copymodal_copymodal__["a" /* CopymodalPage */],
                 __WEBPACK_IMPORTED_MODULE_24__pages_listlimitmodal_listlimitmodal__["a" /* ListlimitmodalPage */],
+                __WEBPACK_IMPORTED_MODULE_25__pages_martlist_martlist__["a" /* MartlistPage */],
+                __WEBPACK_IMPORTED_MODULE_26__pages_martmap_martmap__["a" /* MartmapPage */],
+                __WEBPACK_IMPORTED_MODULE_27__pages_martinfo_martinfo__["a" /* MartinfoPage */],
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__["a" /* StatusBar */],
@@ -2042,13 +15816,13 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 434:
+/***/ 437:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(262);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(259);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(265);
@@ -2088,5 +15862,5 @@ var MyApp = /** @class */ (function () {
 
 /***/ })
 
-},[377]);
+},[380]);
 //# sourceMappingURL=main.js.map

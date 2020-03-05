@@ -204,7 +204,9 @@ export class ViewshoppinglistPage {
   save() {
     this.flag = false;
     this.flagInput = false;
+
     let alert = this.alertCtrl.create({
+      
       title: '작성 중이던 목록을 저장할까요?',
       buttons: [
         {
@@ -217,8 +219,10 @@ export class ViewshoppinglistPage {
         {
           text: '예',
           handler: data => {
-            for(var v in this.a.list){
-              console.log(this.a.list[v].name)
+            for(var v=0; v<this.a.list.length; v++){
+              console.log(this.a.list[v])
+              console.log(this.a.list[v].name);
+
               if(this.a.list[v].name == ""){
                 window.alert("목록을 입력해주세요");
               }

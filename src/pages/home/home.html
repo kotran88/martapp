@@ -1,87 +1,106 @@
 <ion-content padding>
-    <div class="upper">
+    <!-- <div class="upper">
         <ion-row style="margin-bottom:0" class="search">
             <ion-col width-100>
                 <ion-searchbar style="float:left;width: 50%; padding:6px;" placeholder="입력하세요" [(ngModel)]="startPoint" clearInput></ion-searchbar>
-
-                <button ion-button icon-only style="margin-right: -10px;" (click)="NoneAd()" color="primary" clear>
+                <button ion-button icon-only style="width:50px; margin-right: -10px;" (click)="NoneAd()" color="primary" clear>
                     <ion-icon class="ad-icon" name="eye-off"></ion-icon>
                   </button>
-
-                <button ion-button icon-only style="margin-right: -10px;" (click)="appstore()" color="primary" clear>
+                <button ion-button icon-only style="width:50px; margin-right: -10px;" (click)="appstore()" color="primary" clear>
                     <ion-icon class="appstore-icon" name="star"></ion-icon>
                   </button>
-
-                <button ion-button icon-only style="margin-right: -10px;" (click)="regularShare()" color="primary" clear>
+                <button ion-button icon-only style="width:50px; margin-right: -10px;" (click)="regularShare()" color="primary" clear>
                     <ion-icon class="share-icon" name="share"></ion-icon>
                   </button>
-
-                <button ion-button icon-only (click)="setting()" color='primary' clear>
+                <button ion-button icon-only style="width:50px; margin-right: -10px;" (click)="setting()" color='primary' clear>
                   <ion-icon class="setting-icon" name="settings"></ion-icon>
                 </button>
-
-
             </ion-col>
         </ion-row>
+    </div> -->
+    <div class="upper" style="background-color: #71E8E8; display:flex;">
+        <ion-searchbar style="float:left;width: 55%; padding:6px;" placeholder="검색,즐겨찾기추가" [(ngModel)]="startPoint" clearInput></ion-searchbar>
+        <button style="background-color:#71E8E8;" (click)="NoneAd()"><img src="./assets/imgs/004-버튼-PPT 3페이지의 이미지의 상단 가운데-광고금지.png" style="width:25px;"></button>
+        <button style="background-color:#71E8E8;" (click)="appstore()"><img src="./assets/imgs/005-버튼-PPT 3페이지의 이미지의 상단 우측-평가하기 별점주기.png" style="width:25px;"></button>
+        <button style="background-color:#71E8E8;" (click)="regularShare()"><img src="./assets/imgs/006-버튼-PPT 3페이지의 이미지의 상단 우측-공유하기 점 세개.png" style="width:25px;"></button>
+        <button style="background-color:#71E8E8;" (click)="setting()"><img src="./assets/imgs/007-버튼-PPT 3페이지의 이미지의 상단 우측-설정하기 톱니바퀴.png" style="width:25px;"></button>
+
     </div>
 
-    <ion-segment style="background:#353c5e;font-size: 16px;letter-spacing: -0.35px" (ionChange)="segmentChanged($event)" [(ngModel)]="tab">
+    <ion-segment class="tabstyle" (ionChange)="segmentChanged($event)" [(ngModel)]="tab">
         <ion-segment-button value="tab1" [ngClass]="tab=='tab1'?'view':'notview'">
-            <span style="font-family: 'notomedium';">즐겨찾는곳</span>
+            <span class="tab-font">즐겨찾는곳</span>
         </ion-segment-button>
         <ion-segment-button value="tab2" [ngClass]="tab=='tab2'?'view':'notview'">
-            <span style="font-family: 'notomedium';" class="">쇼핑예정목록</span>
+            <span class="tab-font">쇼핑예정목록</span>
         </ion-segment-button>
         <ion-segment-button value="tab3" [ngClass]="tab=='tab3'?'view':'notview'">
-            <span style="font-family: 'notomedium';" class="">인터넷에선얼마?</span>
+            <span class="tab-font">인터넷에선 얼마?</span>
         </ion-segment-button>
-
     </ion-segment>
-    <div [ngSwitch]="tab" style="height:100%;">
+    <div [ngSwitch]="tab">
         <ion-list *ngSwitchCase="'tab1'">
-            first tab
-
+            <div style="margin-top:10%"><button style="background:white" (click)="main();"><img src="./assets/imgs/003-버튼-PPT 3페이지의 이미지의 정가운데-'랜딩화면' 다음에 나오는 화면의 '말+돋보기 버튼'.png"></button></div>
         </ion-list>
-        <ion-list *ngSwitchCase="'tab2'">
+        <ion-list *ngSwitchCase=" 'tab2' ">
             <div class="topselector">
                 <p>쇼핑 목록 만들기! 어디서 쇼핑하실 건가요?</p>
-                <div class="button">
-                    <button style="background-color:#fff;" (click)="addlist('mart')"><img src="assets/imgs/mes.png" alt=""></button><br>
-                    <div><button style="background-color:#fff;" (click)="addlist('mart')">마트</button></div>
-                </div>
-                <div class="button">
-                    <button style="background-color:#fff;" (click)="addlist('dep')"><img src="assets/imgs/mes.png" alt=""></button><br>
-                    <div><button style="background-color:#fff;" (click)="addlist('dep')">백화점</button></div>
-                </div>
-                <div class="button">
-                    <button style="background-color:#fff;" (click)="addlist('outlet')"><img src="assets/imgs/mes.png" alt=""></button><br>
-                    <div><button style="background-color:#fff;" (click)="addlist('outlet')">아울렛</button></div>
-                </div>
-                <div class="button">
-                    <button style="background-color:#fff;" (click)="addlist('etc')"><img src="assets/imgs/mes.png" alt=""></button><br>
-                    <div><button style="background-color:#fff;" (click)="addlist('etc')">기타</button></div>
-                </div>
+                <table style="margin: auto; text-align: center;">
+
+                    <tbody>
+                        <td>
+                            <button style="background-color:#fff; " (click)="addlist('mart') "><img src="./assets/imgs/079-버튼-PPT 27페이지의 가운데 이미지-카트(마트).png " style="width:500px"></button>
+                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold;" (click)="addlist('mart') ">마트</button>
+                        </td>
+                        <td>
+                            <button style="background-color:#fff; " (click)="addlist('dep') "><img src="./assets/imgs/080-버튼-PPT 27페이지의 가운데 이미지-쇼핑백(백화점).png " style="width:500px"></button>
+                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold;" (click)="addlist('dep') ">백화점</button>
+                        </td>
+                        <td>
+                            <button style="background-color:#fff; " (click)="addlist('outlet') "><img src="./assets/imgs/081-버튼-PPT 27페이지의 가운데 이미지-보석+구두(아울렛).png " style="width:500px"></button>
+                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold;" (click)="addlist( 'outlet') ">아울렛</button>
+                        </td>
+                        <td>
+                            <button style="background-color:#fff; " (click)="addlist('etc') "><img src="./assets/imgs/081-버튼-PPT 27페이지의 가운데 이미지-etc(기타).png " style="width:500px"></button>
+                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold;" (click)="addlist( 'etc') ">기타</button>
+                        </td>
+                    </tbody>
+                </table>
+
+
+                <!-- <div class="button ">
+                    <button style="background-color:#fff; " (click)="addlist( 'dep') "><img src="./assets/imgs/080-버튼-PPT 27페이지의 가운데 이미지-쇼핑백(백화점).png " alt=" "></button><br>
+                    <div><button style="background-color:#fff; " (click)="addlist( 'dep') ">백화점</button></div>
+                </div> -->
+                <!-- <div class="button ">
+                    <button style="background-color:#fff; " (click)="addlist( 'outlet') "><img src="./assets/imgs/081-버튼-PPT 27페이지의 가운데 이미지-보석+구두(아울렛).png " alt=" "></button><br>
+                    <div><button style="background-color:#fff; " (click)="addlist( 'outlet') ">아울렛</button></div>
+                </div> -->
+                <!-- <div class="button ">
+                    <button style="background-color:#fff; " (click)="addlist( 'etc') "><img src="./assets/imgs/081-버튼-PPT 27페이지의 가운데 이미지-etc(기타).png " alt=" "></button><br>
+                    <div><button style="background-color:#fff; " (click)="addlist( 'etc') ">기타</button></div>
+                </div> -->
             </div>
-            <div *ngFor="let a of newarraylist" class="eachshopping">
-                <div class="listDB">
-                    <div class="segmentImg">
-                        <button style="background-color:#fff;" (click)="deleteDB(a)">
-                            <img src="assets/imgs/delete (1).png">
+            <div *ngFor="let a of newarraylist " class="eachshopping ">
+                <div class="listDB ">
+                    <div class="segmentImg ">
+                        <button style="background-color:#fff; " (click)="deleteDB(a) ">
+                            <img src="assets/imgs/delete (1).png ">
                         </button>
                     </div>
-                    <div class="segmentText">
+                    <div class="segmentText ">
                         {{a.flag}}
-                        <button style="background-color:#fff;" (click)="viewshoppinglist(a)">
+                        <button style="background-color:#fff; " (click)="viewshoppinglist(a) ">
                             {{a.title}}
                         </button>
                     </div>
                     <div>
-                        <button style="background-color:#fff;" (click)="viewshoppinglist(a)">
+                        <button style="background-color:#fff; " (click)="viewshoppinglist(a) ">
                             {{a.time}}
                         </button>
                     </div>
                     <div>
-                        {{a.totallist+"개 항목 중 "+a.totalchecked+"개 구입"}}
+                        {{a.totallist+"개 항목 중 "+a.totalchecked+"개 구입 "}}
                     </div>
                     <div>
                         <ion-fab>
@@ -109,26 +128,26 @@
                 </div>
             </div>
 
-            <!-- <div><button style="background-color:#fff;" (click)="addlist()">(image)쇼핑 리스트를 추가해보자라는 말</button></div> -->
+            <!-- <div><button style="background-color:#fff; " (click)="addlist() ">(image)쇼핑 리스트를 추가해보자라는 말</button></div> -->
 
         </ion-list>
-        <ion-list *ngSwitchCase="'tab3'">
+        <ion-list *ngSwitchCase=" 'tab3' ">
 
             <div>
-                <select style="display: inline-block; width:25%;" id='slt' name="sort">
-                    <option value="rel" selected="selected">랭킹순</option>
-                    <option value="price_asc">낮은 가격순</option>
-                    <option value="price_dsc">높은 가격순</option>
-                    <option value="date">등록순</option>
-                    <option value="review">리뷰 많은순</option>
+                <select style="display: inline-block; width:25%; " id='slt' name="sort ">
+                    <option value="rel " selected="selected ">랭킹순</option>
+                    <option value="price_asc ">낮은 가격순</option>
+                    <option value="price_dsc ">높은 가격순</option>
+                    <option value="date ">등록순</option>
+                    <option value="review ">리뷰 많은순</option>
                 </select>
 
-                <ion-input style="margin-right: 0px; width: 60%; display: inline-block; border: 1px solid black;" name='text' type="text" [(ngModel)]='srct.text' placeholder="검색어를 입력해 주세요.">
+                <ion-input style="margin-right: 0px; width: 60%; display: inline-block; border: 1px solid black; " name='text' type="text " [(ngModel)]='srct.text' placeholder="검색어를 입력해 주세요. ">
                 </ion-input>
 
-                <button ion-button style="float: right; width:30px; height: 30px;" color="black" outline icon-only (click)='select_sort()'>
+                <button ion-button style="float: right; width:30px; height: 30px; " color="black " outline icon-only (click)='select_sort()'>
 
-                    <ion-icon name='search' is-active="false"></ion-icon>
+                    <ion-icon name='search' is-active="false "></ion-icon>
                 </button>
             </div>
         </ion-list>

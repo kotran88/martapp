@@ -97,7 +97,7 @@ export class AddshopingPage {
           text: '아니요',
           role: 'cancel',
           handler: data => {
-            this.firemain.child(this.id).child(this.value).child(this.title).remove().then(() => {
+            this.firemain.child("users").child(this.id).child(this.value).child(this.title).remove().then(() => {
               console.log("Cancel");
             })
 
@@ -118,8 +118,8 @@ export class AddshopingPage {
               this.add();
             }
             else {
-              this.firemain.child(this.id).child(this.value).child(this.title).child(this.key).update({ "time": this.nowtime, "flag": "entered", "key": this.key })
-              this.firemain.child(this.id).child(this.value).child(this.title).child(this.key).child("list").update(this.addinglist);
+              this.firemain.child("users").child(this.id).child(this.value).child(this.title).child(this.key).update({ "time": this.nowtime, "flag": "entered", "key": this.key })
+              this.firemain.child("users").child(this.id).child(this.value).child(this.title).child(this.key).child("list").update(this.addinglist);
               window.alert("저장되었습니다.");
             }
           }

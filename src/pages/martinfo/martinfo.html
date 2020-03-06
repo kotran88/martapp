@@ -17,12 +17,12 @@
                         {{i.name}}
                       </th>
                       <th class="dayoffimg">
-                        <img *ngIf="today=='영업'" src="./assets/imgs/043-버튼-PPT 5페이지의 우측 이미지 영업 알림 버튼-오늘 영업.png" style="width:60%;">
-                        <img *ngIf="today=='휴무'" src="./assets/imgs/044-버튼-PPT 5페이지의 우측 이미지 영업 알림 버튼-오늘 휴무.png" style="width:60%;">
+                        <!-- <img *ngIf="today=='영업'" src="./assets/imgs/043-버튼-PPT 5페이지의 우측 이미지 영업 알림 버튼-오늘 영업.png" style="width:60%;">
+                        <img *ngIf="today=='휴무'" src="./assets/imgs/044-버튼-PPT 5페이지의 우측 이미지 영업 알림 버튼-오늘 휴무.png" style="width:60%;"> -->
                         <!-- <button (click)="favorite(i.key, false);" style="width:40px; height:40px; background-color: white;"><img src="./assets/imgs/045-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-블랭크 하트(즐겨찾기전).png" style="width:100%;"></button>                -->
 
-                <button *ngIf="i.favorite=='false'" (click)="favorite(i.key, true);" style="width:40px; height:40px; background-color: white;"><img src="./assets/imgs/045-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-블랭크 하트(즐겨찾기전).png" style="width:100%;" class="blanktoyellow" id="blanktoyellow"></button>
-                <button *ngIf="i.favorite=='true'" (click)="favorite(i.key, false);" style="width:40px; height:40px; background-color: white;"><img src="./assets/imgs/046-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-노란 하트(즐겨찾기후).png" style="width:100%;" class="yellowtoblank" id="yellowtoblank"></button>
+                <!-- <button *ngIf="i.favorite=='false'" (click)="favorite(i.key, true);" style="width:40px; height:40px; background-color: white;" class="bty"><img src="./assets/imgs/045-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-블랭크 하트(즐겨찾기전).png" style="width:100%;" class="blanktoyellow" id="blanktoyellow"></button>
+                <button *ngIf="i.favorite=='true'" (click)="favorite(i.key, false);" style="width:40px; height:40px; background-color: white;" class="ytb"><img src="./assets/imgs/046-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-노란 하트(즐겨찾기후).png" style="width:100%;" class="yellowtoblank" id="yellowtoblank"></button> -->
                 </th>
                 </thead>
                 </table>

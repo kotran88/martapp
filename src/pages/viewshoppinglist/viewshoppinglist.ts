@@ -85,7 +85,7 @@ export class ViewshoppinglistPage {
   }
   addprice() {
     /*가격받아오기*/
-    this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
+    this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
       for (var a = 0; a < snap.val().length; a++) {
         console.log(snap.val()[a])
         console.log(Number(snap.val()[a].quantity) * Number(snap.val()[a].price));
@@ -101,7 +101,7 @@ export class ViewshoppinglistPage {
   /*check 여부 DB 불러오기 */
   checkedbuy() {
     var count = 0;
-    this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
+    this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
       for (var a = 0; a < snap.val().length; a++) {
         console.log(snap.val()[a])
         console.log(snap.val()[a].checked);
@@ -119,7 +119,7 @@ export class ViewshoppinglistPage {
   refreshname() {
     this.a.list = [];
     var sum = 0;
-    this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
+    this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
       for (var a = 0; a < snap.val().length; a++) {
         if(snap.val()[a].name=null){
           snap.val()[a].name="-"
@@ -227,8 +227,8 @@ export class ViewshoppinglistPage {
                 window.alert("목록을 입력해주세요");
               }
               else{
-                this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).update({ "time": this.nowtime, "flag": "entered", "key": this.key })
-                this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list);
+                this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).update({ "time": this.nowtime, "flag": "entered", "key": this.key })
+                this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list);
                 this.refreshname();
                 this.showToastWithCloseButton();
                 this.checkedbuy();
@@ -291,16 +291,16 @@ export class ViewshoppinglistPage {
 
             console.log(this.a.list);
             /*입력 리스트에서 삭제된 항목을 firebase에서 삭제하기위해 list 삭제*/
-            this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
+            this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
               for (var a in snap.val()) {
-                this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").remove().then(() => {
+                this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").remove().then(() => {
                   console.log("success")
                 }).catch((e) => {
                   console.log("error" + e);
                 })
               }
               /*삭제한 list를 update를 통해 수정된 데이터로 다시 넣어줌 */
-              this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list).then(() => {
+              this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list).then(() => {
                 console.log(this.a.list);
               });
 
@@ -332,7 +332,7 @@ export class ViewshoppinglistPage {
     });
     console.log(this.a.list);
     window.alert("정렬되었습니다.");
-    this.firemain.child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list).then(() => {
+    this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list).then(() => {
       console.log(this.a.list);
     });
     fab.close();

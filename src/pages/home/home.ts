@@ -36,7 +36,7 @@ export class HomePage {
   tab = "tab1";
   title: any;
   key: any;
-  nextdirectory = this.firemain.child(this.id);
+  nextdirectory = this.firemain.child("users").child(this.id);
   count: any = 0;
   selected: any;
   copyflag: any = false;
@@ -61,34 +61,33 @@ export class HomePage {
   }
 
   refreshname() {
-    console.log(this.newarraylist);
+    // console.log(this.newarraylist);
     this.newarraylist = [];
-    this.firemain.child(this.id).once("value", (sn) => {
+    this.firemain.child("users").child(this.id).once("value", (sn) => {
       for (var a in sn.val()) {
-        if (a != "setting") {
-          console.log(sn.val()[a]);
+        if (a != "setting"&& a!="favorite") {
+          // console.log(sn.val()[a]);
           for (var b in sn.val()[a]) {
             this.listcount++;
-            console.log("b" + b);
-            console.log(sn.val()[a][b]);
+            // console.log("b" + b);
+            // console.log(sn.val()[a][b]);
             for (var c in sn.val()[a][b]) {
-              console.log("c" + c);
-              console.log(sn.val()[a][b][c]);
+              // console.log("c" + c);
+              // console.log(sn.val()[a][b][c]);
               var checked = 0;
               var listlength = 0;
               for (var d in sn.val()[a][b][c].list) {
-                console.log(sn.val()[a][b][c].list.length)
+                // console.log(sn.val()[a][b][c].list.length)
                 listlength = sn.val()[a][b][c].list.length;
-                console.log(sn.val()[a][b][c].list[d]);
+                // console.log(sn.val()[a][b][c].list[d]);
                 if (sn.val()[a][b][c].list[d].checked == true) {
                   checked++;
                 }
               }
               this.newarraylist.push({ "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key })
-              console.log(this.newarraylist)
             }
           }
-          console.log(this.listcount);
+          // console.log(this.listcount);
         }
       }
     })
@@ -164,7 +163,7 @@ export class HomePage {
             }
             else {
               var key = this.nextdirectory.push().key;
-              this.firemain.child(this.id).child(value).child(data.title).child(key).update({ "flag": "notyet" });
+              this.firemain.child("users").child(this.id).child(value).child(data.title).child(key).update({ "flag": "notyet" });
               console.log("selected value" + this.selectedvalue);
               this.navCtrl.push(AddshopingPage, { "flag": this.selectedvalue, "key": key, "id": this.id, "title": data.title }).then(() => {
                 this.navCtrl.getActive().onDidDismiss(data => {
@@ -275,7 +274,7 @@ export class HomePage {
                 }
                 if (a.flag == "mart") {
                   var name = a.title;
-                  this.firemain.child(this.id).child("mart").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+                  this.firemain.child("users").child(this.id).child("mart").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
                     console.log(a.key);
                   })
                   this.refreshname();
@@ -283,21 +282,21 @@ export class HomePage {
 
                 if (a.flag == "dep") {
                   var name = a.title;
-                  this.firemain.child(this.id).child("dep").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+                  this.firemain.child("users").child(this.id).child("dep").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
                     console.log(a.key);
                   })
                   this.refreshname();
                 }
                 if (a.flag == "outlet") {
                   var name = a.title;
-                  this.firemain.child(this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+                  this.firemain.child("users").child(this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
                     console.log(a.key);
                   })
                   this.refreshname();
                 }
                 if (a.flag == "etc") {
                   var name = a.title;
-                  this.firemain.child(this.id).child("etc").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+                  this.firemain.child("users").child(this.id).child("etc").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
                     console.log(a.key);
                   })
                   this.refreshname();
@@ -326,28 +325,28 @@ export class HomePage {
 
                 if (a.flag == "mart") {
                   var name = a.title;
-                  this.firemain.child(this.id).child("mart").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+                  this.firemain.child("users").child(this.id).child("mart").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
                     console.log(a);
                   })
                   this.refreshname();
                 }
                 if (a.flag == "dep") {
                   var name = a.title;
-                  this.firemain.child(this.id).child("dep").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+                  this.firemain.child("users").child(this.id).child("dep").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
                     console.log(a);
                   })
                   this.refreshname();
                 }
                 if (a.flag == "outlet") {
                   var name = a.title;
-                  this.firemain.child(this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+                  this.firemain.child("users").child(this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
                     console.log(a);
                   })
                   this.refreshname();
                 }
                 if (a.flag == "etc") {
                   var name = a.title;
-                  this.firemain.child(this.id).child("etc").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+                  this.firemain.child("users").child(this.id).child("etc").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
 
                     console.log(a);
                   })
@@ -376,7 +375,7 @@ export class HomePage {
                 console.log(newarray);
                 if (a.flag == "mart") {
                   var name = a.title;
-                  this.firemain.child(this.id).child("mart").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+                  this.firemain.child("users").child(this.id).child("mart").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
                     console.log(a);
                   })
                   this.refreshname();
@@ -384,21 +383,21 @@ export class HomePage {
 
                 if (a.flag == "dep") {
                   var name = a.title;
-                  this.firemain.child(this.id).child("dep").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+                  this.firemain.child("users").child(this.id).child("dep").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
                     console.log(a);
                   })
                   this.refreshname();
                 }
                 if (a.flag == "outlet") {
                   var name = a.title;
-                  this.firemain.child(this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+                  this.firemain.child("users").child(this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
                     console.log(a);
                   })
                   this.refreshname();
                 }
                 if (a.flag == "etc") {
                   var name = a.title;
-                  this.firemain.child(this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+                  this.firemain.child("users").child(this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
                     console.log(a);
                   })
                   this.refreshname();
@@ -488,7 +487,7 @@ export class HomePage {
               this.nextdirectory.child("mart").child(key.title).remove().then(() => {
                 console.log("success");
               });
-              this.firemain.child(this.id).child("mart").child(data.title).child(key.key).update(key).then(() => {
+              this.firemain.child("users").child(this.id).child("mart").child(data.title).child(key.key).update(key).then(() => {
                 console.log(key);
                 console.log(key.key);
                 key.title = data.title;
@@ -500,7 +499,7 @@ export class HomePage {
               this.nextdirectory.child("dep").child(key.title).remove().then(() => {
                 console.log("success");
               });
-              this.firemain.child(this.id).child("dep").child(data.title).child(key.key).update(key).then(() => {
+              this.firemain.child("users").child(this.id).child("dep").child(data.title).child(key.key).update(key).then(() => {
                 console.log(key);
                 console.log(key.key);
                 key.title = data.title;
@@ -512,7 +511,7 @@ export class HomePage {
               this.nextdirectory.child("outlet").child(key.title).remove().then(() => {
                 console.log("success");
               });
-              this.firemain.child(this.id).child("outlet").child(data.title).child(key.key).update(key).then(() => {
+              this.firemain.child("users").child(this.id).child("outlet").child(data.title).child(key.key).update(key).then(() => {
                 console.log(key);
                 console.log(key.key);
                 key.title = data.title;
@@ -524,7 +523,7 @@ export class HomePage {
               this.nextdirectory.child("etc").child(key.title).remove().then(() => {
                 console.log("success");
               });
-              this.firemain.child(this.id).child("etc").child(data.title).child(key.key).update(key).then(() => {
+              this.firemain.child("users").child(this.id).child("etc").child(data.title).child(key.key).update(key).then(() => {
                 console.log(key);
                 console.log(key.key);
                 key.title = data.title;
@@ -560,28 +559,28 @@ export class HomePage {
     var count = 1;
     if (key.flag == "mart") {
       var a = key.title + "복사본";
-      this.firemain.child(this.id).child("mart").child(a).child(key.key).update(key).then(() => {
+      this.firemain.child("users").child(this.id).child("mart").child(a).child(key.key).update(key).then(() => {
         console.log(key);
       })
       this.refreshname();     
     }
     if (key.flag == "dep") {
       var a = key.title + "복사본"
-      this.firemain.child(this.id).child("dep").child(a).child(key.key).update(key).then(() => {
+      this.firemain.child("users").child(this.id).child("dep").child(a).child(key.key).update(key).then(() => {
         console.log(key);
       })
       this.refreshname();
     }
     if (key.flag == "outlet") {
       var a = key.title + "복사본"
-      this.firemain.child(this.id).child("outlet").child(a).child(key.key).update(key).then(() => {
+      this.firemain.child("users").child(this.id).child("outlet").child(a).child(key.key).update(key).then(() => {
         console.log(key);
       })
       this.refreshname();
     }
     if (key.flag == "etc") {
       var a = key.title + "복사본"
-      this.firemain.child(this.id).child("etc").child(a).child(key.key).update(key).then(() => {
+      this.firemain.child("users").child(this.id).child("etc").child(a).child(key.key).update(key).then(() => {
         console.log(key);
       })
       this.refreshname();
@@ -608,7 +607,7 @@ export class HomePage {
 
     if (key.flag == "mart") {
       var a = key.title + "복사본";
-      this.firemain.child(this.id).child("mart").child(a).child(key.key).update(key).then(() => {
+      this.firemain.child("users").child(this.id).child("mart").child(a).child(key.key).update(key).then(() => {
         console.log(key);
       })
       this.refreshname();
@@ -616,14 +615,14 @@ export class HomePage {
 
     if (key.flag == "dep") {
       var a = key.title + "복사본"
-      this.firemain.child(this.id).child("dep").child(a).child(key.key).update(key).then(() => {
+      this.firemain.child("users").child(this.id).child("dep").child(a).child(key.key).update(key).then(() => {
         console.log(key);
       })
       this.refreshname();
     }
     if (key.flag == "outlet") {
       var a = key.title + "복사본"
-      this.firemain.child(this.id).child("outlet").child(a).child(key.key).update(key).then(() => {
+      this.firemain.child("users").child(this.id).child("outlet").child(a).child(key.key).update(key).then(() => {
 
         console.log(key);
       })
@@ -631,7 +630,7 @@ export class HomePage {
     }
     if (key.flag == "etc") {
       var a = key.title + "복사본"
-      this.firemain.child(this.id).child("etc").child(a).child(key.key).update(key).then(() => {
+      this.firemain.child("users").child(this.id).child("etc").child(a).child(key.key).update(key).then(() => {
 
         console.log(key);
       })
@@ -660,7 +659,7 @@ export class HomePage {
     if (key.flag == "mart") {
       var a = key.title + "복사본";
 
-      this.firemain.child(this.id).child("mart").child(a).child(key.key).update(key).then(() => {
+      this.firemain.child("users").child(this.id).child("mart").child(a).child(key.key).update(key).then(() => {
         console.log(key);
       })
       this.refreshname();
@@ -668,14 +667,14 @@ export class HomePage {
 
     if (key.flag == "dep") {
       var a = key.title + "복사본"
-      this.firemain.child(this.id).child("dep").child(a).child(key.key).update(key).then(() => {
+      this.firemain.child("users").child(this.id).child("dep").child(a).child(key.key).update(key).then(() => {
         console.log(key);
       })
       this.refreshname();
     }
     if (key.flag == "outlet") {
       var a = key.title + "복사본"
-      this.firemain.child(this.id).child("outlet").child(a).child(key.key).update(key).then(() => {
+      this.firemain.child("users").child(this.id).child("outlet").child(a).child(key.key).update(key).then(() => {
 
         console.log(key);
       })
@@ -683,7 +682,7 @@ export class HomePage {
     }
     if (key.flag == "etc") {
       var a = key.title + "복사본"
-      this.firemain.child(this.id).child("etc").child(a).child(key.key).update(key).then(() => {
+      this.firemain.child("users").child(this.id).child("etc").child(a).child(key.key).update(key).then(() => {
 
         console.log(key);
       })
@@ -780,7 +779,7 @@ export class HomePage {
     this.oneSignal.getIds().then(data => {
       console.log("get id success"+data.userId)
       window.alert(data.userId);
-      this.firemain.child(this.id).child("setting").update({ "user id": data.userId });
+      this.firemain.child("users").child(this.id).child("setting").update({ "user id": data.userId });
       let sendData = [];
       localStorage.setItem("tokenvalue",data.userId);
       //디비에 토큰값을 넣음

@@ -17,8 +17,8 @@
                         {{i.name}}
                       </th>
                       <th class="dayoffimg">
-                        <!-- <img *ngIf="today=='영업'" src="./assets/imgs/043-버튼-PPT 5페이지의 우측 이미지 영업 알림 버튼-오늘 영업.png" style="width:60%;">
-                        <img *ngIf="today=='휴무'" src="./assets/imgs/044-버튼-PPT 5페이지의 우측 이미지 영업 알림 버튼-오늘 휴무.png" style="width:60%;"> -->
+                        <img *ngIf="today=='영업'" src="./assets/imgs/043-버튼-PPT 5페이지의 우측 이미지 영업 알림 버튼-오늘 영업.png" style="width:60%;">
+                        <img *ngIf="today=='휴무'" src="./assets/imgs/044-버튼-PPT 5페이지의 우측 이미지 영업 알림 버튼-오늘 휴무.png" style="width:60%;">
                         <!-- <button (click)="favorite(i.key, false);" style="width:40px; height:40px; background-color: white;"><img src="./assets/imgs/045-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-블랭크 하트(즐겨찾기전).png" style="width:100%;"></button>                -->
 
                 <!-- <button *ngIf="i.favorite=='false'" (click)="favorite(i.key, true);" style="width:40px; height:40px; background-color: white;" class="bty"><img src="./assets/imgs/045-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-블랭크 하트(즐겨찾기전).png" style="width:100%;" class="blanktoyellow" id="blanktoyellow"></button>
@@ -32,17 +32,20 @@
                             {{todayy}}
                         </tr>
                         <tr class="datespan">
-                            <td *ngFor="let k of dayweek" class="tabletd">
+                            <!-- <td *ngFor="let k of dayweek" class="tabletd">
                                 <span class="datespan">{{k}}</span>
+                            </td> -->
+                            <td *ngFor="let j of week" class="tabletd">
+                                <span>{{j.dayofweek}}</span>
                             </td>
                         </tr>
                         <tr class="datespan">
                             <td *ngFor="let j of week" class="tabletd">
-                                <span>{{month}}/{{j}}</span>
+                                <span>{{month}}/{{j.day}}</span>
                             </td>
                         </tr>
                         <tr class="datespan">
-                            <td *ngFor="let m of dayoff" class="tabletd">
+                            <td *ngFor="let m of i.dayoffarray" class="tabletd">
                                 <span *ngIf="m=='휴무'" class="mSpan1">{{m}}</span>
                                 <span *ngIf="m=='영업'" class="mSpan2">{{m}}</span>
                             </td>
@@ -53,4 +56,4 @@
             </div>
         </ion-item-group>
     </div>
-</ion-content>
+</ion-content>45

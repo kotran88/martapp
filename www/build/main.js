@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 175:
+/***/ 174:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -13,11 +13,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 175;
+webpackEmptyAsyncContext.id = 174;
 
 /***/ }),
 
-/***/ 220:
+/***/ 219:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -30,11 +30,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 220;
+webpackEmptyAsyncContext.id = 219;
 
 /***/ }),
 
-/***/ 266:
+/***/ 265:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -42,16 +42,16 @@ webpackEmptyAsyncContext.id = 220;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_admob_free__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_call_number___ = __webpack_require__(264);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_call_number___ = __webpack_require__(263);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_unique_device_id__ = __webpack_require__(267);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__addshoping_addshoping__ = __webpack_require__(268);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_unique_device_id__ = __webpack_require__(266);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__addshoping_addshoping__ = __webpack_require__(267);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_jquery__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_jquery__ = __webpack_require__(269);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_jquery__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__viewshoppinglist_viewshoppinglist__ = __webpack_require__(270);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_social_sharing__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_social_sharing__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__setting_setting__ = __webpack_require__(271);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ad_ad__ = __webpack_require__(273);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__rate_rate__ = __webpack_require__(275);
@@ -355,7 +355,7 @@ var HomePage = /** @class */ (function () {
         console.log(a.flag);
         console.log(a.list);
         if (this.copyflag) {
-            var alert = this.alertCtrl.create({
+            var alert_1 = this.alertCtrl.create({
                 title: '해당 목록에 덧붙이시겠습니까?',
                 buttons: [
                     {
@@ -508,7 +508,7 @@ var HomePage = /** @class */ (function () {
                     }
                 ]
             });
-            alert.present();
+            alert_1.present();
         }
         else {
             console.log(a);
@@ -854,12 +854,15 @@ var HomePage = /** @class */ (function () {
         });
         this.oneSignal.endInit();
     };
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-home',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/home/home.html"*/'<ion-content padding>\n    <!-- <div class="upper">\n        <ion-row style="margin-bottom:0" class="search">\n            <ion-col width-100>\n                <ion-searchbar style="float:left;width: 50%; padding:6px;" placeholder="입력하세요" [(ngModel)]="startPoint" clearInput></ion-searchbar>\n                <button ion-button icon-only style="width:50px; margin-right: -10px;" (click)="NoneAd()" color="primary" clear>\n                    <ion-icon class="ad-icon" name="eye-off"></ion-icon>\n                  </button>\n                <button ion-button icon-only style="width:50px; margin-right: -10px;" (click)="appstore()" color="primary" clear>\n                    <ion-icon class="appstore-icon" name="star"></ion-icon>\n                  </button>\n                <button ion-button icon-only style="width:50px; margin-right: -10px;" (click)="regularShare()" color="primary" clear>\n                    <ion-icon class="share-icon" name="share"></ion-icon>\n                  </button>\n                <button ion-button icon-only style="width:50px; margin-right: -10px;" (click)="setting()" color=\'primary\' clear>\n                  <ion-icon class="setting-icon" name="settings"></ion-icon>\n                </button>\n            </ion-col>\n        </ion-row>\n    </div> -->\n    <div class="upper" style="background-color: #71E8E8; display:flex;">\n        <ion-searchbar style="float:left;width: 55%; padding:6px;" placeholder="검색,즐겨찾기추가" [(ngModel)]="startPoint" clearInput></ion-searchbar>\n        <button style="background-color:#71E8E8;" (click)="NoneAd()"><img src="./assets/imgs/004-버튼-PPT 3페이지의 이미지의 상단 가운데-광고금지.png" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;" (click)="appstore()"><img src="./assets/imgs/005-버튼-PPT 3페이지의 이미지의 상단 우측-평가하기 별점주기.png" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;" (click)="regularShare()"><img src="./assets/imgs/006-버튼-PPT 3페이지의 이미지의 상단 우측-공유하기 점 세개.png" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;" (click)="setting()"><img src="./assets/imgs/007-버튼-PPT 3페이지의 이미지의 상단 우측-설정하기 톱니바퀴.png" style="width:25px;"></button>\n\n    </div>\n\n    <ion-segment class="tabstyle" (ionChange)="segmentChanged($event)" [(ngModel)]="tab">\n        <ion-segment-button value="tab1" [ngClass]="tab==\'tab1\'?\'view\':\'notview\'">\n            <span class="tab-font">즐겨찾는곳</span>\n        </ion-segment-button>\n        <ion-segment-button value="tab2" [ngClass]="tab==\'tab2\'?\'view\':\'notview\'">\n            <span class="tab-font">쇼핑예정목록</span>\n        </ion-segment-button>\n        <ion-segment-button value="tab3" [ngClass]="tab==\'tab3\'?\'view\':\'notview\'">\n            <span class="tab-font">인터넷에선 얼마?</span>\n        </ion-segment-button>\n    </ion-segment>\n    <div [ngSwitch]="tab">\n        <ion-list *ngSwitchCase="\'tab1\'">\n            <div style="margin-top:10%"><button style="background:white" (click)="main();"><img src="./assets/imgs/003-버튼-PPT 3페이지의 이미지의 정가운데-\'랜딩화면\' 다음에 나오는 화면의 \'말+돋보기 버튼\'.png"></button></div>\n        </ion-list>\n        <ion-list *ngSwitchCase=" \'tab2\' ">\n            <div class="topselector">\n                <p>쇼핑 목록 만들기! 어디서 쇼핑하실 건가요?</p>\n                <table style="margin: auto; text-align: center;">\n\n                    <tbody>\n                        <td>\n                            <button style="background-color:#fff; " (click)="addlist(\'mart\') "><img src="./assets/imgs/079-버튼-PPT 27페이지의 가운데 이미지-카트(마트).png " style="width:500px"></button>\n                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold;" (click)="addlist(\'mart\') ">마트</button>\n                        </td>\n                        <td>\n                            <button style="background-color:#fff; " (click)="addlist(\'dep\') "><img src="./assets/imgs/080-버튼-PPT 27페이지의 가운데 이미지-쇼핑백(백화점).png " style="width:500px"></button>\n                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold;" (click)="addlist(\'dep\') ">백화점</button>\n                        </td>\n                        <td>\n                            <button style="background-color:#fff; " (click)="addlist(\'outlet\') "><img src="./assets/imgs/081-버튼-PPT 27페이지의 가운데 이미지-보석+구두(아울렛).png " style="width:500px"></button>\n                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold;" (click)="addlist( \'outlet\') ">아울렛</button>\n                        </td>\n                        <td>\n                            <button style="background-color:#fff; " (click)="addlist(\'etc\') "><img src="./assets/imgs/081-버튼-PPT 27페이지의 가운데 이미지-etc(기타).png " style="width:500px"></button>\n                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold;" (click)="addlist( \'etc\') ">기타</button>\n                        </td>\n                    </tbody>\n                </table>\n\n\n                <!-- <div class="button ">\n                    <button style="background-color:#fff; " (click)="addlist( \'dep\') "><img src="./assets/imgs/080-버튼-PPT 27페이지의 가운데 이미지-쇼핑백(백화점).png " alt=" "></button><br>\n                    <div><button style="background-color:#fff; " (click)="addlist( \'dep\') ">백화점</button></div>\n                </div> -->\n                <!-- <div class="button ">\n                    <button style="background-color:#fff; " (click)="addlist( \'outlet\') "><img src="./assets/imgs/081-버튼-PPT 27페이지의 가운데 이미지-보석+구두(아울렛).png " alt=" "></button><br>\n                    <div><button style="background-color:#fff; " (click)="addlist( \'outlet\') ">아울렛</button></div>\n                </div> -->\n                <!-- <div class="button ">\n                    <button style="background-color:#fff; " (click)="addlist( \'etc\') "><img src="./assets/imgs/081-버튼-PPT 27페이지의 가운데 이미지-etc(기타).png " alt=" "></button><br>\n                    <div><button style="background-color:#fff; " (click)="addlist( \'etc\') ">기타</button></div>\n                </div> -->\n            </div>\n            <div *ngFor="let a of newarraylist " class="eachshopping ">\n                <div class="listDB ">\n                    <div class="segmentImg ">\n                        <button style="background-color:#fff; " (click)="deleteDB(a) ">\n                            <img src="assets/imgs/delete (1).png ">\n                        </button>\n                    </div>\n                    <div class="segmentText ">\n                        {{a.flag}}\n                        <button style="background-color:#fff; " (click)="viewshoppinglist(a) ">\n                            {{a.title}}\n                        </button>\n                    </div>\n                    <div>\n                        <button style="background-color:#fff; " (click)="viewshoppinglist(a) ">\n                            {{a.time}}\n                        </button>\n                    </div>\n                    <div>\n                        {{a.totallist+"개 항목 중 "+a.totalchecked+"개 구입 "}}\n                    </div>\n                    <div>\n                        <ion-fab>\n                            <button ion-fab mini><ion-icon name="add"></ion-icon></button>\n                            <ion-fab-list side="bottom">\n                                <button (click)="changeName(a)" ion-fab>\n                                    <ion-icon name="list"></ion-icon>\n                                    <ion-label>목록명 변경</ion-label>\n                                </button>\n                                <button (click)="share(a)" ion-fab>\n                                    <ion-icon name="share"></ion-icon>\n                                    <ion-label>공유</ion-label>\n                                </button>\n                                <button (click)="deleteDB(a)" ion-fab>\n                                    <ion-icon name="trash"></ion-icon>\n                                    <ion-label>삭제</ion-label>\n                                </button>\n                                <button (click)="openModal(a)" ion-fab>\n                                    <ion-icon name="copy"></ion-icon>\n                                    <ion-label>복사</ion-label>\n                                </button>\n                            </ion-fab-list>\n                        </ion-fab>\n                    </div>\n                </div>\n            </div>\n\n            <!-- <div><button style="background-color:#fff; " (click)="addlist() ">(image)쇼핑 리스트를 추가해보자라는 말</button></div> -->\n\n        </ion-list>\n        <ion-list *ngSwitchCase=" \'tab3\' ">\n\n            <div>\n                <select style="display: inline-block; width:25%; " id=\'slt\' name="sort ">\n                    <option value="rel " selected="selected ">랭킹순</option>\n                    <option value="price_asc ">낮은 가격순</option>\n                    <option value="price_dsc ">높은 가격순</option>\n                    <option value="date ">등록순</option>\n                    <option value="review ">리뷰 많은순</option>\n                </select>\n\n                <ion-input style="margin-right: 0px; width: 60%; display: inline-block; border: 1px solid black; " name=\'text\' type="text " [(ngModel)]=\'srct.text\' placeholder="검색어를 입력해 주세요. ">\n                </ion-input>\n\n                <button ion-button style="float: right; width:30px; height: 30px; " color="black " outline icon-only (click)=\'select_sort()\'>\n\n                    <ion-icon name=\'search\' is-active="false "></ion-icon>\n                </button>\n            </div>\n        </ion-list>\n\n    </div>\n\n</ion-content>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/home/home.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */]) === "function" ? _a : Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_10__ionic_native_social_sharing__["a" /* SocialSharing */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10__ionic_native_social_sharing__["a" /* SocialSharing */]) === "function" ? _b : Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__["a" /* InAppBrowser */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__["a" /* InAppBrowser */]) === "function" ? _c : Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_native_unique_device_id__["a" /* UniqueDeviceID */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_native_unique_device_id__["a" /* UniqueDeviceID */]) === "function" ? _d : Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" ? _e : Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_call_number___["a" /* CallNumber */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_call_number___["a" /* CallNumber */]) === "function" ? _f : Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_admob_free__["a" /* AdMobFree */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_admob_free__["a" /* AdMobFree */]) === "function" ? _g : Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" ? _h : Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */]) === "function" ? _j : Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" ? _k : Object, typeof (_l = typeof __WEBPACK_IMPORTED_MODULE_16__ionic_native_onesignal__["a" /* OneSignal */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_16__ionic_native_onesignal__["a" /* OneSignal */]) === "function" ? _l : Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */], __WEBPACK_IMPORTED_MODULE_10__ionic_native_social_sharing__["a" /* SocialSharing */], __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__["a" /* InAppBrowser */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_unique_device_id__["a" /* UniqueDeviceID */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_call_number___["a" /* CallNumber */],
+            __WEBPACK_IMPORTED_MODULE_2__ionic_native_admob_free__["a" /* AdMobFree */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_16__ionic_native_onesignal__["a" /* OneSignal */]])
     ], HomePage);
     return HomePage;
 }());
@@ -868,14 +871,14 @@ var HomePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 268:
+/***/ 267:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddshopingPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_speech_recognition__ = __webpack_require__(269);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_speech_recognition__ = __webpack_require__(268);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1057,7 +1060,7 @@ var AddshopingPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery__ = __webpack_require__(269);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_jquery__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_admob_free__ = __webpack_require__(148);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1441,7 +1444,7 @@ var ViewshoppinglistPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return privacyModalPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_social_sharing__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_social_sharing__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_in_app_browser__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(272);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
@@ -2139,6 +2142,7 @@ var MartinfoPage = /** @class */ (function () {
         this.dayweek = [];
         this.dayoff = [];
         this.todayy = [];
+        this.vacationArr = [];
         this.mart = this.navParams.get("mart");
         this.area = this.navParams.get("area");
         console.log(this.mart);
@@ -2156,79 +2160,27 @@ var MartinfoPage = /** @class */ (function () {
         var date = new Date, days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'], prefixes = ['첫째주', '둘째주', '셋째주', '넷째주', '다섯째주'];
         this.whatWeek = prefixes[0 | date.getDate() / 7];
         this.dayy = days[date.getDay()];
-        console.log(this.dayy);
+        console.log("this.dayy is " + this.dayy);
         // this.whatWeek = '둘째주';
-        console.log(this.whatWeek);
+        console.log("this.whatWeek is " + this.whatWeek);
         var w = prefixes[0 | date.getDate() / 7] + ' ' + days[date.getDay()];
         console.log(w);
     };
     MartinfoPage.prototype.theDate = function () {
+        var datee = new Date, days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'], prefixes = ['첫째주', '둘째주', '셋째주', '넷째주', '다섯째주'];
         this.year = this.day.getFullYear();
         this.month = this.day.getMonth() + 1;
         this.date = this.day.getDate();
         this.dayOfweek = this.day.getDay();
         for (var i = 0; i < 7; i++) {
             var date = this.day.getDate() + i;
+            var dow = this.dayOfweek++;
+            console.log(dow);
             console.log(date);
-            this.week.push(date);
-        }
-        console.log(this.day.getDay());
-        if (this.day.getDay() == 0) {
-            var dname = new Array('일', '월', '화', '수', '목', '금', '토');
-            for (var j = 0; j < dname.length; j++) {
-                console.log(dname[j]);
-                this.dayweek.push(dname[j]);
-                this.dayoff = dname[0];
+            if (dow > 6) {
+                dow = 0;
             }
-            console.log(this.dayweek);
-        }
-        if (this.day.getDay() == 1) {
-            var dname = new Array('월', '화', '수', '목', '금', '토', '일');
-            for (var j = 0; j < dname.length; j++) {
-                console.log(dname[j]);
-                this.dayweek.push(dname[j]);
-            }
-            console.log(this.dayweek);
-        }
-        if (this.day.getDay() == 2) {
-            var dname = new Array('화', '수', '목', '금', '토', '일', '월');
-            for (var j = 0; j < dname.length; j++) {
-                console.log(dname[j]);
-                this.dayweek.push(dname[j]);
-            }
-            console.log(this.dayweek);
-        }
-        if (this.day.getDay() == 3) {
-            var dname = new Array('수', '목', '금', '토', '일', '월', '화');
-            for (var j = 0; j < dname.length; j++) {
-                console.log(dname[j]);
-                this.dayweek.push(dname[j]);
-            }
-            console.log(this.dayweek);
-        }
-        if (this.day.getDay() == 4) {
-            var dname = new Array('목', '금', '토', '일', '월', '화', '수');
-            for (var j = 0; j < dname.length; j++) {
-                console.log(dname[j]);
-                this.dayweek.push(dname[j]);
-            }
-            console.log(this.dayweek);
-        }
-        if (this.day.getDay() == 5) {
-            var dname = new Array('금', '토', '일', '월', '화', '수', '목');
-            for (var j = 0; j < dname.length; j++) {
-                console.log(dname[j]);
-                this.dayweek.push(dname[j]);
-            }
-            console.log(this.dayweek);
-        }
-        if (this.day.getDay() == 6) {
-            var dname = new Array('토', '일', '월', '화', '수', '목', '금');
-            for (var j = 0; j < dname.length; j++) {
-                console.log(dname[j]);
-                this.dayweek.push(dname[j]);
-            }
-            console.log(this.dayweek);
+            this.week.push({ "week": prefixes[0 | (date - 1) / 7], "day": date, "dayofweek": days[dow] });
         }
         console.log(this.week);
     };
@@ -2239,117 +2191,326 @@ var MartinfoPage = /** @class */ (function () {
         console.log(this.area);
         this.firemain.child("mart").once("value", function (sn) {
             for (var a in sn.val()) {
-                console.log(a);
                 if (a == name) {
                     if (_this.area == "seoul") {
+                        var counting = 0;
                         for (var b in sn.val()[a]) {
                             if (sn.val()[a][b].addr.indexOf("서울") != -1 && sn.val()[a][b].addr.indexOf("서울대학로") == -1) {
+                                counting++;
                                 _this.martArray.push(sn.val()[a][b]);
+                                _this.vacationArr.push(sn.val()[a][b].vacation);
+                                _this.vacation = sn.val()[a][b].vacation;
+                                _this.vacationFunc(_this.week, sn.val()[a][b], counting);
                             }
                         }
+                        console.log(_this.martArray);
+                        console.log(_this.week);
                     }
-                    console.log(_this.martArray);
                     if (_this.area == "gyeonggi") {
                         for (var b in sn.val()[a]) {
+                            _this.vacation = sn.val()[a][b].vacation;
+                            var counting = 0;
                             if (sn.val()[a][b].addr.indexOf("경기") != -1) {
+                                counting++;
                                 _this.martArray.push(sn.val()[a][b]);
+                                _this.vacationArr.push(sn.val()[a][b].vacation);
+                                _this.vacation = sn.val()[a][b].vacation;
+                                _this.vacationFunc(_this.week, sn.val()[a][b], counting);
                             }
                         }
                     }
                     if (_this.area == "incheon") {
                         for (var b in sn.val()[a]) {
-                            if (sn.val()[a][b].addr.indexOf("경기") != -1) {
+                            _this.vacation = sn.val()[a][b].vacation;
+                            if (sn.val()[a][b].addr.indexOf("인천") != -1) {
+                                counting++;
                                 _this.martArray.push(sn.val()[a][b]);
+                                _this.vacationArr.push(sn.val()[a][b].vacation);
+                                _this.vacation = sn.val()[a][b].vacation;
+                                _this.vacationFunc(_this.week, sn.val()[a][b], counting);
                             }
                         }
                     }
                     if (_this.area == "gangwon") {
                         for (var b in sn.val()[a]) {
+                            _this.vacation = sn.val()[a][b].vacation;
                             if (sn.val()[a][b].addr.indexOf("강원") != -1) {
                                 _this.martArray.push(sn.val()[a][b]);
+                                _this.vacation = sn.val()[a][b].vacation;
+                                counting++;
+                                _this.martArray.push(sn.val()[a][b]);
+                                _this.vacationArr.push(sn.val()[a][b].vacation);
+                                _this.vacation = sn.val()[a][b].vacation;
+                                _this.vacationFunc(_this.week, sn.val()[a][b], counting);
                             }
                         }
                     }
                     if (_this.area == "chungbuk") {
                         for (var b in sn.val()[a]) {
+                            _this.vacation = sn.val()[a][b].vacation;
                             if (sn.val()[a][b].addr.indexOf("충북") != -1) {
                                 _this.martArray.push(sn.val()[a][b]);
+                                _this.vacation = sn.val()[a][b].vacation;
+                                counting++;
+                                _this.martArray.push(sn.val()[a][b]);
+                                _this.vacationArr.push(sn.val()[a][b].vacation);
+                                _this.vacation = sn.val()[a][b].vacation;
+                                _this.vacationFunc(_this.week, sn.val()[a][b], counting);
                             }
                         }
                     }
                     if (_this.area == "chungnam") {
                         for (var b in sn.val()[a]) {
+                            _this.vacation = sn.val()[a][b].vacation;
                             if (sn.val()[a][b].addr.indexOf("충남") != -1) {
                                 _this.martArray.push(sn.val()[a][b]);
+                                _this.vacation = sn.val()[a][b].vacation;
+                                counting++;
+                                _this.martArray.push(sn.val()[a][b]);
+                                _this.vacationArr.push(sn.val()[a][b].vacation);
+                                _this.vacation = sn.val()[a][b].vacation;
+                                _this.vacationFunc(_this.week, sn.val()[a][b], counting);
                             }
                         }
                     }
                     if (_this.area == "jeonbuk") {
                         for (var b in sn.val()[a]) {
+                            _this.vacation = sn.val()[a][b].vacation;
                             if (sn.val()[a][b].addr.indexOf("전북") != -1) {
                                 _this.martArray.push(sn.val()[a][b]);
+                                _this.vacation = sn.val()[a][b].vacation;
+                                counting++;
+                                _this.martArray.push(sn.val()[a][b]);
+                                _this.vacationArr.push(sn.val()[a][b].vacation);
+                                _this.vacation = sn.val()[a][b].vacation;
+                                _this.vacationFunc(_this.week, sn.val()[a][b], counting);
                             }
                         }
                     }
                     if (_this.area == "jeonnam") {
                         for (var b in sn.val()[a]) {
+                            _this.vacation = sn.val()[a][b].vacation;
                             if (sn.val()[a][b].addr.indexOf("전남") != -1) {
                                 _this.martArray.push(sn.val()[a][b]);
+                                _this.vacation = sn.val()[a][b].vacation;
+                                counting++;
+                                _this.martArray.push(sn.val()[a][b]);
+                                _this.vacationArr.push(sn.val()[a][b].vacation);
+                                _this.vacation = sn.val()[a][b].vacation;
+                                _this.vacationFunc(_this.week, sn.val()[a][b], counting);
                             }
                         }
                     }
                     if (_this.area == "gwangju") {
                         for (var b in sn.val()[a]) {
+                            _this.vacation = sn.val()[a][b].vacation;
                             if (sn.val()[a][b].addr.indexOf("광주") != -1) {
                                 _this.martArray.push(sn.val()[a][b]);
+                                _this.vacation = sn.val()[a][b].vacation;
+                                counting++;
+                                _this.martArray.push(sn.val()[a][b]);
+                                _this.vacationArr.push(sn.val()[a][b].vacation);
+                                _this.vacation = sn.val()[a][b].vacation;
+                                _this.vacationFunc(_this.week, sn.val()[a][b], counting);
                             }
                         }
                     }
                     if (_this.area == "daejeon") {
                         for (var b in sn.val()[a]) {
+                            _this.vacation = sn.val()[a][b].vacation;
                             if (sn.val()[a][b].addr.indexOf("대전") != -1) {
                                 _this.martArray.push(sn.val()[a][b]);
+                                _this.vacation = sn.val()[a][b].vacation;
+                                counting++;
+                                _this.martArray.push(sn.val()[a][b]);
+                                _this.vacationArr.push(sn.val()[a][b].vacation);
+                                _this.vacation = sn.val()[a][b].vacation;
+                                _this.vacationFunc(_this.week, sn.val()[a][b], counting);
                             }
                         }
                     }
                     if (_this.area == "gyeongbuk") {
                         for (var b in sn.val()[a]) {
+                            _this.vacation = sn.val()[a][b].vacation;
                             if (sn.val()[a][b].addr.indexOf("경북") != -1) {
                                 _this.martArray.push(sn.val()[a][b]);
+                                _this.vacation = sn.val()[a][b].vacation;
+                                counting++;
+                                _this.martArray.push(sn.val()[a][b]);
+                                _this.vacationArr.push(sn.val()[a][b].vacation);
+                                _this.vacation = sn.val()[a][b].vacation;
+                                _this.vacationFunc(_this.week, sn.val()[a][b], counting);
                             }
                         }
                     }
                     if (_this.area == "gyeongnam") {
                         for (var b in sn.val()[a]) {
+                            _this.vacation = sn.val()[a][b].vacation;
                             if (sn.val()[a][b].addr.indexOf("경남") != -1) {
                                 _this.martArray.push(sn.val()[a][b]);
+                                _this.vacation = sn.val()[a][b].vacation;
+                                counting++;
+                                _this.martArray.push(sn.val()[a][b]);
+                                _this.vacationArr.push(sn.val()[a][b].vacation);
+                                _this.vacation = sn.val()[a][b].vacation;
+                                _this.vacationFunc(_this.week, sn.val()[a][b], counting);
                             }
                         }
                     }
                     if (_this.area == "busan") {
                         for (var b in sn.val()[a]) {
+                            _this.vacation = sn.val()[a][b].vacation;
                             if (sn.val()[a][b].addr.indexOf("부산") != -1) {
                                 _this.martArray.push(sn.val()[a][b]);
+                                _this.vacation = sn.val()[a][b].vacation;
+                                counting++;
+                                _this.martArray.push(sn.val()[a][b]);
+                                _this.vacationArr.push(sn.val()[a][b].vacation);
+                                _this.vacation = sn.val()[a][b].vacation;
+                                _this.vacationFunc(_this.week, sn.val()[a][b], counting);
                             }
                         }
                     }
                     if (_this.area == "ulsan") {
                         for (var b in sn.val()[a]) {
+                            _this.vacation = sn.val()[a][b].vacation;
                             if (sn.val()[a][b].addr.indexOf("울산") != -1) {
                                 _this.martArray.push(sn.val()[a][b]);
+                                counting++;
+                                _this.martArray.push(sn.val()[a][b]);
+                                _this.vacationArr.push(sn.val()[a][b].vacation);
+                                _this.vacation = sn.val()[a][b].vacation;
+                                _this.vacationFunc(_this.week, sn.val()[a][b], counting);
                             }
                         }
                     }
                     if (_this.area == "jeju") {
                         for (var b in sn.val()[a]) {
+                            _this.vacation = sn.val()[a][b].vacation;
                             if (sn.val()[a][b].addr.indexOf("제주") != -1) {
                                 _this.martArray.push(sn.val()[a][b]);
+                                _this.vacation = sn.val()[a][b].vacation;
+                                counting++;
+                                _this.martArray.push(sn.val()[a][b]);
+                                _this.vacationArr.push(sn.val()[a][b].vacation);
+                                _this.vacation = sn.val()[a][b].vacation;
+                                _this.vacationFunc(_this.week, sn.val()[a][b], counting);
                             }
                         }
                     }
                 }
             }
         });
+    };
+    MartinfoPage.prototype.weekcheck = function (mart) {
+        var returnvalue = "";
+        if (mart.vacation.indexOf("월요") > -1) {
+            returnvalue = "월요일";
+        }
+        if (mart.vacation.indexOf("화요") > -1) {
+            returnvalue = "화요일";
+        }
+        if (mart.vacation.indexOf("수요") > -1) {
+            returnvalue = "수요일";
+        }
+        if (mart.vacation.indexOf("목요") > -1) {
+            returnvalue = "목요일";
+        }
+        if (mart.vacation.indexOf("금요") > -1) {
+            returnvalue = "금요일";
+        }
+        if (mart.vacation.indexOf("토요") > -1) {
+            returnvalue = "토요일";
+        }
+        if (mart.vacation.indexOf("일요") > -1) {
+            returnvalue = "일요일";
+        }
+        return returnvalue;
+    };
+    MartinfoPage.prototype.vacationFunc = function (v, mart, count) {
+        console.log(v);
+        console.log(mart);
+        console.log(count);
+        console.log("mart to change json");
+        console.log(this.martArray);
+        var counting = 0;
+        var dayoffarray = [];
+        for (var a in v) {
+            counting++;
+            if (counting == 1) {
+                console.log("first is");
+                console.log(v[a].week, v[a].day + "," + v[a].dayofweek);
+            }
+            console.log(v[a].week);
+            console.log(v[a].dayofweek);
+            if (mart.vacation.indexOf("첫째") > -1) {
+                if (v[a].week.indexOf("첫째") > -1 && v[a].week.indexOf("둘째") > -1) {
+                    var weekoff = this.weekcheck(this.martArray[count - 1]);
+                    console.log("off is : " + weekoff);
+                    console.log(weekoff + "1111,,," + v[a].dayofweek);
+                    if (weekoff == v[a].dayofweek) {
+                        dayoffarray.push("휴무");
+                    }
+                    else {
+                        dayoffarray.push("영업");
+                    }
+                }
+            }
+            if (mart.vacation.indexOf("둘째") > -1) {
+                if (v[a].week.indexOf("둘째") > -1 && v[a].week.indexOf("셋째") > -1) {
+                    var weekoff = this.weekcheck(this.martArray[count - 1]);
+                    console.log("off is : " + weekoff);
+                    console.log(weekoff + "2222,,," + v[a].dayofweek);
+                    ;
+                    if (weekoff == v[a].dayofweek) {
+                        dayoffarray.push("휴무");
+                    }
+                    else {
+                        dayoffarray.push("영업");
+                    }
+                }
+            }
+            if (mart.vacation.indexOf("셋째") > -1) {
+                if (v[a].week.indexOf("셋째") > -1 && v[a].week.indexOf("넷째") > -1) {
+                    var weekoff = this.weekcheck(this.martArray[count - 1]);
+                    console.log("off is : " + weekoff);
+                    console.log(weekoff + "333,,," + v[a].dayofweek);
+                    if (weekoff == v[a].dayofweek) {
+                        dayoffarray.push("휴무");
+                    }
+                    else {
+                        dayoffarray.push("영업");
+                    }
+                }
+            }
+            if (mart.vacation.indexOf("넷째") > -1) {
+                // if(v[a].week.indexOf("넷째")>-1&&v[a].week.indexOf("다섯째")>-1){
+                var weekoff = this.weekcheck(this.martArray[count - 1]);
+                console.log("off is : " + weekoff);
+                console.log(weekoff + "444,,," + v[a].dayofweek);
+                if (weekoff == v[a].dayofweek) {
+                    dayoffarray.push("휴무");
+                }
+                else {
+                    dayoffarray.push("영업");
+                }
+            }
+            // }
+            // if (mart.vacation.indexOf("다섯째") > -1) {
+            //   var weekoff = this.weekcheck(this.martArray[count - 1])
+            //   console.log("off is : " + weekoff);
+            //   if (weekoff == v[a].dayofweek) {
+            //     dayoffarray.push("휴무")
+            //   } else {
+            //     dayoffarray.push("영업")
+            //   }
+            // }
+        }
+        this.martArray[count - 1].dayoffarray = dayoffarray;
+        console.log(this.martArray);
+        console.log("done");
+        console.log(dayoffarray);
+        this.today = dayoffarray[0];
     };
     MartinfoPage.prototype.martfunc = function () {
         if (this.mart == "lottemart") {
@@ -2474,7 +2635,7 @@ var MartinfoPage = /** @class */ (function () {
     var _a, _b;
     MartinfoPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-martinfo',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/martinfo/martinfo.html"*/'<ion-content>\n    <div style="background-color: #71E8E8; margin-bottom:5px; display:flex;">\n        <img src="./assets/imgs/008-버튼-PPT 4페이지의 가운데 이미지의 상단 좌측-말 얼굴.png" style="width:50px; margin:5px;" alt="">\n        <span style="color:white; font-size:18px; font-weight: 900; margin:auto;">즐겨찾기 추가는 "♡"터치</span>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/004-버튼-PPT 3페이지의 이미지의 상단 가운데-광고금지.png" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/005-버튼-PPT 3페이지의 이미지의 상단 우측-평가하기 별점주기.png" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/006-버튼-PPT 3페이지의 이미지의 상단 우측-공유하기 점 세개.png" style="width:25px;"></button>\n    </div>\n    <div style="background-color: #fafafa;">\n        <ion-item-divider color="light"><img src="{{img}}" style="width:50px;margin-right:10px;">{{name}}</ion-item-divider>\n        <ion-item-group style="background-color: #fafafa;">\n            <div *ngFor="let i of martArray" class="border">\n                <button style="background-color: white;" class="btn1">\n                  <table>\n                    <thead>\n                      <th class="martname">\n                        {{i.name}}\n                      </th>\n                      <th class="dayoffimg">\n                        <!-- <img *ngIf="today==\'영업\'" src="./assets/imgs/043-버튼-PPT 5페이지의 우측 이미지 영업 알림 버튼-오늘 영업.png" style="width:60%;">\n                        <img *ngIf="today==\'휴무\'" src="./assets/imgs/044-버튼-PPT 5페이지의 우측 이미지 영업 알림 버튼-오늘 휴무.png" style="width:60%;"> -->\n                        <!-- <button (click)="favorite(i.key, false);" style="width:40px; height:40px; background-color: white;"><img src="./assets/imgs/045-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-블랭크 하트(즐겨찾기전).png" style="width:100%;"></button>                -->\n\n                <!-- <button *ngIf="i.favorite==\'false\'" (click)="favorite(i.key, true);" style="width:40px; height:40px; background-color: white;" class="bty"><img src="./assets/imgs/045-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-블랭크 하트(즐겨찾기전).png" style="width:100%;" class="blanktoyellow" id="blanktoyellow"></button>\n                <button *ngIf="i.favorite==\'true\'" (click)="favorite(i.key, false);" style="width:40px; height:40px; background-color: white;" class="ytb"><img src="./assets/imgs/046-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-노란 하트(즐겨찾기후).png" style="width:100%;" class="yellowtoblank" id="yellowtoblank"></button> -->\n                </th>\n                </thead>\n                </table>\n                <table>\n                    <tbody>\n                        <tr class="datespan">\n                            {{todayy}}\n                        </tr>\n                        <tr class="datespan">\n                            <td *ngFor="let k of dayweek" class="tabletd">\n                                <span class="datespan">{{k}}</span>\n                            </td>\n                        </tr>\n                        <tr class="datespan">\n                            <td *ngFor="let j of week" class="tabletd">\n                                <span>{{month}}/{{j}}</span>\n                            </td>\n                        </tr>\n                        <tr class="datespan">\n                            <td *ngFor="let m of dayoff" class="tabletd">\n                                <span *ngIf="m==\'휴무\'" class="mSpan1">{{m}}</span>\n                                <span *ngIf="m==\'영업\'" class="mSpan2">{{m}}</span>\n                            </td>\n                        </tr>\n                    </tbody>\n                </table>\n                </button>\n            </div>\n        </ion-item-group>\n    </div>\n</ion-content>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/martinfo/martinfo.html"*/,
+            selector: 'page-martinfo',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/martinfo/martinfo.html"*/'<ion-content>\n    <div style="background-color: #71E8E8; margin-bottom:5px; display:flex;">\n        <img src="./assets/imgs/008-버튼-PPT 4페이지의 가운데 이미지의 상단 좌측-말 얼굴.png" style="width:50px; margin:5px;" alt="">\n        <span style="color:white; font-size:18px; font-weight: 900; margin:auto;">즐겨찾기 추가는 "♡"터치</span>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/004-버튼-PPT 3페이지의 이미지의 상단 가운데-광고금지.png" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/005-버튼-PPT 3페이지의 이미지의 상단 우측-평가하기 별점주기.png" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/006-버튼-PPT 3페이지의 이미지의 상단 우측-공유하기 점 세개.png" style="width:25px;"></button>\n    </div>\n    <div style="background-color: #fafafa;">\n        <ion-item-divider color="light"><img src="{{img}}" style="width:50px;margin-right:10px;">{{name}}</ion-item-divider>\n        <ion-item-group style="background-color: #fafafa;">\n            <div *ngFor="let i of martArray" class="border">\n                <button style="background-color: white;" class="btn1">\n                  <table>\n                    <thead>\n                      <th class="martname">\n                        {{i.name}}\n                      </th>\n                      <th class="dayoffimg">\n                        <img *ngIf="today==\'영업\'" src="./assets/imgs/043-버튼-PPT 5페이지의 우측 이미지 영업 알림 버튼-오늘 영업.png" style="width:60%;">\n                        <img *ngIf="today==\'휴무\'" src="./assets/imgs/044-버튼-PPT 5페이지의 우측 이미지 영업 알림 버튼-오늘 휴무.png" style="width:60%;">\n                        <!-- <button (click)="favorite(i.key, false);" style="width:40px; height:40px; background-color: white;"><img src="./assets/imgs/045-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-블랭크 하트(즐겨찾기전).png" style="width:100%;"></button>                -->\n\n                <!-- <button *ngIf="i.favorite==\'false\'" (click)="favorite(i.key, true);" style="width:40px; height:40px; background-color: white;" class="bty"><img src="./assets/imgs/045-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-블랭크 하트(즐겨찾기전).png" style="width:100%;" class="blanktoyellow" id="blanktoyellow"></button>\n                <button *ngIf="i.favorite==\'true\'" (click)="favorite(i.key, false);" style="width:40px; height:40px; background-color: white;" class="ytb"><img src="./assets/imgs/046-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-노란 하트(즐겨찾기후).png" style="width:100%;" class="yellowtoblank" id="yellowtoblank"></button> -->\n                </th>\n                </thead>\n                </table>\n                <table>\n                    <tbody>\n                        <tr class="datespan">\n                            {{todayy}}\n                        </tr>\n                        <tr class="datespan">\n                            <!-- <td *ngFor="let k of dayweek" class="tabletd">\n                                <span class="datespan">{{k}}</span>\n                            </td> -->\n                            <td *ngFor="let j of week" class="tabletd">\n                                <span>{{j.dayofweek}}</span>\n                            </td>\n                        </tr>\n                        <tr class="datespan">\n                            <td *ngFor="let j of week" class="tabletd">\n                                <span>{{month}}/{{j.day}}</span>\n                            </td>\n                        </tr>\n                        <tr class="datespan">\n                            <td *ngFor="let m of i.dayoffarray" class="tabletd">\n                                <span *ngIf="m==\'휴무\'" class="mSpan1">{{m}}</span>\n                                <span *ngIf="m==\'영업\'" class="mSpan2">{{m}}</span>\n                            </td>\n                        </tr>\n                    </tbody>\n                </table>\n                </button>\n            </div>\n        </ion-item-group>\n    </div>\n</ion-content>45'/*ion-inline-end:"/Users/limchae/martapp/src/pages/martinfo/martinfo.html"*/,
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" ? _a : Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" ? _b : Object])
     ], MartinfoPage);
@@ -2507,26 +2668,26 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(260);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(263);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_call_number__ = __webpack_require__(264);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(259);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(262);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_call_number__ = __webpack_require__(263);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_firebase__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(437);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_home_home__ = __webpack_require__(266);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_home_home__ = __webpack_require__(265);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_onesignal__ = __webpack_require__(278);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_ad_ad__ = __webpack_require__(273);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angularfire2__ = __webpack_require__(438);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angularfire2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_angularfire2__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_angularfire2_database__ = __webpack_require__(722);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_angularfire2_database___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_angularfire2_database__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_unique_device_id__ = __webpack_require__(267);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_speech_recognition__ = __webpack_require__(269);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_unique_device_id__ = __webpack_require__(266);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_speech_recognition__ = __webpack_require__(268);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_admob_free__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_addshoping_addshoping__ = __webpack_require__(268);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_addshoping_addshoping__ = __webpack_require__(267);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_in_app_browser__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_viewshoppinglist_viewshoppinglist__ = __webpack_require__(270);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_social_sharing__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_social_sharing__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_setting_setting__ = __webpack_require__(271);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__ionic_native_in_app_purchase__ = __webpack_require__(274);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_rate_rate__ = __webpack_require__(275);
@@ -2655,9 +2816,9 @@ var AppModule = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(263);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(260);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(266);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(262);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(259);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(265);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);

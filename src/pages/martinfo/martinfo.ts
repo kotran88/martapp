@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import firebase from 'firebase';
-// import * as $ from 'jquery'
+import * as $ from 'jquery';
 
 /**
  * Generated class for the MartinfoPage page.
@@ -36,9 +36,10 @@ export class MartinfoPage {
   userId: any;
   vacation: any;
   vacationArr = [];
+  userarr = [];
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController) {
     this.mart = this.navParams.get("mart");
     this.area = this.navParams.get("area");
     console.log(this.mart);
@@ -75,11 +76,13 @@ export class MartinfoPage {
     this.date = this.day.getDate();
     this.dayOfweek = this.day.getDay();
     for (var i = 0; i < 7; i++) {
+      console.log(i);
       var date = this.day.getDate() + i;
       var dow = this.dayOfweek++;
-      console.log(dow);
-      console.log(date);
-      if (dow > 6) { dow = 0; }
+      console.log("dow is " + dow);
+      console.log("date is " + date);
+      console.log("this.dayOfweek is " + this.dayOfweek);
+      if (this.dayOfweek >= 7) { this.dayOfweek = 0; }
       this.week.push({ "week": prefixes[0 | (date - 1) / 7], "day": date, "dayofweek": days[dow] });
     }
     console.log(this.week);
@@ -350,9 +353,9 @@ export class MartinfoPage {
 
   vacationFunc(v, mart, count) {
 
-    console.log(v);
-    console.log(mart);
-    console.log(count);
+    console.log(v); //this.week
+    console.log(mart); //db
+    console.log(count); //count
     console.log("mart to change json");
     console.log(this.martArray)
     var counting = 0;
@@ -361,59 +364,58 @@ export class MartinfoPage {
       counting++;
       if (counting == 1) {
         console.log("first is");
-        console.log(v[a].week, v[a].day + "," + v[a].dayofweek)
+        console.log(v[a].week, v[a].day + "," + v[a].dayofweek)//오늘 날짜
       }
-      console.log(v[a].week);
-      console.log(v[a].dayofweek);
-      if (mart.vacation.indexOf("첫째") > -1) {
-        if(v[a].week.indexOf("첫째")>-1&&v[a].week.indexOf("둘째")>-1){
-        var weekoff = this.weekcheck(this.martArray[count - 1])
-        console.log("off is : " + weekoff);
-        console.log(weekoff+"1111,,,"+v[a].dayofweek);
-        if (weekoff == v[a].dayofweek) {
-          dayoffarray.push("휴무")
-        } else {
-          dayoffarray.push("영업")
+      console.log(v[a].week); //몇주?
+      console.log(v[a].dayofweek);//요일?
+      if (mart.vacation.indexOf("첫째") > -1) { //db.vacation에 '첫째'라는 글자가 있을 경우
+        if (v[a].week.indexOf("첫째") > -1 && v[a].week.indexOf("둘째") > -1) { //this.week에 '첫째','둘째'라는 글자가 있을 경우
+          var weekoff = this.weekcheck(this.martArray[count - 1]);
+          console.log("off is : " + weekoff);
+          console.log(weekoff + "1111,,," + v[a].dayofweek);
+          if (weekoff == v[a].dayofweek) {
+            dayoffarray.push("휴무")
+          } else {
+            dayoffarray.push("영업")
+          }
         }
       }
-    }
       if (mart.vacation.indexOf("둘째") > -1) {
-        if(v[a].week.indexOf("둘째")>-1&&v[a].week.indexOf("셋째")>-1){
-        var weekoff = this.weekcheck(this.martArray[count - 1])
-        console.log("off is : " + weekoff)
-        console.log(weekoff+"2222,,,"+v[a].dayofweek);;
-        if (weekoff == v[a].dayofweek) {
-          dayoffarray.push("휴무")
-        } else {
-          dayoffarray.push("영업")
+        if (v[a].week.indexOf("둘째") > -1 && v[a].week.indexOf("셋째") > -1) {
+          var weekoff = this.weekcheck(this.martArray[count - 1])
+          console.log("off is : " + weekoff)
+          console.log(weekoff + "2222,,," + v[a].dayofweek);;
+          if (weekoff == v[a].dayofweek) {
+            dayoffarray.push("휴무")
+          } else {
+            dayoffarray.push("영업")
+          }
         }
       }
-    }
       if (mart.vacation.indexOf("셋째") > -1) {
-        if(v[a].week.indexOf("셋째")>-1&&v[a].week.indexOf("넷째")>-1){
-
-        var weekoff = this.weekcheck(this.martArray[count - 1])
-        console.log("off is : " + weekoff);
-        console.log(weekoff+"333,,,"+v[a].dayofweek);
-        if (weekoff == v[a].dayofweek) {
-          dayoffarray.push("휴무")
-        } else {
-          dayoffarray.push("영업")
+        if (v[a].week.indexOf("셋째") > -1 && v[a].week.indexOf("넷째") > -1) {
+          var weekoff = this.weekcheck(this.martArray[count - 1])
+          console.log("off is : " + weekoff);
+          console.log(weekoff + "333,,," + v[a].dayofweek);
+          if (weekoff == v[a].dayofweek) {
+            dayoffarray.push("휴무")
+          } else {
+            dayoffarray.push("영업")
+          }
         }
       }
-    }
       if (mart.vacation.indexOf("넷째") > -1) {
         // if(v[a].week.indexOf("넷째")>-1&&v[a].week.indexOf("다섯째")>-1){
         var weekoff = this.weekcheck(this.martArray[count - 1])
         console.log("off is : " + weekoff);
-        console.log(weekoff+"444,,,"+v[a].dayofweek);
+        console.log(weekoff + "444,,," + v[a].dayofweek);
         if (weekoff == v[a].dayofweek) {
           dayoffarray.push("휴무")
         } else {
           dayoffarray.push("영업")
         }
       }
-    // }
+      // }
       // if (mart.vacation.indexOf("다섯째") > -1) {
       //   var weekoff = this.weekcheck(this.martArray[count - 1])
       //   console.log("off is : " + weekoff);
@@ -424,14 +426,14 @@ export class MartinfoPage {
       //   }
       // }
 
-    }
-    this.martArray[count - 1].dayoffarray = dayoffarray;
-    
-    console.log(this.martArray);
-    console.log("done")
-    console.log(dayoffarray);
-    this.today=dayoffarray[0];
 
+      this.martArray[count - 1].dayoffarray = dayoffarray;
+
+      console.log(this.martArray);
+      console.log("done")
+      console.log(dayoffarray);
+      this.today = dayoffarray[0];
+    }
   }
 
   martfunc() {
@@ -500,10 +502,7 @@ export class MartinfoPage {
     }
   }
 
-  favorite(a, b) {
-    console.log(a);
-    console.log(this.mart);
-
+  favorite(a, idx) {
     var newnametoinput = "";
     if (this.mart == "lottemart") { newnametoinput = "lotte"; }
     if (this.mart == "emart") { newnametoinput = "emart"; }
@@ -515,33 +514,35 @@ export class MartinfoPage {
     if (this.mart == "hyundep") { newnametoinput = "hyundai"; }
     if (this.mart == "lotteout") { newnametoinput = "lotteoutlet"; }
     console.log(newnametoinput);
-
-    if (b == true) {
-      console.log("true");
-      this.firemain.child("users").once("value", (sn) => {
-        console.log(sn.val());
-        for (var aa in sn.val()) {
-          console.log(sn.val()[aa]);
-          this.firemain.child("users").child(aa).child("favorite").child(newnametoinput).child(a).update({ "favorite": "true" });
-        }
-      })
+    console.log(a);//db
+    console.log(idx);
+    console.log(this.martArray[idx])
+    console.log(!flag);
+    var flag=this.martArray[idx].favorite; 
+    if(flag!=true){
+      console.log(flag);
+      this.martArray[idx].favorite=true;
+      this.firemain.child("users").child(this.userId).child("favorite").child(newnametoinput).child(a.key).update(this.martArray[idx]);
+      console.log(this.martArray[idx]);
+      const toast = this.toastCtrl.create({
+        message: '첫 화면 "즐겨찾기"에 추가되었습니다.',
+        duration: 2000,
+      });
+      toast.present();
     }
-    if (b == false) {
-      console.log("false");
-      this.firemain.child("users").once("value", (sn) => {
-        console.log(sn.val());
-        for (var aa in sn.val()) {
-          console.log(aa);
-          console.log(sn.val()[aa]);
-          this.firemain.child("users").child(aa).child("favorite").child(newnametoinput).child(a).update({ "favorite": "false" });
-        }
-      })
+    else {
+      flag=false;
+      console.log(flag);
+      this.martArray[idx].favorite=false;
+      this.firemain.child("users").child(this.userId).child("favorite").child(newnametoinput).child(a.key).remove();
+      const toast = this.toastCtrl.create({
+        message: '삭제되었습니다.',
+        duration: 2000,
+      });
+      toast.present();
     }
-
-
-
-
+    
   }
-
-
 }
+
+

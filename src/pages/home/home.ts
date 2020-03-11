@@ -1,5 +1,5 @@
 import { Component, ContentChild } from '@angular/core';
-import { NavController, AlertController, Platform, ViewController, NavParams, ModalController, FabContainer, UrlSerializer } from 'ionic-angular';
+import { NavController, AlertController, Platform, ViewController, NavParams, ModalController, FabContainer, UrlSerializer, ToastController } from 'ionic-angular';
 import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free'
 import { CallNumber } from '@ionic-native/call-number/';
 import firebase from 'firebase';
@@ -18,6 +18,7 @@ import { snapshotChanges } from 'angularfire2/database';
 import { ListlimitmodalPage } from '../listlimitmodal/listlimitmodal';
 import { OneSignal } from '@ionic-native/onesignal';
 import { MartlistPage } from '../martlist/martlist';
+import { MartinfoviewPage } from '../martinfoview/martinfoview';
 
 
 @Component({
@@ -30,7 +31,6 @@ export class HomePage {
   value: any;
   firemain = firebase.database().ref();
   shoppingPlace: any;
-
   newarraylist = [];
   id: any = "a2f05b91-956a-b480-3525-991002905558"
   tab = "tab1";
@@ -47,8 +47,102 @@ export class HomePage {
   fabButtonOpened: boolean;
   listcount: any = 0;
   afterValue: any;
-  
-  main(){
+  favoriteList = [];
+  logo = [];
+
+  date: any;
+  day: any;
+  week: any;
+  month: any;
+  dayofweek: any;
+  weekarr = [];
+  today = [];
+  todayoff: any;
+  martkind = [];
+  martinfo = [];
+
+
+  martview(martinfo){
+    console.log(martinfo);
+    this.navCtrl.push(MartinfoviewPage,{"martinfo": martinfo});
+  }
+
+  weekAndDay() {
+    var datearr = new Date,
+      days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+      prefixes = ['첫째주', '둘째주', '셋째주', '넷째주', '다섯째주'];
+
+    this.week = prefixes[0 | datearr.getDate() / 7];
+    this.day = days[datearr.getDay()];
+    this.month = datearr.getMonth() + 1;
+    this.dayOfweek = datearr.getDay();
+    console.log(this.month);
+    // this.date = this.day.getDate;
+
+    for (var i = 0; i < 7; i++) {
+      this.date = datearr.getDate() + i;
+      this.dayofweek = datearr.getDate();
+      var dow = this.dayOfweek++;
+
+      if (this.dayOfweek >= 7) { this.dayOfweek = 0; }
+      console.log(dow);
+      this.weekarr.push({ "week": prefixes[0 | (this.date - 1) / 7], "day": this.date, "dayofweek": days[dow] });
+      console.log(this.weekarr);
+    }
+  }
+
+  favorite() {
+    this.firemain.child("users").child(this.id).once("value", (sn) => {
+      console.log(sn.val());
+      for (var a in sn.val()) {
+        if (a == "favorite") {
+          console.log(sn.val()[a]);
+          for (var b in sn.val()[a]) {
+            if (b == "lotte") { this.logo.push({ "image": "./assets/imgs/009-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-롯데마트 CI.png", "name": "롯데마트", "flag": "lotte" }); }
+            if (b == "emart") { this.logo.push({ "image": ".assets/imgs/010-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-이마트 CI.png", "name": "이마트", "flag": "emart" }); }
+            if (b == "homeplus") { this.logo.push({ "image": "./assets/imgs/011-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-홈플러스 CI.png", "name": "홈플러스", "flag": "homeplus" }); }
+            if (b == "costco") { this.logo.push({ "image": "./assets/imgs/012-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-코스트코 CI.png", "name": "코스트코", "flag": "costco" }); }
+            if (b == "traders") { this.logo.push({ "image": "./assets/imgs/013-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-이마트 트레이더스 CI.png", "name": "이마트 트레이더스", "flag": "traders" }); }
+            if (b == "lottedep") { this.logo.push({ "image": "./assets/imgs/020-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-롯데백화점 CI.png", "name": "롯데백화점", "flag": "lottedep" }); }
+            if (b == "sinsaegae") { this.logo.push({ "image": "./assets/imgs/021-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-신세백화점 CI.png", "name": "신세계백화점", "flag": "sinsaegae" }); }
+            if (b == "hyundai") { this.logo.push({ "image": "./assets/imgs/022-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-현대백화점 CI.png", "name": "현대백화점", "flag": "hyundai" }); }
+            if (b == "lotteoutlet") { this.logo.push({ "image": "./assets/imgs/023-버튼-PPT 4페이지의 가운데 이미지의 아울렛별 로고-롯데아울렛 CI.png", "name": "롯데아울렛", "flag": "lotteoutlet" }); }
+            this.martkind.push(b);
+            console.log(sn.val()[a][b]);
+            for (var c in sn.val()[a][b]) {
+              console.log(sn.val()[a][b][c]);
+              this.todayoff = sn.val()[a][b][c].dayoffarray[0];
+              this.favoriteList.push(sn.val()[a][b][c]);
+            }
+            console.log(this.favoriteList)
+            console.log(this.favoriteList.length);
+          }
+
+        }
+      }
+    })
+  }
+
+  bookmark(a, idx) {
+    this.martinfo=a;
+    console.log(this.martinfo);
+    console.log(this.martkind);
+    console.log(a);
+    console.log(a.key)
+    console.log(idx);
+    for (var i in this.martkind) {
+      console.log(this.martkind[i]);
+      this.firemain.child("users").child(this.id).child("favorite").child(this.martkind[i]).child(a.key).remove();
+      const toast = this.toastCtrl.create({
+        message: '삭제되었습니다.',
+        duration: 2000,
+      });
+      toast.present();
+    }
+
+  }
+
+  main() {
     this.navCtrl.push(MartlistPage);
   }
 
@@ -65,7 +159,7 @@ export class HomePage {
     this.newarraylist = [];
     this.firemain.child("users").child(this.id).once("value", (sn) => {
       for (var a in sn.val()) {
-        if (a != "setting"&& a!="favorite") {
+        if (a != "setting" && a != "favorite") {
           // console.log(sn.val()[a]);
           for (var b in sn.val()[a]) {
             this.listcount++;
@@ -136,25 +230,24 @@ export class HomePage {
         {
           text: '확인',
           handler: data => {
-            var limitarray=[];
+            var limitarray = [];
             console.log(this.listcount);
             console.log(value);
             if (this.listcount >= 50) {
               this.navCtrl.push(ListlimitmodalPage, { "flag": this.selectedvalue, "obj": this.newarraylist, "title": data.title, "id": this.id, "key": value.key }).then(() => {
                 this.navCtrl.getActive().onDidDismiss(data => {
-                  if(data.value){
+                  if (data.value) {
                     console.log(data.value);
-                    for(var a = 0; a<this.newarraylist.length; a++) {
+                    for (var a = 0; a < this.newarraylist.length; a++) {
                       console.log(data.value.title);
-                      if(this.newarraylist[a].title == data.value.title)
-                      {
-                        this.nextdirectory.child(this.newarraylist[a].flag).child(this.newarraylist[a].title).remove().then(()=>{
+                      if (this.newarraylist[a].title == data.value.title) {
+                        this.nextdirectory.child(this.newarraylist[a].flag).child(this.newarraylist[a].title).remove().then(() => {
                           console.log("success");
                         })
                       }
                     }
                   }
-                  else{
+                  else {
                     console.log("success");
                   }
 
@@ -562,7 +655,7 @@ export class HomePage {
       this.firemain.child("users").child(this.id).child("mart").child(a).child(key.key).update(key).then(() => {
         console.log(key);
       })
-      this.refreshname();     
+      this.refreshname();
     }
     if (key.flag == "dep") {
       var a = key.title + "복사본"
@@ -751,22 +844,21 @@ export class HomePage {
     modal.present();
   }
 
-  OneSignalInstall()
-  {
+  OneSignalInstall() {
     console.log("start Signal")
     this.oneSignal.startInit('2a4ab592-b87f-474a-9b98-77a1983d4b38', '552511846926');
     // this.oneSignal.clearOneSignalNotifications();
     var iosSettings = {
-      "kOSSettingsKeyAutoPrompt" : true,
-      "kOSSettingsKeyInAppLaunchURL" : true
+      "kOSSettingsKeyAutoPrompt": true,
+      "kOSSettingsKeyInAppLaunchURL": true
     };
     this.oneSignal.iOSSettings(iosSettings);
     this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification);
     //알림을 받았을때에 아래 함수로
     this.oneSignal.handleNotificationReceived().subscribe((data) => {
-      
-    // var hour=data.payload.additionalData.hour;
-    // var min=data.payload.additionalData.minute;
+
+      // var hour=data.payload.additionalData.hour;
+      // var min=data.payload.additionalData.minute;
     });
 
     this.oneSignal.handleNotificationOpened().subscribe(data => {
@@ -777,14 +869,14 @@ export class HomePage {
     });
 
     this.oneSignal.getIds().then(data => {
-      console.log("get id success"+data.userId)
+      console.log("get id success" + data.userId)
       window.alert(data.userId);
       this.firemain.child("users").child(this.id).child("setting").update({ "user id": data.userId });
       let sendData = [];
-      localStorage.setItem("tokenvalue",data.userId);
+      localStorage.setItem("tokenvalue", data.userId);
       //디비에 토큰값을 넣음
-    }).catch((e)=>{
-    window.alert("onesignal error"+e);
+    }).catch((e) => {
+      window.alert("onesignal error" + e);
     })
     this.oneSignal.endInit();
   }
@@ -795,12 +887,15 @@ export class HomePage {
     public alertCtrl: AlertController, public callnumber: CallNumber,
     public admobFree: AdMobFree, public navCtrl: NavController,
     public platform: Platform, public navParams: NavParams,
-    public oneSignal: OneSignal) {
+    public oneSignal: OneSignal, public toastCtrl: ToastController) {
     this.fabButtonOpened = false;
     this.refreshname();
     $(document).ready(function () {
       console.log("ready!");
     });
+    this.favorite();
+    this.weekAndDay();
+    this.today = ['오늘'];
 
     // setTimeout(()=>{
     //   if(this.platform.is("android")||this.platform.is("ios")){

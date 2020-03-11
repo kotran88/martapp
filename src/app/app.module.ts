@@ -30,6 +30,7 @@ import { ListlimitmodalPage } from '../pages/listlimitmodal/listlimitmodal';
 import { MartlistPage } from '../pages/martlist/martlist';
 import { MartmapPage } from '../pages/martmap/martmap';
 import { MartinfoPage } from '../pages/martinfo/martinfo';
+import { MartinfoviewPage } from '../pages/martinfoview/martinfoview';
 
 
 var firebaseConfig = {
@@ -59,6 +60,7 @@ firebase.initializeApp(firebaseConfig);
     MartlistPage,
     MartmapPage,
     MartinfoPage,
+    MartinfoviewPage
   ],
   imports: [
     BrowserModule,
@@ -82,6 +84,7 @@ firebase.initializeApp(firebaseConfig);
     MartlistPage,
     MartmapPage,
     MartinfoPage,
+    MartinfoviewPage,
   ],
   providers: [
     StatusBar,

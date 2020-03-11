@@ -9,20 +9,21 @@
     <div style="background-color: #fafafa;">
         <ion-item-divider color="light"><img src="{{img}}" style="width:50px;margin-right:10px;">{{name}}</ion-item-divider>
         <ion-item-group style="background-color: #fafafa;">
-            <div *ngFor="let i of martArray" class="border">
+            <div *ngFor="let i of martArray; let idx = index " class="border">
                 <button style="background-color: white;" class="btn1">
                   <table>
                     <thead>
-                      <th class="martname">
+                      <th class="martname" style="margin-top: 10px;">
                         {{i.name}}
                       </th>
                       <th class="dayoffimg">
                         <img *ngIf="today=='영업'" src="./assets/imgs/043-버튼-PPT 5페이지의 우측 이미지 영업 알림 버튼-오늘 영업.png" style="width:60%;">
                         <img *ngIf="today=='휴무'" src="./assets/imgs/044-버튼-PPT 5페이지의 우측 이미지 영업 알림 버튼-오늘 휴무.png" style="width:60%;">
-                        <!-- <button (click)="favorite(i.key, false);" style="width:40px; height:40px; background-color: white;"><img src="./assets/imgs/045-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-블랭크 하트(즐겨찾기전).png" style="width:100%;"></button>                -->
-
-                <!-- <button *ngIf="i.favorite=='false'" (click)="favorite(i.key, true);" style="width:40px; height:40px; background-color: white;" class="bty"><img src="./assets/imgs/045-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-블랭크 하트(즐겨찾기전).png" style="width:100%;" class="blanktoyellow" id="blanktoyellow"></button>
-                <button *ngIf="i.favorite=='true'" (click)="favorite(i.key, false);" style="width:40px; height:40px; background-color: white;" class="ytb"><img src="./assets/imgs/046-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-노란 하트(즐겨찾기후).png" style="width:100%;" class="yellowtoblank" id="yellowtoblank"></button> -->
+                        <button (click)="favorite(i, idx);" style="width:40px; height:40px; background-color: white;">
+                          <img *ngIf="i.favorite=='false'" src="./assets/imgs/045-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-블랭크 하트(즐겨찾기전).png" style="width:100%;" alt="">
+                          <img *ngIf="i.favorite==true" src="./assets/imgs/046-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-노란 하트(즐겨찾기후).png" style="width:100%;" alt="">
+                          <img *ngIf="i.favorite==false" src="./assets/imgs/045-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-블랭크 하트(즐겨찾기전).png" style="width:100%;" alt="">
+                        </button>
                 </th>
                 </thead>
                 </table>
@@ -32,9 +33,6 @@
                             {{todayy}}
                         </tr>
                         <tr class="datespan">
-                            <!-- <td *ngFor="let k of dayweek" class="tabletd">
-                                <span class="datespan">{{k}}</span>
-                            </td> -->
                             <td *ngFor="let j of week" class="tabletd">
                                 <span>{{j.dayofweek}}</span>
                             </td>
@@ -56,4 +54,4 @@
             </div>
         </ion-item-group>
     </div>
-</ion-content>45
+</ion-content>

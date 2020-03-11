@@ -1,0 +1,28 @@
+<!--
+  Generated template for the MartinfoviewPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+        <ion-title>martinfoview</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div>
+        {{martinfo.storename}}
+    </div>
+    <div>
+        <span>1.정기휴무일 : {{martinfo.vacation}}</span><br>
+        <span>2.대표번호 : {{martinfo.tel}}</span><br>
+        <span>3.위치 : {{martinfo.addr}}</span><br>
+        <span>4.영업시간 : {{martinfo.optime}}</span>
+    </div>
+    <div>
+        <button>전화걸기</button>
+        <button>지도확인</button>
+    </div>
+
+</ion-content>

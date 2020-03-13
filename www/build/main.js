@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 174:
+/***/ 175:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -13,11 +13,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 174;
+webpackEmptyAsyncContext.id = 175;
 
 /***/ }),
 
-/***/ 219:
+/***/ 220:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -30,7 +30,7 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 219;
+webpackEmptyAsyncContext.id = 220;
 
 /***/ }),
 
@@ -41,8 +41,8 @@ webpackEmptyAsyncContext.id = 219;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_admob_free__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_call_number___ = __webpack_require__(263);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_admob_free__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_call_number___ = __webpack_require__(147);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_unique_device_id__ = __webpack_require__(266);
@@ -51,7 +51,7 @@ webpackEmptyAsyncContext.id = 219;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_jquery__ = __webpack_require__(269);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_jquery__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__viewshoppinglist_viewshoppinglist__ = __webpack_require__(270);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_social_sharing__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_social_sharing__ = __webpack_require__(150);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__setting_setting__ = __webpack_require__(271);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ad_ad__ = __webpack_require__(273);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__rate_rate__ = __webpack_require__(275);
@@ -1164,7 +1164,7 @@ var AddshopingPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery__ = __webpack_require__(269);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_jquery__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_admob_free__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_admob_free__ = __webpack_require__(149);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1546,7 +1546,7 @@ var ViewshoppinglistPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return privacyModalPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_social_sharing__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_social_sharing__ = __webpack_require__(150);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_in_app_browser__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(272);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
@@ -2762,6 +2762,7 @@ var MartinfoPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_call_number__ = __webpack_require__(147);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2774,6 +2775,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
  * Generated class for the MartinfoviewPage page.
  *
@@ -2781,25 +2783,518 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var MartinfoviewPage = /** @class */ (function () {
-    function MartinfoviewPage(navCtrl, navParams) {
+    function MartinfoviewPage(navCtrl, navParams, callNumber) {
+        var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.callNumber = callNumber;
         this.id = "a2f05b91-956a-b480-3525-991002905558";
         this.firemain = __WEBPACK_IMPORTED_MODULE_2_firebase___default.a.database().ref();
         this.martinfo = [];
+        this.today = new Date();
+        this.date = new Date();
+        this.logo = [];
+        this.calendar = new Date();
+        this.day = this.calendar.getDate();
+        this.year = this.calendar.getFullYear();
+        this.month = this.calendar.getMonth();
+        this.firstDate = new Date(this.year, this.month, 1).getDay(); //첫날의 요일
+        this.lastDate = new Date(this.year, this.month + 1, 0); //마지막 날의 요일
+        this.dateArr = [];
+        this.weekArr = [];
+        this.dayoffArr = [];
+        this.dayofweekCal = 0;
+        this.offArr = [];
         this.martinfo = this.navParams.get("martinfo");
         console.log(this.martinfo);
+        for (var i in this.martinfo) {
+            if (i == "tel") {
+                console.log(this.martinfo[i]);
+            }
+        }
+        this.month = this.date.getMonth() + 1;
+        this.getDaysOfMonth();
         this.firemain.child("users").child(this.id).once("value", function (sn) {
             for (var a in sn.val()) {
+                console.log(a);
                 console.log(sn.val()[a]);
+                if (a == "favorite") {
+                    console.log(sn.val()[a]);
+                    for (var b in sn.val()[a]) {
+                        if (b == "lotte") {
+                            _this.logo.push({ "image": "./assets/imgs/009-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-롯데마트 CI.png", "name": "롯데마트", "flag": "lotte" });
+                        }
+                        if (b == "emart") {
+                            _this.logo.push({ "image": ".assets/imgs/010-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-이마트 CI.png", "name": "이마트", "flag": "emart" });
+                        }
+                        if (b == "homeplus") {
+                            _this.logo.push({ "image": "./assets/imgs/011-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-홈플러스 CI.png", "name": "홈플러스", "flag": "homeplus" });
+                        }
+                        if (b == "costco") {
+                            _this.logo.push({ "image": "./assets/imgs/012-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-코스트코 CI.png", "name": "코스트코", "flag": "costco" });
+                        }
+                        if (b == "traders") {
+                            _this.logo.push({ "image": "./assets/imgs/013-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-이마트 트레이더스 CI.png", "name": "이마트 트레이더스", "flag": "traders" });
+                        }
+                        if (b == "lottedep") {
+                            _this.logo.push({ "image": "./assets/imgs/020-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-롯데백화점 CI.png", "name": "롯데백화점", "flag": "lottedep" });
+                        }
+                        if (b == "sinsaegae") {
+                            _this.logo.push({ "image": "./assets/imgs/021-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-신세백화점 CI.png", "name": "신세계백화점", "flag": "sinsaegae" });
+                        }
+                        if (b == "hyundai") {
+                            _this.logo.push({ "image": "./assets/imgs/022-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-현대백화점 CI.png", "name": "현대백화점", "flag": "hyundai" });
+                        }
+                        if (b == "lotteoutlet") {
+                            _this.logo.push({ "image": "./assets/imgs/023-버튼-PPT 4페이지의 가운데 이미지의 아울렛별 로고-롯데아울렛 CI.png", "name": "롯데아울렛", "flag": "lotteoutlet" });
+                        }
+                    }
+                }
             }
         });
+        this.dayoff();
     }
+    MartinfoviewPage.prototype.getDaysOfMonth = function () {
+        this.daysInThisMonth = new Array();
+        this.daysInLastMonth = new Array();
+        this.daysInNextMonth = new Array();
+        this.currentMonth = this.date.getMonth() + 1;
+        this.currentYear = this.date.getFullYear();
+        if (this.date.getMonth() === new Date().getMonth()) {
+            this.currentDate = new Date().getDate();
+        }
+        else {
+            this.currentDate = 999;
+        }
+        var firstDayThisMonth = new Date(this.date.getFullYear(), this.date.getMonth(), 1).getDay();
+        var prevNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth(), 0).getDate();
+        for (var i = prevNumOfDays - (firstDayThisMonth - 1); i <= prevNumOfDays; i++) {
+            this.daysInLastMonth.push(i);
+        }
+        var thisNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDate();
+        for (var j = 0; j < thisNumOfDays; j++) {
+            this.daysInThisMonth.push(j + 1);
+        }
+        var lastDayThisMonth = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDay();
+        for (var k = 0; k < (6 - lastDayThisMonth); k++) {
+            this.daysInNextMonth.push(k + 1);
+        }
+        var totalDays = this.daysInLastMonth.length + this.daysInThisMonth.length + this.daysInNextMonth.length;
+        if (totalDays < 36) {
+            for (var l = (7 - lastDayThisMonth); l < ((7 - lastDayThisMonth)); l++) {
+                console.log(lastDayThisMonth);
+                console.log(l);
+                this.daysInNextMonth.push(l);
+                console.log(this.daysInNextMonth);
+            }
+        }
+    };
+    MartinfoviewPage.prototype.calling = function () {
+        var _this = this;
+        console.log("aaa");
+        console.log(this.martinfo);
+        for (var i in this.martinfo) {
+            if (i == "tel") {
+                console.log(this.martinfo[i]);
+                this.marttel = this.martinfo[i];
+            }
+        }
+        setTimeout(function () {
+            _this.callNumber.callNumber(_this.marttel, true)
+                .then(function (res) { return console.log('Launched dialer!', res); })
+                .catch(function (err) {
+                console.log('Error launching dialer', err);
+                _this.callNumber.callNumber(_this.marttel, true)
+                    .then(function (res) { return console.log('Launched dialer!', res); }).catch(function (e) {
+                    console.log(e);
+                });
+            });
+        }, 1000);
+    };
+    MartinfoviewPage.prototype.map = function () {
+        location.href = "http://naver.com";
+        // window.open("http://naver.com", '_blank');
+        console.log("map");
+        console.log("hhhh");
+    };
+    MartinfoviewPage.prototype.dayoff = function () {
+        var dayofWeek = ['일', '월', '화', '수', '목', '금', '토'];
+        for (var i in this.martinfo) {
+            if (i == "vacation") {
+                console.log(this.martinfo[i]);
+                if (this.martinfo[i].indexOf("첫째") > -1 && this.martinfo[i].indexOf("일요일") > -1) {
+                    this.offday = "10";
+                    console.log("첫째주 일요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("첫째") > -1 && this.martinfo[i].indexOf("월요일") > -1) {
+                    this.offday = "11";
+                    console.log("첫째주 월요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("첫째") > -1 && this.martinfo[i].indexOf("화요일") > -1) {
+                    this.offday = "12";
+                    console.log("첫째주 화요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("첫째") > -1 && this.martinfo[i].indexOf("수요일") > -1) {
+                    this.offday = "13";
+                    console.log("첫째주 수요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("첫째") > -1 && this.martinfo[i].indexOf("목요일") > -1) {
+                    this.offday = "14";
+                    console.log("첫째주 목요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("첫째") > -1 && this.martinfo[i].indexOf("금요일") > -1) {
+                    this.offday = "15";
+                    console.log("첫째주 금요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("첫째") > -1 && this.martinfo[i].indexOf("토요일") > -1) {
+                    this.offday = "16";
+                    console.log("첫째주 토요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("둘째") > -1 && this.martinfo[i].indexOf("일요일") > -1) {
+                    this.offday = "20";
+                    console.log("둘째주 일요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("둘째") > -1 && this.martinfo[i].indexOf("월요일") > -1) {
+                    this.offday = "21";
+                    console.log("둘째주 월요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("둘째") > -1 && this.martinfo[i].indexOf("화요일") > -1) {
+                    this.offday = "22";
+                    console.log("둘째주 화요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("둘째") > -1 && this.martinfo[i].indexOf("수요일") > -1) {
+                    this.offday = "23";
+                    console.log("둘째주 수요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("둘째") > -1 && this.martinfo[i].indexOf("목요일") > -1) {
+                    this.offday = "24";
+                    console.log("둘째주 목요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("둘째") > -1 && this.martinfo[i].indexOf("금요일") > -1) {
+                    this.offday = "25";
+                    console.log("둘째주 금요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("둘째") > -1 && this.martinfo[i].indexOf("토요일") > -1) {
+                    this.offday = "26";
+                    console.log("둘째주 토요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("셋째") > -1 && this.martinfo[i].indexOf("일요일") > -1) {
+                    this.offday = "30";
+                    console.log("셋째주 일요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("셋째") > -1 && this.martinfo[i].indexOf("월요일") > -1) {
+                    this.offday = "31";
+                    console.log("셋째주 월요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("셋째") > -1 && this.martinfo[i].indexOf("화요일") > -1) {
+                    this.offday = "32";
+                    console.log("셋째주 화요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("셋째") > -1 && this.martinfo[i].indexOf("수요일") > -1) {
+                    this.offday = "33";
+                    console.log("셋째주 수요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("셋째") > -1 && this.martinfo[i].indexOf("목요일") > -1) {
+                    this.offday = "34";
+                    console.log("셋째주 목요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("셋째") > -1 && this.martinfo[i].indexOf("금요일") > -1) {
+                    this.offday = "35";
+                    console.log("셋째주 금요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("셋째") > -1 && this.martinfo[i].indexOf("토요일") > -1) {
+                    this.offday = "36";
+                    console.log("셋째주 토요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("넷째") > -1 && this.martinfo[i].indexOf("일요일") > -1) {
+                    this.offday = "40";
+                    console.log("넷째주 일요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("넷째") > -1 && this.martinfo[i].indexOf("월요일") > -1) {
+                    this.offday = "41";
+                    console.log("넷째주 월요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("넷째") > -1 && this.martinfo[i].indexOf("화요일") > -1) {
+                    this.offday = "42";
+                    console.log("넷째주 화요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("넷째") > -1 && this.martinfo[i].indexOf("수요일") > -1) {
+                    this.offday = "43";
+                    console.log("넷째주 수요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("넷째") > -1 && this.martinfo[i].indexOf("목요일") > -1) {
+                    this.offday = "44";
+                    console.log("넷째주 목요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("넷째") > -1 && this.martinfo[i].indexOf("금요일") > -1) {
+                    this.offday = "45";
+                    console.log("넷째주 금요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("넷째") > -1 && this.martinfo[i].indexOf("토요일") > -1) {
+                    this.offday = "46";
+                    console.log("넷째주 토요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("다섯째") > -1 && this.martinfo[i].indexOf("일요일") > -1) {
+                    this.offday = "50";
+                    console.log("다섯째주 일요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("다섯째") > -1 && this.martinfo[i].indexOf("월요일") > -1) {
+                    this.offday = "51";
+                    console.log("다섯째주 월요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("다섯째") > -1 && this.martinfo[i].indexOf("화요일") > -1) {
+                    this.offday = "52";
+                    console.log("다섯째주 화요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("다섯째") > -1 && this.martinfo[i].indexOf("수요일") > -1) {
+                    this.offday = "53";
+                    console.log("다섯째주 수요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("다섯째") > -1 && this.martinfo[i].indexOf("목요일") > -1) {
+                    this.offday = "54";
+                    console.log("다섯째주 목요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("다섯째") > -1 && this.martinfo[i].indexOf("금요일") > -1) {
+                    this.offday = "55";
+                    console.log("다섯째주 금요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+                if (this.martinfo[i].indexOf("다섯째") > -1 && this.martinfo[i].indexOf("토요일") > -1) {
+                    this.offday = "56";
+                    console.log("다섯째주 토요일 " + this.offday);
+                    this.dayoffArr.push(this.offday);
+                }
+            }
+        }
+        console.log(this.dayoffArr);
+        console.log(this.day);
+        var count = 0;
+        console.log(this.lastDate.getDate());
+        for (var m = 1; m <= this.lastDate.getDate(); m++) {
+            var date = this.calendar.getDate() + (m - this.calendar.getDate());
+            this.dateArr.push(date);
+            var week = Math.ceil((date) / 7);
+            this.weekArr.push(week);
+            if (count > 6) { // 0:일, 1:월, 2:화, 3:수, 4:목, 5:금, 6:토
+                count = 0;
+            }
+            console.log(date + "일은 " + week + "주 " + dayofWeek[count] + "요일");
+            // console.log(week+""+count);
+            this.off = week + "" + count;
+            console.log(this.off);
+            for (var cnt = 0; cnt < this.dayoffArr.length; cnt++) {
+                if (this.off.indexOf(this.dayoffArr[cnt]) > -1) {
+                    console.log(this.off + "=" + this.dayoffArr[cnt]);
+                    this.offweek = this.dayoffArr[cnt].substr(0, 1);
+                    this.offdayofweek = this.dayoffArr[cnt].substr(1, 2);
+                    console.log(this.offweek);
+                    console.log(this.offdayofweek);
+                    if (this.offweek == "1") {
+                        this.weekCal = 1;
+                        if (this.firstDate == 0) {
+                            this.dayofweekCal = 0;
+                        }
+                        ;
+                    }
+                    if (this.offweek == "2") {
+                        this.weekCal = 2;
+                        if (this.firstDate == 0) {
+                            this.dayofweekCal = this.firstDate + 8;
+                            this.offArr.push(this.dayofweekCal);
+                        }
+                        ;
+                        if (this.firstDate == 1) {
+                            this.dayofweekCal = this.firstDate + 7;
+                            this.offArr.push(this.dayofweekCal);
+                        }
+                        ;
+                        if (this.firstDate == 2) {
+                            this.dayofweekCal = this.firstDate + 6;
+                            this.offArr.push(this.dayofweekCal);
+                        }
+                        ;
+                        if (this.firstDate == 3) {
+                            this.dayofweekCal = this.firstDate + 5;
+                            this.offArr.push(this.dayofweekCal);
+                        }
+                        ;
+                        if (this.firstDate == 4) {
+                            this.dayofweekCal = this.firstDate + 4;
+                            this.offArr.push(this.dayofweekCal);
+                        }
+                        ;
+                        if (this.firstDate == 5) {
+                            this.dayofweekCal = this.firstDate + 3;
+                            this.offArr.push(this.dayofweekCal);
+                        }
+                        ;
+                        if (this.firstDate == 6) {
+                            this.dayofweekCal = this.firstDate + 2;
+                            this.offArr.push(this.dayofweekCal);
+                        }
+                        ;
+                    }
+                    if (this.offweek == "3") {
+                        this.weekCal = 3;
+                        if (this.firstDate == 0) {
+                            this.dayofweekCal = this.firstDate + 15;
+                            this.offArr.push(this.dayofweekCal);
+                        }
+                        ;
+                        if (this.firstDate == 1) {
+                            this.dayofweekCal = this.firstDate + 14;
+                            this.offArr.push(this.dayofweekCal);
+                        }
+                        ;
+                        if (this.firstDate == 2) {
+                            this.dayofweekCal = this.firstDate + 13;
+                            this.offArr.push(this.dayofweekCal);
+                        }
+                        ;
+                        if (this.firstDate == 3) {
+                            this.dayofweekCal = this.firstDate + 12;
+                            this.offArr.push(this.dayofweekCal);
+                        }
+                        ;
+                        if (this.firstDate == 4) {
+                            this.dayofweekCal = this.firstDate + 11;
+                            this.offArr.push(this.dayofweekCal);
+                        }
+                        ;
+                        if (this.firstDate == 5) {
+                            this.dayofweekCal = this.firstDate + 10;
+                            this.offArr.push(this.dayofweekCal);
+                        }
+                        ;
+                        if (this.firstDate == 6) {
+                            this.dayofweekCal = this.firstDate + 9;
+                            this.offArr.push(this.dayofweekCal);
+                        }
+                        ;
+                    }
+                    if (this.offweek == "4") {
+                        this.weekCal = 4;
+                        if (this.firstDate == 0) {
+                            this.dayofweekCal = this.firstDate + 22;
+                            this.offArr.push(this.dayofweekCal);
+                        }
+                        ;
+                        if (this.firstDate == 1) {
+                            this.dayofweekCal = this.firstDate + 21;
+                            this.offArr.push(this.dayofweekCal);
+                        }
+                        ;
+                        if (this.firstDate == 2) {
+                            this.dayofweekCal = this.firstDate + 20;
+                            this.offArr.push(this.dayofweekCal);
+                        }
+                        ;
+                        if (this.firstDate == 3) {
+                            this.dayofweekCal = this.firstDate + 19;
+                            this.offArr.push(this.dayofweekCal);
+                        }
+                        ;
+                        if (this.firstDate == 4) {
+                            this.dayofweekCal = this.firstDate + 18;
+                            this.offArr.push(this.dayofweekCal);
+                        }
+                        ;
+                        if (this.firstDate == 5) {
+                            this.dayofweekCal = this.firstDate + 17;
+                            this.offArr.push(this.dayofweekCal);
+                        }
+                        ;
+                        if (this.firstDate == 6) {
+                            this.dayofweekCal = this.firstDate + 16;
+                            this.offArr.push(this.dayofweekCal);
+                        }
+                        ;
+                    }
+                    if (this.offweek == "5") {
+                        this.weekCal = 5;
+                        if (this.firstDate == 0) {
+                            this.dayofweekCal = this.firstDate + 29;
+                            this.offArr.push(this.dayofweekCal);
+                        }
+                        ;
+                        if (this.firstDate == 1) {
+                            this.dayofweekCal = this.firstDate + 28;
+                            this.offArr.push(this.dayofweekCal);
+                        }
+                        ;
+                        if (this.firstDate == 2) {
+                            this.dayofweekCal = this.firstDate + 27;
+                            this.offArr.push(this.dayofweekCal);
+                        }
+                        ;
+                        if (this.firstDate == 3) {
+                            this.dayofweekCal = this.firstDate + 26;
+                            this.offArr.push(this.dayofweekCal);
+                        }
+                        ;
+                        if (this.firstDate == 4) {
+                            this.dayofweekCal = this.firstDate + 15;
+                            this.offArr.push(this.dayofweekCal);
+                        }
+                        ;
+                        if (this.firstDate == 5) {
+                            this.dayofweekCal = this.firstDate + 14;
+                            this.offArr.push(this.dayofweekCal);
+                        }
+                        ;
+                        if (this.firstDate == 6) {
+                            this.dayofweekCal = this.firstDate + 13;
+                            this.offArr.push(this.dayofweekCal);
+                        }
+                        ;
+                    }
+                    console.log("휴무일은 " + this.weekCal + "주 " + dayofWeek[this.offdayofweek] + "요일");
+                    console.log("휴무일은 " + this.weekCal + "주 " + this.dayofweekCal + "일");
+                    console.log(this.offArr);
+                }
+            }
+            count++;
+        }
+    };
+    var _a, _b, _c;
     MartinfoviewPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-martinfoview',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/martinfoview/martinfoview.html"*/'<!--\n  Generated template for the MartinfoviewPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-navbar>\n        <ion-title>martinfoview</ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <div>\n        {{martinfo.storename}}\n    </div>\n    <div>\n        <span>1.정기휴무일 : {{martinfo.vacation}}</span><br>\n        <span>2.대표번호 : {{martinfo.tel}}</span><br>\n        <span>3.위치 : {{martinfo.addr}}</span><br>\n        <span>4.영업시간 : {{martinfo.optime}}</span>\n    </div>\n    <div>\n        <button>전화걸기</button>\n        <button>지도확인</button>\n    </div>\n\n</ion-content>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/martinfoview/martinfoview.html"*/,
+            selector: 'page-martinfoview',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/martinfoview/martinfoview.html"*/'<ion-header>\n    <ion-navbar>\n        <div style="text-align: center;" *ngFor="let a of logo;">\n            <img src="{{a.image}}" class="logoimage" style="width:10%" alt="">\n            <a style="margin:3px; font-size:17px; font-weight: bold; color: #808080;">{{a.name}}</a>\n        </div>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <div style="padding-top:20px; padding-left:20px; margin-bottom:10px;">\n        <span style="font-weight: bold; font-size:18px; color:#808080">{{martinfo.storename}}</span>\n    </div>\n    <table class="tableStyle">\n        <tbody>\n            <tr>\n                <p style="color:black; font-weight: normal; font-size:16px; text-align: left; margin:3px;">1. 정기 휴무일 : {{martinfo.vacation}}</p>\n            </tr>\n            <tr>\n                <p style="color:black; font-weight: normal; font-size:16px; text-align: left; margin:3px;">2. 대표번호 : {{martinfo.tel}}</p>\n            </tr>\n            <tr>\n                <p style="color:black; font-weight: normal; font-size:16px; text-align: left; margin:3px;">3. 위치 : {{martinfo.addr}}</p>\n            </tr>\n            <tr>\n                <p style="color:black; font-weight: normal; font-size:16px; text-align: left; margin:3px;">4. 영업시간 : {{martinfo.optime}}</p>\n            </tr>\n\n        </tbody>\n    </table>\n    <div style="margin-left:auto; margin-right:auto; text-align: center;">\n        <button style="text-align:center; width:40%; letter-spacing: 3px; font-size:15px; background-color: #71E8E8; border-radius: 5px;" (click)="calling()"><img src="./assets/imgs/048-버튼-PPT 8페이지의  가운데 이미지의 전화걸기-수화기.png" style="width:20%; margin-right:3px;">전화걸기</button>\n        <button style="text-align:center; width:40%; letter-spacing: 3px; font-size:15px; background-color: #71E8E8; border-radius: 5px;" (click)="map()"><img src="./assets/imgs/049-버튼-PPT 8페이지의  가운데 이미지의 지도 확인-지도.png" style="width:20%; margin-right:3px;">지도확인</button>\n    </div>\n    <div class="calendar-body">\n        <ion-grid>\n            <ion-row class="calendar-month">\n                {{month}}월\n            </ion-row>\n            <ion-row class="calendar-weekday">\n                <ion-col style="color:red">일</ion-col>\n                <ion-col>월</ion-col>\n                <ion-col>화</ion-col>\n                <ion-col>수</ion-col>\n                <ion-col>목</ion-col>\n                <ion-col>금</ion-col>\n                <ion-col style="color:blue">토</ion-col>\n            </ion-row>\n            <ion-row class="calendar-date">\n                <ion-col col-1 *ngFor="let day of daysInThisMonth" (click)="selectDate(day)">\n                    <span class="currentDate" *ngIf="( currentDate === day && today.getMonth()+1 === currentMonth && today.getFullYear() === currentYear ); else otherDate">{{day}}</span>\n                    <ng-template #otherDate class="otherDate"> {{day}} </ng-template>\n                </ion-col>\n                <ion-col col-1 *ngFor="let nextDay of daysInNextMonth" class="next-month">{{nextDay}}</ion-col>\n            </ion-row>\n\n        </ion-grid>\n    </div>\n\n</ion-content>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/martinfoview/martinfoview.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" ? _a : Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" ? _b : Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_call_number__["a" /* CallNumber */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_call_number__["a" /* CallNumber */]) === "function" ? _c : Object])
     ], MartinfoviewPage);
     return MartinfoviewPage;
 }());
@@ -2830,9 +3325,9 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(259);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(262);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_call_number__ = __webpack_require__(263);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(260);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(263);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_call_number__ = __webpack_require__(147);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_firebase__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(438);
@@ -2845,11 +3340,11 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_angularfire2_database___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_angularfire2_database__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_unique_device_id__ = __webpack_require__(266);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_speech_recognition__ = __webpack_require__(268);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_admob_free__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_admob_free__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_addshoping_addshoping__ = __webpack_require__(267);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_in_app_browser__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_viewshoppinglist_viewshoppinglist__ = __webpack_require__(270);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_social_sharing__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_social_sharing__ = __webpack_require__(150);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_setting_setting__ = __webpack_require__(271);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__ionic_native_in_app_purchase__ = __webpack_require__(274);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_rate_rate__ = __webpack_require__(275);
@@ -2964,6 +3459,7 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
                 __WEBPACK_IMPORTED_MODULE_17__ionic_native_in_app_browser__["a" /* InAppBrowser */],
                 __WEBPACK_IMPORTED_MODULE_9__ionic_native_onesignal__["a" /* OneSignal */],
+                __WEBPACK_IMPORTED_MODULE_5__ionic_native_call_number__["a" /* CallNumber */],
                 { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicErrorHandler */] }
             ]
         })
@@ -2982,8 +3478,8 @@ var AppModule = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(262);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(259);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(263);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(260);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(265);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3000,6 +3496,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var MyApp = /** @class */ (function () {
+    // rootPage:any = MartinfoviewPage;
     function MyApp(platform, statusBar, splashScreen) {
         this.rootPage = __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */];
         platform.ready().then(function () {

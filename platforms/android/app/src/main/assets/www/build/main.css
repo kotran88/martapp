@@ -28120,12 +28120,15 @@ select::-ms-expand {
 
 .topselector {
   width: 350px;
-  height: 120px;
+  height: 160px;
   border: solid 2px #78f7f7;
   border-radius: 5px;
   /*[위][오른쪽][아래][왼쪽]*/
   margin: 5px auto;
-  padding: 5px 5px 5px 5px;
+}
+
+.nnn {
+  color: black;
 }
 
 .button {
@@ -28148,6 +28151,7 @@ select::-ms-expand {
   height: 60px;
   opacity: 1;
   float: left;
+  color: black;
 }
 
 img {
@@ -28157,7 +28161,8 @@ img {
 p {
   font-weight: bold;
   text-align: center;
-  color: #5AD7ED;
+  color: #58bdcf;
+  font-size: 15px;
 }
 
 .listDB {
@@ -28203,6 +28208,71 @@ div.segmentText {
   left: 0% !important;
 }
 
+.label-md {
+  margin: 0px 0px 0px 0;
+}
+
+.tabstyle {
+  background-color: white;
+  letter-spacing: -0.35px;
+}
+
+.tab-font {
+  font-size: 15px;
+  color: black;
+  font-family: 'notomedium';
+  font-weight: 900;
+}
+
+.segment-md .segment-button.activated,
+.segment-md .segment-button.segment-activated {
+  border-color: #71E8E8;
+  border-bottom-width: 5px;
+}
+
+.martname {
+  font-size: 17px;
+  font-weight: 900px;
+  color: #808080;
+  height: 10px;
+  text-align: left;
+  margin: 2px;
+  margin-left: 10px;
+}
+
+.border {
+  background-color: white;
+  margin: 5px 5px 5px 5px;
+  padding: 5px;
+  border-radius: 10px;
+  border: solid 2px #71E8E8;
+}
+
+.tabletd {
+  font-size: 13px;
+  width: 400px;
+  height: 20px;
+}
+
+.datespan {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.dayoffimg {
+  text-align: right;
+  width: 40%;
+  padding-right: 10px;
+}
+
+.borderr {
+  background-color: white;
+  margin: 5px 5px 5px 5px;
+  padding: 5px;
+  border-radius: 10px;
+  border: solid 2px #71E8E8;
+}
+
 .buttonSize {
   border-radius: 4px;
   border: solid 2px #01DFD7;
@@ -28212,6 +28282,160 @@ div.segmentText {
   font-size: 15px;
   margin-left: auto;
   margin-right: auto;
+}
+
+page-martinfo .content-md {
+  color: #000;
+  background-color: #fafafa;
+}
+
+.border {
+  background-color: white;
+  margin: 5px 5px 5px 5px;
+  border-radius: 10px;
+}
+
+.martname {
+  font-size: 17px;
+  font-weight: 900px;
+  color: #808080;
+  height: 10px;
+  text-align: left;
+  margin: 2px;
+}
+
+.date {
+  margin: 5px 5px 5px 5px;
+}
+
+.datespan {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.tabletd {
+  font-size: 13px;
+  width: 400px;
+  height: 20px;
+}
+
+.mSpan1 {
+  color: red;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.mSpan2 {
+  color: green;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.btn1 {
+  background: white;
+  padding: 10px;
+}
+
+.dayoffimg {
+  text-align: right;
+  width: 40%;
+  padding-right: 10px;
+}
+
+page-martinfoview [col-1] {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 8.33333%;
+  -ms-flex: 0 0 8.33333%;
+  flex: 0 0 14.285714285714286%;
+  width: 14.285714285714286%;
+  max-width: 14.285714285714286%;
+}
+
+page-martinfoview .col {
+  text-align: center;
+  padding: 2%;
+}
+
+page-martinfoview .last-month,
+page-martinfoview .next-month {
+  color: #999999;
+  font-size: 90%;
+  font-size: auto;
+}
+
+page-martinfoview .currentDate,
+page-martinfoview .otherDate {
+  padding: 20%;
+}
+
+page-martinfoview .currentDate {
+  font-weight: bold;
+  background-color: green;
+  color: white;
+}
+
+page-martinfoview .calendar-header {
+  background-color: #c6c6c6;
+  color: #FFFFFF;
+  width: 100%;
+  height: 8%;
+}
+
+page-martinfoview .calendar-body {
+  padding: 8px;
+}
+
+page-martinfoview .calendar-body .grid {
+  padding: 0;
+}
+
+page-martinfoview .calendar-body .col:last-child {
+  border-right: none;
+}
+
+page-martinfoview .calendar-body .calendar-weekday,
+page-martinfoview .calendar-body .calendar-date {
+  text-align: center;
+  margin: 0;
+  font-size: 16px;
+}
+
+page-martinfoview .calendar-body .calendar-weekday {
+  padding: 3px;
+  font-size: 16px;
+  font-weight: bold;
+  border-top: solid 2px #c6c6c6;
+  border-bottom: solid 2px #c6c6c6;
+  background-color: #fff;
+}
+
+page-martinfoview .calendar-body .calendar-month {
+  padding: 5px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+page-martinfoview .toolbar-background-md {
+  background: #71E8E8;
+}
+
+page-martinfoview .toolbar-md {
+  padding: 4px;
+  min-height: 18px;
+}
+
+.aaa {
+  padding: 3px;
+  font-size: 16px;
+  font-weight: bold;
+  border-bottom: solid 2px #c6c6c6;
+  background-color: #fff;
+}
+
+.tableStyle {
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-bottom: 5px;
 }
 
 page-setting .image {

@@ -97,6 +97,7 @@ firebase.initializeApp(firebaseConfig);
     SplashScreen,
     InAppBrowser,
     OneSignal,
+    CallNumber,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

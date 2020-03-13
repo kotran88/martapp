@@ -28342,6 +28342,102 @@ page-martinfo .content-md {
   padding-right: 10px;
 }
 
+page-martinfoview [col-1] {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 8.33333%;
+  -ms-flex: 0 0 8.33333%;
+  flex: 0 0 14.285714285714286%;
+  width: 14.285714285714286%;
+  max-width: 14.285714285714286%;
+}
+
+page-martinfoview .col {
+  text-align: center;
+  padding: 2%;
+}
+
+page-martinfoview .last-month,
+page-martinfoview .next-month {
+  color: #999999;
+  font-size: 90%;
+  font-size: auto;
+}
+
+page-martinfoview .currentDate,
+page-martinfoview .otherDate {
+  padding: 20%;
+}
+
+page-martinfoview .currentDate {
+  font-weight: bold;
+  background-color: green;
+  color: white;
+}
+
+page-martinfoview .calendar-header {
+  background-color: #c6c6c6;
+  color: #FFFFFF;
+  width: 100%;
+  height: 8%;
+}
+
+page-martinfoview .calendar-body {
+  padding: 8px;
+}
+
+page-martinfoview .calendar-body .grid {
+  padding: 0;
+}
+
+page-martinfoview .calendar-body .col:last-child {
+  border-right: none;
+}
+
+page-martinfoview .calendar-body .calendar-weekday,
+page-martinfoview .calendar-body .calendar-date {
+  text-align: center;
+  margin: 0;
+  font-size: 16px;
+}
+
+page-martinfoview .calendar-body .calendar-weekday {
+  padding: 3px;
+  font-size: 16px;
+  font-weight: bold;
+  border-top: solid 2px #c6c6c6;
+  border-bottom: solid 2px #c6c6c6;
+  background-color: #fff;
+}
+
+page-martinfoview .calendar-body .calendar-month {
+  padding: 5px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+page-martinfoview .toolbar-background-md {
+  background: #71E8E8;
+}
+
+page-martinfoview .toolbar-md {
+  padding: 4px;
+  min-height: 18px;
+}
+
+.aaa {
+  padding: 3px;
+  font-size: 16px;
+  font-weight: bold;
+  border-bottom: solid 2px #c6c6c6;
+  background-color: #fff;
+}
+
+.tableStyle {
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+}
+
 page-setting .image {
   width: 35%;
   height: 100%;

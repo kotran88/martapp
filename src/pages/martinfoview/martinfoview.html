@@ -1,28 +1,60 @@
-<!--
-  Generated template for the MartinfoviewPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
     <ion-navbar>
-        <ion-title>martinfoview</ion-title>
+        <div style="text-align: center;" *ngFor="let a of logo;">
+            <img src="{{a.image}}" class="logoimage" style="width:10%" alt="">
+            <a style="margin:3px; font-size:17px; font-weight: bold; color: #808080;">{{a.name}}</a>
+        </div>
     </ion-navbar>
 </ion-header>
 
 <ion-content>
-    <div>
-        {{martinfo.storename}}
+    <div style="padding-top:20px; padding-left:20px; margin-bottom:10px;">
+        <span style="font-weight: bold; font-size:18px; color:#808080">{{martinfo.storename}}</span>
     </div>
-    <div>
-        <span>1.정기휴무일 : {{martinfo.vacation}}</span><br>
-        <span>2.대표번호 : {{martinfo.tel}}</span><br>
-        <span>3.위치 : {{martinfo.addr}}</span><br>
-        <span>4.영업시간 : {{martinfo.optime}}</span>
+    <table class="tableStyle">
+        <tbody>
+            <tr>
+                <p style="color:black; font-weight: normal; font-size:16px; text-align: left; margin:3px;">1. 정기 휴무일 : {{martinfo.vacation}}</p>
+            </tr>
+            <tr>
+                <p style="color:black; font-weight: normal; font-size:16px; text-align: left; margin:3px;">2. 대표번호 : {{martinfo.tel}}</p>
+            </tr>
+            <tr>
+                <p style="color:black; font-weight: normal; font-size:16px; text-align: left; margin:3px;">3. 위치 : {{martinfo.addr}}</p>
+            </tr>
+            <tr>
+                <p style="color:black; font-weight: normal; font-size:16px; text-align: left; margin:3px;">4. 영업시간 : {{martinfo.optime}}</p>
+            </tr>
+
+        </tbody>
+    </table>
+    <div style="margin-left:auto; margin-right:auto; text-align: center;">
+        <button style="text-align:center; width:40%; letter-spacing: 3px; font-size:15px; background-color: #71E8E8; border-radius: 5px;" (click)="calling()"><img src="./assets/imgs/048-버튼-PPT 8페이지의  가운데 이미지의 전화걸기-수화기.png" style="width:20%; margin-right:3px;">전화걸기</button>
+        <button style="text-align:center; width:40%; letter-spacing: 3px; font-size:15px; background-color: #71E8E8; border-radius: 5px;" (click)="map()"><img src="./assets/imgs/049-버튼-PPT 8페이지의  가운데 이미지의 지도 확인-지도.png" style="width:20%; margin-right:3px;">지도확인</button>
     </div>
-    <div>
-        <button>전화걸기</button>
-        <button>지도확인</button>
+    <div class="calendar-body">
+        <ion-grid>
+            <ion-row class="calendar-month">
+                {{month}}월
+            </ion-row>
+            <ion-row class="calendar-weekday">
+                <ion-col style="color:red">일</ion-col>
+                <ion-col>월</ion-col>
+                <ion-col>화</ion-col>
+                <ion-col>수</ion-col>
+                <ion-col>목</ion-col>
+                <ion-col>금</ion-col>
+                <ion-col style="color:blue">토</ion-col>
+            </ion-row>
+            <ion-row class="calendar-date">
+                <ion-col col-1 *ngFor="let day of daysInThisMonth" (click)="selectDate(day)">
+                    <span class="currentDate" *ngIf="( currentDate === day && today.getMonth()+1 === currentMonth && today.getFullYear() === currentYear ); else otherDate">{{day}}</span>
+                    <ng-template #otherDate class="otherDate"> {{day}} </ng-template>
+                </ion-col>
+                <ion-col col-1 *ngFor="let nextDay of daysInNextMonth" class="next-month">{{nextDay}}</ion-col>
+            </ion-row>
+
+        </ion-grid>
     </div>
 
 </ion-content>

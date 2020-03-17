@@ -8,6 +8,7 @@ import {Http} from '@angular/http';
 import { isTrueProperty } from 'ionic-angular/umd/util/util';
 import { componentFactoryName } from '@angular/compiler';
 import undefined from 'firebase/empty-import';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the SettingPage page.
@@ -23,6 +24,7 @@ import undefined from 'firebase/empty-import';
 export class SettingPage {
   version='V1.10.01';
   shownGroup = null;
+  flag : boolean = false;
 
   test:any=false;
   buttontoggle=[
@@ -32,7 +34,12 @@ export class SettingPage {
     {name:'받지 않기',check:true},
   ];
 
+  goBack(){
+    this.navCtrl.push(HomePage);
+  }
+
   toggleGroup() {
+    this.flag=true;
     this.shownGroup=!this.shownGroup;
   };
 
@@ -58,6 +65,7 @@ export class SettingPage {
       console.log(i,this.buttontoggle[i]);
     }
     this.shownGroup=false;
+    this.flag=false;
   }
 
   constructor(public modal:ModalController,

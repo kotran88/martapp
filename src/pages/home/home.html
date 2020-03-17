@@ -36,8 +36,8 @@
                             <img *ngIf="todayoff=='휴무'" src="./assets/imgs/044-버튼-PPT 5페이지의 우측 이미지 영업 알림 버튼-오늘 휴무.png" style="width:60%;">
 
                             <button (click)="bookmark(i, idx)" style="width:40px; height:40px; background-color: white;">
-                                <img *ngIf="i.favorite==false" src="./assets/imgs/045-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-블랭크 하트(즐겨찾기전).png" style="width:100%;" alt="">
-                                <img *ngIf="i.favorite==true" src="./assets/imgs/046-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-노란 하트(즐겨찾기후).png" style="width:100%;" alt="">
+                                <img class="heart" *ngIf="i.favorite==false" src="./assets/imgs/045-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-블랭크 하트(즐겨찾기전).png" style="width:100%;" alt="">
+                                <img class="heart" *ngIf="i.favorite==true" src="./assets/imgs/046-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-노란 하트(즐겨찾기후).png" style="width:100%;" alt="">
                             </button>
                     </th>
                     </thead>
@@ -117,7 +117,7 @@
                         </button>
                     </div>
                     <div>
-                        <button style="background-color:#fff; " (click)="viewshoppinglist(a) ">
+                        <button style="background-color:#fff;" (click)="viewshoppinglist(a) ">
                             {{a.time}}
                         </button>
                     </div>
@@ -153,23 +153,23 @@
             <!-- <div><button style="background-color:#fff; " (click)="addlist() ">(image)쇼핑 리스트를 추가해보자라는 말</button></div> -->
 
         </ion-list>
-        <ion-list *ngSwitchCase=" 'tab3' ">
+        <ion-list *ngSwitchCase="'tab3'">
 
             <div>
-                <select style="display: inline-block; width:25%; " id='slt' name="sort ">
-                    <option value="rel " selected="selected ">랭킹순</option>
-                    <option value="price_asc ">낮은 가격순</option>
-                    <option value="price_dsc ">높은 가격순</option>
-                    <option value="date ">등록순</option>
-                    <option value="review ">리뷰 많은순</option>
+                <select style="display:inline-block; width:25%;" id='slt' name="sor ">
+                    <option value="rel" selected="selected">랭킹순</option>
+                    <option value="price_asc">낮은 가격순</option>
+                    <option value="price_dsc">높은 가격순</option>
+                    <option value="date">등록순</option>
+                    <option value="review">리뷰 많은순</option>
                 </select>
 
-                <ion-input style="margin-right: 0px; width: 60%; display: inline-block; border: 1px solid black; " name='text' type="text " [(ngModel)]='srct.text' placeholder="검색어를 입력해 주세요. ">
+                <ion-input style="margin-right: 0px; width: 60%; display: inline-block; border: 1px solid black;" name='text' type="text" [(ngModel)]='srct.text' placeholder="검색어를 입력해 주세요.">
                 </ion-input>
 
-                <button ion-button style="float: right; width:30px; height: 30px; " color="black " outline icon-only (click)='select_sort()'>
+                <button ion-button style="float: right; width:30px; height: 30px;" color="black" outline icon-only (click)='select_sort()'>
 
-                    <ion-icon name='search' is-active="false "></ion-icon>
+                    <ion-icon name='search' is-active="false"></ion-icon>
                 </button>
             </div>
         </ion-list>

@@ -63,6 +63,17 @@ export class MartinfoviewPage {
       }
     })
     this.dayoff();
+    console.log(this.offArr);
+    console.log(this.daysInThisMonth);
+    for(var j=0; j<this.daysInThisMonth.length; j++){
+      for(var k=0; k<this.offArr.length; k++){
+        if(this.daysInThisMonth[j]==this.offArr[k]){
+          this.daysInThisMonth[j]="i"+this.daysInThisMonth[j];
+        }
+      }
+      
+    }
+    console.log(this.daysInThisMonth);
   }
   getDaysOfMonth() {
     this.daysInThisMonth = new Array();
@@ -152,7 +163,15 @@ export class MartinfoviewPage {
   weekCal : any;
   dayofweekCal = 0;
   offArr = [];
-
+  truecheck(day1){
+    var day=day1+"";
+    if(day.indexOf("i")>-1){
+      return -1;
+    }else{
+      return 0;
+    }
+ 
+  }
   dayoff() {
     var dayofWeek = ['일', '월', '화', '수', '목', '금', '토'];
     for (var i in this.martinfo) {

@@ -63,7 +63,7 @@ export class MartinfoPage {
     console.log("this.dayy is " + this.dayy);
     // this.whatWeek = '둘째주';
     console.log("this.whatWeek is " + this.whatWeek);
-    var w = prefixes[0 | date.getDate() / 7] + ' ' + days[date.getDay()];
+    var w = prefixes[0 | date.getDate() / 7] + ' ' + days[date.getDay() ];
     console.log(w);
   }
 
@@ -83,7 +83,13 @@ export class MartinfoPage {
       console.log("date is " + date);
       console.log("this.dayOfweek is " + this.dayOfweek);
       if (this.dayOfweek >= 7) { this.dayOfweek = 0; }
-      this.week.push({ "week": prefixes[0 | (date - 1) / 7], "day": date, "dayofweek": days[dow] });
+      this.week.push({ "week": prefixes[0 | (date - 1) / 7], "day": date, "dayofweek": days[dow] }); //16일
+      // this.week.push({ "week": prefixes[0 | (date-7 - 1) / 7], "day": date-7, "dayofweek": days[dow] }); //9일
+      // this.week.push({ "week": prefixes[0 | (date-14 - 1) / 7], "day": date-14, "dayofweek": days[dow] }); //2일
+      // this.week.push({ "week": prefixes[0 | (date+7 - 1) / 7], "day": date+7, "dayofweek": days[dow] }); //23일
+      // this.week.push({ "week": prefixes[0 | (date+14 - 1) / 7], "day": date+14, "dayofweek": days[dow] }); //30일
+
+
     }
     console.log(this.week);
   }
@@ -99,7 +105,6 @@ export class MartinfoPage {
           if (this.area == "seoul") {
             var counting = 0;
             for (var b in sn.val()[a]) {
-
               if (sn.val()[a][b].addr.indexOf("서울") != -1 && sn.val()[a][b].addr.indexOf("서울대학로") == -1) {
                 counting++;
                 this.martArray.push(sn.val()[a][b]);
@@ -108,18 +113,12 @@ export class MartinfoPage {
                 this.vacationFunc(this.week, sn.val()[a][b], counting);
               }
             }
-
-            console.log(this.martArray);
-            console.log(this.week);
-
-
           }
 
-
           if (this.area == "gyeonggi") {
+            var counting = 0;
             for (var b in sn.val()[a]) {
               this.vacation = sn.val()[a][b].vacation;
-              var counting = 0;
               if (sn.val()[a][b].addr.indexOf("경기") != -1) {
                 counting++;
                 this.martArray.push(sn.val()[a][b]);
@@ -130,9 +129,9 @@ export class MartinfoPage {
             }
           }
           if (this.area == "incheon") {
+            var counting = 0;
             for (var b in sn.val()[a]) {
               this.vacation = sn.val()[a][b].vacation;
-
               if (sn.val()[a][b].addr.indexOf("인천") != -1) {
                 counting++;
                 this.martArray.push(sn.val()[a][b]);
@@ -143,12 +142,10 @@ export class MartinfoPage {
             }
           }
           if (this.area == "gangwon") {
+            var counting = 0;
             for (var b in sn.val()[a]) {
               this.vacation = sn.val()[a][b].vacation;
-
               if (sn.val()[a][b].addr.indexOf("강원") != -1) {
-                this.martArray.push(sn.val()[a][b]);
-                this.vacation = sn.val()[a][b].vacation;
                 counting++;
                 this.martArray.push(sn.val()[a][b]);
                 this.vacationArr.push(sn.val()[a][b].vacation);
@@ -158,12 +155,10 @@ export class MartinfoPage {
             }
           }
           if (this.area == "chungbuk") {
+            var counting = 0;
             for (var b in sn.val()[a]) {
               this.vacation = sn.val()[a][b].vacation;
-
               if (sn.val()[a][b].addr.indexOf("충북") != -1) {
-                this.martArray.push(sn.val()[a][b]);
-                this.vacation = sn.val()[a][b].vacation;
                 counting++;
                 this.martArray.push(sn.val()[a][b]);
                 this.vacationArr.push(sn.val()[a][b].vacation);
@@ -173,12 +168,10 @@ export class MartinfoPage {
             }
           }
           if (this.area == "chungnam") {
+            var counting = 0;
             for (var b in sn.val()[a]) {
               this.vacation = sn.val()[a][b].vacation;
-
               if (sn.val()[a][b].addr.indexOf("충남") != -1) {
-                this.martArray.push(sn.val()[a][b]);
-                this.vacation = sn.val()[a][b].vacation;
                 counting++;
                 this.martArray.push(sn.val()[a][b]);
                 this.vacationArr.push(sn.val()[a][b].vacation);
@@ -188,12 +181,10 @@ export class MartinfoPage {
             }
           }
           if (this.area == "jeonbuk") {
+            var counting = 0;
             for (var b in sn.val()[a]) {
               this.vacation = sn.val()[a][b].vacation;
-
               if (sn.val()[a][b].addr.indexOf("전북") != -1) {
-                this.martArray.push(sn.val()[a][b]);
-                this.vacation = sn.val()[a][b].vacation;
                 counting++;
                 this.martArray.push(sn.val()[a][b]);
                 this.vacationArr.push(sn.val()[a][b].vacation);
@@ -203,12 +194,11 @@ export class MartinfoPage {
             }
           }
           if (this.area == "jeonnam") {
+            var counting = 0;
+
             for (var b in sn.val()[a]) {
               this.vacation = sn.val()[a][b].vacation;
-
               if (sn.val()[a][b].addr.indexOf("전남") != -1) {
-                this.martArray.push(sn.val()[a][b]);
-                this.vacation = sn.val()[a][b].vacation;
                 counting++;
                 this.martArray.push(sn.val()[a][b]);
                 this.vacationArr.push(sn.val()[a][b].vacation);
@@ -218,12 +208,11 @@ export class MartinfoPage {
             }
           }
           if (this.area == "gwangju") {
+            var counting = 0;
+
             for (var b in sn.val()[a]) {
               this.vacation = sn.val()[a][b].vacation;
-
               if (sn.val()[a][b].addr.indexOf("광주") != -1) {
-                this.martArray.push(sn.val()[a][b]);
-                this.vacation = sn.val()[a][b].vacation;
                 counting++;
                 this.martArray.push(sn.val()[a][b]);
                 this.vacationArr.push(sn.val()[a][b].vacation);
@@ -233,12 +222,11 @@ export class MartinfoPage {
             }
           }
           if (this.area == "daejeon") {
+            var counting = 0;
+
             for (var b in sn.val()[a]) {
               this.vacation = sn.val()[a][b].vacation;
-
               if (sn.val()[a][b].addr.indexOf("대전") != -1) {
-                this.martArray.push(sn.val()[a][b]);
-                this.vacation = sn.val()[a][b].vacation;
                 counting++;
                 this.martArray.push(sn.val()[a][b]);
                 this.vacationArr.push(sn.val()[a][b].vacation);
@@ -248,12 +236,11 @@ export class MartinfoPage {
             }
           }
           if (this.area == "gyeongbuk") {
+            var counting = 0;
+
             for (var b in sn.val()[a]) {
               this.vacation = sn.val()[a][b].vacation;
-
               if (sn.val()[a][b].addr.indexOf("경북") != -1) {
-                this.martArray.push(sn.val()[a][b]);
-                this.vacation = sn.val()[a][b].vacation;
                 counting++;
                 this.martArray.push(sn.val()[a][b]);
                 this.vacationArr.push(sn.val()[a][b].vacation);
@@ -263,12 +250,11 @@ export class MartinfoPage {
             }
           }
           if (this.area == "gyeongnam") {
+            var counting = 0;
+
             for (var b in sn.val()[a]) {
               this.vacation = sn.val()[a][b].vacation;
-
               if (sn.val()[a][b].addr.indexOf("경남") != -1) {
-                this.martArray.push(sn.val()[a][b]);
-                this.vacation = sn.val()[a][b].vacation;
                 counting++;
                 this.martArray.push(sn.val()[a][b]);
                 this.vacationArr.push(sn.val()[a][b].vacation);
@@ -278,12 +264,11 @@ export class MartinfoPage {
             }
           }
           if (this.area == "busan") {
+            var counting = 0;
+
             for (var b in sn.val()[a]) {
               this.vacation = sn.val()[a][b].vacation;
-
               if (sn.val()[a][b].addr.indexOf("부산") != -1) {
-                this.martArray.push(sn.val()[a][b]);
-                this.vacation = sn.val()[a][b].vacation;
                 counting++;
                 this.martArray.push(sn.val()[a][b]);
                 this.vacationArr.push(sn.val()[a][b].vacation);
@@ -293,11 +278,11 @@ export class MartinfoPage {
             }
           }
           if (this.area == "ulsan") {
+            var counting = 0;
+
             for (var b in sn.val()[a]) {
               this.vacation = sn.val()[a][b].vacation;
-
               if (sn.val()[a][b].addr.indexOf("울산") != -1) {
-                this.martArray.push(sn.val()[a][b]);
                 counting++;
                 this.martArray.push(sn.val()[a][b]);
                 this.vacationArr.push(sn.val()[a][b].vacation);
@@ -307,12 +292,11 @@ export class MartinfoPage {
             }
           }
           if (this.area == "jeju") {
+            var counting = 0;
+
             for (var b in sn.val()[a]) {
               this.vacation = sn.val()[a][b].vacation;
-
               if (sn.val()[a][b].addr.indexOf("제주") != -1) {
-                this.martArray.push(sn.val()[a][b]);
-                this.vacation = sn.val()[a][b].vacation;
                 counting++;
                 this.martArray.push(sn.val()[a][b]);
                 this.vacationArr.push(sn.val()[a][b].vacation);
@@ -325,7 +309,9 @@ export class MartinfoPage {
       }
     })
   }
-  weekcheck(mart) {
+  weekcheck(number, mart) {
+    console.log(number);
+
     var returnvalue = "";
     if (mart.vacation.indexOf("월요") > -1) {
       returnvalue = "월요일";
@@ -348,6 +334,7 @@ export class MartinfoPage {
     if (mart.vacation.indexOf("일요") > -1) {
       returnvalue = "일요일";
     }
+    console.log(returnvalue);
     return returnvalue
   }
 
@@ -358,64 +345,144 @@ export class MartinfoPage {
     console.log(count); //count
     console.log("mart to change json");
     console.log(this.martArray)
+    console.log(mart.vacation);
     var counting = 0;
     var dayoffarray = [];
     for (var a in v) {
       counting++;
+      var flag=false;
       if (counting == 1) {
         console.log("first is");
         console.log(v[a].week, v[a].day + "," + v[a].dayofweek)//오늘 날짜
       }
       console.log(v[a].week); //몇주?
       console.log(v[a].dayofweek);//요일?
-      if (mart.vacation.indexOf("첫째") > -1) { //db.vacation에 '첫째'라는 글자가 있을 경우
-        if (v[a].week.indexOf("첫째") > -1 && v[a].week.indexOf("둘째") > -1) { //this.week에 '첫째','둘째'라는 글자가 있을 경우
-          var weekoff = this.weekcheck(this.martArray[count - 1]);
+
+      if (mart.vacation.indexOf("첫째") > -1) {
+        if (v[a].week.indexOf("첫째") > -1 && v[a].week.indexOf("둘째") > -1) {
+          var weekoff = this.weekcheck("1", this.martArray[count - 1]);
           console.log("off is : " + weekoff);
           console.log(weekoff + "1111,,," + v[a].dayofweek);
-          if (weekoff == v[a].dayofweek) {
-            dayoffarray.push("휴무")
-          } else {
-            dayoffarray.push("영업")
+          if(dayoffarray.length>6){
+            console.log("hi");
+          }
+          else if(dayoffarray.length<=6){
+            if (v[a].week.indexOf("첫째")!=0) {
+              console.log("1 add 1")
+              dayoffarray.push("영업")
+            } else {
+              if (weekoff == v[a].dayofweek) {
+                console.log("1 add 2")
+                dayoffarray.push("휴무")
+              } else {
+                console.log("1 add 3")
+                dayoffarray.push("영업")
+               
+              }
+            }
           }
         }
       }
       if (mart.vacation.indexOf("둘째") > -1) {
-        if (v[a].week.indexOf("둘째") > -1 && v[a].week.indexOf("셋째") > -1) {
-          var weekoff = this.weekcheck(this.martArray[count - 1])
+        console.log("2th week")
+        console.log(mart)
+        console.log(v[a].week)
+        if (v[a].week.indexOf("둘째") > -1 || v[a].week.indexOf("셋째") > -1) {
+          var weekoff = this.weekcheck("2", this.martArray[count - 1])
           console.log("off is : " + weekoff)
           console.log(weekoff + "2222,,," + v[a].dayofweek);;
-          if (weekoff == v[a].dayofweek) {
-            dayoffarray.push("휴무")
-          } else {
-            dayoffarray.push("영업")
+          console.log(this.week);
+          if(dayoffarray.length>6){
+            console.log("hi");
+          }
+          else if(dayoffarray.length<=6){
+            if (v[a].week.indexOf("둘째")!=0) {
+              console.log("2 add 1")
+              dayoffarray.push("영업")
+              flag=true;
+            } else {
+              if (weekoff == v[a].dayofweek) {
+                console.log("2 add 2")
+                dayoffarray.push("휴무")
+                flag=true;
+              } else {
+                console.log("2 add 3")
+                dayoffarray.push("영업")
+                flag=true;
+              }
+            }
           }
         }
       }
       if (mart.vacation.indexOf("셋째") > -1) {
+        console.log("3th week")
         if (v[a].week.indexOf("셋째") > -1 && v[a].week.indexOf("넷째") > -1) {
-          var weekoff = this.weekcheck(this.martArray[count - 1])
+          var weekoff = this.weekcheck("3", this.martArray[count - 1])
+          console.log("weekoff" + " : " + weekoff)
           console.log("off is : " + weekoff);
           console.log(weekoff + "333,,," + v[a].dayofweek);
-          if (weekoff == v[a].dayofweek) {
-            dayoffarray.push("휴무")
-          } else {
-            dayoffarray.push("영업")
+          if(dayoffarray.length>6){
+            console.log("hi");
           }
+          else if(dayoffarray.length<=6){
+            if (v[a].week.indexOf("셋째")!=0) {
+              console.log("3 add 1")
+              dayoffarray.push("영업")
+            } else {
+              if (weekoff == v[a].dayofweek) {
+                dayoffarray.push("휴무")
+                console.log("3 add 2")
+              } else {
+                dayoffarray.push("영업")
+                console.log("3 add 3")
+              }
+            }
+          }
+          console.log("dayoffarray" + "" + dayoffarray)
         }
       }
       if (mart.vacation.indexOf("넷째") > -1) {
+        console.log("4th week")
         // if(v[a].week.indexOf("넷째")>-1&&v[a].week.indexOf("다섯째")>-1){
-        var weekoff = this.weekcheck(this.martArray[count - 1])
+        var weekoff = this.weekcheck("4", this.martArray[count - 1])
         console.log("off is : " + weekoff);
-        console.log(weekoff + "444,,," + v[a].dayofweek);
-        if (weekoff == v[a].dayofweek) {
-          dayoffarray.push("휴무")
-        } else {
-          dayoffarray.push("영업")
+        console.log(v[a].week+",,"+weekoff + "444,,,,," + v[a].dayofweek);
+        console.log("flag is : "+flag)
+        if(dayoffarray.length>6){
+          console.log("hi");
+        }
+        else if(dayoffarray.length<=6){
+          if (v[a].week.indexOf("넷째")!=0) {
+            console.log("4 add 1")
+            if(!flag){
+              dayoffarray.push("영업")
+            }else{
+              flag=false;
+            }
+           
+          } else {
+            if (weekoff == v[a].dayofweek) {
+              console.log("4 add 2")
+              if(!flag){
+                dayoffarray.push("휴무")
+              }else{
+                flag=false;
+              }
+             
+            } else {
+              console.log("4 add 3")
+              if(!flag){
+                dayoffarray.push("영업")
+              }else{
+                flag=false;
+              }
+            }
+          }
         }
       }
-      // }
+      console.log(dayoffarray);
+      console.log("dayofarray")
+
       // if (mart.vacation.indexOf("다섯째") > -1) {
       //   var weekoff = this.weekcheck(this.martArray[count - 1])
       //   console.log("off is : " + weekoff);
@@ -425,7 +492,6 @@ export class MartinfoPage {
       //     dayoffarray.push("영업")
       //   }
       // }
-
 
       this.martArray[count - 1].dayoffarray = dayoffarray;
 
@@ -518,10 +584,10 @@ export class MartinfoPage {
     console.log(idx);
     console.log(this.martArray[idx])
     console.log(!flag);
-    var flag=this.martArray[idx].favorite; 
-    if(flag!=true){
+    var flag = this.martArray[idx].favorite;
+    if (flag != true) {
       console.log(flag);
-      this.martArray[idx].favorite=true;
+      this.martArray[idx].favorite = true;
       this.firemain.child("users").child(this.userId).child("favorite").child(newnametoinput).child(a.key).update(this.martArray[idx]);
       console.log(this.martArray[idx]);
       const toast = this.toastCtrl.create({
@@ -531,9 +597,9 @@ export class MartinfoPage {
       toast.present();
     }
     else {
-      flag=false;
+      flag = false;
       console.log(flag);
-      this.martArray[idx].favorite=false;
+      this.martArray[idx].favorite = false;
       this.firemain.child("users").child(this.userId).child("favorite").child(newnametoinput).child(a.key).remove();
       const toast = this.toastCtrl.create({
         message: '삭제되었습니다.',
@@ -541,8 +607,10 @@ export class MartinfoPage {
       });
       toast.present();
     }
-    
+
   }
+
+
 }
 
 

@@ -47,6 +47,7 @@ export class AdPage {
   }
 
   clickbutton(i){
+    console.log(i);
     if(this.select_option==i) this.select_option=-1;
     else this.select_option=i;
   }
@@ -79,4 +80,6 @@ export class AdPage {
   dismiss(){
     this.viewCtrl.dismiss();
   }
+
+  
 }

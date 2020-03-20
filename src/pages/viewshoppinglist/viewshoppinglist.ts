@@ -247,11 +247,11 @@ export class ViewshoppinglistPage {
   /*수정*/
   insertData(fab: FabContainer) {
     this.flag = true;
-    fab.close();
   }
 
   /*삭제*/
   delete(fab: FabContainer) {
+    console.log(fab);
     let alert = this.alertCtrl.create({
       title: '정말로 삭제하시겠습니까?',
       buttons: [
@@ -272,6 +272,11 @@ export class ViewshoppinglistPage {
               if (this.a.list[i].checked == true) {
                 console.log(this.a.list[i].checked);
                 newlist.push(i);
+                const toast = this.toastCtrl.create({
+                  message: '삭제되었습니다.',
+                  duration: 2000,
+                });
+                toast.present();
               }
             }
 
@@ -304,7 +309,6 @@ export class ViewshoppinglistPage {
                 console.log(this.a.list);
               });
 
-              window.alert("삭제되었습니다.")
               /*totalNumber와 Select값 가져오기*/
               this.totalnumber = this.a.list.length;
               var count = 0;
@@ -320,7 +324,6 @@ export class ViewshoppinglistPage {
         }
       ]
     });
-    fab.close();
     alert.present();
   }
 
@@ -335,7 +338,6 @@ export class ViewshoppinglistPage {
     this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list).then(() => {
       console.log(this.a.list);
     });
-    fab.close();
   }
 
   /*가격비교 검색*/

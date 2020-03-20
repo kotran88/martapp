@@ -50,9 +50,8 @@ export class HomePage {
   favoriteList = [];
   logo = [];
 
-  date: any;
   day: any;
-  week: any;
+
   month: any;
   dayofweek: any;
   weekarr = [];
@@ -61,84 +60,274 @@ export class HomePage {
   martkind = [];
   martinfo = [];
 
+  shopping: boolean = false;
+  offday = [];
+  currentMonth: any;
+  currentYear: any;
+  currentDate: any;
+  date = new Date();
+  weekNo: any;
+  thismonth = [];
+  week = [];
+  newDate() {
 
-  martview(martinfo){
-    console.log(martinfo);
-    this.navCtrl.push(MartinfoviewPage,{"martinfo": martinfo});
-  }
+    var days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
+    var prefixes = ['첫째주', '둘째주', '셋째주', '넷째주', '다섯째주'];
 
-  weekAndDay() {
-    var datearr = new Date,
-      days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
-      prefixes = ['첫째주', '둘째주', '셋째주', '넷째주', '다섯째주'];
+    this.currentMonth = this.date.getMonth() + 1;
+    this.currentYear = this.date.getFullYear();
+    var prevNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth(), 0).getDate();
+    var thisNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDate();
+    var lastDayThisMonth = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDay();
+    var dayofweek = this.date.getDay();
 
-    this.week = prefixes[0 | datearr.getDate() / 7];
-    this.day = days[datearr.getDay()];
-    this.month = datearr.getMonth() + 1;
-    this.dayOfweek = datearr.getDay();
-    console.log(this.month);
-    // this.date = this.day.getDate;
-
-    for (var i = 0; i < 7; i++) {
-      this.date = datearr.getDate() + i;
-      this.dayofweek = datearr.getDate();
-      var dow = this.dayOfweek++;
-
-      if (this.dayOfweek >= 7) { this.dayOfweek = 0; }
-      console.log(dow);
-      this.weekarr.push({ "week": prefixes[0 | (this.date - 1) / 7], "day": this.date, "dayofweek": days[dow] });
-      console.log(this.weekarr);
+    if (this.date.getMonth() === new Date().getMonth()) {
+      this.currentDate = new Date().getDate();
+    } else {
+      this.currentDate = 999;
     }
+    // var aaaa = this.currentDate+12;
+    var count = 0;
+    console.log("1: " + this.currentDate);
+    for (var i = 0; i < 7; i++) {
+      console.log(thisNumOfDays);
+      // if(dayofweek+i>=7){dayofweek=0;}
+      var dow = dayofweek++;
+
+      if (dayofweek >= 7) { dayofweek = 0; }
+      if (this.currentDate + i <= thisNumOfDays) {
+
+        this.week.push({ "week": prefixes[0 | (this.currentDate + i - 1) / 7], "month": this.currentMonth, "day": this.currentDate + i, "dayofweek": days[dow] }); //30일
+        console.log(dayofweek);
+      }
+      else if (this.currentDate + i > thisNumOfDays) {
+        count++;
+        this.week.push({ "week": prefixes[0 | (count + i - 1) / 7], "month": this.currentMonth + 1, "day": count, "dayofweek": days[dow] }); //30일
+        console.log(dayofweek);
+      }
+      console.log(count);
+    }
+    console.log(this.week);
+    console.log(prevNumOfDays);//첫날과 마지막 날을 제외한 이 달의 일수
+    console.log(thisNumOfDays);//한 달의 날수
+    console.log(lastDayThisMonth);//이 달의 마지막 날의 요일.
   }
 
-  favorite() {
-    this.firemain.child("users").child(this.id).once("value", (sn) => {
-      console.log(sn.val());
-      for (var a in sn.val()) {
-        if (a == "favorite") {
-          console.log(sn.val()[a]);
-          for (var b in sn.val()[a]) {
-            if (b == "lotte") { this.logo.push({ "image": "./assets/imgs/009-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-롯데마트 CI.png", "name": "롯데마트", "flag": "lotte" }); }
-            if (b == "emart") { this.logo.push({ "image": ".assets/imgs/010-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-이마트 CI.png", "name": "이마트", "flag": "emart" }); }
-            if (b == "homeplus") { this.logo.push({ "image": "./assets/imgs/011-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-홈플러스 CI.png", "name": "홈플러스", "flag": "homeplus" }); }
-            if (b == "costco") { this.logo.push({ "image": "./assets/imgs/012-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-코스트코 CI.png", "name": "코스트코", "flag": "costco" }); }
-            if (b == "traders") { this.logo.push({ "image": "./assets/imgs/013-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-이마트 트레이더스 CI.png", "name": "이마트 트레이더스", "flag": "traders" }); }
-            if (b == "lottedep") { this.logo.push({ "image": "./assets/imgs/020-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-롯데백화점 CI.png", "name": "롯데백화점", "flag": "lottedep" }); }
-            if (b == "sinsaegae") { this.logo.push({ "image": "./assets/imgs/021-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-신세백화점 CI.png", "name": "신세계백화점", "flag": "sinsaegae" }); }
-            if (b == "hyundai") { this.logo.push({ "image": "./assets/imgs/022-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-현대백화점 CI.png", "name": "현대백화점", "flag": "hyundai" }); }
-            if (b == "lotteoutlet") { this.logo.push({ "image": "./assets/imgs/023-버튼-PPT 4페이지의 가운데 이미지의 아울렛별 로고-롯데아울렛 CI.png", "name": "롯데아울렛", "flag": "lotteoutlet" }); }
-            this.martkind.push(b);
-            console.log(sn.val()[a][b]);
-            for (var c in sn.val()[a][b]) {
-              console.log(sn.val()[a][b][c]);
-              this.todayoff = sn.val()[a][b][c].dayoffarray[0];
-              this.favoriteList.push(sn.val()[a][b][c]);
-            }
-            console.log(this.favoriteList)
-            console.log(this.favoriteList.length);
-          }
+  martview(martinfo) {
+    console.log(martinfo);
+    this.navCtrl.push(MartinfoviewPage, { "martinfo": martinfo });
+  }
 
+  area: any;
+  martname: any;
+  kindofmart: any;
+  favorite() {
+    var count = 0;
+    this.firemain.child("users").child(this.id).child("favorite").once("value", (sn) => {
+      console.log(sn.val());
+      for (var i in sn.val()) {
+        console.log(i);
+        this.martkind.push(i);
+        console.log(sn.val()[i]);
+        for (var j in sn.val()[i]) {
+          count++
+          this.todayoff = sn.val()[i][j].dayoffarray[0];
+          this.favoriteList.push(sn.val()[i][j]);
+          this.vacationFunc(this.week, sn.val()[i][j], count);
         }
       }
+      console.log(this.favoriteList);
     })
   }
 
+  weekcheck(number, mart) {
+    console.log(number);
+    console.log(mart);
+    var returnvalue = "";
+    if (mart.vacation.indexOf("월요") > -1) {
+      returnvalue = "월요일";
+    }
+    if (mart.vacation.indexOf("화요") > -1) {
+      returnvalue = "화요일";
+    }
+    if (mart.vacation.indexOf("수요") > -1) {
+      returnvalue = "수요일";
+    }
+    if (mart.vacation.indexOf("목요") > -1) {
+      returnvalue = "목요일";
+    }
+    if (mart.vacation.indexOf("금요") > -1) {
+      returnvalue = "금요일";
+    }
+    if (mart.vacation.indexOf("토요") > -1) {
+      returnvalue = "토요일";
+    }
+    if (mart.vacation.indexOf("일요") > -1) {
+      returnvalue = "일요일";
+    }
+    console.log(returnvalue);
+    return returnvalue
+  }
+
+  dayoffarray = [];
+  vacationFunc(week, mart, count) {
+    console.log(week);
+    console.log(mart.vacation);
+    console.log(count);
+    var counting = 0;
+    this.dayoffarray = [];
+    for (var a in week) {
+      counting++;
+      var flag = false;
+      if (counting == 1) {
+        console.log("오늘은 " + week[a].week + " " + week[a].day + "일 " + week[a].dayofweek);
+      }
+      if (mart.vacation.indexOf("첫째") > -1) {
+        if (week[a].week.indexOf("첫째") > -1 && week[a].week.indexOf("둘째") > -1) {
+          var weekoff = this.weekcheck("1", mart);
+          console.log("off is : " + weekoff);
+          console.log(weekoff + "1111,,," + week[a].dayofweek);
+          if (this.dayoffarray.length > 6) {
+            console.log("hi");
+          }
+          else if (this.dayoffarray.length <= 6) {
+            if (week[a].week.indexOf("첫째") != 0) {
+              console.log("1 add 1")
+              this.dayoffarray.push("영업")
+            } else {
+              if (weekoff == week[a].dayofweek) {
+                console.log("1 add 2")
+                this.dayoffarray.push("휴무")
+              } else {
+                console.log("1 add 3")
+                this.dayoffarray.push("영업")
+              }
+            }
+          }
+        }
+      }
+      if (mart.vacation.indexOf("둘째") > -1) {
+        console.log("2th week")
+        console.log(mart)
+        console.log(week[a].week)
+        if (week[a].week.indexOf("둘째") > -1 || week[a].week.indexOf("셋째") > -1) {
+          var weekoff = this.weekcheck("2", mart)
+          console.log("off is : " + weekoff)
+          console.log(weekoff + "2222,,," + week[a].dayofweek);;
+          console.log(this.week);
+          if (this.dayoffarray.length > 6) {
+            console.log("hi");
+          }
+          else if (this.dayoffarray.length <= 6) {
+            if (week[a].week.indexOf("둘째") != 0) {
+              console.log("2 add 1")
+              this.dayoffarray.push("영업")
+              flag = true;
+            } else {
+              if (weekoff == week[a].dayofweek) {
+                console.log("2 add 2")
+                this.dayoffarray.push("휴무")
+                flag = true;
+              } else {
+                console.log("2 add 3")
+                this.dayoffarray.push("영업")
+                flag = true;
+              }
+            }
+          }
+        }
+      }
+      if (mart.vacation.indexOf("셋째") > -1) {
+        console.log("3th week")
+        if (week[a].week.indexOf("셋째") > -1 && week[a].week.indexOf("넷째") > -1) {
+          var weekoff = this.weekcheck("3", mart)
+          console.log("weekoff" + " : " + weekoff)
+          console.log("off is : " + weekoff);
+          console.log(weekoff + "333,,," + week[a].dayofweek);
+          if (this.dayoffarray.length > 6) {
+            console.log("hi");
+          }
+          else if (this.dayoffarray.length <= 6) {
+            if (week[a].week.indexOf("셋째") != 0) {
+              console.log("3 add 1")
+              this.dayoffarray.push("영업")
+            } else {
+              if (weekoff == week[a].dayofweek) {
+                this.dayoffarray.push("휴무")
+                console.log("3 add 2")
+              } else {
+                this.dayoffarray.push("영업")
+                console.log("3 add 3")
+              }
+            }
+          }
+        }
+      }
+      if (mart.vacation.indexOf("넷째") > -1) {
+        console.log("4th week")
+        var weekoff = this.weekcheck("4", mart)
+        console.log("off is : " + weekoff);
+        console.log(week[a].week + ",," + weekoff + "444,,,,," + week[a].dayofweek);
+        console.log("flag is : " + flag)
+        if (this.dayoffarray.length > 6) {
+          console.log("hi");
+        }
+        else if (this.dayoffarray.length <= 6) {
+          if (week[a].week.indexOf("넷째") != 0) {
+            console.log("4 add 1")
+            if (!flag) {
+              this.dayoffarray.push("영업")
+            } else {
+              flag = false;
+            }
+
+          } else {
+            if (weekoff == week[a].dayofweek) {
+              console.log("4 add 2")
+              if (!flag) {
+                this.dayoffarray.push("휴무")
+              } else {
+                flag = false;
+              }
+
+            } else {
+              console.log("4 add 3")
+              if (!flag) {
+                this.dayoffarray.push("영업")
+              } else {
+                flag = false;
+              }
+            }
+          }
+        }
+      }
+      console.log(count);
+      console.log(this.favoriteList);
+      this.favoriteList[count - 1].dayoffarray = this.dayoffarray;
+      // console.log(this.favoriteList[count-1].dayoffarry);
+
+
+      // this.favoriteList[count-1].dayoffarray = this.dayoffarray;
+    }
+
+  }
+
   bookmark(a, idx) {
-    this.martinfo=a;
+
+    console.log(this.martkind[idx-1]);
+    this.martinfo = a;
     console.log(this.martinfo);
     console.log(this.martkind);
     console.log(a);
     console.log(a.key)
     console.log(idx);
-    for (var i in this.martkind) {
-      console.log(this.martkind[i]);
-      this.firemain.child("users").child(this.id).child("favorite").child(this.martkind[i]).child(a.key).remove();
-      const toast = this.toastCtrl.create({
-        message: '삭제되었습니다.',
-        duration: 2000,
-      });
-      toast.present();
-    }
+    this.firemain.child("users").child(this.id).child("favorite").child(this.martkind[idx-1]).child(a.key).remove();
+    const toast = this.toastCtrl.create({
+      message: '삭제되었습니다.',
+      duration: 2000,
+    });
+    toast.present();
+    this.navCtrl.push(HomePage);
 
   }
 
@@ -159,7 +348,7 @@ export class HomePage {
     this.newarraylist = [];
     this.firemain.child("users").child(this.id).once("value", (sn) => {
       for (var a in sn.val()) {
-        if (a != "setting" && a != "favorite") {
+        if (a != "setting" && a != "favorite" && a != "deviceID") {
           // console.log(sn.val()[a]);
           for (var b in sn.val()[a]) {
             this.listcount++;
@@ -651,28 +840,31 @@ export class HomePage {
   newAllcopy(key) {
     var count = 1;
     if (key.flag == "mart") {
-      var a = key.title + "복사본";
+      var count = count;
+      var a = key.title + "-복사본" + count;
       this.firemain.child("users").child(this.id).child("mart").child(a).child(key.key).update(key).then(() => {
         console.log(key);
       })
       this.refreshname();
+      count++;
+      console.log(count);
     }
     if (key.flag == "dep") {
-      var a = key.title + "복사본"
+      var a = key.title + "-복사본"
       this.firemain.child("users").child(this.id).child("dep").child(a).child(key.key).update(key).then(() => {
         console.log(key);
       })
       this.refreshname();
     }
     if (key.flag == "outlet") {
-      var a = key.title + "복사본"
+      var a = key.title + "-복사본"
       this.firemain.child("users").child(this.id).child("outlet").child(a).child(key.key).update(key).then(() => {
         console.log(key);
       })
       this.refreshname();
     }
     if (key.flag == "etc") {
-      var a = key.title + "복사본"
+      var a = key.title + "-복사본"
       this.firemain.child("users").child(this.id).child("etc").child(a).child(key.key).update(key).then(() => {
         console.log(key);
       })
@@ -699,7 +891,7 @@ export class HomePage {
     }
 
     if (key.flag == "mart") {
-      var a = key.title + "복사본";
+      var a = key.title + "-복사본";
       this.firemain.child("users").child(this.id).child("mart").child(a).child(key.key).update(key).then(() => {
         console.log(key);
       })
@@ -707,14 +899,14 @@ export class HomePage {
     }
 
     if (key.flag == "dep") {
-      var a = key.title + "복사본"
+      var a = key.title + "-복사본"
       this.firemain.child("users").child(this.id).child("dep").child(a).child(key.key).update(key).then(() => {
         console.log(key);
       })
       this.refreshname();
     }
     if (key.flag == "outlet") {
-      var a = key.title + "복사본"
+      var a = key.title + "-복사본"
       this.firemain.child("users").child(this.id).child("outlet").child(a).child(key.key).update(key).then(() => {
 
         console.log(key);
@@ -722,7 +914,7 @@ export class HomePage {
       this.refreshname();
     }
     if (key.flag == "etc") {
-      var a = key.title + "복사본"
+      var a = key.title + "-복사본"
       this.firemain.child("users").child(this.id).child("etc").child(a).child(key.key).update(key).then(() => {
 
         console.log(key);
@@ -736,7 +928,6 @@ export class HomePage {
     console.log(key);
     console.log(key.list);
     var unchecked = [];
-
     for (var i = 0; i < key.list.length; i++) {
       if (key.list[i].checked == false) {
         unchecked.push(key.list[i]);
@@ -750,7 +941,7 @@ export class HomePage {
     }
 
     if (key.flag == "mart") {
-      var a = key.title + "복사본";
+      var a = key.title + "-복사본";
 
       this.firemain.child("users").child(this.id).child("mart").child(a).child(key.key).update(key).then(() => {
         console.log(key);
@@ -759,14 +950,14 @@ export class HomePage {
     }
 
     if (key.flag == "dep") {
-      var a = key.title + "복사본"
+      var a = key.title + "-복사본"
       this.firemain.child("users").child(this.id).child("dep").child(a).child(key.key).update(key).then(() => {
         console.log(key);
       })
       this.refreshname();
     }
     if (key.flag == "outlet") {
-      var a = key.title + "복사본"
+      var a = key.title + "-복사본"
       this.firemain.child("users").child(this.id).child("outlet").child(a).child(key.key).update(key).then(() => {
 
         console.log(key);
@@ -774,7 +965,7 @@ export class HomePage {
       this.refreshname();
     }
     if (key.flag == "etc") {
-      var a = key.title + "복사본"
+      var a = key.title + "-복사본"
       this.firemain.child("users").child(this.id).child("etc").child(a).child(key.key).update(key).then(() => {
 
         console.log(key);
@@ -812,6 +1003,9 @@ export class HomePage {
     modal.onDidDismiss(data => {
       console.log(key);
       console.log(key.list);
+      if (data.flag == "cancel") {
+        window.alert("취소되었습니다.");
+      }
       if (data.flag == "new") {
         if (data.value == "1") {
           console.log(data.value);
@@ -882,7 +1076,6 @@ export class HomePage {
   }
 
 
-
   constructor(public modal: ModalController, private socialSharing: SocialSharing, private iab: InAppBrowser, public uniqueDeviceID: UniqueDeviceID,
     public alertCtrl: AlertController, public callnumber: CallNumber,
     public admobFree: AdMobFree, public navCtrl: NavController,
@@ -890,40 +1083,11 @@ export class HomePage {
     public oneSignal: OneSignal, public toastCtrl: ToastController) {
     this.fabButtonOpened = false;
     this.refreshname();
-    $(document).ready(function () {
-      console.log("ready!");
-    });
     this.favorite();
-    this.weekAndDay();
     this.today = ['오늘'];
-
-    // setTimeout(()=>{
-    //   if(this.platform.is("android")||this.platform.is("ios")){
-    //     this.OneSignalInstall();
-    //   }
-    // },5000)
-
+    this.newDate();
     setTimeout(() => {
 
-      // console.log(this.id);
-
-      // this.firemain.child(this.id).once("value", (snap) => {
-      //   console.log(snap.val());
-      //   console.log(snap.val().time);
-      //   for (var a in snap.val()) {
-      //     console.log(a);
-      //     for (var b in snap.val()[a]) {
-      //       console.log(b);
-      //       console.log(snap.val()[a][b]);
-
-      //       this.newarraylist.push({ "title": a, "time": snap.val()[a][b].time })
-      //     }
-      //     // console.log(a)
-      //     // console.log(snap.val()[a])
-      //   }
-
-      //   console.log(this.newarraylist);
-      // })
       this.uniqueDeviceID.get()
         .then((uuid: any) => { this.id = uuid; console.log(uuid) })
         .catch((error: any) => console.log(error));

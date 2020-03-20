@@ -27992,20 +27992,38 @@ ion-navbar.toolbar {
 }
 
 page-ad .B_on {
-  background-color: #72aefc;
+  background-color: #f0f0f0;
 }
 
 page-ad .B_off {
-  background-color: lightgray;
+  background-color: #f0f0f0;
 }
 
 .saveButton {
   border-radius: 4px;
-  border: solid 2px #01DFD7;
+  border: solid 2px #4abebe;
   background-color: #9FFAFA;
   width: 45px;
-  height: 30px;
-  font-size: 15px;
+  height: 28px;
+  font-size: 14px;
+  float: right;
+  margin-right: 20px;
+}
+
+.item-divider-md {
+  padding: 0px;
+}
+
+.inputprice {
+  position: absolute;
+  border: solid 2px;
+  border-radius: 5px;
+  width: 63%;
+  border-color: #71E8E8;
+}
+
+.content-md {
+  color: black;
 }
 
 .modalcopy {
@@ -28034,61 +28052,57 @@ page-home .btnup {
   margin-top: 15px !important;
 }
 
-page-home .fab {
-  contain: layout;
-  width: 20px !important;
-  height: 20px !important;
+page-home .fab-md {
+  color: #fff;
+  background-color: #fff;
+  -webkit-box-shadow: 0px;
+  box-shadow: 0px;
 }
 
-page-home ion-fab-list {
-  margin: -28px -40px;
-  min-width: 35px;
-  background-color: white;
+page-home .fab {
+  contain: layout;
+  z-index: 9999;
 }
 
 page-home ion-fab {
-  left: 83%;
-  position: absolute;
-  z-index: 999;
+  float: right;
+  left: 80%;
+  z-index: 9999;
 }
 
-page-home button[ion-fab] {
-  overflow: visible;
+.rotate {
+  -webkit-transition: all ease 1s;
+  transition: all ease 1s;
+}
+
+.rotate:hover {
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.button-inner {
+  padding: 0px;
+  margin: 0px;
+}
+
+ion-fab-list {
+  margin: 0;
   position: relative;
-  contain: layout;
 }
 
-page-home button[ion-fab] ion-label {
-  position: absolute;
-  top: -5px;
-  right: 40px;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.7);
-  line-height: 20px;
-  padding: 2px 4px;
-  border-radius: 4px;
-  font-size: 10px;
+.fab-in-list {
+  margin: 0;
+  width: 60px;
 }
 
-page-home .label-ios {
-  margin: -3px;
+.fab-md {
+  color: #fff;
+  background-color: #fff;
+  -webkit-box-shadow: 0px;
+  box-shadow: 0 0 0 0;
 }
 
-page-home .fab[mini] {
-  margin-top: -20px;
-  margin-right: 20px;
-}
-
-page-home .fab[mini] .fab-close-icon {
-  line-height: 22px;
-}
-
-page-home .fab ion-icon {
-  font-size: 1.8rem;
-}
-
-page-home .fab-label {
-  padding: 2px 5px;
+.fab-label {
   -webkit-align-self: center;
   -ms-flex-item-align: center;
   align-self: center;
@@ -28103,14 +28117,23 @@ page-home .fab-label {
   color: #ffffff;
   -webkit-box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-  margin-right: 10px;
 }
 
 select {
-  width: auto;
-  height: 30px;
+  width: 30%;
+  height: 45px;
   border-radius: 5px;
-  background-color: #78f7f7;
+  border: 10px soild;
+  border-color: #00a7b3;
+  /* 네이티브 외형 감추기 */
+  /* 화살표 모양의 이미지 */
+  padding-left: 10px;
+}
+
+#slt {
+  border: 2px solid;
+  border-color: #00a7b3;
+  background-color: #fff;
 }
 
 /* IE 10, 11의 네이티브 화살표 숨기기 */
@@ -28165,20 +28188,11 @@ p {
   font-size: 15px;
 }
 
-.listDB {
-  width: 350px;
-  height: 50px;
-  border: solid 2px #78f7f7;
-  border-radius: 5px;
-  margin: 5px auto;
-  padding: 5px 5px 5px 5px;
-}
-
 div.segmentImg {
   position: relative;
   vertical-align: middle;
-  width: 40px;
-  height: 31px;
+  width: 50px;
+  height: 40px;
   top: 0px;
   left: 0px;
   float: left;
@@ -28273,6 +28287,20 @@ div.segmentText {
   border: solid 2px #71E8E8;
 }
 
+.heart {
+  z-index: 999px;
+}
+
+.cropping {
+  max-height: 600px;
+  overflow: hidden;
+}
+
+.cropping img {
+  max-height: initial;
+  margin-top: 0%;
+}
+
 .buttonSize {
   border-radius: 4px;
   border: solid 2px #01DFD7;
@@ -28342,6 +28370,10 @@ page-martinfo .content-md {
   padding-right: 10px;
 }
 
+.heart {
+  z-index: 999;
+}
+
 page-martinfoview [col-1] {
   -webkit-box-flex: 0;
   -webkit-flex: 0 0 8.33333%;
@@ -28364,6 +28396,7 @@ page-martinfoview .next-month {
 }
 
 page-martinfoview .currentDate,
+page-martinfoview .offDate,
 page-martinfoview .otherDate {
   padding: 20%;
 }
@@ -28372,6 +28405,11 @@ page-martinfoview .currentDate {
   font-weight: bold;
   background-color: green;
   color: white;
+}
+
+page-martinfoview .offDate {
+  font-weight: vold;
+  color: red;
 }
 
 page-martinfoview .calendar-header {
@@ -28445,10 +28483,13 @@ page-setting .image {
   float: left;
 }
 
+page-setting .toolbar-background-md {
+  background: #71E8E8;
+}
+
 page-setting .content_main {
   width: 80%;
   text-align: center;
-  height: 20%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -28470,21 +28511,9 @@ page-setting .content {
   width: 100%;
 }
 
-page-setting .rating_header {
-  margin-top: 0.8rem;
-  text-align: center;
-}
-
 page-setting .content_text {
   width: 100%;
   height: 30%;
-}
-
-page-setting .header {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 5px;
-  margin-top: 5px;
 }
 
 page-setting .info {
@@ -28573,12 +28602,22 @@ page-setting .modal_content {
   overflow: hidden;
 }
 
+.rotate {
+  -webkit-transition: all ease 1s;
+  transition: all ease 1s;
+}
+
+.rotate:hover {
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
 .B_on {
-  background-color: #72aefc;
+  background-color: #71E8E8;
 }
 
 .B_off {
-  background-color: lightgray;
+  background-color: #f0f0f0;
 }
 
 .accordion {
@@ -28595,7 +28634,8 @@ page-setting .modal_content {
 }
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.active, .accordion:hover {
+.active,
+.accordion:hover {
   background-color: #ccc;
 }
 
@@ -28607,26 +28647,95 @@ page-setting .modal_content {
   overflow: hidden;
 }
 
+.bar-button::after {
+  color: white;
+}
+
+.goback {
+  background-color: #71E8E8;
+}
+
+.arrow1 {
+  background-color: #fff;
+  margin-left: 170px;
+}
+
+.arrow2 {
+  background-color: #fff;
+  margin-left: 128px;
+}
+
+.arrow3 {
+  background-color: #fff;
+  margin-left: 141px;
+}
+
+.arrow4 {
+  background-color: #fff;
+  margin-left: 150px;
+}
+
 page-viewshoppinglist ion-list {
   overflow-y: scroll;
 }
 
-button[ion-fab] {
-  overflow: visible;
-  position: relative;
-  contain: layout;
+page-viewshoppinglist .item.item-md .checkbox-md {
+  position: static;
+  display: block;
+  margin: 9px 4px 9px 4px;
 }
 
-button[ion-fab] ion-label {
+page-viewshoppinglist .input-cover {
+  left: 0;
+  top: 0;
   position: absolute;
-  top: -5px;
-  right: 40px;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.7);
-  line-height: 20px;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 11px;
+  width: 80%;
+  height: 100%;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+}
+
+page-viewshoppinglist .fab-md {
+  background-color: black;
+}
+
+page-viewshoppinglist .fab-in-list {
+  margin: 2px;
+}
+
+page-viewshoppinglist .text-input-md {
+  margin: 10px 8px;
+}
+
+.rotate {
+  -webkit-transition: all ease 1s;
+  transition: all ease 1s;
+}
+
+.rotate:hover {
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.inputprice {
+  position: absolute;
+  border: solid 2px;
+  border-radius: 5px;
+  width: 63%;
+  border-color: #71E8E8;
+}
+
+.fab-close-icon {
+  background-color: #01DFD7;
+}
+
+ion-fab-list {
+  margin: 0;
+  position: relative;
+}
+
+.fabstyle {
+  background: black;
 }
 
 .item-cover {
@@ -28657,4 +28766,8 @@ button[ion-fab] ion-label {
   background-color: #FAFAFA;
   height: 15px;
   margin-top: 2px;
+}
+
+.iconwidth {
+  margin: 9px 3px 9px 4px;
 }

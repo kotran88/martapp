@@ -23,156 +23,186 @@
         <ion-list *ngSwitchCase="'tab1'">
             <div *ngIf="favoriteList.length == 0" style="margin-top:10%"><button style="background:white" (click)="main();"><img src="./assets/imgs/003-버튼-PPT 3페이지의 이미지의 정가운데-'랜딩화면' 다음에 나오는 화면의 '말+돋보기 버튼'.png"></button></div>
             <div *ngIf="favoriteList != 0">
-                <div *ngFor="let i of favoriteList; let idx=index" class="border">
-                    <button style="background-color:white" (click)="martview(i)">
-                <table>
-                    <thead>
-                        <th style="text-align: left;" *ngFor="let a of logo;">
-                            <img src="{{a.image}}" class="logoimage" style="height:10%; margin-right: 10px;" alt="">
-                            <a style="margin:3px; font-size:17px; color: #808080;">{{a.name}}</a>
-                        </th>
-                        <th class="dayoffimg">
-                            <img *ngIf="todayoff=='영업'" src="./assets/imgs/043-버튼-PPT 5페이지의 우측 이미지 영업 알림 버튼-오늘 영업.png" style="width:60%;">
-                            <img *ngIf="todayoff=='휴무'" src="./assets/imgs/044-버튼-PPT 5페이지의 우측 이미지 영업 알림 버튼-오늘 휴무.png" style="width:60%;">
+                <div style="padding-left:5px; padding-right:5px;">
+                    <div *ngFor="let i of favoriteList; let idx=index" class="border" style="margin-right:auto; margin-left:auto; text-align: center;">
+                        <table>
+                            <thead>
+                                <th style="text-align: left;" *ngIf="i.name.indexOf('롯데마트')>-1" (click)="martview(i)">
+                                    <img src="./assets/imgs/009-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-롯데마트 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">
+                                    <a style="margin:3px; font-size:17px; color: #808080; ">롯데마트</a>
+                                </th>
+                                <th style="text-align: left;" *ngIf="i.name.indexOf('이마트')>-1&&i.name.indexOf('트레이더스')==-1" (click)="martview(i)">
+                                    <img src="./assets/imgs/010-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-이마트 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">
+                                    <a style="margin:3px; font-size:17px; color: #808080; ">이마트</a>
+                                </th>
+                                <th style="text-align: left;" *ngIf="i.name.indexOf('홈플러스')>-1" (click)="martview(i)">
+                                    <img src="./assets/imgs/011-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-홈플러스 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">
+                                    <a style="margin:3px; font-size:17px; color: #808080; ">홈플러스</a>
+                                </th>
+                                <th style="text-align: left;" *ngIf="i.name.indexOf('코스트코')>-1" (click)="martview(i)">
+                                    <img src="./assets/imgs/012-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-코스트코 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">
+                                    <a style="margin:3px; font-size:17px; color: #808080; ">코스트코</a>
+                                </th>
+                                <th style="text-align: left;" *ngIf="i.name.indexOf('이마트트레이더스')>-1" (click)="martview(i)">
+                                    <img src="./assets/imgs/013-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-이마트 트레이더스 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">
+                                    <a style="margin:3px; font-size:17px; color: #808080; ">이마트 트레이더스</a>
+                                </th>
+                                <th style="text-align: left;" *ngIf="i.name.indexOf('롯데백화점')>-1" (click)="martview(i)">
+                                    <img src="./assets/imgs/020-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-롯데백화점 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">
+                                    <a style="margin:3px; font-size:17px; color: #808080; ">롯데백화점</a>
+                                </th>
+                                <th style="text-align: left;" *ngIf="i.name.indexOf('신세계')>-1" (click)="martview(i)">
+                                    <img src="./assets/imgs/021-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-신세백화점 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">
+                                    <a style="margin:3px; font-size:17px; color: #808080; ">신세계백화점</a>
+                                </th>
+                                <th style="text-align: left;" *ngIf="i.name.indexOf('현대백화점')>-1" (click)="martview(i)">
+                                    <img src="./assets/imgs/022-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-현대백화점 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">
+                                    <a style="margin:3px; font-size:17px; color: #808080; ">현대백화점</a>
+                                </th>
+                                <th style="text-align: left;" *ngIf="i.name.indexOf('롯데아울렛')>-1" (click)="martview(i)">
+                                    <img src="./assets/imgs/023-버튼-PPT 4페이지의 가운데 이미지의 아울렛별 로고-롯데아울렛 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">
+                                    <a style="margin:3px; font-size:17px; color: #808080; ">롯데아울렛</a>
+                                </th>
+                                <th class="dayoffimg">
+                                    <img *ngIf="todayoff=='영업'" src="./assets/imgs/043-버튼-PPT 5페이지의 우측 이미지 영업 알림 버튼-오늘 영업.png " style="width:60%; ">
+                                    <img *ngIf="todayoff=='휴무'" src="./assets/imgs/044-버튼-PPT 5페이지의 우측 이미지 영업 알림 버튼-오늘 휴무.png " style="width:60%; ">
 
-                            <button (click)="bookmark(i, idx)" style="width:40px; height:40px; background-color: white;">
-                                <img class="heart" *ngIf="i.favorite==false" src="./assets/imgs/045-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-블랭크 하트(즐겨찾기전).png" style="width:100%;" alt="">
-                                <img class="heart" *ngIf="i.favorite==true" src="./assets/imgs/046-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-노란 하트(즐겨찾기후).png" style="width:100%;" alt="">
+                                    <button outline item-end (click)="bookmark(i, idx) " style="width:40px; height:40px; background-color: white;">
+                                <img class="heart" *ngIf="i.favorite==false" src="./assets/imgs/045-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-블랭크 하트(즐겨찾기전).png" style="width:100%; " alt=" ">
+                                <img class="heart" *ngIf="i.favorite==true" src="./assets/imgs/046-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-노란 하트(즐겨찾기후).png" style="width:100%; " alt=" ">
                             </button>
-                    </th>
-                    </thead>
-                    <tbody style="width:100%;">
-                        <tr class="martname" style="font-weight: 900">
-                            <span style="margin-bottom:10px">{{i.name}}</span>
-                        </tr>
-                    </tbody>
-                    </table>
-                    <table>
-                        <tbody>
-                            <tr class="datespan">
-                                <td class="tabletd" style="margin-top:10px">{{today}}</td>
-                                <!-- <span style="margin-top:10px;"></span> -->
-                            </tr>
-                            <tr class="datespan">
-                                <td *ngFor="let i of weekarr" class="tabletd">
-                                    <span>{{i.dayofweek}}</span>
-                                </td>
-                            </tr>
-                            <tr class="datespan">
-                                <td *ngFor="let i of weekarr" class="tabletd">
-                                    <span>{{month}}/{{i.day}}</span>
-                                </td>
-                            </tr>
-                            <tr class="datespan">
-                                <td *ngFor="let m of i.dayoffarray" class="tabletd">
-                                    <span *ngIf="m=='휴무'" class="mSpan1">{{m}}</span>
-                                    <span *ngIf="m=='영업'" class="mSpan2">{{m}}</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    </button>
+                                </th>
+                            </thead>
+                            <tbody style="width:100%;" (click)="martview(i)">
+                                <tr class="martname " style="font-weight: 900">
+                                    <span style="margin : 10px; margin-bottom:30px;">{{i.name}}</span>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table style="margin-left:auto; margin-right:auto">
+                            <tbody>
+                                <tr class="datespan" (click)="martview(i)">
+                                    <td class="tabletd " style="margin-top:10px ">{{today}}</td>
+                                </tr>
+                                <tr class="datespan" (click)="martview(i)">
+                                    <td *ngFor="let i of week " class="tabletd ">
+                                        <span>{{i.dayofweek}}</span>
+                                    </td>
+                                </tr>
+                                <tr class="datespan" (click)="martview(i)">
+                                    <td *ngFor="let i of week " class="tabletd ">
+                                        <span>{{i.month}}/{{i.day}}</span>
+                                    </td>
+                                </tr>
+                                <tr class="datespan" (click)="martview(i)">
+                                    <td *ngFor="let m of i.dayoffarray" class="tabletd ">
+                                        <span *ngIf="m=='휴무'" class="mSpan1">{{m}}</span>
+                                        <span *ngIf="m=='영업'" class="mSpan2">{{m}}</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div class="borderr">
-                    <button style="background-color:white; height:30%; margin-left:auto; margin-right:auto;" (click)="main();"><img style="width:55%"src="./assets/imgs/047-버튼-PPT 7페이지의 우측 이미지-말얼굴+돋보기.png" alt=""></button>
+                    <button style="background-color:white; height:30%; margin-left:auto; margin-right:auto; " (click)="main(); "><img style="width:55% "src="./assets/imgs/047-버튼-PPT 7페이지의 우측 이미지-말얼굴+돋보기.png " alt=" "></button>
                 </div>
             </div>
         </ion-list>
-        <ion-list *ngSwitchCase=" 'tab2' ">
+        <ion-list *ngSwitchCase=" 'tab2'">
             <div class="topselector">
                 <p>쇼핑 목록 만들기! 어디서 쇼핑하실 건가요?</p>
-                <table style="margin: auto; text-align: center;">
+                <table style="margin: auto; text-align: center; ">
 
                     <tbody>
                         <td>
-                            <button style="background-color:#fff; " (click)="addlist('mart') "><img src="./assets/imgs/079-버튼-PPT 27페이지의 가운데 이미지-카트(마트).png " style="width:500px"></button>
-                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold;" (click)="addlist('mart') ">마트</button>
+                            <button style="background-color:#fff; " (click)="addlist( 'mart') "><img src="./assets/imgs/079-버튼-PPT 27페이지의 가운데 이미지-카트(마트).png " style="width:500px "></button>
+                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold; " (click)="addlist( 'mart') ">마트</button>
                         </td>
                         <td>
-                            <button style="background-color:#fff; " (click)="addlist('dep') "><img src="./assets/imgs/080-버튼-PPT 27페이지의 가운데 이미지-쇼핑백(백화점).png " style="width:500px"></button>
-                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold;" (click)="addlist('dep') ">백화점</button>
+                            <button style="background-color:#fff; " (click)="addlist( 'dep') "><img src="./assets/imgs/080-버튼-PPT 27페이지의 가운데 이미지-쇼핑백(백화점).png " style="width:500px "></button>
+                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold; " (click)="addlist( 'dep') ">백화점</button>
                         </td>
                         <td>
-                            <button style="background-color:#fff; " (click)="addlist('outlet') "><img src="./assets/imgs/081-버튼-PPT 27페이지의 가운데 이미지-보석+구두(아울렛).png " style="width:500px"></button>
-                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold;" (click)="addlist( 'outlet') ">아울렛</button>
+                            <button style="background-color:#fff; " (click)="addlist( 'outlet') "><img src="./assets/imgs/081-버튼-PPT 27페이지의 가운데 이미지-보석+구두(아울렛).png " style="width:500px "></button>
+                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold; " (click)="addlist( 'outlet') ">아울렛</button>
                         </td>
                         <td>
-                            <button style="background-color:#fff; " (click)="addlist('etc') "><img src="./assets/imgs/081-버튼-PPT 27페이지의 가운데 이미지-etc(기타).png " style="width:500px"></button>
-                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold;" (click)="addlist( 'etc') ">기타</button>
+                            <button style="background-color:#fff; " (click)="addlist( 'etc') "><img src="./assets/imgs/081-버튼-PPT 27페이지의 가운데 이미지-etc(기타).png " style="width:500px "></button>
+                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold; " (click)="addlist( 'etc') ">기타</button>
                         </td>
                     </tbody>
                 </table>
             </div>
-            <div *ngFor="let a of newarraylist " class="eachshopping ">
-                <div class="listDB ">
-                    <div class="segmentImg ">
-                        <button style="background-color:#fff; " (click)="deleteDB(a) ">
-                            <img src="assets/imgs/delete (1).png ">
-                        </button>
-                    </div>
-                    <div class="segmentText ">
-                        {{a.flag}}
-                        <button style="background-color:#fff; " (click)="viewshoppinglist(a) ">
-                            {{a.title}}
-                        </button>
-                    </div>
+            <div *ngIf="newarraylist.length==0 "><img src="./assets/imgs/078-버튼-PPT 27페이지의 가운데 이미지-쇼핑이라쓰고+말얼굴 (1).png " alt=" "></div>
+            <div *ngIf="newarraylist!=0 ">
+
+                <div *ngFor="let a of newarraylist " class="border ">
+                    <button (click)="viewshoppinglist(a) " style="background-color: #fff; width:80% ">
+                        <table>
+                            <tr style="text-align: left; ">
+                                <td>
+                                        <button *ngIf="a.flag=='mart' " style="background-color:#fff; width:80px "><img src="./assets/imgs/079-버튼-PPT 27페이지의 가운데 이미지-카트(마트).png " style="width:100% " alt=" "></button>
+                    <button *ngIf="a.flag=='dep' " style="background-color:#fff; width:80px "><img src="./assets/imgs/080-버튼-PPT 27페이지의 가운데 이미지-쇼핑백(백화점).png " style="width:100% "alt=" "></button>
+                    <button *ngIf="a.flag=='outlet' " style="background-color:#fff; width:80px "><img src="./assets/imgs/081-버튼-PPT 27페이지의 가운데 이미지-보석+구두(아울렛).png " style="width:100% " alt=" "></button>
+                    <button *ngIf="a.flag=='etc' " style="background-color:#fff; width:80px "><img src="./assets/imgs/081-버튼-PPT 27페이지의 가운데 이미지-etc(기타).png " style="width:100% " alt=" "></button>
+
+                    </td>
+                    <td>
+                        <div>
+                            <span *ngIf="a.flag=='mart' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">마트 </span>
+                            <span *ngIf="a.flag=='dep' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">백화점 </span>
+                            <span *ngIf="a.flag=='outlet' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">아울렛 </span>
+                            <span *ngIf="a.flag=='etc' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">기타 </span>
+                            <span style="font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">"{{a.title}} "</span>
+                            <br><br><span style="font-size:16px; font-weight:bold; color:rgb(74,190,190); margin-top:3px; ">{{a.time}} 작성</span>
+                            <br><br><span style="font-size:16px; font-weight: bold; color:rgb(74,190,190); margin-top:30px; ">{{a.totallist+"개 항목 중 "+a.totalchecked+"개 구입 "}}</span>
+                        </div>
+                    </td>
+                    </table>
+
+                    </button>
                     <div>
-                        <button style="background-color:#fff;" (click)="viewshoppinglist(a) ">
-                            {{a.time}}
-                        </button>
-                    </div>
-                    <div>
-                        {{a.totallist+"개 항목 중 "+a.totalchecked+"개 구입 "}}
-                    </div>
-                    <div>
-                        <ion-fab>
-                            <button ion-fab mini><ion-icon name="add"></ion-icon></button>
-                            <ion-fab-list side="bottom">
-                                <button (click)="changeName(a)" ion-fab>
-                                    <ion-icon name="list"></ion-icon>
-                                    <ion-label>목록명 변경</ion-label>
-                                </button>
-                                <button (click)="share(a)" ion-fab>
-                                    <ion-icon name="share"></ion-icon>
-                                    <ion-label>공유</ion-label>
-                                </button>
-                                <button (click)="deleteDB(a)" ion-fab>
-                                    <ion-icon name="trash"></ion-icon>
-                                    <ion-label>삭제</ion-label>
-                                </button>
-                                <button (click)="openModal(a)" ion-fab>
-                                    <ion-icon name="copy"></ion-icon>
-                                    <ion-label>복사</ion-label>
-                                </button>
+                        <ion-fab style="margin-top:-50px; ">
+                            <img class="rotate" src="./assets/imgs/084-버튼-PPT 31페이지의 가운데 이미지-점3개-회전1단계(시작).png" style="width:30%;height: 30%;float:right; margin-right:30px; margin-top:20px; position:relative; z-index :9998 " alt=" " ion-fab>
+                            <ion-fab-list side="bottom " style="margin-left:-90%; margin-top:20px;text-align: left; background-color:#E9E9E9; position: absolute; z-index: 9999; ">
+                                <button style="background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="changeName(a) ">목록명 변경</button>
+                                <button style="background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="share(a) ">공유</button>
+                                <button style="background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="deleteDB(a) ">삭제</button>
+                                <button style="background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="openModal(a) ">복사</button>
                             </ion-fab-list>
                         </ion-fab>
                     </div>
                 </div>
+
             </div>
 
-            <!-- <div><button style="background-color:#fff; " (click)="addlist() ">(image)쇼핑 리스트를 추가해보자라는 말</button></div> -->
-
         </ion-list>
-        <ion-list *ngSwitchCase="'tab3'">
+        <ion-list *ngSwitchCase=" 'tab3' ">
 
-            <div>
-                <select style="display:inline-block; width:25%;" id='slt' name="sor ">
-                    <option value="rel" selected="selected">랭킹순</option>
-                    <option value="price_asc">낮은 가격순</option>
-                    <option value="price_dsc">높은 가격순</option>
-                    <option value="date">등록순</option>
-                    <option value="review">리뷰 많은순</option>
+            <div style="padding:20px; ">
+                <select id="slt " name="sor ">
+                    <option value="rel " selected="selected ">랭킹순</option>
+                    <option value="price_asc ">낮은 가격순</option>
+                    <option value="price_dsc ">높은 가격순</option>
+                    <option value="date ">등록순</option>
+                    <option value="review ">리뷰 많은순</option>
                 </select>
 
-                <ion-input style="margin-right: 0px; width: 60%; display: inline-block; border: 1px solid black;" name='text' type="text" [(ngModel)]='srct.text' placeholder="검색어를 입력해 주세요.">
+                <ion-input style="margin-right: 0px; margin-top: 2px; width: 55%; height:48px; display: inline-block; border: 2px solid rgb(0, 167, 179); border-radius: 5px; " name='text' type="text " [(ngModel)]='srct.text' placeholder="검색어를 입력해 주세요. ">
+
                 </ion-input>
+                <button style="padding-left:-15%; margin-left: -15%;margin-top: 1%; float: right; width:60px; height: 50px; background-color: #fff;z-index: 9999; " outline icon-only (click)='select_sort()'>
 
-                <button ion-button style="float: right; width:30px; height: 30px;" color="black" outline icon-only (click)='select_sort()'>
-
-                    <ion-icon name='search' is-active="false"></ion-icon>
+                    <ion-icon name='search' style="color:rgb(0, 167, 179); font-size:30px " is-active="false "></ion-icon>
                 </button>
+
+            </div>
+            <div>
+                <img src="./assets/imgs/077-배경 이미지-PPT 23페이지의 가운데 이미지-인터넷은얼마+말얼굴.png " class="cropping " alt=" ">
             </div>
         </ion-list>
+
 
     </div>
 

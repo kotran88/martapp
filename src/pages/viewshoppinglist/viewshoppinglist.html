@@ -21,54 +21,45 @@
             <span style="color: #42B8B8; font-size:15px; font-weight: 900;">₩{{printsum}}</span>
         </ion-col>
     </ion-row>
-    <div class>
-        <ion-item *ngFor="let att of a.list; let idx = index" class="main">
-            <ion-icon *ngIf="flag==true" name="close"></ion-icon>
-            <ion-checkbox [(ngModel)]="att.checked" style="z-index: 999999;" (ionChange)="addValue($event)" *ngIf="flag==false" color="dark" slot="start"></ion-checkbox>
-            <ion-input text-center style="width: 20%;float: left;" placeholder="상품명" [(ngModel)]="a.list[idx].name"></ion-input>
-            <ion-input text-center style="width: 10%;float: left;" placeholder="수량" [(ngModel)]="a.list[idx].quantity"></ion-input>
-            <ion-input text-center style="width: 15%;float: left;" placeholder="가격" [(ngModel)]="a.list[idx].price"></ion-input>
-            <button ion-button outline item-end style="width:10%;" (click)="select_sort(idx)"><ion-icon name='search' is-active="false"></ion-icon></button>
-        </ion-item>
-    </div>
-
-    <div style="bottom: 50px;width: 100%; margin-left:0px; margin-right:0px;" class="bottom">
-        <ion-row>
-            <ion-col col-12>
-                <ion-input *ngIf="flag!=false" style="width: 65%;border-bottom: solid 1px;float: left;" [(ngModel)]="adding" placeholder="품목을 입력하세요."></ion-input>
-                <button *ngIf="flag!=false" style="height: 3.5rem;background: transparent;border: solid 1px ;border-radius: 7px;margin-left: 4px;" (click)="speeching()">음성</button>
-                <button *ngIf="flag!=false" style="height: 3.5rem;background: #9FFAFA;border: solid 1px #9FFAFA;border-radius: 7px;margin-top: 5px;margin-left: 4px;" (click)="add()">추가하기</button>
-            </ion-col>
-            <ion-col col-12>
-                <button *ngIf="flag!=false&&flagInput==false" style="height: 3.5rem;background: transparent;border: solid 1px;border-radius: 7px;" (click)="priceandquantity()">가격 및 수량도 입력하기</button>
-                <ion-input *ngIf="flagInput!=false" style="width: 34%; height: 3.5rem; border-bottom: solid 1px; float: left; margin-right: 2px; margin-left:2px;" [(ngModel)]="quantity" placeholder="수량"></ion-input>
-                <ion-input *ngIf="flagInput!=false" style="width: 34%; height: 3.5rem; border-bottom: solid 1px; float: left; margin-left: 2px; margin-right:5px;" [(ngModel)]="price" placeholder="가격"></ion-input>
-                <button *ngIf="flagInput!=false" style="height: 3.5rem;background: transparent;border: solid 1px;border-radius: 7px;margin-top: 3px;margin-left: 10px;" (click)="cancel()">취소</button>
-            </ion-col>
-        </ion-row>
-
-    </div>
-</ion-content>
-
-<ion-footer>
     <div>
-        <ion-fab bottom right #fab>
-            <button ion-fab mini><ion-icon name="add"></ion-icon></button>
+        <ion-item *ngFor="let att of a.list; let idx = index" class="main">
+            <ion-icon *ngIf="flag==true" class="iconwidth" style="margin:9px 3px 9px 4px;" name="close"></ion-icon>
+            <ion-checkbox [(ngModel)]="att.checked" style="z-index: 999999;" (ionChange)="addValue($event)" *ngIf="flag==false" color="dark" slot="start"></ion-checkbox>
+            <ion-input text-center style="width: 10%;float: left; font-size:15px;" placeholder="상품명" [(ngModel)]="a.list[idx].name"></ion-input>
+            <ion-input text-center style="width: 5%;float: left; font-size:15px;" placeholder="수량" [(ngModel)]="a.list[idx].quantity"></ion-input>
+            <ion-input text-center style="width: calc(100%-0px-1px);float: left; font-size:13px;" placeholder="가격" [(ngModel)]="a.list[idx].price"></ion-input>
+            <button outline item-end style="float:right; width:15%; background-color:#FAFAFA" (click)="select_sort(idx)"><img src="./assets/imgs/088-버튼-PPT 32페이지의 좌측 이미지-인터넷 지구+돋보기.png" alt=""></button>
+
+            <!-- <button ion-button outline item-end style="width:10%;" (click)="select_sort(idx)"><ion-icon name='search' is-active="false"></ion-icon></button> -->
+        </ion-item>
+
+    </div>
+
+    <div style="width: 100%; margin-left:0px; margin-right:0px;" class="bottom">
+        <ion-input *ngIf="flag!=false" style="color:#808080; width: 65%;border-bottom: solid 1px;  border-bottom-color:rgb(74, 190, 190); float: left;" [(ngModel)]="adding" placeholder="품목을 입력하세요."></ion-input>
+        <button *ngIf="flag!=false" style="height: 3.5rem;background: transparent;border-radius: 7px;margin-left: 4px;" (click)="speeching()"><img src="./assets/imgs/086-버튼-PPT 31페이지의 가운데 이미지-녹음 마이크.png" style="width:30px;" alt=""></button>
+        <button *ngIf="flag!=false" style="height: 3.5rem;background: #9FFAFA;border: solid 1px #9FFAFA;border-radius: 7px;margin-top: 5px;margin-left: 4px;" (click)="add()">추가하기</button>
+        <div *ngIf="flag!=false&&flagInput==false" class="inputprice" style="margin-top:5px;">
+            <img *ngIf="flag!=false&&flagInput==false" src="./assets/imgs/084-버튼-PPT 31페이지의 가운데 이미지-점3개-회전1단계(시작).png " style="width:30px; " alt=" ">
+            <button *ngIf="flag!=false&&flagInput==false" style="background-color:white;color:rgb(74, 190, 190); font-size:14px; font-weight: bold;" (click)="priceandquantity()">가격 및 수량도 입력하기</button>
+        </div>
+        <div>
+            <button *ngIf="flagInput!=false" style="margin:0px; height: 3.5rem;background-color:#71E8E8;border-radius: 7px; margin-top: 3px;margin-left: 10px;" (click)="cancel()">상세취소</button>
+            <ion-input *ngIf="flagInput!=false" style="margin: 0px 0px; color:#808080; width: 30%; height: 3.5rem; border-bottom: solid 1px; float: left; margin-right: 2px; margin-left:2px;" [(ngModel)]="quantity" placeholder="수량"></ion-input>
+            <ion-input *ngIf="flagInput!=false" style="margin: 0px 0px; color:#808080; width: 30%; height: 3.5rem; border-bottom: solid 1px; float: left; margin-left: 2px; margin-right:5px;" [(ngModel)]="price" placeholder="가격"></ion-input>
+        </div>
+    </div>
+
+    <div>
+        <ion-fab right bottom>
+            <button ion-fab mini style="background-color:white"><img class="rotate" src="./assets/imgs/084-버튼-PPT 31페이지의 가운데 이미지-점3개-회전1단계(시작).png " alt=" "></button>
             <ion-fab-list side="top">
-                <button (click)="sortlist(fab)" ion-fab>
-                    <ion-icon name="list"></ion-icon>
-                    <ion-label>이름순으로 정렬</ion-label>
-                </button>
-                <button (click)="insertData(fab)" ion-fab>
-                    <ion-icon name="build"></ion-icon>
-                    <ion-label>수정하기</ion-label>
-                </button>
-                <button (click)="delete(fab)" ion-fab>
-                    <ion-icon name="trash"></ion-icon>
-                    <ion-label>삭제하기</ion-label>
-                </button>
+                <button ion-fab class="fab-close" style="background-color:white" name="close" role="img" aria-label="close" ng-reflect-name="close"><img src="./assets/imgs/084-버튼-PPT 31페이지의 가운데 이미지-점3개-회전1단계(시작).png " alt=" "></button>
+                <button ion-fab style="background-color: white;" (click)="delete(a)"><img src="./assets/imgs/093-버튼-PPT 51페이지의 우측 이미지- 삭제하기 휴지통.png" alt=""></button>
+                <button ion-fab style="background-color: white;" (click)="insertData(a)"><img src="./assets/imgs/092-버튼-PPT 51페이지의 우측 이미지- 수정하기 연필모양.png" alt=""></button>
+                <button ion-fab style="background-color: white;" (click)="sortlist(a)"><img src="./assets/imgs/091-버튼-PPT 51페이지의 우측 이미지- 가나다순.png" style="width:100%" alt=""></button>
 
             </ion-fab-list>
         </ion-fab>
     </div>
-</ion-footer>
+</ion-content>

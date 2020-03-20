@@ -58,6 +58,6 @@ export class CopymodalPage {
   }
 
   dismiss() {
-    this.viewCtrl.dismiss();
+    this.viewCtrl.dismiss({"flag":"cancel"});
   }
 }

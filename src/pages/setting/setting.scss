@@ -111,6 +111,14 @@ page-setting {
     }
 }
 
+.rotate {
+    transition: all ease 1s;
+}
+
+.rotate:hover {
+    transform: rotate(90deg);
+}
+
 .B_on {
     //background-color: mediumaquamarine;
     background-color: #71E8E8;

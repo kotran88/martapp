@@ -12,74 +12,109 @@ page-home {
         background: white;
         margin-top: 15px !important;
     }
+    .fab-md {
+        color: #fff;
+        background-color: #fff;
+        -webkit-box-shadow: 0px;
+        box-shadow: 0px;
+    }
     .fab {
         contain: layout;
-        width: 20px !important;
-        height: 20px !important;
-    }
-    ion-fab-list {
-        margin: -28px -40px;
-        min-width: 35px;
-        // min-height: 35px;
-        background-color: white;
+        z-index: 9999;
     }
     ion-fab {
-        left: 83%;
-        position: absolute;
-        z-index: 999;
+        float: right;
+        left: 80%;
+        z-index: 9999;
     }
-    button[ion-fab] {
-        overflow: visible;
-        position: relative;
-        ion-label {
-            position: absolute;
-            top: -5px;
-            right: 40px;
-            color: white;
-            background-color: rgba(0, 0, 0, 0.7);
-            line-height: 20px;
-            padding: 2px 4px;
-            border-radius: 4px;
-            font-size: 10px;
-        }
-        contain: layout;
-    }
-    .label-ios {
-        margin: -3px;
-    }
-    .fab[mini] {
-        margin-top: -20px;
-        margin-right: 20px;
-    }
-    .fab[mini] .fab-close-icon {
-        line-height: 22px;
-    }
-    .fab ion-icon {
-        font-size: 1.8rem;
-    }
-    .fab-label {
-        padding: 2px 5px;
-        align-self: center;
-        user-select: none;
-        white-space: nowrap;
-        border-radius: 3px;
-        font-size: 16px;
-        background: #666666;
-        color: #ffffff;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-        margin-right: 10px;
-    }
+    //     .fab {
+    //         contain: layout;
+    //         width: 20px !important;
+    //         height: 20px !important;
+    //     }
+    //     ion-fab-list {
+    //         margin: -28px -40px;
+    //         min-width: 35px;
+    //         // min-height: 35px;
+    //         background-color: white;
+    //     }
+    //     ion-fab {
+    //         left: 83%;
+    //         position: absolute;
+    //         z-index: 999;
+    //     }
 }
 
+.rotate {
+    transition: all ease 1s;
+}
+
+.rotate:hover {
+    transform: rotate(180deg);
+}
+
+.button-inner {
+    padding: 0px;
+    margin: 0px;
+}
+
+ion-fab-list {
+    margin: 0;
+    position: relative;
+}
+
+.fab-in-list {
+    margin: 0;
+    width: 60px;
+}
+
+.fab-md {
+    color: #fff;
+    background-color: #fff;
+    -webkit-box-shadow: 0px;
+    box-shadow: 0 0 0 0;
+}
+
+.fab-label {
+    // padding: 2px 5px;
+    align-self: center;
+    user-select: none;
+    white-space: nowrap;
+    border-radius: 3px;
+    font-size: 16px;
+    background: #666666;
+    color: #ffffff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    // margin-right: 10px;
+}
+
+// select {
+// width: auto;
+// height: 30px;
+// border-radius: 5px;
+// background-color: rgb(120, 247, 247);
+//background: url() no-repeat 95% 50%;/* 화살표 모양의 이미지 */ 
+// }
 select {
-    width: auto;
-    height: 30px;
+    width: 30%;
+    height: 45px;
+    // background-color: #fff;
     border-radius: 5px;
-    background-color: rgb(120, 247, 247);
-    //-webkit-appearance: none;/* 네이티브 외형 감추기 */ 
-    //-moz-appearance: none; 
-    //appearance: none; 
-    //background: url() no-repeat 95% 50%;/* 화살표 모양의 이미지 */ 
+    border: 10px soild;
+    border-color: rgb(0, 167, 179);
+    /* 네이티브 외형 감추기 */
+    // -webkit-appearance: none;
+    // -moz-appearance: none;
+    // appearance: none;
+    /* 화살표 모양의 이미지 */
+    // background: url("./assets/imgs/072-버튼-PPT 19페이지의  우측 이미지-화살표 ∨-회전1단계(시작).png") no-repeat right 95% 50%;
+    padding-left: 10px;
+}
+
+#slt {
+    border: 2px solid;
+    border-color: rgb(0, 167, 179);
+    background-color: #fff;
 }
 
 
@@ -132,20 +167,11 @@ p {
     font-size: 15px;
 }
 
-.listDB {
-    width: 350px;
-    height: 50px;
-    border: solid 2px rgb(120, 247, 247);
-    border-radius: 5px;
-    margin: 5px auto;
-    padding: 5px 5px 5px 5px;
-}
-
 div.segmentImg {
     position: relative;
     vertical-align: middle;
-    width: 40px;
-    height: 31px;
+    width: 50px;
+    height: 40px;
     top: 0px;
     left: 0px;
     float: left;
@@ -243,4 +269,14 @@ div.segmentText {
 
 .heart {
     z-index: 999px;
+}
+
+.cropping {
+    max-height: 600px;
+    overflow: hidden;
+}
+
+.cropping img {
+    max-height: initial;
+    margin-top: 0%;
 }

@@ -43,6 +43,17 @@ export class SettingPage {
     this.shownGroup=!this.shownGroup;
   };
 
+  checkbutton(){
+    var val=false;
+    for(var i=0; i<this.buttontoggle.length;i++){
+      if(this.buttontoggle[i].check==true)
+      {
+        if(i<3) val=true;
+        else val=false;
+      }
+    }
+    return val;
+  }
   clickButton(i) {
     this.buttontoggle[i].check=!(this.buttontoggle[i].check);
 

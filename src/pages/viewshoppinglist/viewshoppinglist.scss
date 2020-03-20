@@ -2,25 +2,77 @@ page-viewshoppinglist {
     ion-list {
         overflow-y: scroll;
     }
-}
-
-button[ion-fab] {
-    overflow: visible;
-    position: relative;
-    ion-label {
-        position: absolute;
-        top: -5px;
-        right: 40px;
-        color: white;
-        background-color: rgba(0, 0, 0, 0.7);
-        line-height: 20px;
-        padding: 4px 8px;
-        border-radius: 4px;
-        font-size: 11px;
+    .item.item-md .checkbox-md {
+        position: static;
+        display: block;
+        margin: 9px 4px 9px 4px;
     }
-    contain: layout;
+    .input-cover {
+        left: 0;
+        top: 0;
+        position: absolute;
+        width: 80%;
+        height: 100%;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+    }
+    .fab-md {
+        background-color: black;
+    }
+    .fab-in-list {
+        margin: 2px;
+    }
+    .text-input-md {
+        margin: 10px 8px;
+    }
 }
 
+.rotate {
+    transition: all ease 1s;
+}
+
+.rotate:hover {
+    transform: rotate(180deg);
+}
+
+.inputprice {
+    position: absolute;
+    // bottom: 1px;
+    border: solid 2px;
+    border-radius: 5px;
+    width: 63%;
+    border-color: #71E8E8;
+}
+
+.fab-close-icon {
+    background-color: #01DFD7;
+}
+
+ion-fab-list {
+    margin: 0;
+    position: relative;
+}
+
+.fabstyle {
+    background: black;
+}
+
+// button[ion-fab] {
+//     overflow: visible;
+//     position: relative;
+//     ion-label {
+//         position: absolute;
+//         top: -5px;
+//         right: 40px;
+//         color: white;
+//         background-color: rgba(0, 0, 0, 0.7);
+//         line-height: 20px;
+//         padding: 4px 8px;
+//         border-radius: 4px;
+//         font-size: 11px;
+//     }
+//     contain: layout;
+// }
 .item-cover {
     left: 0;
     top: 0;
@@ -49,4 +101,8 @@ button[ion-fab] {
     background-color: #FAFAFA;
     height: 15px;
     margin-top: 2px;
+}
+
+.iconwidth {
+    margin: 9px 3px 9px 4px;
 }

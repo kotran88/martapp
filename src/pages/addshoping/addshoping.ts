@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import firebase from 'firebase';
+import { HomePage } from '../home/home';
 /**
  * Generated class for the AddshopingPage page.
  *
@@ -32,6 +33,9 @@ export class AddshopingPage {
   printsum: any = 0;
   flagInput: boolean = false;
   nextdirectory = this.firemain.child("id");
+  fullyear: any;
+  month: any;
+  date: any;
 
   constructor(public speechRecognition: SpeechRecognition, public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
     this.a = this.navParams.get("obj");
@@ -42,34 +46,55 @@ export class AddshopingPage {
     this.key = this.navParams.get("key");
     var thisday = new Date();
     thisday.toLocaleString('ko-KR', { hour: 'numeric', minute: 'numeric', hour12: true })
-    var month = thisday.getMonth();
-    var date = thisday.getDate();
+    this.month = thisday.getMonth() + 1;
+    this.date = thisday.getDate();
     var hour = thisday.getHours();
     var minute = thisday.getMinutes();
-    var fullyear = thisday.getFullYear();
+    this.fullyear = thisday.getFullYear();
     var second = thisday.getSeconds();
-    console.log("this is the day")
+    console.log("this is the day");
+    console.log("title " + this.title + " obj " + this.a + " id " + this.id + " value " + this.value);
     // new Date().toString("hh:mm tt")
     console.log(thisday)
-    console.log(month + 1);
-    console.log(date);
+    console.log(this.month + 1);
+    console.log(this.date);
     console.log((hour) + "시");
     console.log(minute);
-    console.log(fullyear)
-    this.nowtime = "" + (month + 1) + "월" + date + "일" + (hour) + "시" + minute + "분";
-    //
+    console.log(this.fullyear)
+    this.nowtime = "" + (this.month) + "월" + this.date + "일" + (hour) + "시" + minute + "분";
   }
+
+  formatNumber(num) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+  }
+
   add() {
     console.log(this.adding);
-    this.addinglist.push({ "name": this.adding, "checked": false });
+
+    this.addinglist.push({ "name": this.adding, "checked": false, "price": this.price, "quantity": this.quantity });
     this.totalnumber = this.addinglist.length;
+    this.addprice();
+
     this.adding = "";
+    this.price = "";
+    this.quantity = "";
   }
+  addprice() {
+    /*가격받아오기*/
+    console.log(this.price);
+    console.log(this.addinglist);
+
+    this.sum += Number(this.price) * Number(this.quantity);
+    this.printsum = this.formatNumber(this.sum);
+    console.log(this.sum);
+    console.log(this.printsum);
+
+  }
+
   priceandquantity() {
     this.flagInput = true;
     this.price = "";
     this.quantity = "";
-
   }
   cancel() {
     this.flagInput = false;
@@ -113,7 +138,7 @@ export class AddshopingPage {
             console.log(this.value);
             console.log(this.title);
 
-            if (this.title == "") {
+            if (this.addinglist.length == 0) {
               window.alert("목록을 입력해주세요.");
               this.add();
             }
@@ -128,6 +153,18 @@ export class AddshopingPage {
     });
     alert.present();
 
+  }
+
+  goBack() {
+    if (this.addinglist.length == 0) {
+      this.firemain.child("users").child(this.id).child(this.value).child(this.title).remove().then(() => {
+        console.log("Cancel");
+      })
+      this.navCtrl.push(HomePage);
+    }
+    else {
+      this.navCtrl.push(HomePage);
+    }
   }
 
   speeching() {

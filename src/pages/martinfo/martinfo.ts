@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 import firebase from 'firebase';
 import * as $ from 'jquery';
+import { first } from 'rxjs/operators';
 
 /**
  * Generated class for the MartinfoPage page.
@@ -22,9 +23,8 @@ export class MartinfoPage {
   day = new Date();
   year: any;
   month: any;
-  date: any;
+  // date: any;
   dayOfweek: any;
-  whatWeek: any;//몇주인가?
   martArray = [];
   firemain = firebase.database().ref();
   week = [];
@@ -42,58 +42,69 @@ export class MartinfoPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController) {
     this.mart = this.navParams.get("mart");
     this.area = this.navParams.get("area");
+    this.newDate();
+    console.log(this.dayoffarray);
+
     console.log(this.mart);
     console.log(this.area);
     this.martfunc();
     this.year = this.day.getFullYear();
     this.month = this.day.getMonth() + 1;
-    this.date = this.day.getDate();
+    // this.date = this.day.getDate();
     this.dayOfweek = this.day.getDay();
-    this.theDate();
-    this.weekAndDay();
+    // this.theDate();
     this.todayy = ['오늘'];
   }
 
-  weekAndDay() {
-    var date = new Date,
-      days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
-      prefixes = ['첫째주', '둘째주', '셋째주', '넷째주', '다섯째주'];
-    this.whatWeek = prefixes[0 | date.getDate() / 7];
-    this.dayy = days[date.getDay()];
-    console.log("this.dayy is " + this.dayy);
-    // this.whatWeek = '둘째주';
-    console.log("this.whatWeek is " + this.whatWeek);
-    var w = prefixes[0 | date.getDate() / 7] + ' ' + days[date.getDay() ];
-    console.log(w);
-  }
+  currentMonth : any;
+  currentYear : any;
+  currentDate: any;
+  date = new Date();
+  weekNo: any;
+  thismonth = [];
+  newDate(){
+   
+    var days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
+    var prefixes = ['첫째주', '둘째주', '셋째주', '넷째주', '다섯째주'];
 
-  theDate() {
-    var datee = new Date,
-      days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
-      prefixes = ['첫째주', '둘째주', '셋째주', '넷째주', '다섯째주'];
-    this.year = this.day.getFullYear();
-    this.month = this.day.getMonth() + 1;
-    this.date = this.day.getDate();
-    this.dayOfweek = this.day.getDay();
+    this.currentMonth = this.date.getMonth() + 1;
+    this.currentYear = this.date.getFullYear();
+    var prevNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth(), 0).getDate();
+    var thisNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDate();
+    var lastDayThisMonth = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDay();
+    var dayofweek = this.date.getDay();
+
+    if (this.date.getMonth() === new Date().getMonth()) {
+      this.currentDate = new Date().getDate();
+    } else {
+      this.currentDate = 999;
+    }
+    // var aaaa = this.currentDate+12;
+    var count = 0;
+    console.log("1: "+this.currentDate);
     for (var i = 0; i < 7; i++) {
-      console.log(i);
-      var date = this.day.getDate() + i;
-      var dow = this.dayOfweek++;
-      console.log("dow is " + dow);
-      console.log("date is " + date);
-      console.log("this.dayOfweek is " + this.dayOfweek);
-      if (this.dayOfweek >= 7) { this.dayOfweek = 0; }
-      this.week.push({ "week": prefixes[0 | (date - 1) / 7], "day": date, "dayofweek": days[dow] }); //16일
-      // this.week.push({ "week": prefixes[0 | (date-7 - 1) / 7], "day": date-7, "dayofweek": days[dow] }); //9일
-      // this.week.push({ "week": prefixes[0 | (date-14 - 1) / 7], "day": date-14, "dayofweek": days[dow] }); //2일
-      // this.week.push({ "week": prefixes[0 | (date+7 - 1) / 7], "day": date+7, "dayofweek": days[dow] }); //23일
-      // this.week.push({ "week": prefixes[0 | (date+14 - 1) / 7], "day": date+14, "dayofweek": days[dow] }); //30일
+      console.log(thisNumOfDays);
+      // if(dayofweek+i>=7){dayofweek=0;}
+      var dow = dayofweek++;
 
+      if (dayofweek >= 7) { dayofweek = 0; }
+      if(this.currentDate+i<=thisNumOfDays){
 
+        this.week.push({ "week": prefixes[0 | (this.currentDate+i- 1) / 7], "month": this.currentMonth, "day":this.currentDate+i, "dayofweek":days[dow] }); //30일
+        console.log(dayofweek);
+      }
+      else if(this.currentDate+i>thisNumOfDays){
+        count++;
+        this.week.push({ "week": prefixes[0 | (count+i - 1) / 7], "month": this.currentMonth+1, "day":count, "dayofweek":days[dow]}); //30일
+        console.log(dayofweek);
+      }
+      console.log(count);
     }
     console.log(this.week);
+    console.log(prevNumOfDays);//첫날과 마지막 날을 제외한 이 달의 일수
+    console.log(thisNumOfDays);//한 달의 날수
+    console.log(lastDayThisMonth);//이 달의 마지막 날의 요일.
   }
-
 
   newfunction(name) {
     console.log(name);
@@ -337,9 +348,9 @@ export class MartinfoPage {
     console.log(returnvalue);
     return returnvalue
   }
-
+  dayoffarray = [];
+  aaa = [];
   vacationFunc(v, mart, count) {
-
     console.log(v); //this.week
     console.log(mart); //db
     console.log(count); //count
@@ -347,7 +358,7 @@ export class MartinfoPage {
     console.log(this.martArray)
     console.log(mart.vacation);
     var counting = 0;
-    var dayoffarray = [];
+    this.dayoffarray = [];
     for (var a in v) {
       counting++;
       var flag=false;
@@ -363,21 +374,20 @@ export class MartinfoPage {
           var weekoff = this.weekcheck("1", this.martArray[count - 1]);
           console.log("off is : " + weekoff);
           console.log(weekoff + "1111,,," + v[a].dayofweek);
-          if(dayoffarray.length>6){
+          if(this.dayoffarray.length>6){
             console.log("hi");
           }
-          else if(dayoffarray.length<=6){
+          else if(this.dayoffarray.length<=6){
             if (v[a].week.indexOf("첫째")!=0) {
               console.log("1 add 1")
-              dayoffarray.push("영업")
+              this.dayoffarray.push("영업")
             } else {
               if (weekoff == v[a].dayofweek) {
                 console.log("1 add 2")
-                dayoffarray.push("휴무")
+                this.dayoffarray.push("휴무")
               } else {
                 console.log("1 add 3")
-                dayoffarray.push("영업")
-               
+                this.dayoffarray.push("영업")
               }
             }
           }
@@ -392,22 +402,22 @@ export class MartinfoPage {
           console.log("off is : " + weekoff)
           console.log(weekoff + "2222,,," + v[a].dayofweek);;
           console.log(this.week);
-          if(dayoffarray.length>6){
+          if(this.dayoffarray.length>6){
             console.log("hi");
           }
-          else if(dayoffarray.length<=6){
+          else if(this.dayoffarray.length<=6){
             if (v[a].week.indexOf("둘째")!=0) {
               console.log("2 add 1")
-              dayoffarray.push("영업")
+              this.dayoffarray.push("영업")
               flag=true;
             } else {
               if (weekoff == v[a].dayofweek) {
                 console.log("2 add 2")
-                dayoffarray.push("휴무")
+                this.dayoffarray.push("휴무")
                 flag=true;
               } else {
                 console.log("2 add 3")
-                dayoffarray.push("영업")
+                this.dayoffarray.push("영업")
                 flag=true;
               }
             }
@@ -421,24 +431,23 @@ export class MartinfoPage {
           console.log("weekoff" + " : " + weekoff)
           console.log("off is : " + weekoff);
           console.log(weekoff + "333,,," + v[a].dayofweek);
-          if(dayoffarray.length>6){
+          if(this.dayoffarray.length>6){
             console.log("hi");
           }
-          else if(dayoffarray.length<=6){
+          else if(this.dayoffarray.length<=6){
             if (v[a].week.indexOf("셋째")!=0) {
               console.log("3 add 1")
-              dayoffarray.push("영업")
+              this.dayoffarray.push("영업")
             } else {
               if (weekoff == v[a].dayofweek) {
-                dayoffarray.push("휴무")
+                this.dayoffarray.push("휴무")
                 console.log("3 add 2")
               } else {
-                dayoffarray.push("영업")
+                this.dayoffarray.push("영업")
                 console.log("3 add 3")
               }
             }
           }
-          console.log("dayoffarray" + "" + dayoffarray)
         }
       }
       if (mart.vacation.indexOf("넷째") > -1) {
@@ -448,14 +457,14 @@ export class MartinfoPage {
         console.log("off is : " + weekoff);
         console.log(v[a].week+",,"+weekoff + "444,,,,," + v[a].dayofweek);
         console.log("flag is : "+flag)
-        if(dayoffarray.length>6){
+        if(this.dayoffarray.length>6){
           console.log("hi");
         }
-        else if(dayoffarray.length<=6){
+        else if(this.dayoffarray.length<=6){
           if (v[a].week.indexOf("넷째")!=0) {
             console.log("4 add 1")
             if(!flag){
-              dayoffarray.push("영업")
+              this.dayoffarray.push("영업")
             }else{
               flag=false;
             }
@@ -464,7 +473,7 @@ export class MartinfoPage {
             if (weekoff == v[a].dayofweek) {
               console.log("4 add 2")
               if(!flag){
-                dayoffarray.push("휴무")
+                this.dayoffarray.push("휴무")
               }else{
                 flag=false;
               }
@@ -472,15 +481,17 @@ export class MartinfoPage {
             } else {
               console.log("4 add 3")
               if(!flag){
-                dayoffarray.push("영업")
+                this.dayoffarray.push("영업")
               }else{
                 flag=false;
               }
             }
           }
         }
+
       }
-      console.log(dayoffarray);
+ 
+      console.log(this.dayoffarray);
       console.log("dayofarray")
 
       // if (mart.vacation.indexOf("다섯째") > -1) {
@@ -492,13 +503,13 @@ export class MartinfoPage {
       //     dayoffarray.push("영업")
       //   }
       // }
-
-      this.martArray[count - 1].dayoffarray = dayoffarray;
-
+      
+      this.martArray[count - 1].dayoffarray = this.dayoffarray;
       console.log(this.martArray);
       console.log("done")
-      console.log(dayoffarray);
-      this.today = dayoffarray[0];
+      console.log(this.dayoffarray);
+      console.log(this.martArray[count-1]);
+      this.today = this.dayoffarray[0];
     }
   }
 

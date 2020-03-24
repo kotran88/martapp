@@ -65,13 +65,12 @@ export class MartinfoviewPage {
     this.dayoff();
     console.log(this.offArr);
     console.log(this.daysInThisMonth);
-    for(var j=0; j<this.daysInThisMonth.length; j++){
-      for(var k=0; k<this.offArr.length; k++){
-        if(this.daysInThisMonth[j]==this.offArr[k]){
-          this.daysInThisMonth[j]="i"+this.daysInThisMonth[j];
+    for (var j = 0; j < this.daysInThisMonth.length; j++) {
+      for (var k = 0; k < this.offArr.length; k++) {
+        if (this.daysInThisMonth[j] == this.offArr[k]) {
+          this.daysInThisMonth[j] = "i" + this.daysInThisMonth[j];
         }
       }
-      
     }
     console.log(this.daysInThisMonth);
   }
@@ -145,32 +144,32 @@ export class MartinfoviewPage {
   }
 
   calendar = new Date();
-  day=this.calendar.getDate();
-  year=this.calendar.getFullYear();
+  day = this.calendar.getDate();
+  year = this.calendar.getFullYear();
   month = this.calendar.getMonth();
   firstDate = new Date(this.year, this.month, 1).getDay();//첫날의 요일
-  lastDate = new Date(this.year, this.month+1, 0);//마지막 날의 요일
-  offday : any;
+  lastDate = new Date(this.year, this.month + 1, 0);//마지막 날의 요일
+  offday: any;
   dateArr = [];
   weekArr = [];
   dayoffArr = [];
-  off : any;
+  off: any;
 
-  offweek : any;
-  offdayofweek : any;
+  offweek: any;
+  offdayofweek: any;
 
 
-  weekCal : any;
+  weekCal: any;
   dayofweekCal = 0;
   offArr = [];
-  truecheck(day1){
-    var day=day1+"";
-    if(day.indexOf("i")>-1){
+  truecheck(day1) {
+    var day = day1 + "";
+    if (day.indexOf("i") > -1) {
       return -1;
-    }else{
+    } else {
       return 0;
     }
- 
+
   }
   dayoff() {
     var dayofWeek = ['일', '월', '화', '수', '목', '금', '토'];
@@ -228,66 +227,282 @@ export class MartinfoviewPage {
       this.dateArr.push(date);
       var week = Math.ceil((date) / 7);
       this.weekArr.push(week);
-      if(count>6){// 0:일, 1:월, 2:화, 3:수, 4:목, 5:금, 6:토
-        count=0;
+      if (count > 6) {// 0:일, 1:월, 2:화, 3:수, 4:목, 5:금, 6:토
+        count = 0;
       }
       console.log(date + "일은 " + week + "주 " + dayofWeek[count] + "요일");
       // console.log(week+""+count);
-      this.off = week+""+count;
+      this.off = week + "" + count;
       console.log(this.off)
-      for(var cnt=0; cnt<this.dayoffArr.length; cnt++){
-        if(this.off.indexOf(this.dayoffArr[cnt])>-1){
-          console.log(this.off+"="+this.dayoffArr[cnt]);
-          this.offweek = this.dayoffArr[cnt].substr(0,1);
-          this.offdayofweek = this.dayoffArr[cnt].substr(1,2);
+      for (var cnt = 0; cnt < this.dayoffArr.length; cnt++) {
+        if (this.off.indexOf(this.dayoffArr[cnt]) > -1) {
+          console.log(this.off + "=" + this.dayoffArr[cnt]);
+          this.offweek = this.dayoffArr[cnt].substr(0, 1);
+          this.offdayofweek = this.dayoffArr[cnt].substr(1, 2);
 
           console.log(this.offweek);
           console.log(this.offdayofweek);
-          if(this.offweek == "1"){ this.weekCal = 1; if(this.firstDate == 0){ this.dayofweekCal = 0 }; }
-          if(this.offweek == "2"){ this.weekCal = 2;
-            if(this.firstDate == 0){ this.dayofweekCal = this.firstDate+8; this.offArr.push(this.dayofweekCal); };
-            if(this.firstDate == 1){ this.dayofweekCal = this.firstDate+7; this.offArr.push(this.dayofweekCal); };
-            if(this.firstDate == 2){ this.dayofweekCal = this.firstDate+6; this.offArr.push(this.dayofweekCal); };
-            if(this.firstDate == 3){ this.dayofweekCal = this.firstDate+5; this.offArr.push(this.dayofweekCal); };
-            if(this.firstDate == 4){ this.dayofweekCal = this.firstDate+4; this.offArr.push(this.dayofweekCal); };
-            if(this.firstDate == 5){ this.dayofweekCal = this.firstDate+3; this.offArr.push(this.dayofweekCal); };
-            if(this.firstDate == 6){ this.dayofweekCal = this.firstDate+2; this.offArr.push(this.dayofweekCal); };
+          if (this.offweek == "1") { this.weekCal = 1; if (this.firstDate == 0) { this.dayofweekCal = 0 }; }
+          if (this.offweek == "2") {
+            this.weekCal = 2;
+            if (this.firstDate == 0) {
+              if (this.offdayofweek == 0) { this.dayofweekCal = this.firstDate + 8; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 1) { this.dayofweekCal = this.firstDate + 9; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 2) { this.dayofweekCal = this.firstDate + 10; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 3) { this.dayofweekCal = this.firstDate + 11; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 4) { this.dayofweekCal = this.firstDate + 12; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 5) { this.dayofweekCal = this.firstDate + 13; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 6) { this.dayofweekCal = this.firstDate + 14; this.offArr.push(this.dayofweekCal); }
+            };
+            if (this.firstDate == 1) {
+              if (this.offdayofweek == 0) { this.dayofweekCal = this.firstDate + 7; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 1) { this.dayofweekCal = this.firstDate + 8; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 2) { this.dayofweekCal = this.firstDate + 9; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 3) { this.dayofweekCal = this.firstDate + 10; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 4) { this.dayofweekCal = this.firstDate + 11; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 5) { this.dayofweekCal = this.firstDate + 12; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 6) { this.dayofweekCal = this.firstDate + 13; this.offArr.push(this.dayofweekCal); }
+            };
+            if (this.firstDate == 2) {
+              if (this.offdayofweek == 0) { this.dayofweekCal = this.firstDate + 6; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 1) { this.dayofweekCal = this.firstDate + 7; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 2) { this.dayofweekCal = this.firstDate + 8; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 3) { this.dayofweekCal = this.firstDate + 9; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 4) { this.dayofweekCal = this.firstDate + 10; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 5) { this.dayofweekCal = this.firstDate + 11; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 6) { this.dayofweekCal = this.firstDate + 12; this.offArr.push(this.dayofweekCal); }
+            };
+            if (this.firstDate == 3) {
+              if (this.offdayofweek == 0) { this.dayofweekCal = this.firstDate + 5; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 1) { this.dayofweekCal = this.firstDate + 6; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 2) { this.dayofweekCal = this.firstDate + 7; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 3) { this.dayofweekCal = this.firstDate + 8; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 4) { this.dayofweekCal = this.firstDate + 9; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 5) { this.dayofweekCal = this.firstDate + 10; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 6) { this.dayofweekCal = this.firstDate + 11; this.offArr.push(this.dayofweekCal); }
+            };
+            if (this.firstDate == 4) {
+              if (this.offdayofweek == 0) { this.dayofweekCal = this.firstDate + 4; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 1) { this.dayofweekCal = this.firstDate + 5; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 2) { this.dayofweekCal = this.firstDate + 6; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 3) { this.dayofweekCal = this.firstDate + 7; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 4) { this.dayofweekCal = this.firstDate + 8; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 5) { this.dayofweekCal = this.firstDate + 9; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 6) { this.dayofweekCal = this.firstDate + 10; this.offArr.push(this.dayofweekCal); }
+            };
+            if (this.firstDate == 5) {
+              if (this.offdayofweek == 0) { this.dayofweekCal = this.firstDate + 3; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 1) { this.dayofweekCal = this.firstDate + 4; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 2) { this.dayofweekCal = this.firstDate + 5; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 3) { this.dayofweekCal = this.firstDate + 6; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 4) { this.dayofweekCal = this.firstDate + 7; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 5) { this.dayofweekCal = this.firstDate + 8; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 6) { this.dayofweekCal = this.firstDate + 9; this.offArr.push(this.dayofweekCal); }
+            };
+            if (this.firstDate == 6) {
+              if (this.offdayofweek == 0) { this.dayofweekCal = this.firstDate + 2; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 1) { this.dayofweekCal = this.firstDate + 3; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 2) { this.dayofweekCal = this.firstDate + 4; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 3) { this.dayofweekCal = this.firstDate + 5; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 4) { this.dayofweekCal = this.firstDate + 6; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 5) { this.dayofweekCal = this.firstDate + 7; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 6) { this.dayofweekCal = this.firstDate + 8; this.offArr.push(this.dayofweekCal); }
+            };
           }
-          if(this.offweek == "3"){ this.weekCal = 3;
-            if(this.firstDate == 0){ this.dayofweekCal = this.firstDate+15; this.offArr.push(this.dayofweekCal); };
-            if(this.firstDate == 1){ this.dayofweekCal = this.firstDate+14; this.offArr.push(this.dayofweekCal); };
-            if(this.firstDate == 2){ this.dayofweekCal = this.firstDate+13; this.offArr.push(this.dayofweekCal); };
-            if(this.firstDate == 3){ this.dayofweekCal = this.firstDate+12; this.offArr.push(this.dayofweekCal); };
-            if(this.firstDate == 4){ this.dayofweekCal = this.firstDate+11; this.offArr.push(this.dayofweekCal); };
-            if(this.firstDate == 5){ this.dayofweekCal = this.firstDate+10; this.offArr.push(this.dayofweekCal); };
-            if(this.firstDate == 6){ this.dayofweekCal = this.firstDate+9; this.offArr.push(this.dayofweekCal); };
+          if (this.offweek == "3") {
+            this.weekCal = 3;
+            if (this.firstDate == 0) {
+              if (this.offdayofweek == 0) { this.dayofweekCal = this.firstDate + 15; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 1) { this.dayofweekCal = this.firstDate + 16; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 2) { this.dayofweekCal = this.firstDate + 17; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 3) { this.dayofweekCal = this.firstDate + 18; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 4) { this.dayofweekCal = this.firstDate + 19; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 5) { this.dayofweekCal = this.firstDate + 20; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 6) { this.dayofweekCal = this.firstDate + 21; this.offArr.push(this.dayofweekCal); }
+            };
+            if (this.firstDate == 1) {
+              if (this.offdayofweek == 0) { this.dayofweekCal = this.firstDate + 14; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 1) { this.dayofweekCal = this.firstDate + 15; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 2) { this.dayofweekCal = this.firstDate + 16; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 3) { this.dayofweekCal = this.firstDate + 17; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 4) { this.dayofweekCal = this.firstDate + 18; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 5) { this.dayofweekCal = this.firstDate + 19; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 6) { this.dayofweekCal = this.firstDate + 20; this.offArr.push(this.dayofweekCal); }
+            };
+            if (this.firstDate == 2) {
+              if (this.offdayofweek == 0) { this.dayofweekCal = this.firstDate + 13; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 1) { this.dayofweekCal = this.firstDate + 14; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 2) { this.dayofweekCal = this.firstDate + 15; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 3) { this.dayofweekCal = this.firstDate + 16; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 4) { this.dayofweekCal = this.firstDate + 17; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 5) { this.dayofweekCal = this.firstDate + 18; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 6) { this.dayofweekCal = this.firstDate + 19; this.offArr.push(this.dayofweekCal); }
+            };
+            if (this.firstDate == 3) {
+              if (this.offdayofweek == 0) { this.dayofweekCal = this.firstDate + 12; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 1) { this.dayofweekCal = this.firstDate + 13; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 2) { this.dayofweekCal = this.firstDate + 14; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 3) { this.dayofweekCal = this.firstDate + 15; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 4) { this.dayofweekCal = this.firstDate + 16; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 5) { this.dayofweekCal = this.firstDate + 17; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 6) { this.dayofweekCal = this.firstDate + 18; this.offArr.push(this.dayofweekCal); }
+            };
+            if (this.firstDate == 4) {
+              if (this.offdayofweek == 0) { this.dayofweekCal = this.firstDate + 11; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 1) { this.dayofweekCal = this.firstDate + 12; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 2) { this.dayofweekCal = this.firstDate + 13; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 3) { this.dayofweekCal = this.firstDate + 14; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 4) { this.dayofweekCal = this.firstDate + 15; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 5) { this.dayofweekCal = this.firstDate + 16; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 6) { this.dayofweekCal = this.firstDate + 17; this.offArr.push(this.dayofweekCal); }
+            };
+            if (this.firstDate == 5) {
+              if (this.offdayofweek == 0) { this.dayofweekCal = this.firstDate + 10; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 1) { this.dayofweekCal = this.firstDate + 11; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 2) { this.dayofweekCal = this.firstDate + 12; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 3) { this.dayofweekCal = this.firstDate + 13; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 4) { this.dayofweekCal = this.firstDate + 14; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 5) { this.dayofweekCal = this.firstDate + 15; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 6) { this.dayofweekCal = this.firstDate + 16; this.offArr.push(this.dayofweekCal); }
+            };
+            if (this.firstDate == 6) {
+              if (this.offdayofweek == 0) { this.dayofweekCal = this.firstDate + 9; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 1) { this.dayofweekCal = this.firstDate + 10; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 2) { this.dayofweekCal = this.firstDate + 11; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 3) { this.dayofweekCal = this.firstDate + 12; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 4) { this.dayofweekCal = this.firstDate + 13; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 5) { this.dayofweekCal = this.firstDate + 14; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 6) { this.dayofweekCal = this.firstDate + 15; this.offArr.push(this.dayofweekCal); }
+            };
           }
-          if(this.offweek == "4"){ this.weekCal = 4;
-            if(this.firstDate == 0){ this.dayofweekCal = this.firstDate+22; this.offArr.push(this.dayofweekCal); };
-            if(this.firstDate == 1){ this.dayofweekCal = this.firstDate+21; this.offArr.push(this.dayofweekCal); };
-            if(this.firstDate == 2){ this.dayofweekCal = this.firstDate+20; this.offArr.push(this.dayofweekCal); };
-            if(this.firstDate == 3){ this.dayofweekCal = this.firstDate+19; this.offArr.push(this.dayofweekCal); };
-            if(this.firstDate == 4){ this.dayofweekCal = this.firstDate+18; this.offArr.push(this.dayofweekCal); };
-            if(this.firstDate == 5){ this.dayofweekCal = this.firstDate+17; this.offArr.push(this.dayofweekCal); };
-            if(this.firstDate == 6){ this.dayofweekCal = this.firstDate+16; this.offArr.push(this.dayofweekCal); };
+          if (this.offweek == "4") {
+            this.weekCal = 4;
+            if (this.firstDate == 0) {
+              if (this.offdayofweek == 0) { this.dayofweekCal = this.firstDate + 22; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 1) { this.dayofweekCal = this.firstDate + 23; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 2) { this.dayofweekCal = this.firstDate + 24; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 3) { this.dayofweekCal = this.firstDate + 25; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 4) { this.dayofweekCal = this.firstDate + 26; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 5) { this.dayofweekCal = this.firstDate + 27; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 6) { this.dayofweekCal = this.firstDate + 28; this.offArr.push(this.dayofweekCal); }
+            };
+            if (this.firstDate == 1) {
+              if (this.offdayofweek == 0) { this.dayofweekCal = this.firstDate + 21; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 1) { this.dayofweekCal = this.firstDate + 22; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 2) { this.dayofweekCal = this.firstDate + 23; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 3) { this.dayofweekCal = this.firstDate + 24; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 4) { this.dayofweekCal = this.firstDate + 25; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 5) { this.dayofweekCal = this.firstDate + 26; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 6) { this.dayofweekCal = this.firstDate + 27; this.offArr.push(this.dayofweekCal); }
+            };
+            if (this.firstDate == 2) {
+              if (this.offdayofweek == 0) { this.dayofweekCal = this.firstDate + 20; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 1) { this.dayofweekCal = this.firstDate + 21; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 2) { this.dayofweekCal = this.firstDate + 22; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 3) { this.dayofweekCal = this.firstDate + 23; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 4) { this.dayofweekCal = this.firstDate + 24; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 5) { this.dayofweekCal = this.firstDate + 25; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 6) { this.dayofweekCal = this.firstDate + 26; this.offArr.push(this.dayofweekCal); }
+            };
+            if (this.firstDate == 3) {
+              if (this.offdayofweek == 0) { this.dayofweekCal = this.firstDate + 19; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 1) { this.dayofweekCal = this.firstDate + 20; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 2) { this.dayofweekCal = this.firstDate + 21; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 3) { this.dayofweekCal = this.firstDate + 22; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 4) { this.dayofweekCal = this.firstDate + 23; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 5) { this.dayofweekCal = this.firstDate + 24; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 6) { this.dayofweekCal = this.firstDate + 25; this.offArr.push(this.dayofweekCal); }
+            };
+            if (this.firstDate == 4) {
+              if (this.offdayofweek == 0) { this.dayofweekCal = this.firstDate + 18; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 1) { this.dayofweekCal = this.firstDate + 19; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 2) { this.dayofweekCal = this.firstDate + 20; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 3) { this.dayofweekCal = this.firstDate + 21; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 4) { this.dayofweekCal = this.firstDate + 22; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 5) { this.dayofweekCal = this.firstDate + 23; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 6) { this.dayofweekCal = this.firstDate + 24; this.offArr.push(this.dayofweekCal); }
+            };
+            if (this.firstDate == 5) {
+              if (this.offdayofweek == 0) { this.dayofweekCal = this.firstDate + 17; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 1) { this.dayofweekCal = this.firstDate + 18; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 2) { this.dayofweekCal = this.firstDate + 19; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 3) { this.dayofweekCal = this.firstDate + 20; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 4) { this.dayofweekCal = this.firstDate + 21; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 5) { this.dayofweekCal = this.firstDate + 22; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 6) { this.dayofweekCal = this.firstDate + 23; this.offArr.push(this.dayofweekCal); }
+            };
+            if (this.firstDate == 6) {
+              if (this.offdayofweek == 0) { this.dayofweekCal = this.firstDate + 16; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 1) { this.dayofweekCal = this.firstDate + 17; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 2) { this.dayofweekCal = this.firstDate + 18; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 3) { this.dayofweekCal = this.firstDate + 19; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 4) { this.dayofweekCal = this.firstDate + 20; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 5) { this.dayofweekCal = this.firstDate + 21; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 6) { this.dayofweekCal = this.firstDate + 22; this.offArr.push(this.dayofweekCal); }
+            };
           }
-          if(this.offweek == "5"){ this.weekCal = 5;
-            if(this.firstDate == 0){ this.dayofweekCal = this.firstDate+29; this.offArr.push(this.dayofweekCal); };
-            if(this.firstDate == 1){ this.dayofweekCal = this.firstDate+28; this.offArr.push(this.dayofweekCal); };
-            if(this.firstDate == 2){ this.dayofweekCal = this.firstDate+27; this.offArr.push(this.dayofweekCal); };
-            if(this.firstDate == 3){ this.dayofweekCal = this.firstDate+26; this.offArr.push(this.dayofweekCal); };
-            if(this.firstDate == 4){ this.dayofweekCal = this.firstDate+15; this.offArr.push(this.dayofweekCal); };
-            if(this.firstDate == 5){ this.dayofweekCal = this.firstDate+14; this.offArr.push(this.dayofweekCal); };
-            if(this.firstDate == 6){ this.dayofweekCal = this.firstDate+13; this.offArr.push(this.dayofweekCal); };
-           }
-          console.log("휴무일은 "+this.weekCal+"주 "+dayofWeek[this.offdayofweek]+"요일");
-          console.log("휴무일은 "+this.weekCal+"주 "+this.dayofweekCal+"일");
+          if (this.offweek == "5") {
+            this.weekCal = 5;
+            if (this.firstDate == 0) {
+              if (this.offdayofweek == 0) { this.dayofweekCal = this.firstDate + 29; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 1) { this.dayofweekCal = this.firstDate + 30; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 2) { this.dayofweekCal = this.firstDate + 31; this.offArr.push(this.dayofweekCal); }
+            };
+            if (this.firstDate == 1) {
+              if (this.offdayofweek == 0) { this.dayofweekCal = this.firstDate + 28; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 1) { this.dayofweekCal = this.firstDate + 29; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 2) { this.dayofweekCal = this.firstDate + 30; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 3) { this.dayofweekCal = this.firstDate + 31; this.offArr.push(this.dayofweekCal); }
+            };
+            if (this.firstDate == 2) {
+              if (this.offdayofweek == 0) { this.dayofweekCal = this.firstDate + 27; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 1) { this.dayofweekCal = this.firstDate + 28; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 2) { this.dayofweekCal = this.firstDate + 29; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 3) { this.dayofweekCal = this.firstDate + 30; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 4) { this.dayofweekCal = this.firstDate + 31; this.offArr.push(this.dayofweekCal); }
+            };
+            if (this.firstDate == 3) {
+              if (this.offdayofweek == 0) { this.dayofweekCal = this.firstDate + 26; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 1) { this.dayofweekCal = this.firstDate + 27; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 2) { this.dayofweekCal = this.firstDate + 28; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 3) { this.dayofweekCal = this.firstDate + 29; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 4) { this.dayofweekCal = this.firstDate + 30; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 5) { this.dayofweekCal = this.firstDate + 31; this.offArr.push(this.dayofweekCal); }
+            };
+            if (this.firstDate == 4) {
+              if (this.offdayofweek == 0) { this.dayofweekCal = this.firstDate + 25; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 1) { this.dayofweekCal = this.firstDate + 26; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 2) { this.dayofweekCal = this.firstDate + 27; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 3) { this.dayofweekCal = this.firstDate + 28; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 4) { this.dayofweekCal = this.firstDate + 29; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 5) { this.dayofweekCal = this.firstDate + 30; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 6) { this.dayofweekCal = this.firstDate + 31; this.offArr.push(this.dayofweekCal); }
+            };
+            if (this.firstDate == 5) {
+              if (this.offdayofweek == 0) { this.dayofweekCal = this.firstDate + 24; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 1) { this.dayofweekCal = this.firstDate + 25; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 2) { this.dayofweekCal = this.firstDate + 26; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 3) { this.dayofweekCal = this.firstDate + 27; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 4) { this.dayofweekCal = this.firstDate + 28; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 5) { this.dayofweekCal = this.firstDate + 29; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 6) { this.dayofweekCal = this.firstDate + 30; this.offArr.push(this.dayofweekCal); }
+            };
+            if (this.firstDate == 6) {
+              if (this.offdayofweek == 0) { this.dayofweekCal = this.firstDate + 23; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 1) { this.dayofweekCal = this.firstDate + 24; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 2) { this.dayofweekCal = this.firstDate + 25; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 3) { this.dayofweekCal = this.firstDate + 26; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 4) { this.dayofweekCal = this.firstDate + 27; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 5) { this.dayofweekCal = this.firstDate + 28; this.offArr.push(this.dayofweekCal); }
+              if (this.offdayofweek == 6) { this.dayofweekCal = this.firstDate + 29; this.offArr.push(this.dayofweekCal); }
+            };
+          }
+          console.log("휴무일은 " + this.weekCal + "주 " + dayofWeek[this.offdayofweek] + "요일");
+          console.log("휴무일은 " + this.weekCal + "주 " + this.dayofweekCal + "일");
           console.log(this.offArr);
         }
       }
-
       count++;
-
     }
   }
 

@@ -1,8 +1,13 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, ModalController } from 'ionic-angular';
 import firebase from 'firebase';
 import * as $ from 'jquery';
 import { first } from 'rxjs/operators';
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { AdPage } from '../ad/ad';
+import { RatePage } from '../rate/rate';
+import { MartinfoviewPage } from '../martinfoview/martinfoview';
+import { FavoritemodalPage } from '../favoritemodal/favoritemodal';
 
 /**
  * Generated class for the MartinfoPage page.
@@ -39,7 +44,8 @@ export class MartinfoPage {
   userarr = [];
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController,
+    private socialSharing: SocialSharing, public modal: ModalController) {
     this.mart = this.navParams.get("mart");
     this.area = this.navParams.get("area");
     this.newDate();
@@ -54,6 +60,26 @@ export class MartinfoPage {
     this.dayOfweek = this.day.getDay();
     // this.theDate();
     this.todayy = ['오늘'];
+    console.log(this.martArray);
+  }
+
+  martview(martinfo){
+    console.log(martinfo);
+    this.navCtrl.push(MartinfoviewPage, { "martinfo": martinfo });
+  }
+
+  regularShare() {
+    var msg = "백화점 마트 헛걸음 방지 앱\n '백마헛방'\n 쇼핑가기전엔 언제나\n '백마헛방'";
+    console.log(msg)
+    this.socialSharing.share(msg, null, null, null);
+  }
+  NoneAd() {
+    let modal = this.modal.create(AdPage);
+    modal.present();
+  }
+  appstore() {
+    let modal = this.modal.create(RatePage);
+    modal.present();
   }
 
   currentMonth : any;
@@ -79,12 +105,10 @@ export class MartinfoPage {
     } else {
       this.currentDate = 999;
     }
-    // var aaaa = this.currentDate+12;
     var count = 0;
     console.log("1: "+this.currentDate);
     for (var i = 0; i < 7; i++) {
       console.log(thisNumOfDays);
-      // if(dayofweek+i>=7){dayofweek=0;}
       var dow = dayofweek++;
 
       if (dayofweek >= 7) { dayofweek = 0; }
@@ -246,6 +270,20 @@ export class MartinfoPage {
               }
             }
           }
+          if (this.area == "daegu") {
+            var counting = 0;
+
+            for (var b in sn.val()[a]) {
+              this.vacation = sn.val()[a][b].vacation;
+              if (sn.val()[a][b].addr.indexOf("대구") != -1 &&sn.val()[a][b].addr.indexOf("해운대구")==-1) {
+                counting++;
+                this.martArray.push(sn.val()[a][b]);
+                this.vacationArr.push(sn.val()[a][b].vacation);
+                this.vacation = sn.val()[a][b].vacation;
+                this.vacationFunc(this.week, sn.val()[a][b], counting);
+              }
+            }
+          }
           if (this.area == "gyeongbuk") {
             var counting = 0;
 
@@ -319,6 +357,7 @@ export class MartinfoPage {
         }
       }
     })
+    
   }
   weekcheck(number, mart) {
     console.log(number);
@@ -490,6 +529,12 @@ export class MartinfoPage {
         }
 
       }
+      else{
+        console.log("hi");
+        if(this.dayoffarray.length<=6){
+          this.dayoffarray.push("영업");
+        }
+      }
  
       console.log(this.dayoffarray);
       console.log("dayofarray")
@@ -579,6 +624,7 @@ export class MartinfoPage {
     }
   }
 
+  favoriteList = [];
   favorite(a, idx) {
     var newnametoinput = "";
     if (this.mart == "lottemart") { newnametoinput = "lotte"; }
@@ -595,17 +641,38 @@ export class MartinfoPage {
     console.log(idx);
     console.log(this.martArray[idx])
     console.log(!flag);
+    console.log(this.martArray);
     var flag = this.martArray[idx].favorite;
     if (flag != true) {
-      console.log(flag);
-      this.martArray[idx].favorite = true;
-      this.firemain.child("users").child(this.userId).child("favorite").child(newnametoinput).child(a.key).update(this.martArray[idx]);
-      console.log(this.martArray[idx]);
-      const toast = this.toastCtrl.create({
-        message: '첫 화면 "즐겨찾기"에 추가되었습니다.',
-        duration: 2000,
-      });
-      toast.present();
+      this.firemain.child("users").child(this.userId).child("favorite").once("value", (sn) => {
+        console.log(sn.val());
+        for (var i in sn.val()) {
+          console.log(i);
+          console.log(sn.val()[i]);
+          for (var j in sn.val()[i]) {
+            this.favoriteList.push(sn.val()[i][j]);
+          }
+        }
+        console.log(this.favoriteList.length);
+        if(this.favoriteList.length<20){
+          this.martArray[idx].favorite = true;
+          this.firemain.child("users").child(this.userId).child("favorite").child(newnametoinput).child(a.key).update(this.martArray[idx]);
+          console.log(this.martArray[idx]);
+         
+          const toast = this.toastCtrl.create({
+            message: '첫 화면 "즐겨찾기"에 추가되었습니다.',
+            duration: 2000,
+          });
+          toast.present();
+        }
+        else if(this.favoriteList.length>=20){
+          let modal = this.modal.create(FavoritemodalPage, null, {
+            cssClass : "modalSize"
+          });
+          modal.present();
+        }
+      })
+      
     }
     else {
       flag = false;
@@ -621,6 +688,8 @@ export class MartinfoPage {
 
   }
 
+  heart(){
+  }
 
 }
 

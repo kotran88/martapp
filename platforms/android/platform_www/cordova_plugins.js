@@ -15,11 +15,18 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "call"
       ]
+    },
+    {
+      "id": "es6-promise-plugin.Promise",
+      "file": "plugins/es6-promise-plugin/www/promise.js",
+      "pluginId": "es6-promise-plugin",
+      "runs": true
     }
   ];
   module.exports.metadata = {
     "onesignal-cordova-plugin": "2.4.0",
     "cordova-admob-sdk": "0.24.1",
-    "mx.ferreyra.callnumber": "0.0.2"
+    "mx.ferreyra.callnumber": "0.0.2",
+    "es6-promise-plugin": "4.2.2"
   };
 });

@@ -28374,6 +28374,12 @@ page-martinfo .content-md {
   z-index: 999;
 }
 
+.modalSize {
+  top: 10%;
+  height: 95%;
+  opacity: 0.8;
+}
+
 page-martinfoview [col-1] {
   -webkit-box-flex: 0;
   -webkit-flex: 0 0 8.33333%;

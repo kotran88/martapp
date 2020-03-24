@@ -29,6 +29,8 @@
     <ion-row style="margin-top:6px; margin-left:auto; margin-right:auto; background-color:rgb(194, 243, 250); width:80%;border-radius: 6px;">
         <ion-col col-8>
             <span *ngIf="flag==false" style="color: #42B8B8; font-size:15px; font-weight: 900;">{{totalnumber}}</span>
+            <span *ngIf="flag==true" style="color: #42B8B8; font-size:15px; font-weight: 900;">{{totalnumber}}개 중 {{selected}}개 구입</span>
+
         </ion-col>
         <ion-col col-4>
             <span style="color: #42B8B8; font-size:15px; font-weight: 900;">₩{{printsum}}</span>
@@ -56,8 +58,19 @@
         </div>
         <div>
             <button *ngIf="flagInput!=false" style="height: 3.5rem;background-color:#71E8E8;border-radius: 7px; margin-top: 3px;margin-left: 10px;" (click)="cancel()">상세취소</button>
-            <ion-input *ngIf="flagInput!=false" style="color:#808080; width: 34%; height: 3.5rem; border-bottom: solid 1px; float: left; margin-right: 2px; margin-left:2px;" [(ngModel)]="quantity" placeholder="수량"></ion-input>
-            <ion-input *ngIf="flagInput!=false" style="color:#808080; width: 34%; height: 3.5rem; border-bottom: solid 1px; float: left; margin-left: 2px; margin-right:5px;" [(ngModel)]="price" placeholder="가격"></ion-input>
+            <!-- <ion-input *ngIf="flagInput!=false" style="color:#808080; width: 34%; height: 3.5rem; border-bottom: solid 1px; float: left; margin-right: 2px; margin-left:2px;" [(ngModel)]="quantity" placeholder="수량"></ion-input> -->
+            <ion-select [(ngModel)]="number" *ngIf="flagInput!=false" style="color:#808080; width: 34%; height: 4rem; border-bottom: solid 1px; float: left; margin-right: 2px; margin-left:2px;" [(ngModel)]="quantity" placeholder="수량">
+                <ion-option>1</ion-option>
+                <ion-option>2</ion-option>
+                <ion-option>3</ion-option>
+                <ion-option>4</ion-option>
+                <ion-option>5</ion-option>
+                <ion-option>6</ion-option>
+                <ion-option>7</ion-option>
+
+            </ion-select>
+
+            <ion-input *ngIf="flagInput!=false" style="color:#808080; width: 34%; height: 4rem; border-bottom: solid 1px; float: left; margin-left: 2px; margin-right:5px;" [(ngModel)]="price" placeholder="가격"></ion-input>
         </div>
     </div>
 

@@ -6,6 +6,7 @@ import firebase from 'firebase';
 import * as $ from 'jquery'
 import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeBanner } from '@ionic-native/admob-free';
 import { HomePage } from '../home/home';
+import 'hammerjs'
 
 
 
@@ -43,6 +44,8 @@ export class ViewshoppinglistPage {
   addvalue: any;
   shop: any;
   count: any = 0;
+  allbuy: boolean = false;
+  number = [];
 
   constructor(public navParam: NavParams, public navCtrl: NavController,
     public navParams: NavParams, private iab: InAppBrowser,
@@ -76,8 +79,36 @@ export class ViewshoppinglistPage {
     $(document).ready(function () {
       console.log("ready!");
     });
+
+    for(var i=1; i<=50; i++){
+      this.number.push({"count":i});
+    }
+    console.log(this.number);
   }
 
+  pressed() {
+    console.log("pressed")
+  }
+  touchstart() {
+    console.log("touchstart");
+    this.pressflag = true;
+
+  }
+  active() {
+    console.log()
+    this.insertData1();
+
+    console.log("active");
+
+  }
+  released(v) {
+    console.log("released" + this.pressflag);
+    if (this.pressflag) {
+      console.log("log pressed")
+      this.insertData(v);
+    }
+    this.pressflag = false;
+  }
 
   /*숫자에 콤마 찍기*/
   formatNumber(num) {
@@ -121,8 +152,8 @@ export class ViewshoppinglistPage {
     var sum = 0;
     this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
       for (var a = 0; a < snap.val().length; a++) {
-        if(snap.val()[a].name=null){
-          snap.val()[a].name="-"
+        if (snap.val()[a].name = null) {
+          snap.val()[a].name = "-"
         }
         console.log(snap.val()[a].name, snap.val()[a].checked, snap.val()[a].price, snap.val()[a].quantity)
         sum += Number(snap.val()[a].quantity) * Number(snap.val()[a].price);//가격 다시 받기
@@ -140,6 +171,16 @@ export class ViewshoppinglistPage {
 
   add() {
     console.log(this.a.list);
+    if (this.price < 1 && this.price > 99999999) {
+      this.price = 1;
+      const toast = this.toastCtrl.create({
+        message: '단가는 99,999,999원까지 입력 가능합니다.',
+        duration: 2000,
+      });
+      toast.present();
+    }
+    if(this.price == ""){ this.price = 1; }
+    if(this.quantity == "") { this.quantity = 1; }
     this.a.list.push({ "name": this.adding, "checked": false, "price": this.price, "quantity": this.quantity });
     this.totalnumber = this.a.list.length;
     this.adding = "";
@@ -156,7 +197,7 @@ export class ViewshoppinglistPage {
   cancel() {
     this.flagInput = false;
   }
-
+  
   addValue(v) {
     var count = 0;
     console.log(v);
@@ -171,8 +212,15 @@ export class ViewshoppinglistPage {
       }
     }
     this.selected = count;
-    console.log(this.count);
-
+    console.log(this.a.title);
+    if (this.selected == this.a.list.length) {
+      this.allbuy = true;
+      const toast = this.toastCtrl.create({
+        message: this.a.title + " " + this.a.list.length + ' 품목 구입 완료 되었습니다.',
+        duration: 2000,
+      });
+      toast.present();
+    }
     var checked = []; //선택된 것을 넣을 수 있는 새로운 배열
     var unchecked = []; //선택되지 않은 것을 넣을 수 있는 새로운 배열.
 
@@ -199,14 +247,14 @@ export class ViewshoppinglistPage {
     console.log(this.a.list);
   }
 
-  
+
 
   save() {
     this.flag = false;
     this.flagInput = false;
 
     let alert = this.alertCtrl.create({
-      
+
       title: '작성 중이던 목록을 저장할까요?',
       buttons: [
         {
@@ -219,14 +267,14 @@ export class ViewshoppinglistPage {
         {
           text: '예',
           handler: data => {
-            for(var v=0; v<this.a.list.length; v++){
+            for (var v = 0; v < this.a.list.length; v++) {
               console.log(this.a.list[v])
               console.log(this.a.list[v].name);
 
-              if(this.a.list[v].name == ""){
+              if (this.a.list[v].name == "") {
                 window.alert("목록을 입력해주세요");
               }
-              else{
+              else {
                 this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).update({ "time": this.nowtime, "flag": "entered", "key": this.key })
                 this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list);
                 this.refreshname();
@@ -236,7 +284,7 @@ export class ViewshoppinglistPage {
             }
             console.log(this.a.list);
             console.log(this.shop);
-           
+
           }
         }
       ]
@@ -249,95 +297,127 @@ export class ViewshoppinglistPage {
     this.flag = true;
   }
 
+  insertData1() {
+    this.flag = true;
+  }
+
+  delflag1 : boolean = false;
   /*삭제*/
   delete(fab: FabContainer) {
+    this.delflag1 = true;
     console.log(fab);
+    const toast = this.toastCtrl.create({
+      message: '삭제를 원하시는 품목을 눌러주세요.',
+      duration: 2000,
+    });
+    toast.present();
+    // let alert = this.alertCtrl.create({
+    //   title: '정말로 삭제하시겠습니까?',
+    //   buttons: [
+    //     {
+    //       text: '취소',
+    //       role: 'cancel',
+    //       handler: data => {
+    //         console.log('Cancel clicked');
+    //       }
+    //     },
+    //     {
+    //       text: '확인',
+    //       handler: data => {
+    //         var newlist = []; //선택된 것을 넣을 수 있는 새로운 배열
+    //         console.log(this.a.list); //this.a.list는 입력을 받은 배열
+    //         for (var i = 0; i < this.a.list.length; i++) {
+    //           /*a.list에 있는 항목이 체크가 되어있으면 newlist에 push*/
+    //           if (this.a.list[i].checked == true) {
+    //             console.log(this.a.list[i].checked);
+    //             newlist.push(i);
+    //             const toast = this.toastCtrl.create({
+    //               message: '삭제되었습니다.',
+    //               duration: 2000,
+    //             });
+    //             toast.present();
+    //           }
+    //         }
+
+    //         for (var i = 0; i < newlist.length; i++) {
+    //           this.a.list[newlist[i]] = "NC"
+    //         }
+
+    //         console.log(this.a.list)
+
+    //         var filtered = this.a.list.filter(function (value) {
+    //           console.log(value)
+    //           return value != "NC";
+
+    //         });
+    //         console.log(filtered)
+    //         this.a.list = filtered
+
+    //         console.log(this.a.list);
+    //         /*입력 리스트에서 삭제된 항목을 firebase에서 삭제하기위해 list 삭제*/
+    //         this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
+    //           for (var a in snap.val()) {
+    //             this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").remove().then(() => {
+    //               console.log("success")
+    //             }).catch((e) => {
+    //               console.log("error" + e);
+    //             })
+    //           }
+    //           /*삭제한 list를 update를 통해 수정된 데이터로 다시 넣어줌 */
+    //           this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list).then(() => {
+    //             console.log(this.a.list);
+    //           });
+
+    //           /*totalNumber와 Select값 가져오기*/
+    //           this.totalnumber = this.a.list.length;
+    //           var count = 0;
+    //           for (var i = 0; i < this.a.list.length; i++) {
+    //             if (this.a.list[i].checked == true) {
+    //               count++;
+    //             }
+    //           }
+    //           this.selected = count;
+    //           this.refreshname(); //새로고침
+    //         })
+    //       }
+    //     }
+    //   ]
+    // });
+    // alert.present();
+  }
+
+  /*sort구현*/
+  sortlist(fab: FabContainer) {
     let alert = this.alertCtrl.create({
-      title: '정말로 삭제하시겠습니까?',
+
+      title: '정렬하시겠습니까?',
       buttons: [
         {
-          text: '취소',
+          text: '아니요',
           role: 'cancel',
           handler: data => {
             console.log('Cancel clicked');
           }
         },
         {
-          text: '확인',
+          text: '예',
           handler: data => {
-            var newlist = []; //선택된 것을 넣을 수 있는 새로운 배열
-            console.log(this.a.list); //this.a.list는 입력을 받은 배열
-            for (var i = 0; i < this.a.list.length; i++) {
-              /*a.list에 있는 항목이 체크가 되어있으면 newlist에 push*/
-              if (this.a.list[i].checked == true) {
-                console.log(this.a.list[i].checked);
-                newlist.push(i);
-                const toast = this.toastCtrl.create({
-                  message: '삭제되었습니다.',
-                  duration: 2000,
-                });
-                toast.present();
-              }
-            }
-
-            for (var i = 0; i < newlist.length; i++) {
-              this.a.list[newlist[i]] = "NC"
-            }
-
-            console.log(this.a.list)
-
-            var filtered = this.a.list.filter(function (value) {
-              console.log(value)
-              return value != "NC";
-
+            console.log(this.checked);
+            console.log(this.unchecked);
+            this.a.list.sort(function (name1, name2) {
+              return name1.name.toLowerCase() < name2.name.toLowerCase() ? -1 : name1.name.toLowerCase() > name2.name.toLowerCase() ? 1 : 0;
             });
-            console.log(filtered)
-            this.a.list = filtered
-
+           
             console.log(this.a.list);
-            /*입력 리스트에서 삭제된 항목을 firebase에서 삭제하기위해 list 삭제*/
-            this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
-              for (var a in snap.val()) {
-                this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").remove().then(() => {
-                  console.log("success")
-                }).catch((e) => {
-                  console.log("error" + e);
-                })
-              }
-              /*삭제한 list를 update를 통해 수정된 데이터로 다시 넣어줌 */
-              this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list).then(() => {
-                console.log(this.a.list);
-              });
-
-              /*totalNumber와 Select값 가져오기*/
-              this.totalnumber = this.a.list.length;
-              var count = 0;
-              for (var i = 0; i < this.a.list.length; i++) {
-                if (this.a.list[i].checked == true) {
-                  count++;
-                }
-              }
-              this.selected = count;
-              this.refreshname(); //새로고침
-            })
+            window.alert("정렬되었습니다.");
+            this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list).then(() => {
+              console.log(this.a.list);
+            });
           }
         }
       ]
     });
     alert.present();
-  }
-
-  /*sort구현*/
-  sortlist(fab: FabContainer) {
-
-    this.a.list.sort(function (name1, name2) {
-      return name1.name.toLowerCase() < name2.name.toLowerCase() ? -1 : name1.name.toLowerCase() > name2.name.toLowerCase() ? 1 : 0;
-    });
-    console.log(this.a.list);
-    window.alert("정렬되었습니다.");
-    this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list).then(() => {
-      console.log(this.a.list);
-    });
   }
 
   /*가격비교 검색*/

@@ -19,6 +19,7 @@ import { ListlimitmodalPage } from '../listlimitmodal/listlimitmodal';
 import { OneSignal } from '@ionic-native/onesignal';
 import { MartlistPage } from '../martlist/martlist';
 import { MartinfoviewPage } from '../martinfoview/martinfoview';
+import { FavoritemodalPage } from '../favoritemodal/favoritemodal';
 
 
 @Component({
@@ -136,8 +137,16 @@ export class HomePage {
           this.vacationFunc(this.week, sn.val()[i][j], count);
         }
       }
-      console.log(this.favoriteList);
+      
     })
+    console.log(this.favoriteList);
+      console.log(this.favoriteList.length);
+      if(this.favoriteList.length>=6){
+        let modal = this.modal.create(FavoritemodalPage);
+        modal.present();
+        
+        // this.firemain.child("users").child(this.id).child("favorte").remove();
+      }
   }
 
   weekcheck(number, mart) {
@@ -301,6 +310,13 @@ export class HomePage {
           }
         }
       }
+      else{
+        console.log("hi");
+        if(this.dayoffarray.length<=6){
+          this.dayoffarray.push("영업");
+        }
+      }
+ 
       console.log(count);
       console.log(this.favoriteList);
       this.favoriteList[count - 1].dayoffarray = this.dayoffarray;
@@ -311,17 +327,17 @@ export class HomePage {
     }
 
   }
-
+  favoriteIndex : any;
   bookmark(a, idx) {
-
-    console.log(this.martkind[idx-1]);
+    this.favoriteIndex = idx;
     this.martinfo = a;
     console.log(this.martinfo);
     console.log(this.martkind);
     console.log(a);
     console.log(a.key)
     console.log(idx);
-    this.firemain.child("users").child(this.id).child("favorite").child(this.martkind[idx-1]).child(a.key).remove();
+    console.log(this.martkind[idx]);
+    this.firemain.child("users").child(this.id).child("favorite").child(this.martkind[idx]).child(a.key).remove();
     const toast = this.toastCtrl.create({
       message: '삭제되었습니다.',
       duration: 2000,
@@ -367,7 +383,31 @@ export class HomePage {
                   checked++;
                 }
               }
-              this.newarraylist.push({ "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key })
+              var aa = sn.val()[a][b][c].time.split("일");
+              console.log(aa[0]);
+              var bb = aa[0].split("월");
+              console.log(bb[0]);
+              console.log(bb[1]);
+              console.log(this.currentMonth);
+              console.log(this.currentDate);
+              if(this.currentMonth == bb[0]){
+                if(this.currentDate == bb[1]){
+                  console.log("오늘");
+                  this.newarraylist.push({ "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": "오늘"+sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key })
+                }
+                if(this.currentDate-1 == bb[1]){
+                  console.log("어제");
+                  this.newarraylist.push({ "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": "어제"+sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key })
+                }
+                else if(this.currentDate != bb[1] && this.currentDate-1 != bb[1]){
+                  console.log("다른 날");
+                  this.newarraylist.push({ "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key })
+                }
+              }
+              else if(this.currentMonth != bb[0]){
+                this.newarraylist.push({ "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key })
+              }
+
             }
           }
           // console.log(this.listcount);

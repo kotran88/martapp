@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import firebase from 'firebase';
 import { HomePage } from '../home/home';
@@ -37,7 +37,8 @@ export class AddshopingPage {
   month: any;
   date: any;
 
-  constructor(public speechRecognition: SpeechRecognition, public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+  constructor(public speechRecognition: SpeechRecognition, public navCtrl: NavController,
+    public navParams: NavParams, public alertCtrl: AlertController, public toastCtrl: ToastController) {
     this.a = this.navParams.get("obj");
     this.id = this.navParams.get("id");
     this.title = this.navParams.get("title");
@@ -70,7 +71,16 @@ export class AddshopingPage {
 
   add() {
     console.log(this.adding);
-
+    if(this.price<1||this.price>99999999){
+      this.price = 1;
+      const toast = this.toastCtrl.create({
+        message: '단가는 99,999,999원까지 입력 가능합니다.',
+        duration: 2000,
+      });
+      toast.present();
+    }
+    if(this.price == ""){ this.price = 1; }
+    if(this.quantity == "") { this.quantity = 1; }
     this.addinglist.push({ "name": this.adding, "checked": false, "price": this.price, "quantity": this.quantity });
     this.totalnumber = this.addinglist.length;
     this.addprice();
@@ -113,7 +123,7 @@ export class AddshopingPage {
   }
   save() {
     console.log("addshoping saving....")
-    this.flag = false;
+    this.flag = true;
     this.flagInput = false;
     let alert = this.alertCtrl.create({
       title: '작성 중이던 목록을 저장할까요?',

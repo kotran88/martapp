@@ -28,7 +28,7 @@
                         <table>
                             <thead>
                                 <th style="text-align: left;" *ngIf="i.name.indexOf('롯데마트')>-1" (click)="martview(i)">
-                                    <img src="./assets/imgs/009-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-롯데마트 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">
+                                    <img src="./assets/imgs/009-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-롯데마트 CI-2.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">
                                     <a style="margin:3px; font-size:17px; color: #808080; ">롯데마트</a>
                                 </th>
                                 <th style="text-align: left;" *ngIf="i.name.indexOf('이마트')>-1&&i.name.indexOf('트레이더스')==-1" (click)="martview(i)">
@@ -154,9 +154,11 @@
                             <span *ngIf="a.flag=='dep' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">백화점 </span>
                             <span *ngIf="a.flag=='outlet' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">아울렛 </span>
                             <span *ngIf="a.flag=='etc' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">기타 </span>
-                            <span style="font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">"{{a.title}} "</span>
-                            <br><br><span style="font-size:16px; font-weight:bold; color:rgb(74,190,190); margin-top:3px; ">{{a.time}} 작성</span>
-                            <br><br><span style="font-size:16px; font-weight: bold; color:rgb(74,190,190); margin-top:30px; ">{{a.totallist+"개 항목 중 "+a.totalchecked+"개 구입 "}}</span>
+                            <span style="font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">"{{a.title}}"</span>
+                            <br><br><span style="font-size:15px; font-weight:bold; color:rgb(74,190,190); margin-top:3px; ">{{a.time}} 작성</span><br><br>
+                            <span style="font-size:16px; font-weight: bold; color:rgb(74,190,190); margin-top:30px;" *ngIf="a.totallist!=a.totalchecked">{{a.totallist+"개 항목 중 "+a.totalchecked+"개 구입 "}}</span>
+                            <span style="font-size:16px; font-weight: bold; color:rgb(74,190,190); margin-top:30px;" *ngIf="a.totallist==a.totalchecked">구입 완료 "{{a.totallist}}품목"</span>
+
                         </div>
                     </td>
                     </table>

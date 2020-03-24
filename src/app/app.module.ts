@@ -31,6 +31,9 @@ import { MartlistPage } from '../pages/martlist/martlist';
 import { MartmapPage } from '../pages/martmap/martmap';
 import { MartinfoPage } from '../pages/martinfo/martinfo';
 import { MartinfoviewPage } from '../pages/martinfoview/martinfoview';
+import { FavoritemodalPage } from '../pages/favoritemodal/favoritemodal';
+import { LongPressModule } from 'ionic-long-press';
+
 
 
 var firebaseConfig = {
@@ -60,13 +63,15 @@ firebase.initializeApp(firebaseConfig);
     MartlistPage,
     MartmapPage,
     MartinfoPage,
-    MartinfoviewPage
+    MartinfoviewPage,
+    FavoritemodalPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireDatabaseModule,
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    LongPressModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -85,6 +90,7 @@ firebase.initializeApp(firebaseConfig);
     MartmapPage,
     MartinfoPage,
     MartinfoviewPage,
+    FavoritemodalPage
   ],
   providers: [
     StatusBar,

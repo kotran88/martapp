@@ -5,62 +5,6 @@
   },
   "config_munge": {
     "files": {
-      "res/xml/config.xml": {
-        "parents": {
-          "/*": [
-            {
-              "xml": "<feature name=\"OneSignalPush\"><param name=\"android-package\" value=\"com.plugin.gcm.OneSignalPush\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"CallNumber\"><param name=\"android-package\" value=\"mx.ferreyra.callnumber.CFCallNumber\" /></feature>",
-              "count": 1
-            }
-          ]
-        }
-      },
-      "AndroidManifest.xml": {
-        "parents": {
-          "/manifest": [
-            {
-              "xml": "<uses-permission android:name=\"com.amazon.device.messaging.permission.RECEIVE\" />",
-              "count": 1
-            },
-            {
-              "xml": "<permission android:name=\"io.ionic.inhand.permission.RECEIVE_ADM_MESSAGE\" android:protectionLevel=\"signature\" />",
-              "count": 1
-            },
-            {
-              "xml": "<uses-permission android:name=\"io.ionic.inhand.permission.RECEIVE_ADM_MESSAGE\" />",
-              "count": 1
-            }
-          ],
-          "/manifest/application": [
-            {
-              "xml": "<amazon:enable-feature android:name=\"com.amazon.device.messaging\" android:required=\"false\" xmlns:amazon=\"http://schemas.amazon.com/apk/res/android\" />",
-              "count": 1
-            },
-            {
-              "xml": "<service android:exported=\"false\" android:name=\"com.onesignal.ADMMessageHandler\" />",
-              "count": 1
-            },
-            {
-              "xml": "<receiver android:name=\"com.onesignal.ADMMessageHandler$Receiver\" android:permission=\"com.amazon.device.messaging.permission.SEND\"><intent-filter><action android:name=\"com.amazon.device.messaging.intent.REGISTRATION\" /><action android:name=\"com.amazon.device.messaging.intent.RECEIVE\" /><category android:name=\"io.ionic.inhand\" /></intent-filter></receiver>",
-              "count": 1
-            }
-          ],
-          "/*": [
-            {
-              "xml": "<uses-permission android:name=\"android.permission.CALL_PHONE\" />",
-              "count": 1
-            },
-            {
-              "xml": "<uses-feature android:name=\"android.hardware.telephony\" android:required=\"false\" />",
-              "count": 1
-            }
-          ]
-        }
-      },
       "app/src/main/AndroidManifest.xml": {
         "parents": {
           "/manifest/application": [
@@ -83,49 +27,14 @@
     }
   },
   "installed_plugins": {
-    "onesignal-cordova-plugin": {
-      "PACKAGE_NAME": "io.ionic.inhand"
-    },
     "cordova-admob-sdk": {
       "PLAY_SERVICES_VERSION": "11.0.4",
-      "PACKAGE_NAME": "io.ionic.inhand"
-    },
-    "mx.ferreyra.callnumber": {
-      "PACKAGE_NAME": "io.ionic.inhand"
-    },
-    "es6-promise-plugin": {
       "PACKAGE_NAME": "io.ionic.inhand"
     }
   },
   "dependent_plugins": {},
-  "modules": [
-    {
-      "id": "onesignal-cordova-plugin.OneSignal",
-      "file": "plugins/onesignal-cordova-plugin/www/OneSignal.js",
-      "pluginId": "onesignal-cordova-plugin",
-      "clobbers": [
-        "OneSignal"
-      ]
-    },
-    {
-      "id": "mx.ferreyra.callnumber.CallNumber",
-      "file": "plugins/mx.ferreyra.callnumber/www/CallNumber.js",
-      "pluginId": "mx.ferreyra.callnumber",
-      "clobbers": [
-        "call"
-      ]
-    },
-    {
-      "id": "es6-promise-plugin.Promise",
-      "file": "plugins/es6-promise-plugin/www/promise.js",
-      "pluginId": "es6-promise-plugin",
-      "runs": true
-    }
-  ],
+  "modules": [],
   "plugin_metadata": {
-    "onesignal-cordova-plugin": "2.4.0",
-    "cordova-admob-sdk": "0.24.1",
-    "mx.ferreyra.callnumber": "0.0.2",
-    "es6-promise-plugin": "4.2.2"
+    "cordova-admob-sdk": "0.24.1"
   }
 }

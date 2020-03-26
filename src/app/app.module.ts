@@ -70,8 +70,9 @@ firebase.initializeApp(firebaseConfig);
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireDatabaseModule,
-    AngularFireModule.initializeApp(firebaseConfig),
-    LongPressModule
+    LongPressModule,
+    AngularFireModule.initializeApp(firebaseConfig)
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [

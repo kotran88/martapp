@@ -30,7 +30,10 @@
                 <table>
                     <tbody>
                         <tr class="datespan">
-                            {{todayy}}
+                            <td class="tabletd" *ngFor="let i of todayy" style="margin-top:10px;">
+                                <span *ngIf="i!='오늘'" style="color:red; font-weight: 500;">{{i}}</span>
+                                <span *ngIf="i=='오늘'" style="color:rgb(0, 119, 255); font-weight: 500;">{{i}}</span>
+                            </td>
                         </tr>
                         <tr class="datespan">
                             <td *ngFor="let j of week" class="tabletd">
@@ -51,6 +54,7 @@
                     </tbody>
                 </table>
                 </button>
+
             </div>
         </ion-item-group>
     </div>

@@ -90,7 +90,6 @@ ext {
 }
 
 // PLUGIN GRADLE EXTENSIONS START
-apply from: "../onesignal-cordova-plugin/inhand-build-extras-onesignal.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
 def hasBuildExtras1 = file('build-extras.gradle').exists()
@@ -267,7 +266,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: '*.jar')
     // SUB-PROJECT DEPENDENCIES START
     implementation(project(path: ":CordovaLib"))
-    implementation "com.onesignal:OneSignal:3.9.0"
     implementation "com.google.android.gms:play-services-base:11.0.4"
     implementation "com.google.android.gms:play-services-ads:11.0.4"
     // SUB-PROJECT DEPENDENCIES END

@@ -34,7 +34,6 @@
     "@ionic-native/unique-device-id": "^4.20.0",
     "@ionic/angular": "^4.11.7",
     "@ionic/storage": "2.2.0",
-    "@types/hammerjs": "^2.0.36",
     "@types/jquery": "^3.3.33",
     "angularfire2": "^5.2.3",
     "call-number": "^1.0.1",
@@ -74,6 +73,7 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.2.4",
+    "@types/hammerjs": "^2.0.36",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-ionic-webview": "^4.1.3",

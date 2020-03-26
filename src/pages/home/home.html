@@ -81,20 +81,23 @@
                         </table>
                         <table style="margin-left:auto; margin-right:auto">
                             <tbody>
-                                <tr class="datespan" (click)="martview(i)">
-                                    <td class="tabletd " style="margin-top:10px ">{{today}}</td>
+                                <tr class="datespan">
+                                    <td class="tabletd" *ngFor="let i of today" (click)="martview(i)" style="margin-top:10px;">
+                                        <span *ngIf="i!='오늘'" style="color:red; font-weight: 500;">{{i}}</span>
+                                        <span *ngIf="i=='오늘'" style="color:rgb(0, 119, 255); font-weight: 500;">{{i}}</span>
+                                    </td>
                                 </tr>
-                                <tr class="datespan" (click)="martview(i)">
-                                    <td *ngFor="let i of week " class="tabletd ">
+                                <tr class="datespan " (click)="martview(i) ">
+                                    <td *ngFor="let i of week " class="tabletd">
                                         <span>{{i.dayofweek}}</span>
                                     </td>
                                 </tr>
-                                <tr class="datespan" (click)="martview(i)">
-                                    <td *ngFor="let i of week " class="tabletd ">
+                                <tr class="datespan " (click)="martview(i) ">
+                                    <td *ngFor="let i of week " class="tabletd">
                                         <span>{{i.month}}/{{i.day}}</span>
                                     </td>
                                 </tr>
-                                <tr class="datespan" (click)="martview(i)">
+                                <tr class="datespan " (click)="martview(i) ">
                                     <td *ngFor="let m of i.dayoffarray" class="tabletd ">
                                         <span *ngIf="m=='휴무'" class="mSpan1">{{m}}</span>
                                         <span *ngIf="m=='영업'" class="mSpan2">{{m}}</span>
@@ -104,13 +107,13 @@
                         </table>
                     </div>
                 </div>
-                <div class="borderr">
+                <div class="borderr ">
                     <button style="background-color:white; height:30%; margin-left:auto; margin-right:auto; " (click)="main(); "><img style="width:55% "src="./assets/imgs/047-버튼-PPT 7페이지의 우측 이미지-말얼굴+돋보기.png " alt=" "></button>
                 </div>
             </div>
         </ion-list>
-        <ion-list *ngSwitchCase=" 'tab2'">
-            <div class="topselector">
+        <ion-list *ngSwitchCase=" 'tab2' ">
+            <div class="topselector ">
                 <p>쇼핑 목록 만들기! 어디서 쇼핑하실 건가요?</p>
                 <table style="margin: auto; text-align: center; ">
 
@@ -154,10 +157,10 @@
                             <span *ngIf="a.flag=='dep' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">백화점 </span>
                             <span *ngIf="a.flag=='outlet' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">아울렛 </span>
                             <span *ngIf="a.flag=='etc' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">기타 </span>
-                            <span style="font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">"{{a.title}}"</span>
+                            <span style="font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">"{{a.title}} "</span>
                             <br><br><span style="font-size:15px; font-weight:bold; color:rgb(74,190,190); margin-top:3px; ">{{a.time}} 작성</span><br><br>
-                            <span style="font-size:16px; font-weight: bold; color:rgb(74,190,190); margin-top:30px;" *ngIf="a.totallist!=a.totalchecked">{{a.totallist+"개 항목 중 "+a.totalchecked+"개 구입 "}}</span>
-                            <span style="font-size:16px; font-weight: bold; color:rgb(74,190,190); margin-top:30px;" *ngIf="a.totallist==a.totalchecked">구입 완료 "{{a.totallist}}품목"</span>
+                            <span style="font-size:16px; font-weight: bold; color:rgb(74,190,190); margin-top:30px; " *ngIf="a.totallist!=a.totalchecked ">{{a.totallist+"개 항목 중 "+a.totalchecked+"개 구입 "}}</span>
+                            <span style="font-size:16px; font-weight: bold; color:rgb(74,190,190); margin-top:30px; " *ngIf="a.totallist==a.totalchecked ">구입 완료 "{{a.totallist}}품목 "</span>
 
                         </div>
                     </td>
@@ -166,7 +169,7 @@
                     </button>
                     <div>
                         <ion-fab style="margin-top:-50px; ">
-                            <img class="rotate" src="./assets/imgs/084-버튼-PPT 31페이지의 가운데 이미지-점3개-회전1단계(시작).png" style="width:30%;height: 30%;float:right; margin-right:30px; margin-top:20px; position:relative; z-index :9998 " alt=" " ion-fab>
+                            <img class="rotate " src="./assets/imgs/084-버튼-PPT 31페이지의 가운데 이미지-점3개-회전1단계(시작).png " style="width:30%;height: 30%;float:right; margin-right:30px; margin-top:20px; position:relative; z-index :9998 " alt=" " ion-fab>
                             <ion-fab-list side="bottom " style="margin-left:-90%; margin-top:20px;text-align: left; background-color:#E9E9E9; position: absolute; z-index: 9999; ">
                                 <button style="background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="changeName(a) ">목록명 변경</button>
                                 <button style="background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="share(a) ">공유</button>

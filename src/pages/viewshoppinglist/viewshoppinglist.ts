@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, Navbar, AlertController, NavParams, FabButton, FabContainer, ToastController, ModalController, ViewController } from 'ionic-angular';
+import { NavController, Navbar, AlertController, NavParams, FabContainer, ToastController, ModalController, ViewController } from 'ionic-angular';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import firebase from 'firebase';
@@ -8,6 +8,7 @@ import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeBanner } from '@ionic-native
 import { HomePage } from '../home/home';
 import 'hammerjs'
 
+import { Directive, ElementRef, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 
 
 /**
@@ -23,6 +24,7 @@ import 'hammerjs'
 export class ViewshoppinglistPage {
   @ViewChild(Navbar) navBar: Navbar;
 
+  @Output('long-press') onPressRelease: EventEmitter<any> = new EventEmitter();
   [x: string]: any;
   selected: any;
   totalnumber: any = 0;
@@ -80,11 +82,15 @@ export class ViewshoppinglistPage {
       console.log("ready!");
     });
 
-    for(var i=1; i<=50; i++){
-      this.number.push({"count":i});
+    for (var i = 1; i <= 50; i++) {
+      this.number.push({ "count": i });
     }
     console.log(this.number);
   }
+
+  // closeFab(fab:FabContainer){
+  //   fab.close();
+  // }
 
   pressed() {
     console.log("pressed")
@@ -92,22 +98,22 @@ export class ViewshoppinglistPage {
   touchstart() {
     console.log("touchstart");
     this.pressflag = true;
-
   }
   active() {
-    console.log()
-    this.insertData1();
-
     console.log("active");
-
   }
-  released(v) {
-    console.log("released" + this.pressflag);
-    if (this.pressflag) {
-      console.log("log pressed")
-      this.insertData(v);
-    }
+  released() {
+    // window.alert("released");
+
+    // console.log("releaseddddd"+this.pressflag);
+    // if(this.pressflag==true){
+
+    //   window.alert("released2")
+    // this.navCtrl.push(AddquestionPage,{"home":this.home,"first":this.firstvalue,"value":this.value,"flag:":"modify","array":v})
+
+    // }
     this.pressflag = false;
+
   }
 
   /*숫자에 콤마 찍기*/
@@ -179,8 +185,8 @@ export class ViewshoppinglistPage {
       });
       toast.present();
     }
-    if(this.price == ""){ this.price = 1; }
-    if(this.quantity == "") { this.quantity = 1; }
+    if (this.price == "") { this.price = 1; }
+    if (this.quantity == "") { this.quantity = 1; }
     this.a.list.push({ "name": this.adding, "checked": false, "price": this.price, "quantity": this.quantity });
     this.totalnumber = this.a.list.length;
     this.adding = "";
@@ -197,11 +203,11 @@ export class ViewshoppinglistPage {
   cancel() {
     this.flagInput = false;
   }
-  
   addValue(v) {
     var count = 0;
     console.log(v);
     console.log(v.checked);
+
     console.log(this.a.list);
     console.log(this.a.list.length);
 
@@ -295,99 +301,143 @@ export class ViewshoppinglistPage {
   /*수정*/
   insertData(fab: FabContainer) {
     this.flag = true;
+    this.closeFab(fab);
   }
 
-  insertData1() {
-    this.flag = true;
-  }
-
-  delflag1 : boolean = false;
+  delflag1: boolean = false;
   /*삭제*/
   delete(fab: FabContainer) {
     this.delflag1 = true;
-    console.log(fab);
+    this.flag = true;
+    console.log(this.delflag1);
     const toast = this.toastCtrl.create({
       message: '삭제를 원하시는 품목을 눌러주세요.',
       duration: 2000,
     });
     toast.present();
-    // let alert = this.alertCtrl.create({
-    //   title: '정말로 삭제하시겠습니까?',
-    //   buttons: [
-    //     {
-    //       text: '취소',
-    //       role: 'cancel',
-    //       handler: data => {
-    //         console.log('Cancel clicked');
-    //       }
-    //     },
-    //     {
-    //       text: '확인',
-    //       handler: data => {
-    //         var newlist = []; //선택된 것을 넣을 수 있는 새로운 배열
-    //         console.log(this.a.list); //this.a.list는 입력을 받은 배열
-    //         for (var i = 0; i < this.a.list.length; i++) {
-    //           /*a.list에 있는 항목이 체크가 되어있으면 newlist에 push*/
-    //           if (this.a.list[i].checked == true) {
-    //             console.log(this.a.list[i].checked);
-    //             newlist.push(i);
-    //             const toast = this.toastCtrl.create({
-    //               message: '삭제되었습니다.',
-    //               duration: 2000,
-    //             });
-    //             toast.present();
-    //           }
-    //         }
-
-    //         for (var i = 0; i < newlist.length; i++) {
-    //           this.a.list[newlist[i]] = "NC"
-    //         }
-
-    //         console.log(this.a.list)
-
-    //         var filtered = this.a.list.filter(function (value) {
-    //           console.log(value)
-    //           return value != "NC";
-
-    //         });
-    //         console.log(filtered)
-    //         this.a.list = filtered
-
-    //         console.log(this.a.list);
-    //         /*입력 리스트에서 삭제된 항목을 firebase에서 삭제하기위해 list 삭제*/
-    //         this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
-    //           for (var a in snap.val()) {
-    //             this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").remove().then(() => {
-    //               console.log("success")
-    //             }).catch((e) => {
-    //               console.log("error" + e);
-    //             })
-    //           }
-    //           /*삭제한 list를 update를 통해 수정된 데이터로 다시 넣어줌 */
-    //           this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list).then(() => {
-    //             console.log(this.a.list);
-    //           });
-
-    //           /*totalNumber와 Select값 가져오기*/
-    //           this.totalnumber = this.a.list.length;
-    //           var count = 0;
-    //           for (var i = 0; i < this.a.list.length; i++) {
-    //             if (this.a.list[i].checked == true) {
-    //               count++;
-    //             }
-    //           }
-    //           this.selected = count;
-    //           this.refreshname(); //새로고침
-    //         })
-    //       }
-    //     }
-    //   ]
-    // });
-    // alert.present();
   }
+  delflag2: boolean = false;
+  del(name) {
+    this.delflag2 = true;
+    console.log(name);
+    // this.delNameArray.push(name);
+    // console.log(this.delNameArray)
+
+    let alert = this.alertCtrl.create({
+      title: '정말로 삭제하시겠습니까?',
+      buttons: [
+        {
+          text: '취소',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: '확인',
+          handler: data => {
+            console.log(this.a.list);
+            for (var i = 0; i < this.a.list.length; i++) {
+              if (this.a.list[i].name == name) {
+                this.a.list[i] = "NC"
+              }
+            }
+            var filtered = this.a.list.filter(function (value) {
+              return value != "NC";
+            })
+
+            this.a.list = filtered;
+            console.log(this.a.list);
+            /*입력 리스트에서 삭제된 항목을 firebase에서 삭제하기위해 list 삭제*/
+            this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
+              for (var a in snap.val()) {
+                this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").remove().then(() => {
+                  console.log("success")
+                }).catch((e) => {
+                  console.log("error" + e);
+                })
+              }
+              /*삭제한 list를 update를 통해 수정된 데이터로 다시 넣어줌 */
+              this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list).then(() => {
+                console.log(this.a.list);
+              });
+
+              /*totalNumber와 Select값 가져오기*/
+              this.totalnumber = this.a.list.length;
+              var count = 0;
+              for (var i = 0; i < this.a.list.length; i++) {
+                if (this.a.list[i].checked == true) {
+                  count++;
+                }
+              }
+              this.refreshname(); //새로고침
+            })
+
+            //         console.log(this.a.list); //this.a.list는 입력을 받은 배열
+            //         for (var i = 0; i < this.a.list.length; i++) {
+            //           /*a.list에 있는 항목이 체크가 되어있으면 newlist에 push*/
+            //           if (this.a.list[i].checked == true) {
+            //             console.log(this.a.list[i].checked);
+            //             newlist.push(i);
+            //             const toast = this.toastCtrl.create({
+            //               message: '삭제되었습니다.',
+            //               duration: 2000,
+            //             });
+            //             toast.present();
+            //           }
+            //         }
+
+            //         for (var i = 0; i < newlist.length; i++) {
+            //           this.a.list[newlist[i]] = "NC"
+            //         }
+
+            //         console.log(this.a.list)
+
+            //         var filtered = this.a.list.filter(function (value) {
+            //           console.log(value)
+            //           return value != "NC";
+
+            //         });
+            //         console.log(filtered)
+            //         this.a.list = filtered
+
+            //         console.log(this.a.list);
+            //         /*입력 리스트에서 삭제된 항목을 firebase에서 삭제하기위해 list 삭제*/
+            //         this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
+            //           for (var a in snap.val()) {
+            //             this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").remove().then(() => {
+            //               console.log("success")
+            //             }).catch((e) => {
+            //               console.log("error" + e);
+            //             })
+            //           }
+            //           /*삭제한 list를 update를 통해 수정된 데이터로 다시 넣어줌 */
+            //           this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list).then(() => {
+            //             console.log(this.a.list);
+            //           });
+
+            //           /*totalNumber와 Select값 가져오기*/
+            //           this.totalnumber = this.a.list.length;
+            //           var count = 0;
+            //           for (var i = 0; i < this.a.list.length; i++) {
+            //             if (this.a.list[i].checked == true) {
+            //               count++;
+            //             }
+            //           }
+            //           this.selected = count;
+            //           this.refreshname(); //새로고침
+            //         })
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+  check: any;
 
   /*sort구현*/
-  sortlist(fab: FabContainer) {
+  sortlist(fab:FabContainer) {
+    
     let alert = this.alertCtrl.create({
 
       title: '정렬하시겠습니까?',
@@ -402,12 +452,22 @@ export class ViewshoppinglistPage {
         {
           text: '예',
           handler: data => {
-            console.log(this.checked);
-            console.log(this.unchecked);
+
+            // var sortingField = this.check;
+            // console.log(sortingField);
+
+            // this.a.list.sort(function (name1, name2) { // 오름차순
+              // console.log(this.check);
+              // return (a[sortingField] === b[sortingField])? 0 : a[sortingField]? -1 : 1;
+              // var x = name1[sortingField]; var y = name2[sortingField];
+              // return name1.name[sortingField] < name2.name[sortingField] ? -1 : name1.name[sortingField] > name2.name[sortingField] ? 1 : 0;
+            // });
+
+
             this.a.list.sort(function (name1, name2) {
               return name1.name.toLowerCase() < name2.name.toLowerCase() ? -1 : name1.name.toLowerCase() > name2.name.toLowerCase() ? 1 : 0;
             });
-           
+
             console.log(this.a.list);
             window.alert("정렬되었습니다.");
             this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list).then(() => {

@@ -25,11 +25,13 @@
     </ion-row>
     <div>
 
-        <ion-item ion-long-press [interval]="2000" (onPressing)="active()" (onPressEnd)="released()" (onPressEnd)="released(a)" (touchstart)="touchstart()" *ngFor="let att of a.list; let idx = index">
+        <ion-item ion-long-press [interval]="3000" (pressed)="pressed()" (longPressed)="active()" (pressEnded)="released()" *ngFor="let att of a.list; let idx = index">
 
             <ion-icon *ngIf="flag==true" class="iconwidth" style="margin:9px 3px 9px 4px;" name="close"></ion-icon>
-            <ion-checkbox [(ngModel)]="att.checked" style="z-index: 999999;" (ionChange)="addValue($event)" *ngIf="flag==false&&delflag1==false" color="dark" slot="start"></ion-checkbox>
-            <ion-img *ngIf="delflag1==true" src="./assets/imgs/087-버튼-PPT 32페이지의 좌측 이미지-휴지통 뚜껑 닫힌거.png" style="width:30px; height:30px;"></ion-img>
+            <ion-checkbox [(ngModel)]="att.checked" style="z-index: 999999;" (ionChange)="addValue($event)" *ngIf="flag==false" color="dark" slot="start"></ion-checkbox>
+            <button outline item-start style="float:left; width:13%; background-color:white; z-index:999999" *ngIf="flag==true&&delflag1==true" (click)="del(a.list[idx].name)">
+                <img src="./assets/imgs/087-버튼-PPT 32페이지의 좌측 이미지-휴지통 뚜껑 닫힌거.png" alt="">
+            </button>
             <ion-input text-center style="width: 10%;float: left; font-size:15px;" placeholder="상품명" [(ngModel)]="a.list[idx].name"></ion-input>
             <ion-input text-center style="width: 5%;float: left; font-size:15px;" placeholder="수량" [(ngModel)]="a.list[idx].quantity"></ion-input>
             <ion-input text-center style="width: calc(100%-0px-1px);float: left; font-size:13px;" placeholder="가격" [(ngModel)]="a.list[idx].price"></ion-input>

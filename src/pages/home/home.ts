@@ -77,8 +77,8 @@ export class HomePage {
   newDate() {
     var days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
     var prefixes = ['첫째주', '둘째주', '셋째주', '넷째주', '다섯째주'];
-    // this.currentMonth = this.date.getMonth() + 1;
-    this.currentMonth = this.date.getMonth() - 1;
+    this.currentMonth = this.date.getMonth() + 1;
+    // this.currentMonth = this.date.getMonth() - 1;
 
     this.currentYear = this.date.getFullYear();
     var prevNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth(), 0).getDate();
@@ -102,18 +102,18 @@ export class HomePage {
       if (dayofweek >= 7) { dayofweek = 0; }
       if (this.currentDate + i <= thisNumOfDays) {
         this.week.push({ "week": prefixes[0 | (this.currentDate + i - 1) / 7], "month": this.currentMonth, "day": this.currentDate + i, "dayofweek": days[dow] }); //30일
-        console.log(dayofweek);
+        // console.log(dayofweek);
       }
       else if (this.currentDate + i > thisNumOfDays) {
         count++;
         this.week.push({ "week": prefixes[0 | (count + i - 1) / 7], "month": this.currentMonth + 1, "day": count, "dayofweek": days[dow] }); //30일
-        console.log(dayofweek);
+        // console.log(dayofweek);
       }
     }
-    console.log(this.week);
-    console.log(prevNumOfDays);//첫날과 마지막 날을 제외한 이 달의 일수
-    console.log(thisNumOfDays);//한 달의 날수
-    console.log(lastDayThisMonth);//이 달의 마지막 날의 요일.
+    // console.log(this.week);
+    // console.log(prevNumOfDays);//첫날과 마지막 날을 제외한 이 달의 일수
+    // console.log(thisNumOfDays);//한 달의 날수
+    // console.log(lastDayThisMonth);//이 달의 마지막 날의 요일.
   }
 
   presentLoadingDefault() {
@@ -129,7 +129,7 @@ export class HomePage {
   }
 
   martview(martinfo) {
-    console.log(martinfo);
+    // console.log(martinfo);
     this.navCtrl.push(MartinfoviewPage, { "martinfo": martinfo });
   }
 
@@ -139,25 +139,25 @@ export class HomePage {
   favorite() {
     var count = 0;
     this.firemain.child("users").child(this.id).child("favorite").once("value", (sn) => {
-      console.log(sn.val());
+      // console.log(sn.val());
       for (var i in sn.val()) {
-        console.log(i);
+        // console.log(i);
         this.martkind.push(i);
         console.log(sn.val()[i]);
         for (var j in sn.val()[i]) {
           count++
           this.todayoff = sn.val()[i][j].dayoffarray[1];
-          console.log(this.todayoff);
-          console.log(sn.val()[i][j].dayoffarray);
+          // console.log(this.todayoff);
+          // console.log(sn.val()[i][j].dayoffarray);
           this.favoriteList.push(sn.val()[i][j]);
-          console.log(this.favoriteList);
+          // console.log(this.favoriteList);
           this.vacationFunc(this.week, sn.val()[i][j], count);
         }
       }
 
     })
-    console.log(this.favoriteList);
-    console.log(this.favoriteList.length);
+    // console.log(this.favoriteList);
+    // console.log(this.favoriteList.length);
     if (this.favoriteList.length >= 6) {
       let modal = this.modal.create(FavoritemodalPage);
       modal.present();
@@ -197,11 +197,11 @@ export class HomePage {
   cnt:any;
   dayoffarray = [];
   vacationFunc(week, mart, count) {
-    console.log(week);
-    console.log(mart.vacation);
-    console.log(count);
+    // console.log(week);
+    // console.log(mart.vacation);
+    // console.log(count);
     this.cnt=count;
-    console.log(this.cnt);
+    // console.log(this.cnt);
     var counting = 0;
     this.dayoffarray = [];
     for (var a in week) {
@@ -474,19 +474,19 @@ export class HomePage {
               if (this.currentMonth == bb[0]) {
                 if (this.currentDate == bb[1]) {
                   console.log("오늘");
-                  this.newarraylist.push({ "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": "오늘" + sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key })
+                  this.newarraylist.push({"checked2":false, "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": "오늘" + sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key })
                 }
                 if (this.currentDate - 1 == bb[1]) {
                   console.log("어제");
-                  this.newarraylist.push({ "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": "어제" + sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key })
+                  this.newarraylist.push({"checked2":false, "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": "어제" + sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key })
                 }
                 else if (this.currentDate != bb[1] && this.currentDate - 1 != bb[1]) {
                   console.log("다른 날");
-                  this.newarraylist.push({ "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key })
+                  this.newarraylist.push({"checked2":false, "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key })
                 }
               }
               else if (this.currentMonth != bb[0]) {
-                this.newarraylist.push({ "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key })
+                this.newarraylist.push({"checked2":false, "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key })
               }
 
             }

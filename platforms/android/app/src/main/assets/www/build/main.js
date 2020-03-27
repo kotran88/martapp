@@ -1626,6 +1626,7 @@ var ViewshoppinglistPage = /** @class */ (function () {
             url: ''
         };
         this.delflag1 = false;
+        this.delflag2 = false;
         this.a = this.navParams.get("obj");
         this.id = this.navParams.get("id");
         this.nextdirectory = this.firemain.child(this.id);
@@ -1658,22 +1659,25 @@ var ViewshoppinglistPage = /** @class */ (function () {
         }
         console.log(this.number);
     }
+    // closeFab(fab:FabContainer){
+    //   fab.close();
+    // }
     ViewshoppinglistPage.prototype.pressed = function () {
         console.log("pressed");
+        this.pressflag = true;
     };
     ViewshoppinglistPage.prototype.touchstart = function () {
         console.log("touchstart");
-        this.pressflag = true;
     };
     ViewshoppinglistPage.prototype.active = function () {
         console.log("active");
     };
     ViewshoppinglistPage.prototype.released = function () {
-        window.alert("released");
+        // window.alert("released");
         console.log("releaseddddd" + this.pressflag);
         if (this.pressflag == true) {
-            window.alert("released2");
-            this.insertData1();
+            this.flag = true;
+            // window.alert("released2")
             // this.navCtrl.push(AddquestionPage,{"home":this.home,"first":this.firstvalue,"value":this.value,"flag:":"modify","array":v})
         }
         this.pressflag = false;
@@ -1849,86 +1853,125 @@ var ViewshoppinglistPage = /** @class */ (function () {
     /*수정*/
     ViewshoppinglistPage.prototype.insertData = function (fab) {
         this.flag = true;
-    };
-    ViewshoppinglistPage.prototype.insertData1 = function () {
-        this.flag = true;
+        this.closeFab(fab);
     };
     /*삭제*/
     ViewshoppinglistPage.prototype.delete = function (fab) {
         this.delflag1 = true;
-        console.log(fab);
+        this.flag = true;
+        console.log(this.delflag1);
         var toast = this.toastCtrl.create({
             message: '삭제를 원하시는 품목을 눌러주세요.',
             duration: 2000,
         });
         toast.present();
-        // let alert = this.alertCtrl.create({
-        //   title: '정말로 삭제하시겠습니까?',
-        //   buttons: [
-        //     {
-        //       text: '취소',
-        //       role: 'cancel',
-        //       handler: data => {
-        //         console.log('Cancel clicked');
-        //       }
-        //     },
-        //     {
-        //       text: '확인',
-        //       handler: data => {
-        //         var newlist = []; //선택된 것을 넣을 수 있는 새로운 배열
-        //         console.log(this.a.list); //this.a.list는 입력을 받은 배열
-        //         for (var i = 0; i < this.a.list.length; i++) {
-        //           /*a.list에 있는 항목이 체크가 되어있으면 newlist에 push*/
-        //           if (this.a.list[i].checked == true) {
-        //             console.log(this.a.list[i].checked);
-        //             newlist.push(i);
-        //             const toast = this.toastCtrl.create({
-        //               message: '삭제되었습니다.',
-        //               duration: 2000,
-        //             });
-        //             toast.present();
-        //           }
-        //         }
-        //         for (var i = 0; i < newlist.length; i++) {
-        //           this.a.list[newlist[i]] = "NC"
-        //         }
-        //         console.log(this.a.list)
-        //         var filtered = this.a.list.filter(function (value) {
-        //           console.log(value)
-        //           return value != "NC";
-        //         });
-        //         console.log(filtered)
-        //         this.a.list = filtered
-        //         console.log(this.a.list);
-        //         /*입력 리스트에서 삭제된 항목을 firebase에서 삭제하기위해 list 삭제*/
-        //         this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
-        //           for (var a in snap.val()) {
-        //             this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").remove().then(() => {
-        //               console.log("success")
-        //             }).catch((e) => {
-        //               console.log("error" + e);
-        //             })
-        //           }
-        //           /*삭제한 list를 update를 통해 수정된 데이터로 다시 넣어줌 */
-        //           this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list).then(() => {
-        //             console.log(this.a.list);
-        //           });
-        //           /*totalNumber와 Select값 가져오기*/
-        //           this.totalnumber = this.a.list.length;
-        //           var count = 0;
-        //           for (var i = 0; i < this.a.list.length; i++) {
-        //             if (this.a.list[i].checked == true) {
-        //               count++;
-        //             }
-        //           }
-        //           this.selected = count;
-        //           this.refreshname(); //새로고침
-        //         })
-        //       }
-        //     }
-        //   ]
-        // });
-        // alert.present();
+    };
+    ViewshoppinglistPage.prototype.del = function (name) {
+        var _this = this;
+        this.delflag2 = true;
+        console.log(name);
+        // this.delNameArray.push(name);
+        // console.log(this.delNameArray)
+        var alert = this.alertCtrl.create({
+            title: '정말로 삭제하시겠습니까?',
+            buttons: [
+                {
+                    text: '취소',
+                    role: 'cancel',
+                    handler: function (data) {
+                        console.log('Cancel clicked');
+                    }
+                },
+                {
+                    text: '확인',
+                    handler: function (data) {
+                        console.log(_this.a.list);
+                        for (var i = 0; i < _this.a.list.length; i++) {
+                            if (_this.a.list[i].name == name) {
+                                _this.a.list[i] = "NC";
+                            }
+                        }
+                        var filtered = _this.a.list.filter(function (value) {
+                            return value != "NC";
+                        });
+                        _this.a.list = filtered;
+                        console.log(_this.a.list);
+                        /*입력 리스트에서 삭제된 항목을 firebase에서 삭제하기위해 list 삭제*/
+                        _this.firemain.child("users").child(_this.id).child(_this.shop).child(_this.title).child(_this.key).child("list").once("value", function (snap) {
+                            for (var a in snap.val()) {
+                                _this.firemain.child("users").child(_this.id).child(_this.shop).child(_this.title).child(_this.key).child("list").remove().then(function () {
+                                    console.log("success");
+                                }).catch(function (e) {
+                                    console.log("error" + e);
+                                });
+                            }
+                            /*삭제한 list를 update를 통해 수정된 데이터로 다시 넣어줌 */
+                            _this.firemain.child("users").child(_this.id).child(_this.shop).child(_this.title).child(_this.key).child("list").update(_this.a.list).then(function () {
+                                console.log(_this.a.list);
+                            });
+                            /*totalNumber와 Select값 가져오기*/
+                            _this.totalnumber = _this.a.list.length;
+                            var count = 0;
+                            for (var i = 0; i < _this.a.list.length; i++) {
+                                if (_this.a.list[i].checked == true) {
+                                    count++;
+                                }
+                            }
+                            _this.refreshname(); //새로고침
+                        });
+                        //         console.log(this.a.list); //this.a.list는 입력을 받은 배열
+                        //         for (var i = 0; i < this.a.list.length; i++) {
+                        //           /*a.list에 있는 항목이 체크가 되어있으면 newlist에 push*/
+                        //           if (this.a.list[i].checked == true) {
+                        //             console.log(this.a.list[i].checked);
+                        //             newlist.push(i);
+                        //             const toast = this.toastCtrl.create({
+                        //               message: '삭제되었습니다.',
+                        //               duration: 2000,
+                        //             });
+                        //             toast.present();
+                        //           }
+                        //         }
+                        //         for (var i = 0; i < newlist.length; i++) {
+                        //           this.a.list[newlist[i]] = "NC"
+                        //         }
+                        //         console.log(this.a.list)
+                        //         var filtered = this.a.list.filter(function (value) {
+                        //           console.log(value)
+                        //           return value != "NC";
+                        //         });
+                        //         console.log(filtered)
+                        //         this.a.list = filtered
+                        //         console.log(this.a.list);
+                        //         /*입력 리스트에서 삭제된 항목을 firebase에서 삭제하기위해 list 삭제*/
+                        //         this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
+                        //           for (var a in snap.val()) {
+                        //             this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").remove().then(() => {
+                        //               console.log("success")
+                        //             }).catch((e) => {
+                        //               console.log("error" + e);
+                        //             })
+                        //           }
+                        //           /*삭제한 list를 update를 통해 수정된 데이터로 다시 넣어줌 */
+                        //           this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list).then(() => {
+                        //             console.log(this.a.list);
+                        //           });
+                        //           /*totalNumber와 Select값 가져오기*/
+                        //           this.totalnumber = this.a.list.length;
+                        //           var count = 0;
+                        //           for (var i = 0; i < this.a.list.length; i++) {
+                        //             if (this.a.list[i].checked == true) {
+                        //               count++;
+                        //             }
+                        //           }
+                        //           this.selected = count;
+                        //           this.refreshname(); //새로고침
+                        //         })
+                    }
+                }
+            ]
+        });
+        alert.present();
     };
     /*sort구현*/
     ViewshoppinglistPage.prototype.sortlist = function (fab) {
@@ -1946,8 +1989,14 @@ var ViewshoppinglistPage = /** @class */ (function () {
                 {
                     text: '예',
                     handler: function (data) {
-                        console.log(_this.checked);
-                        console.log(_this.unchecked);
+                        // var sortingField = this.check;
+                        // console.log(sortingField);
+                        // this.a.list.sort(function (name1, name2) { // 오름차순
+                        // console.log(this.check);
+                        // return (a[sortingField] === b[sortingField])? 0 : a[sortingField]? -1 : 1;
+                        // var x = name1[sortingField]; var y = name2[sortingField];
+                        // return name1.name[sortingField] < name2.name[sortingField] ? -1 : name1.name[sortingField] > name2.name[sortingField] ? 1 : 0;
+                        // });
                         _this.a.list.sort(function (name1, name2) {
                             return name1.name.toLowerCase() < name2.name.toLowerCase() ? -1 : name1.name.toLowerCase() > name2.name.toLowerCase() ? 1 : 0;
                         });
@@ -2020,7 +2069,7 @@ var ViewshoppinglistPage = /** @class */ (function () {
     ], ViewshoppinglistPage.prototype, "onPressRelease", void 0);
     ViewshoppinglistPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-viewshoppinglist',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/viewshoppinglist/viewshoppinglist.html"*/'<ion-header>\n    <ion-navbar color="navbar">\n        <span style="color:white; font-size:23px; font-weight: 900">{{a.title}}</span>\n    </ion-navbar>\n</ion-header>\n<ion-content padding>\n    <ion-row>\n        <ion-col col-10>\n            <span style="font-size:18px; color:#42B8B8; font-weight: 900;">{{a.time}}</span>\n        </ion-col>\n        <ion-col col-2>\n            <button class="saveButton" (click)="save()">저장</button>\n        </ion-col>\n    </ion-row>\n    <ion-row style="background-color: #9FFAFA; border-radius: 6px;">\n        <ion-col col-8>\n            <span *ngIf="flag==false&&allbuy==false" style="color: #42B8B8; font-size:15px; font-weight: 900;">{{totalnumber}}개 중 {{selected}}개 구입</span>\n            <span *ngIf="flag==true&&allbuy==false" style="color: #42B8B8; font-size:15px; font-weight: 900;">{{totalnumber}}</span>\n            <span *ngIf="allbuy==true" style="color: #42B8B8; font-size:15px; font-weight: 900;">구입완료 {{totalnumber}}품목</span>\n\n        </ion-col>\n        <ion-col col-4>\n            <span style="color: #42B8B8; font-size:15px; font-weight: 900;">₩{{printsum}}</span>\n        </ion-col>\n    </ion-row>\n    <div>\n\n        <ion-item ion-long-press [interval]="3000" (pressed)="pressed()" (longPressed)="active()" (pressEnded)="released()" *ngFor="let att of a.list; let idx = index">\n\n            <ion-icon *ngIf="flag==true" class="iconwidth" style="margin:9px 3px 9px 4px;" name="close"></ion-icon>\n            <ion-checkbox [(ngModel)]="att.checked" style="z-index: 999999;" (ionChange)="addValue($event)" *ngIf="flag==false&&delflag1==false" color="dark" slot="start"></ion-checkbox>\n            <ion-img *ngIf="flag==false&&delflag1==true" src="./assets/imgs/087-버튼-PPT 32페이지의 좌측 이미지-휴지통 뚜껑 닫힌거.png" style="width:30px; height:30px;"></ion-img>\n            <ion-input text-center style="width: 10%;float: left; font-size:15px;" placeholder="상품명" [(ngModel)]="a.list[idx].name"></ion-input>\n            <ion-input text-center style="width: 5%;float: left; font-size:15px;" placeholder="수량" [(ngModel)]="a.list[idx].quantity"></ion-input>\n            <ion-input text-center style="width: calc(100%-0px-1px);float: left; font-size:13px;" placeholder="가격" [(ngModel)]="a.list[idx].price"></ion-input>\n            <button outline item-end style="float:right; width:15%;background-color: white;" (click)="select_sort(idx)"><img src="./assets/imgs/088-버튼-PPT 32페이지의 좌측 이미지-인터넷 지구+돋보기.png" alt=""></button>\n\n            <!-- <button ion-button outline item-end style="width:10%;" (click)="select_sort(idx)"><ion-icon name=\'search\' is-active="false"></ion-icon></button> -->\n        </ion-item>\n\n    </div>\n\n    <div style="width: 100%; margin-left:0px; margin-right:0px;" class="bottom">\n        <ion-input *ngIf="flag!=false" style="color:#808080; width: 65%;border-bottom: solid 1px;  border-bottom-color:rgb(74, 190, 190); float: left;" [(ngModel)]="adding" placeholder="품목을 입력하세요."></ion-input>\n        <button *ngIf="flag!=false" style="height: 3.5rem;background: transparent;border-radius: 7px;margin-left: 4px;" (click)="speeching()"><img src="./assets/imgs/086-버튼-PPT 31페이지의 가운데 이미지-녹음 마이크.png" style="width:30px;" alt=""></button>\n        <button *ngIf="flag!=false" style="height: 3.5rem;background: #9FFAFA;border: solid 1px #9FFAFA;border-radius: 7px;margin-top: 5px;margin-left: 4px;" (click)="add()">추가하기</button>\n        <div *ngIf="flag!=false&&flagInput==false" class="inputprice" style="margin-top:5px;">\n            <img *ngIf="flag!=false&&flagInput==false" src="./assets/imgs/084-버튼-PPT 31페이지의 가운데 이미지-점3개-회전1단계(시작).png " style="width:30px; " alt=" ">\n            <button *ngIf="flag!=false&&flagInput==false" style="background-color:white;color:rgb(74, 190, 190); font-size:14px; font-weight: bold;" (click)="priceandquantity()">가격 및 수량도 입력하기</button>\n        </div>\n        <div>\n            <button *ngIf="flagInput!=false" style="margin:0px; height: 3.5rem;background-color:#71E8E8;border-radius: 7px; margin-top: 3px;margin-left: 10px; margin-bottom:20px;" (click)="cancel()">상세취소</button>\n            <!-- <ion-input *ngIf="flagInput!=false" style="margin: 0px 0px; color:#808080; width: 30%; height: 3.5rem; border-bottom: solid 1px; float: left; margin-right: 2px; margin-left:2px;" [(ngModel)]="quantity" placeholder="수량"></ion-input> -->\n            <ion-select style="width:20%;height: 20%" [(ngModel)]="num" *ngIf="flagInput!=false" style="z-index:-999999; color:#808080; width: 34%; height: 4.3rem; border-bottom: solid 1px; float: left; margin-right: 2px; margin-left:2px;" [(ngModel)]="quantity"\n                placeholder="수량">\n                <ion-label>수량</ion-label>\n                <ion-option *ngFor="let number of number">{{number.count}}</ion-option>\n            </ion-select>\n            <ion-input *ngIf="flagInput!=false" style="margin: 0px 0px; color:#808080; width: 30%; height: 4.3rem; border-bottom: solid 1px; float: left; margin-left: 2px; margin-right:5px;" [(ngModel)]="price" placeholder="가격"></ion-input>\n        </div>\n    </div>\n\n    <div>\n        <ion-fab right bottom>\n            <button ion-fab mini style="background-color:white"><img class="rotate" src="./assets/imgs/084-버튼-PPT 31페이지의 가운데 이미지-점3개-회전1단계(시작).png " alt=" "></button>\n            <ion-fab-list side="top">\n                <button ion-fab class="fab-close" style="background-color:white" name="close" role="img" aria-label="close" ng-reflect-name="close"><img src="./assets/imgs/084-버튼-PPT 31페이지의 가운데 이미지-점3개-회전1단계(시작).png " alt=" "></button>\n                <button ion-fab style="background-color: white;" (click)="delete(a)"><img src="./assets/imgs/093-버튼-PPT 51페이지의 우측 이미지- 삭제하기 휴지통.png" alt=""></button>\n                <button ion-fab style="background-color: white;" (click)="insertData(a)"><img src="./assets/imgs/092-버튼-PPT 51페이지의 우측 이미지- 수정하기 연필모양.png" alt=""></button>\n                <button ion-fab style="background-color: white;" (click)="sortlist(a)"><img src="./assets/imgs/091-버튼-PPT 51페이지의 우측 이미지- 가나다순.png" style="width:100%" alt=""></button>\n\n            </ion-fab-list>\n        </ion-fab>\n    </div>\n</ion-content>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/viewshoppinglist/viewshoppinglist.html"*/,
+            selector: 'page-viewshoppinglist',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/viewshoppinglist/viewshoppinglist.html"*/'<ion-header>\n    <ion-navbar color="navbar">\n        <span style="color:white; font-size:23px; font-weight: 900">{{a.title}}</span>\n    </ion-navbar>\n</ion-header>\n<ion-content padding>\n    <ion-row>\n        <ion-col col-10>\n            <span style="font-size:18px; color:#42B8B8; font-weight: 900;">{{a.time}}</span>\n        </ion-col>\n        <ion-col col-2>\n            <button class="saveButton" (click)="save()">저장</button>\n        </ion-col>\n    </ion-row>\n    <ion-row style="background-color: #9FFAFA; border-radius: 6px;">\n        <ion-col col-8>\n            <span *ngIf="flag==false&&allbuy==false" style="color: #42B8B8; font-size:15px; font-weight: 900;">{{totalnumber}}개 중 {{selected}}개 구입</span>\n            <span *ngIf="flag==true&&allbuy==false" style="color: #42B8B8; font-size:15px; font-weight: 900;">{{totalnumber}}</span>\n            <span *ngIf="allbuy==true" style="color: #42B8B8; font-size:15px; font-weight: 900;">구입완료 {{totalnumber}}품목</span>\n\n        </ion-col>\n        <ion-col col-4>\n            <span style="color: #42B8B8; font-size:15px; font-weight: 900;">₩{{printsum}}</span>\n        </ion-col>\n    </ion-row>\n    <div>\n\n        <ion-item ion-long-press [interval]="3000" (pressed)="pressed()" (longPressed)="active()" (pressEnded)="released()" *ngFor="let att of a.list; let idx = index">\n\n            <ion-icon *ngIf="flag==true" class="iconwidth" style="margin:9px 3px 9px 4px;" name="close"></ion-icon>\n            <ion-checkbox [(ngModel)]="att.checked" style="z-index: 999999;" (ionChange)="addValue($event)" *ngIf="flag==false" color="dark" slot="start"></ion-checkbox>\n            <button outline item-start style="float:left; width:13%; background-color:white; z-index:999999" *ngIf="flag==true&&delflag1==true" (click)="del(a.list[idx].name)">\n                <img src="./assets/imgs/087-버튼-PPT 32페이지의 좌측 이미지-휴지통 뚜껑 닫힌거.png" alt="">\n            </button>\n            <ion-input text-center style="width: 10%;float: left; font-size:15px;" placeholder="상품명" [(ngModel)]="a.list[idx].name"></ion-input>\n            <ion-input text-center style="width: 5%;float: left; font-size:15px;" placeholder="수량" [(ngModel)]="a.list[idx].quantity"></ion-input>\n            <ion-input text-center style="width: calc(100%-0px-1px);float: left; font-size:13px;" placeholder="가격" [(ngModel)]="a.list[idx].price"></ion-input>\n            <button outline item-end style="float:right; width:15%;background-color: white;" (click)="select_sort(idx)"><img src="./assets/imgs/088-버튼-PPT 32페이지의 좌측 이미지-인터넷 지구+돋보기.png" alt=""></button>\n\n            <!-- <button ion-button outline item-end style="width:10%;" (click)="select_sort(idx)"><ion-icon name=\'search\' is-active="false"></ion-icon></button> -->\n        </ion-item>\n\n    </div>\n\n    <div style="width: 100%; margin-left:0px; margin-right:0px;" class="bottom">\n        <ion-input *ngIf="flag!=false" style="color:#808080; width: 65%;border-bottom: solid 1px;  border-bottom-color:rgb(74, 190, 190); float: left;" [(ngModel)]="adding" placeholder="품목을 입력하세요."></ion-input>\n        <button *ngIf="flag!=false" style="height: 3.5rem;background: transparent;border-radius: 7px;margin-left: 4px;" (click)="speeching()"><img src="./assets/imgs/086-버튼-PPT 31페이지의 가운데 이미지-녹음 마이크.png" style="width:30px;" alt=""></button>\n        <button *ngIf="flag!=false" style="height: 3.5rem;background: #9FFAFA;border: solid 1px #9FFAFA;border-radius: 7px;margin-top: 5px;margin-left: 4px;" (click)="add()">추가하기</button>\n        <div *ngIf="flag!=false&&flagInput==false" class="inputprice" style="margin-top:5px;">\n            <img *ngIf="flag!=false&&flagInput==false" src="./assets/imgs/084-버튼-PPT 31페이지의 가운데 이미지-점3개-회전1단계(시작).png " style="width:30px; " alt=" ">\n            <button *ngIf="flag!=false&&flagInput==false" style="background-color:white;color:rgb(74, 190, 190); font-size:14px; font-weight: bold;" (click)="priceandquantity()">가격 및 수량도 입력하기</button>\n        </div>\n        <div>\n            <button *ngIf="flagInput!=false" style="margin:0px; height: 3.5rem;background-color:#71E8E8;border-radius: 7px; margin-top: 3px;margin-left: 10px; margin-bottom:20px;" (click)="cancel()">상세취소</button>\n            <!-- <ion-input *ngIf="flagInput!=false" style="margin: 0px 0px; color:#808080; width: 30%; height: 3.5rem; border-bottom: solid 1px; float: left; margin-right: 2px; margin-left:2px;" [(ngModel)]="quantity" placeholder="수량"></ion-input> -->\n            <ion-select style="width:20%;height: 20%" [(ngModel)]="num" *ngIf="flagInput!=false" style="z-index:-999999; color:#808080; width: 34%; height: 4.3rem; border-bottom: solid 1px; float: left; margin-right: 2px; margin-left:2px;" [(ngModel)]="quantity"\n                placeholder="수량">\n                <ion-label>수량</ion-label>\n                <ion-option *ngFor="let number of number">{{number.count}}</ion-option>\n            </ion-select>\n            <ion-input *ngIf="flagInput!=false" style="margin: 0px 0px; color:#808080; width: 30%; height: 4.3rem; border-bottom: solid 1px; float: left; margin-left: 2px; margin-right:5px;" [(ngModel)]="price" placeholder="가격"></ion-input>\n        </div>\n    </div>\n\n    <div>\n        <ion-fab right bottom>\n            <button ion-fab mini style="background-color:white"><img class="rotate" src="./assets/imgs/084-버튼-PPT 31페이지의 가운데 이미지-점3개-회전1단계(시작).png " alt=" "></button>\n            <ion-fab-list side="top">\n                <button ion-fab class="fab-close" style="background-color:white" name="close" role="img" aria-label="close" ng-reflect-name="close"><img src="./assets/imgs/084-버튼-PPT 31페이지의 가운데 이미지-점3개-회전1단계(시작).png " alt=" "></button>\n                <button ion-fab style="background-color: white;" (click)="delete(a)"><img src="./assets/imgs/093-버튼-PPT 51페이지의 우측 이미지- 삭제하기 휴지통.png" alt=""></button>\n                <button ion-fab style="background-color: white;" (click)="insertData(a)"><img src="./assets/imgs/092-버튼-PPT 51페이지의 우측 이미지- 수정하기 연필모양.png" alt=""></button>\n                <button ion-fab style="background-color: white;" (click)="sortlist(a)"><img src="./assets/imgs/091-버튼-PPT 51페이지의 우측 이미지- 가나다순.png" style="width:100%" alt=""></button>\n\n            </ion-fab-list>\n        </ion-fab>\n    </div>\n</ion-content>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/viewshoppinglist/viewshoppinglist.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__["a" /* InAppBrowser */],
@@ -2655,6 +2704,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  */
 var MartinfoPage = /** @class */ (function () {
     function MartinfoPage(navCtrl, navParams, toastCtrl, socialSharing, modal) {
+        var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.toastCtrl = toastCtrl;
@@ -2671,24 +2721,71 @@ var MartinfoPage = /** @class */ (function () {
         this.userarr = [];
         this.date = new Date();
         this.thismonth = [];
+        this.offdayyear = [];
         this.dayoffarray = [];
         this.aaa = [];
+        this.offdayarray = [];
         this.favoriteList = [];
         this.mart = this.navParams.get("mart");
         this.area = this.navParams.get("area");
-        this.newDate();
-        console.log(this.dayoffarray);
+        this.martfunc();
+        this.todayy.push("오늘", "", "", "", "", "", "");
         console.log(this.mart);
         console.log(this.area);
-        this.martfunc();
         this.year = this.day.getFullYear();
         this.month = this.day.getMonth() + 1;
         // this.date = this.day.getDate();
         this.dayOfweek = this.day.getDay();
         // this.theDate();
-        this.todayy = ['오늘'];
         console.log(this.martArray);
+        this.firemain.child("users").child(this.userId).child("favorite").once("value", function (sn) {
+            console.log(sn.val());
+            for (var i in sn.val()) {
+                for (var j in sn.val()[i]) {
+                    // this.fav = sn.val[i][j].favorite;
+                    console.log(sn.val()[i][j].favorite);
+                    _this.favoriteList.push(sn.val()[i][j]);
+                    // console.log(this.fav);
+                    for (var mart in _this.martArray) {
+                        if (sn.val()[i][j].name == _this.martArray[mart].name) {
+                            if (sn.val()[i][j].favorite == true) {
+                                _this.martArray[mart].favorite = true;
+                                console.log("success");
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        // for(var fav in this.favoriteList){
+        //   console.log(this.favoriteList);
+        //   for(var mart in this.martArray){
+        //     console.log("mart");
+        //     if(this.favoriteList[fav].name == this.martArray[mart].name){
+        //       console.log(this.favoriteList[fav].name);
+        //       console.log(this.martArray[mart].name);
+        //       if(this.favoriteList[fav].favorite == true){
+        //         this.martArray[mart].favorite = true;
+        //       }
+        //     }
+        //   }
+        // }
+        this.favchange();
+        console.log(this.favoriteList);
+        console.log(this.martArray);
+        this.newDate();
     }
+    MartinfoPage.prototype.favchange = function () {
+        for (var a in this.favoriteList) {
+            console.log("1111111111");
+            for (var b in this.martArray) {
+                console.log("22222222");
+                if (this.favoriteList[a].addr == this.martArray[b].addr) {
+                    console.log("33333333");
+                }
+            }
+        }
+    };
     MartinfoPage.prototype.martview = function (martinfo) {
         console.log(martinfo);
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__martinfoview_martinfoview__["a" /* MartinfoviewPage */], { "martinfo": martinfo });
@@ -2706,48 +2803,10 @@ var MartinfoPage = /** @class */ (function () {
         var modal = this.modal.create(__WEBPACK_IMPORTED_MODULE_5__rate_rate__["a" /* RatePage */]);
         modal.present();
     };
-    MartinfoPage.prototype.newDate = function () {
-        var days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
-        var prefixes = ['첫째주', '둘째주', '셋째주', '넷째주', '다섯째주'];
-        this.currentMonth = this.date.getMonth() + 1;
-        this.currentYear = this.date.getFullYear();
-        var prevNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth(), 0).getDate();
-        var thisNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDate();
-        var lastDayThisMonth = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDay();
-        var dayofweek = this.date.getDay();
-        if (this.date.getMonth() === new Date().getMonth()) {
-            this.currentDate = new Date().getDate();
-        }
-        else {
-            this.currentDate = 999;
-        }
-        var count = 0;
-        console.log("1: " + this.currentDate);
-        for (var i = 0; i < 7; i++) {
-            console.log(thisNumOfDays);
-            var dow = dayofweek++;
-            if (dayofweek >= 7) {
-                dayofweek = 0;
-            }
-            if (this.currentDate + i <= thisNumOfDays) {
-                this.week.push({ "week": prefixes[0 | (this.currentDate + i - 1) / 7], "month": this.currentMonth, "day": this.currentDate + i, "dayofweek": days[dow] }); //30일
-                console.log(dayofweek);
-            }
-            else if (this.currentDate + i > thisNumOfDays) {
-                count++;
-                this.week.push({ "week": prefixes[0 | (count + i - 1) / 7], "month": this.currentMonth + 1, "day": count, "dayofweek": days[dow] }); //30일
-                console.log(dayofweek);
-            }
-            console.log(count);
-        }
-        console.log(this.week);
-        console.log(prevNumOfDays); //첫날과 마지막 날을 제외한 이 달의 일수
-        console.log(thisNumOfDays); //한 달의 날수
-        console.log(lastDayThisMonth); //이 달의 마지막 날의 요일.
-    };
     MartinfoPage.prototype.newfunction = function (name) {
         var _this = this;
         console.log(name);
+        console.log(this.favoriteList);
         this.userId = "a2f05b91-956a-b480-3525-991002905558";
         console.log(this.area);
         this.firemain.child("mart").once("value", function (sn) {
@@ -2759,6 +2818,7 @@ var MartinfoPage = /** @class */ (function () {
                             if (sn.val()[a][b].addr.indexOf("서울") != -1 && sn.val()[a][b].addr.indexOf("서울대학로") == -1) {
                                 counting++;
                                 _this.martArray.push(sn.val()[a][b]);
+                                console.log(_this.martArray);
                                 _this.vacationArr.push(sn.val()[a][b].vacation);
                                 _this.vacation = sn.val()[a][b].vacation;
                                 _this.vacationFunc(_this.week, sn.val()[a][b], counting);
@@ -2995,6 +3055,7 @@ var MartinfoPage = /** @class */ (function () {
         console.log(v); //this.week
         console.log(mart); //db
         console.log(count); //count
+        this.cnt = count;
         console.log("mart to change json");
         console.log(this.martArray);
         console.log(mart.vacation);
@@ -3147,15 +3208,6 @@ var MartinfoPage = /** @class */ (function () {
             }
             console.log(this.dayoffarray);
             console.log("dayofarray");
-            // if (mart.vacation.indexOf("다섯째") > -1) {
-            //   var weekoff = this.weekcheck(this.martArray[count - 1])
-            //   console.log("off is : " + weekoff);
-            //   if (weekoff == v[a].dayofweek) {
-            //     dayoffarray.push("휴무")
-            //   } else {
-            //     dayoffarray.push("영업")
-            //   }
-            // }
             this.martArray[count - 1].dayoffarray = this.dayoffarray;
             console.log(this.martArray);
             console.log("done");
@@ -3163,6 +3215,110 @@ var MartinfoPage = /** @class */ (function () {
             console.log(this.martArray[count - 1]);
             this.today = this.dayoffarray[0];
         }
+        console.log(this.dayoffarray);
+        this.offdayarray = this.dayoffarray;
+        this.offdayyear = [
+            { "year": "2020", "seol": "1월25", "chuseok": "10월1" },
+            { "year": "2021", "seol": "2월12", "chuseok": "9월21" },
+            { "year": "2022", "seol": "2월1", "chuseok": "9월10" },
+            { "year": "2023", "seol": "1월22", "chuseok": "9월29" },
+            { "year": "2024", "seol": "2월10", "chuseok": "9월17" },
+            { "year": "2025", "seol": "1월29", "chuseok": "10월6" },
+            { "year": "2026", "seol": "2월17", "chuseok": "9월25" },
+            { "year": "2027", "seol": "2월7", "chuseok": "9월15" },
+            { "year": "2028", "seol": "1월27", "chuseok": "10월3" },
+            { "year": "2029", "seol": "2월13", "chuseok": "9월22" },
+            { "year": "2030", "seol": "2월3", "chuseok": "9월12" },
+        ];
+        for (var off in this.offdayyear) {
+            if (this.offdayyear[off].year == this.currentYear) {
+                if (this.offdayyear[off].seol == this.currentMonth + "월" + this.currentDate) {
+                    console.log(this.currentMonth + "월" + this.currentDate);
+                    this.offdayname = "설날";
+                }
+                if (this.offdayyear[off].chuseok == this.currentMonth + "월" + this.currentDate) {
+                    console.log(this.currentMonth + "월" + this.currentDate);
+                    this.offdayname = "추석";
+                }
+                else if (this.offdayyear[off].seol != this.currentMonth + "월" + this.currentDate && this.offdayyear[off].chuseok != this.currentMonth + "월" + this.currentDate) {
+                    this.offdayname = "";
+                }
+                console.log(this.offdayname);
+            }
+        }
+        console.log(this.week);
+        for (var off2 in this.week) {
+            for (var off3 in this.offdayyear) {
+                if (this.offdayyear[off3].year == this.currentYear) {
+                    if (this.week[off2].month + "월" + this.week[off2].day == this.offdayyear[off3].seol) {
+                        console.log("설날");
+                        this.todayy[off2] = "설날";
+                        console.log(this.todayy);
+                        console.log(this.dayoffarray);
+                        this.dayoffarray[off2] = "휴무";
+                        console.log(this.dayoffarray);
+                        console.log(this.cnt);
+                        for (var cnt = 0; cnt < count; cnt++) {
+                            this.martArray[count - 1].dayoffarray = this.dayoffarray;
+                        }
+                    }
+                    if (this.week[off2].month + "월" + this.week[off2].day == this.offdayyear[off3].chuseok) {
+                        console.log("추석");
+                        this.todayy[off2] = "추석";
+                        console.log(this.todayy);
+                        console.log(this.dayoffarray);
+                        this.dayoffarray[off2] = "휴무";
+                        console.log(this.dayoffarray);
+                        console.log(this.cnt);
+                        for (var cnt = 0; cnt < count; cnt++) {
+                            this.martArray[count - 1].dayoffarray = this.dayoffarray;
+                        }
+                    }
+                }
+            }
+        }
+    };
+    MartinfoPage.prototype.newDate = function () {
+        console.log(this.martArray);
+        console.log(this.dayoffarray);
+        var days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
+        var prefixes = ['첫째주', '둘째주', '셋째주', '넷째주', '다섯째주'];
+        // this.currentMonth = this.date.getMonth() + 1;
+        this.currentMonth = this.date.getMonth() - 1;
+        this.currentYear = this.date.getFullYear();
+        var prevNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth(), 0).getDate();
+        var thisNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDate();
+        var lastDayThisMonth = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDay();
+        var dayofweek = this.date.getDay();
+        if (this.date.getMonth() === new Date().getMonth()) {
+            this.currentDate = new Date().getDate();
+        }
+        else {
+            this.currentDate = 999;
+        }
+        var count = 0;
+        console.log("1: " + this.currentDate);
+        for (var i = 0; i < 7; i++) {
+            console.log(thisNumOfDays);
+            var dow = dayofweek++;
+            if (dayofweek >= 7) {
+                dayofweek = 0;
+            }
+            if (this.currentDate + i <= thisNumOfDays) {
+                this.week.push({ "week": prefixes[0 | (this.currentDate + i - 1) / 7], "month": this.currentMonth, "day": this.currentDate + i, "dayofweek": days[dow] }); //30일
+                console.log(dayofweek);
+            }
+            else if (this.currentDate + i > thisNumOfDays) {
+                count++;
+                this.week.push({ "week": prefixes[0 | (count + i - 1) / 7], "month": this.currentMonth + 1, "day": count, "dayofweek": days[dow] }); //30일
+                console.log(dayofweek);
+            }
+            console.log(count);
+        }
+        console.log(this.week);
+        console.log(prevNumOfDays); //첫날과 마지막 날을 제외한 이 달의 일수
+        console.log(thisNumOfDays); //한 달의 날수
+        console.log(lastDayThisMonth); //이 달의 마지막 날의 요일.
     };
     MartinfoPage.prototype.martfunc = function () {
         if (this.mart == "lottemart") {
@@ -3230,7 +3386,6 @@ var MartinfoPage = /** @class */ (function () {
         }
     };
     MartinfoPage.prototype.favorite = function (a, idx) {
-        var _this = this;
         var newnametoinput = "";
         if (this.mart == "lottemart") {
             newnametoinput = "lotte";
@@ -3269,31 +3424,34 @@ var MartinfoPage = /** @class */ (function () {
         if (flag != true) {
             this.firemain.child("users").child(this.userId).child("favorite").once("value", function (sn) {
                 console.log(sn.val());
-                for (var i in sn.val()) {
-                    console.log(i);
-                    console.log(sn.val()[i]);
-                    for (var j in sn.val()[i]) {
-                        _this.favoriteList.push(sn.val()[i][j]);
-                    }
-                }
-                console.log(_this.favoriteList.length);
-                if (_this.favoriteList.length < 20) {
-                    _this.martArray[idx].favorite = true;
-                    _this.firemain.child("users").child(_this.userId).child("favorite").child(newnametoinput).child(a.key).update(_this.martArray[idx]);
-                    console.log(_this.martArray[idx]);
-                    var toast = _this.toastCtrl.create({
-                        message: '첫 화면 "즐겨찾기"에 추가되었습니다.',
-                        duration: 2000,
-                    });
-                    toast.present();
-                }
-                else if (_this.favoriteList.length >= 20) {
-                    var modal = _this.modal.create(__WEBPACK_IMPORTED_MODULE_7__favoritemodal_favoritemodal__["a" /* FavoritemodalPage */], null, {
-                        cssClass: "modalSize"
-                    });
-                    modal.present();
-                }
             });
+            // for(var fav in this.favoriteList){
+            //   for(var mart in this.martArray){
+            //     if(this.favoriteList[fav].name == this.martArray[mart].name){
+            //       if(this.favoriteList[fav].favorite == true){
+            //         this.martArray[mart].favorite = true;
+            //       }
+            //     }
+            //   }
+            // }
+            console.log(this.martArray);
+            console.log(this.favoriteList);
+            if (this.favoriteList.length < 20) {
+                this.martArray[idx].favorite = true;
+                this.firemain.child("users").child(this.userId).child("favorite").child(newnametoinput).child(a.key).update(this.martArray[idx]);
+                console.log(this.martArray[idx]);
+                var toast = this.toastCtrl.create({
+                    message: '첫 화면 "즐겨찾기"에 추가되었습니다.',
+                    duration: 2000,
+                });
+                toast.present();
+            }
+            else if (this.favoriteList.length >= 20) {
+                var modal = this.modal.create(__WEBPACK_IMPORTED_MODULE_7__favoritemodal_favoritemodal__["a" /* FavoritemodalPage */], null, {
+                    cssClass: "modalSize"
+                });
+                modal.present();
+            }
         }
         else {
             flag = false;
@@ -3311,7 +3469,7 @@ var MartinfoPage = /** @class */ (function () {
     };
     MartinfoPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-martinfo',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/martinfo/martinfo.html"*/'<ion-content>\n    <div style="background-color: #71E8E8; margin-bottom:5px; display:flex;">\n        <img src="./assets/imgs/008-버튼-PPT 4페이지의 가운데 이미지의 상단 좌측-말 얼굴.png" style="width:50px; margin:5px;" alt="">\n        <span style="color:white; font-size:18px; font-weight: 900; margin:auto;">즐겨찾기 추가는 "♡"터치</span>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/004-버튼-PPT 3페이지의 이미지의 상단 가운데-광고금지.png" (click)="NoneAd()" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/005-버튼-PPT 3페이지의 이미지의 상단 우측-평가하기 별점주기.png" (click)="appstore()" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/006-버튼-PPT 3페이지의 이미지의 상단 우측-공유하기 점 세개.png" (click)="regularShare()" style="width:25px;"></button>\n    </div>\n    <div style="background-color: #fafafa;">\n        <ion-item-divider color="light"><img src="{{img}}" style="width:50px;margin-right:10px;">{{name}}</ion-item-divider>\n        <ion-item-group style="background-color: #fafafa;">\n            <div *ngFor="let i of martArray; let idx = index " class="border">\n                <button style="background-color: white;" class="btn1">\n                  <table>\n                    <thead>\n                      <th class="martname" style="margin-top: 10px;" (click)="martview(i)">\n                        {{i.name}}\n                      </th>\n                      <th class="dayoffimg">\n                        <img (click)="martview(i)"*ngIf="today==\'영업\'" src="./assets/imgs/043-버튼-PPT 5페이지의 우측 이미지 영업 알림 버튼-오늘 영업.png" style="width:60%;">\n                        <img (click)="martview(i)" *ngIf="today==\'휴무\'" src="./assets/imgs/044-버튼-PPT 5페이지의 우측 이미지 영업 알림 버튼-오늘 휴무.png" style="width:60%;">\n                        <button (click)="favorite(i, idx);" style="width:40px; height:40px; background-color: white;">\n                          <img class="heart" *ngIf="i.favorite==\'false\'" src="./assets/imgs/045-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-블랭크 하트(즐겨찾기전).png" style="width:100%;" alt="">\n                          <img class="heart" *ngIf="i.favorite==true" src="./assets/imgs/046-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-노란 하트(즐겨찾기후).png" style="width:100%;" alt="">\n                          <img class="heart" *ngIf="i.favorite==false" src="./assets/imgs/045-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-블랭크 하트(즐겨찾기전).png" style="width:100%;" alt="">\n                        </button>\n                </th>\n                </thead>\n                </table>\n                <table>\n                    <tbody>\n                        <tr class="datespan">\n                            {{todayy}}\n                        </tr>\n                        <tr class="datespan">\n                            <td *ngFor="let j of week" class="tabletd">\n                                <span>{{j.dayofweek}}</span>\n                            </td>\n                        </tr>\n                        <tr class="datespan">\n                            <td *ngFor="let j of week" class="tabletd">\n                                <span>{{j.month}}/{{j.day}}</span>\n                            </td>\n                        </tr>\n                        <tr class="datespan">\n                            <td *ngFor="let m of i.dayoffarray" class="tabletd">\n                                <span *ngIf="m==\'휴무\'" class="mSpan1">{{m}}</span>\n                                <span *ngIf="m==\'영업\'" class="mSpan2">{{m}}</span>\n                            </td>\n                        </tr>\n                    </tbody>\n                </table>\n                </button>\n            </div>\n        </ion-item-group>\n    </div>\n</ion-content>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/martinfo/martinfo.html"*/,
+            selector: 'page-martinfo',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/martinfo/martinfo.html"*/'<ion-content>\n    <div style="background-color: #71E8E8; margin-bottom:5px; display:flex;">\n        <img src="./assets/imgs/008-버튼-PPT 4페이지의 가운데 이미지의 상단 좌측-말 얼굴.png" style="width:50px; margin:5px;" alt="">\n        <span style="color:white; font-size:18px; font-weight: 900; margin:auto;">즐겨찾기 추가는 "♡"터치</span>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/004-버튼-PPT 3페이지의 이미지의 상단 가운데-광고금지.png" (click)="NoneAd()" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/005-버튼-PPT 3페이지의 이미지의 상단 우측-평가하기 별점주기.png" (click)="appstore()" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;"><img src="./assets/imgs/006-버튼-PPT 3페이지의 이미지의 상단 우측-공유하기 점 세개.png" (click)="regularShare()" style="width:25px;"></button>\n    </div>\n    <div style="background-color: #fafafa;">\n        <ion-item-divider color="light"><img src="{{img}}" style="width:50px;margin-right:10px;">{{name}}</ion-item-divider>\n        <ion-item-group style="background-color: #fafafa;">\n            <div *ngFor="let i of martArray; let idx = index " class="border">\n                <button style="background-color: white;" class="btn1">\n                  <table>\n                    <thead>\n                      <th class="martname" style="margin-top: 10px;" (click)="martview(i)">\n                        {{i.name}}\n                      </th>\n                      <th class="dayoffimg">\n                        <img (click)="martview(i)"*ngIf="today==\'영업\'" src="./assets/imgs/043-버튼-PPT 5페이지의 우측 이미지 영업 알림 버튼-오늘 영업.png" style="width:60%;">\n                        <img (click)="martview(i)" *ngIf="today==\'휴무\'" src="./assets/imgs/044-버튼-PPT 5페이지의 우측 이미지 영업 알림 버튼-오늘 휴무.png" style="width:60%;">\n                        <button (click)="favorite(i, idx);" style="width:40px; height:40px; background-color: white;">\n                          <img class="heart" *ngIf="i.favorite==\'false\'" src="./assets/imgs/045-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-블랭크 하트(즐겨찾기전).png" style="width:100%;" alt="">\n                          <img class="heart" *ngIf="i.favorite==true" src="./assets/imgs/046-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-노란 하트(즐겨찾기후).png" style="width:100%;" alt="">\n                          <img class="heart" *ngIf="i.favorite==false" src="./assets/imgs/045-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-블랭크 하트(즐겨찾기전).png" style="width:100%;" alt="">\n                        </button>\n                </th>\n                </thead>\n                </table>\n                <table>\n                    <tbody>\n                        <tr class="datespan">\n                            <td class="tabletd" *ngFor="let i of todayy" style="margin-top:10px;">\n                                <span *ngIf="i!=\'오늘\'" style="color:red; font-weight: 500;">{{i}}</span>\n                                <span *ngIf="i==\'오늘\'" style="color:rgb(0, 119, 255); font-weight: 500;">{{i}}</span>\n                            </td>\n                        </tr>\n                        <tr class="datespan">\n                            <td *ngFor="let j of week" class="tabletd">\n                                <span>{{j.dayofweek}}</span>\n                            </td>\n                        </tr>\n                        <tr class="datespan">\n                            <td *ngFor="let j of week" class="tabletd">\n                                <span>{{j.month}}/{{j.day}}</span>\n                            </td>\n                        </tr>\n                        <tr class="datespan">\n                            <td *ngFor="let m of i.dayoffarray" class="tabletd">\n                                <span *ngIf="m==\'휴무\'" class="mSpan1">{{m}}</span>\n                                <span *ngIf="m==\'영업\'" class="mSpan2">{{m}}</span>\n                            </td>\n                        </tr>\n                    </tbody>\n                </table>\n                </button>\n\n            </div>\n        </ion-item-group>\n    </div>\n</ion-content>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/martinfo/martinfo.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */],
             __WEBPACK_IMPORTED_MODULE_3__ionic_native_social_sharing__["a" /* SocialSharing */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ModalController */]])
@@ -3788,6 +3946,9 @@ var HomePage = /** @class */ (function () {
         this.date = new Date();
         this.thismonth = [];
         this.week = [];
+        this.offdayyear = [];
+        this.firstDate = new Date(this.year, this.month, 1).getDay(); //첫날의 요일
+        this.lastDate = new Date(this.year, this.month + 1, 0); //마지막 날의 요일
         this.dayoffarray = [];
         this.srct = {
             text: '',
@@ -3797,7 +3958,8 @@ var HomePage = /** @class */ (function () {
         this.fabButtonOpened = false;
         this.refreshname();
         this.favorite();
-        this.today = ['오늘'];
+        this.today.push("오늘", "", "", "", "", "", "");
+        console.log(this.today);
         this.newDate();
         setTimeout(function () {
             _this.uniqueDeviceID.get()
@@ -3828,7 +3990,8 @@ var HomePage = /** @class */ (function () {
     HomePage.prototype.newDate = function () {
         var days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
         var prefixes = ['첫째주', '둘째주', '셋째주', '넷째주', '다섯째주'];
-        this.currentMonth = this.date.getMonth() + 1;
+        // this.currentMonth = this.date.getMonth() + 1;
+        this.currentMonth = this.date.getMonth() - 1;
         this.currentYear = this.date.getFullYear();
         var prevNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth(), 0).getDate();
         var thisNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDate();
@@ -3859,7 +4022,6 @@ var HomePage = /** @class */ (function () {
                 this.week.push({ "week": prefixes[0 | (count + i - 1) / 7], "month": this.currentMonth + 1, "day": count, "dayofweek": days[dow] }); //30일
                 console.log(dayofweek);
             }
-            console.log(count);
         }
         console.log(this.week);
         console.log(prevNumOfDays); //첫날과 마지막 날을 제외한 이 달의 일수
@@ -3890,8 +4052,11 @@ var HomePage = /** @class */ (function () {
                 console.log(sn.val()[i]);
                 for (var j in sn.val()[i]) {
                     count++;
-                    _this.todayoff = sn.val()[i][j].dayoffarray[0];
+                    _this.todayoff = sn.val()[i][j].dayoffarray[1];
+                    console.log(_this.todayoff);
+                    console.log(sn.val()[i][j].dayoffarray);
                     _this.favoriteList.push(sn.val()[i][j]);
+                    console.log(_this.favoriteList);
                     _this.vacationFunc(_this.week, sn.val()[i][j], count);
                 }
             }
@@ -3936,6 +4101,8 @@ var HomePage = /** @class */ (function () {
         console.log(week);
         console.log(mart.vacation);
         console.log(count);
+        this.cnt = count;
+        console.log(this.cnt);
         var counting = 0;
         this.dayoffarray = [];
         for (var a in week) {
@@ -4146,6 +4313,68 @@ var HomePage = /** @class */ (function () {
                             console.log(bb[1]);
                             console.log(_this.currentMonth);
                             console.log(_this.currentDate);
+                            console.log(_this.currentYear);
+                            _this.offdayyear = [
+                                { "year": "2020", "seol": "1월25", "chuseok": "10월1" },
+                                { "year": "2021", "seol": "2월12", "chuseok": "9월21" },
+                                { "year": "2022", "seol": "2월1", "chuseok": "9월10" },
+                                { "year": "2023", "seol": "1월22", "chuseok": "9월29" },
+                                { "year": "2024", "seol": "2월10", "chuseok": "9월17" },
+                                { "year": "2025", "seol": "1월29", "chuseok": "10월6" },
+                                { "year": "2026", "seol": "2월17", "chuseok": "9월25" },
+                                { "year": "2027", "seol": "2월7", "chuseok": "9월15" },
+                                { "year": "2028", "seol": "1월27", "chuseok": "10월3" },
+                                { "year": "2029", "seol": "2월13", "chuseok": "9월22" },
+                                { "year": "2030", "seol": "2월3", "chuseok": "9월12" },
+                            ];
+                            for (var off in _this.offdayyear) {
+                                if (_this.offdayyear[off].year == _this.currentYear) {
+                                    if (_this.offdayyear[off].seol == _this.currentMonth + "월" + _this.currentDate) {
+                                        console.log(_this.currentMonth + "월" + _this.currentDate);
+                                        _this.offdayname = "설날";
+                                    }
+                                    if (_this.offdayyear[off].chuseok == _this.currentMonth + "월" + _this.currentDate) {
+                                        console.log(_this.currentMonth + "월" + _this.currentDate);
+                                        _this.offdayname = "추석";
+                                    }
+                                    else if (_this.offdayyear[off].seol != _this.currentMonth + "월" + _this.currentDate && _this.offdayyear[off].chuseok != _this.currentMonth + "월" + _this.currentDate) {
+                                        _this.offdayname = "";
+                                    }
+                                    console.log(_this.offdayname);
+                                }
+                            }
+                            console.log(_this.week);
+                            for (var off2 in _this.week) {
+                                for (var off3 in _this.offdayyear) {
+                                    if (_this.offdayyear[off3].year == _this.currentYear) {
+                                        if (_this.week[off2].month + "월" + _this.week[off2].day == _this.offdayyear[off3].seol) {
+                                            console.log("설날");
+                                            _this.today[off2] = "설날";
+                                            console.log(_this.today);
+                                            _this.dayoffarray[off2] = "휴무";
+                                            console.log(_this.dayoffarray);
+                                            console.log(_this.cnt);
+                                            for (var count = 0; count < _this.cnt; count++) {
+                                                console.log(count);
+                                                _this.favoriteList[count].dayoffarray = _this.dayoffarray;
+                                            }
+                                        }
+                                        if (_this.week[off2].month + "월" + _this.week[off2].day == _this.offdayyear[off3].chuseok) {
+                                            console.log("추석");
+                                            _this.today[off2] = "추석";
+                                            console.log(_this.today);
+                                            _this.dayoffarray[off2] = "휴무";
+                                            console.log(_this.dayoffarray);
+                                            console.log(_this.cnt);
+                                            for (var count = 0; count < _this.cnt; count++) {
+                                                console.log(count);
+                                                _this.favoriteList[count].dayoffarray = _this.dayoffarray;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            console.log(_this.offdayyear);
                             if (_this.currentMonth == bb[0]) {
                                 if (_this.currentDate == bb[1]) {
                                     console.log("오늘");
@@ -4825,7 +5054,7 @@ var HomePage = /** @class */ (function () {
     var HomePage_1;
     HomePage = HomePage_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/home/home.html"*/'<ion-content padding>\n    <div class="upper" style="background-color: #71E8E8; display:flex;">\n        <ion-searchbar style="float:left;width: 55%; padding:6px;" placeholder="검색,즐겨찾기추가" (click)="main();" [(ngModel)]="startPoint" clearInput></ion-searchbar>\n        <button style="background-color:#71E8E8;" (click)="NoneAd()"><img src="./assets/imgs/004-버튼-PPT 3페이지의 이미지의 상단 가운데-광고금지.png" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;" (click)="appstore()"><img src="./assets/imgs/005-버튼-PPT 3페이지의 이미지의 상단 우측-평가하기 별점주기.png" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;" (click)="regularShare()"><img src="./assets/imgs/006-버튼-PPT 3페이지의 이미지의 상단 우측-공유하기 점 세개.png" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;" (click)="setting()"><img src="./assets/imgs/007-버튼-PPT 3페이지의 이미지의 상단 우측-설정하기 톱니바퀴.png" style="width:25px;"></button>\n\n    </div>\n\n    <ion-segment class="tabstyle" (ionChange)="segmentChanged($event)" [(ngModel)]="tab">\n        <ion-segment-button value="tab1" [ngClass]="tab==\'tab1\'?\'view\':\'notview\'">\n            <span class="tab-font">즐겨찾는곳</span>\n        </ion-segment-button>\n        <ion-segment-button value="tab2" [ngClass]="tab==\'tab2\'?\'view\':\'notview\'">\n            <span class="tab-font">쇼핑예정목록</span>\n        </ion-segment-button>\n        <ion-segment-button value="tab3" [ngClass]="tab==\'tab3\'?\'view\':\'notview\'">\n            <span class="tab-font">인터넷에선 얼마?</span>\n        </ion-segment-button>\n    </ion-segment>\n    <div [ngSwitch]="tab">\n        <ion-list *ngSwitchCase="\'tab1\'">\n            <div *ngIf="favoriteList.length == 0" style="margin-top:10%"><button style="background:white" (click)="main();"><img src="./assets/imgs/003-버튼-PPT 3페이지의 이미지의 정가운데-\'랜딩화면\' 다음에 나오는 화면의 \'말+돋보기 버튼\'.png"></button></div>\n            <div *ngIf="favoriteList != 0">\n                <div style="padding-left:5px; padding-right:5px;">\n                    <div *ngFor="let i of favoriteList; let idx=index" class="border" style="margin-right:auto; margin-left:auto; text-align: center;">\n                        <table>\n                            <thead>\n                                <th style="text-align: left;" *ngIf="i.name.indexOf(\'롯데마트\')>-1" (click)="martview(i)">\n                                    <img src="./assets/imgs/009-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-롯데마트 CI-2.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">\n                                    <a style="margin:3px; font-size:17px; color: #808080; ">롯데마트</a>\n                                </th>\n                                <th style="text-align: left;" *ngIf="i.name.indexOf(\'이마트\')>-1&&i.name.indexOf(\'트레이더스\')==-1" (click)="martview(i)">\n                                    <img src="./assets/imgs/010-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-이마트 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">\n                                    <a style="margin:3px; font-size:17px; color: #808080; ">이마트</a>\n                                </th>\n                                <th style="text-align: left;" *ngIf="i.name.indexOf(\'홈플러스\')>-1" (click)="martview(i)">\n                                    <img src="./assets/imgs/011-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-홈플러스 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">\n                                    <a style="margin:3px; font-size:17px; color: #808080; ">홈플러스</a>\n                                </th>\n                                <th style="text-align: left;" *ngIf="i.name.indexOf(\'코스트코\')>-1" (click)="martview(i)">\n                                    <img src="./assets/imgs/012-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-코스트코 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">\n                                    <a style="margin:3px; font-size:17px; color: #808080; ">코스트코</a>\n                                </th>\n                                <th style="text-align: left;" *ngIf="i.name.indexOf(\'이마트트레이더스\')>-1" (click)="martview(i)">\n                                    <img src="./assets/imgs/013-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-이마트 트레이더스 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">\n                                    <a style="margin:3px; font-size:17px; color: #808080; ">이마트 트레이더스</a>\n                                </th>\n                                <th style="text-align: left;" *ngIf="i.name.indexOf(\'롯데백화점\')>-1" (click)="martview(i)">\n                                    <img src="./assets/imgs/020-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-롯데백화점 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">\n                                    <a style="margin:3px; font-size:17px; color: #808080; ">롯데백화점</a>\n                                </th>\n                                <th style="text-align: left;" *ngIf="i.name.indexOf(\'신세계\')>-1" (click)="martview(i)">\n                                    <img src="./assets/imgs/021-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-신세백화점 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">\n                                    <a style="margin:3px; font-size:17px; color: #808080; ">신세계백화점</a>\n                                </th>\n                                <th style="text-align: left;" *ngIf="i.name.indexOf(\'현대백화점\')>-1" (click)="martview(i)">\n                                    <img src="./assets/imgs/022-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-현대백화점 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">\n                                    <a style="margin:3px; font-size:17px; color: #808080; ">현대백화점</a>\n                                </th>\n                                <th style="text-align: left;" *ngIf="i.name.indexOf(\'롯데아울렛\')>-1" (click)="martview(i)">\n                                    <img src="./assets/imgs/023-버튼-PPT 4페이지의 가운데 이미지의 아울렛별 로고-롯데아울렛 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">\n                                    <a style="margin:3px; font-size:17px; color: #808080; ">롯데아울렛</a>\n                                </th>\n                                <th class="dayoffimg">\n                                    <img *ngIf="todayoff==\'영업\'" src="./assets/imgs/043-버튼-PPT 5페이지의 우측 이미지 영업 알림 버튼-오늘 영업.png " style="width:60%; ">\n                                    <img *ngIf="todayoff==\'휴무\'" src="./assets/imgs/044-버튼-PPT 5페이지의 우측 이미지 영업 알림 버튼-오늘 휴무.png " style="width:60%; ">\n\n                                    <button outline item-end (click)="bookmark(i, idx) " style="width:40px; height:40px; background-color: white;">\n                                <img class="heart" *ngIf="i.favorite==false" src="./assets/imgs/045-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-블랭크 하트(즐겨찾기전).png" style="width:100%; " alt=" ">\n                                <img class="heart" *ngIf="i.favorite==true" src="./assets/imgs/046-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-노란 하트(즐겨찾기후).png" style="width:100%; " alt=" ">\n                            </button>\n                                </th>\n                            </thead>\n                            <tbody style="width:100%;" (click)="martview(i)">\n                                <tr class="martname " style="font-weight: 900">\n                                    <span style="margin : 10px; margin-bottom:30px;">{{i.name}}</span>\n                                </tr>\n                            </tbody>\n                        </table>\n                        <table style="margin-left:auto; margin-right:auto">\n                            <tbody>\n                                <tr class="datespan" (click)="martview(i)">\n                                    <td class="tabletd " style="margin-top:10px ">{{today}}</td>\n                                </tr>\n                                <tr class="datespan" (click)="martview(i)">\n                                    <td *ngFor="let i of week " class="tabletd ">\n                                        <span>{{i.dayofweek}}</span>\n                                    </td>\n                                </tr>\n                                <tr class="datespan" (click)="martview(i)">\n                                    <td *ngFor="let i of week " class="tabletd ">\n                                        <span>{{i.month}}/{{i.day}}</span>\n                                    </td>\n                                </tr>\n                                <tr class="datespan" (click)="martview(i)">\n                                    <td *ngFor="let m of i.dayoffarray" class="tabletd ">\n                                        <span *ngIf="m==\'휴무\'" class="mSpan1">{{m}}</span>\n                                        <span *ngIf="m==\'영업\'" class="mSpan2">{{m}}</span>\n                                    </td>\n                                </tr>\n                            </tbody>\n                        </table>\n                    </div>\n                </div>\n                <div class="borderr">\n                    <button style="background-color:white; height:30%; margin-left:auto; margin-right:auto; " (click)="main(); "><img style="width:55% "src="./assets/imgs/047-버튼-PPT 7페이지의 우측 이미지-말얼굴+돋보기.png " alt=" "></button>\n                </div>\n            </div>\n        </ion-list>\n        <ion-list *ngSwitchCase=" \'tab2\'">\n            <div class="topselector">\n                <p>쇼핑 목록 만들기! 어디서 쇼핑하실 건가요?</p>\n                <table style="margin: auto; text-align: center; ">\n\n                    <tbody>\n                        <td>\n                            <button style="background-color:#fff; " (click)="addlist( \'mart\') "><img src="./assets/imgs/079-버튼-PPT 27페이지의 가운데 이미지-카트(마트).png " style="width:500px "></button>\n                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold; " (click)="addlist( \'mart\') ">마트</button>\n                        </td>\n                        <td>\n                            <button style="background-color:#fff; " (click)="addlist( \'dep\') "><img src="./assets/imgs/080-버튼-PPT 27페이지의 가운데 이미지-쇼핑백(백화점).png " style="width:500px "></button>\n                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold; " (click)="addlist( \'dep\') ">백화점</button>\n                        </td>\n                        <td>\n                            <button style="background-color:#fff; " (click)="addlist( \'outlet\') "><img src="./assets/imgs/081-버튼-PPT 27페이지의 가운데 이미지-보석+구두(아울렛).png " style="width:500px "></button>\n                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold; " (click)="addlist( \'outlet\') ">아울렛</button>\n                        </td>\n                        <td>\n                            <button style="background-color:#fff; " (click)="addlist( \'etc\') "><img src="./assets/imgs/081-버튼-PPT 27페이지의 가운데 이미지-etc(기타).png " style="width:500px "></button>\n                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold; " (click)="addlist( \'etc\') ">기타</button>\n                        </td>\n                    </tbody>\n                </table>\n            </div>\n            <div *ngIf="newarraylist.length==0 "><img src="./assets/imgs/078-버튼-PPT 27페이지의 가운데 이미지-쇼핑이라쓰고+말얼굴 (1).png " alt=" "></div>\n            <div *ngIf="newarraylist!=0 ">\n\n                <div *ngFor="let a of newarraylist " class="border ">\n                    <button (click)="viewshoppinglist(a) " style="background-color: #fff; width:80% ">\n                        <table>\n                            <tr style="text-align: left; ">\n                                <td>\n                                        <button *ngIf="a.flag==\'mart\' " style="background-color:#fff; width:80px "><img src="./assets/imgs/079-버튼-PPT 27페이지의 가운데 이미지-카트(마트).png " style="width:100% " alt=" "></button>\n                    <button *ngIf="a.flag==\'dep\' " style="background-color:#fff; width:80px "><img src="./assets/imgs/080-버튼-PPT 27페이지의 가운데 이미지-쇼핑백(백화점).png " style="width:100% "alt=" "></button>\n                    <button *ngIf="a.flag==\'outlet\' " style="background-color:#fff; width:80px "><img src="./assets/imgs/081-버튼-PPT 27페이지의 가운데 이미지-보석+구두(아울렛).png " style="width:100% " alt=" "></button>\n                    <button *ngIf="a.flag==\'etc\' " style="background-color:#fff; width:80px "><img src="./assets/imgs/081-버튼-PPT 27페이지의 가운데 이미지-etc(기타).png " style="width:100% " alt=" "></button>\n\n                    </td>\n                    <td>\n                        <div>\n                            <span *ngIf="a.flag==\'mart\' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">마트 </span>\n                            <span *ngIf="a.flag==\'dep\' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">백화점 </span>\n                            <span *ngIf="a.flag==\'outlet\' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">아울렛 </span>\n                            <span *ngIf="a.flag==\'etc\' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">기타 </span>\n                            <span style="font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">"{{a.title}}"</span>\n                            <br><br><span style="font-size:15px; font-weight:bold; color:rgb(74,190,190); margin-top:3px; ">{{a.time}} 작성</span><br><br>\n                            <span style="font-size:16px; font-weight: bold; color:rgb(74,190,190); margin-top:30px;" *ngIf="a.totallist!=a.totalchecked">{{a.totallist+"개 항목 중 "+a.totalchecked+"개 구입 "}}</span>\n                            <span style="font-size:16px; font-weight: bold; color:rgb(74,190,190); margin-top:30px;" *ngIf="a.totallist==a.totalchecked">구입 완료 "{{a.totallist}}품목"</span>\n\n                        </div>\n                    </td>\n                    </table>\n\n                    </button>\n                    <div>\n                        <ion-fab style="margin-top:-50px; ">\n                            <img class="rotate" src="./assets/imgs/084-버튼-PPT 31페이지의 가운데 이미지-점3개-회전1단계(시작).png" style="width:30%;height: 30%;float:right; margin-right:30px; margin-top:20px; position:relative; z-index :9998 " alt=" " ion-fab>\n                            <ion-fab-list side="bottom " style="margin-left:-90%; margin-top:20px;text-align: left; background-color:#E9E9E9; position: absolute; z-index: 9999; ">\n                                <button style="background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="changeName(a) ">목록명 변경</button>\n                                <button style="background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="share(a) ">공유</button>\n                                <button style="background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="deleteDB(a) ">삭제</button>\n                                <button style="background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="openModal(a) ">복사</button>\n                            </ion-fab-list>\n                        </ion-fab>\n                    </div>\n                </div>\n\n            </div>\n\n        </ion-list>\n        <ion-list *ngSwitchCase=" \'tab3\' ">\n\n            <div style="padding:20px; ">\n                <select id="slt " name="sor ">\n                    <option value="rel " selected="selected ">랭킹순</option>\n                    <option value="price_asc ">낮은 가격순</option>\n                    <option value="price_dsc ">높은 가격순</option>\n                    <option value="date ">등록순</option>\n                    <option value="review ">리뷰 많은순</option>\n                </select>\n\n                <ion-input style="margin-right: 0px; margin-top: 2px; width: 55%; height:48px; display: inline-block; border: 2px solid rgb(0, 167, 179); border-radius: 5px; " name=\'text\' type="text " [(ngModel)]=\'srct.text\' placeholder="검색어를 입력해 주세요. ">\n\n                </ion-input>\n                <button style="padding-left:-15%; margin-left: -15%;margin-top: 1%; float: right; width:60px; height: 50px; background-color: #fff;z-index: 9999; " outline icon-only (click)=\'select_sort()\'>\n\n                    <ion-icon name=\'search\' style="color:rgb(0, 167, 179); font-size:30px " is-active="false "></ion-icon>\n                </button>\n\n            </div>\n            <div>\n                <img src="./assets/imgs/077-배경 이미지-PPT 23페이지의 가운데 이미지-인터넷은얼마+말얼굴.png " class="cropping " alt=" ">\n            </div>\n        </ion-list>\n\n\n    </div>\n\n</ion-content>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/home/home.html"*/'<ion-content padding>\n    <div class="upper" style="background-color: #71E8E8; display:flex;">\n        <ion-searchbar style="float:left;width: 55%; padding:6px;" placeholder="검색,즐겨찾기추가" (click)="main();" [(ngModel)]="startPoint" clearInput></ion-searchbar>\n        <button style="background-color:#71E8E8;" (click)="NoneAd()"><img src="./assets/imgs/004-버튼-PPT 3페이지의 이미지의 상단 가운데-광고금지.png" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;" (click)="appstore()"><img src="./assets/imgs/005-버튼-PPT 3페이지의 이미지의 상단 우측-평가하기 별점주기.png" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;" (click)="regularShare()"><img src="./assets/imgs/006-버튼-PPT 3페이지의 이미지의 상단 우측-공유하기 점 세개.png" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;" (click)="setting()"><img src="./assets/imgs/007-버튼-PPT 3페이지의 이미지의 상단 우측-설정하기 톱니바퀴.png" style="width:25px;"></button>\n\n    </div>\n\n    <ion-segment class="tabstyle" (ionChange)="segmentChanged($event)" [(ngModel)]="tab">\n        <ion-segment-button value="tab1" [ngClass]="tab==\'tab1\'?\'view\':\'notview\'">\n            <span class="tab-font">즐겨찾는곳</span>\n        </ion-segment-button>\n        <ion-segment-button value="tab2" [ngClass]="tab==\'tab2\'?\'view\':\'notview\'">\n            <span class="tab-font">쇼핑예정목록</span>\n        </ion-segment-button>\n        <ion-segment-button value="tab3" [ngClass]="tab==\'tab3\'?\'view\':\'notview\'">\n            <span class="tab-font">인터넷에선 얼마?</span>\n        </ion-segment-button>\n    </ion-segment>\n    <div [ngSwitch]="tab">\n        <ion-list *ngSwitchCase="\'tab1\'">\n            <div *ngIf="favoriteList.length == 0" style="margin-top:10%"><button style="background:white" (click)="main();"><img src="./assets/imgs/003-버튼-PPT 3페이지의 이미지의 정가운데-\'랜딩화면\' 다음에 나오는 화면의 \'말+돋보기 버튼\'.png"></button></div>\n            <div *ngIf="favoriteList != 0">\n                <div style="padding-left:5px; padding-right:5px;">\n                    <div *ngFor="let i of favoriteList; let idx=index" class="border" style="margin-right:auto; margin-left:auto; text-align: center;">\n                        <table>\n                            <thead>\n                                <th style="text-align: left;" *ngIf="i.name.indexOf(\'롯데마트\')>-1" (click)="martview(i)">\n                                    <img src="./assets/imgs/009-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-롯데마트 CI-2.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">\n                                    <a style="margin:3px; font-size:17px; color: #808080; ">롯데마트</a>\n                                </th>\n                                <th style="text-align: left;" *ngIf="i.name.indexOf(\'이마트\')>-1&&i.name.indexOf(\'트레이더스\')==-1" (click)="martview(i)">\n                                    <img src="./assets/imgs/010-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-이마트 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">\n                                    <a style="margin:3px; font-size:17px; color: #808080; ">이마트</a>\n                                </th>\n                                <th style="text-align: left;" *ngIf="i.name.indexOf(\'홈플러스\')>-1" (click)="martview(i)">\n                                    <img src="./assets/imgs/011-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-홈플러스 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">\n                                    <a style="margin:3px; font-size:17px; color: #808080; ">홈플러스</a>\n                                </th>\n                                <th style="text-align: left;" *ngIf="i.name.indexOf(\'코스트코\')>-1" (click)="martview(i)">\n                                    <img src="./assets/imgs/012-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-코스트코 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">\n                                    <a style="margin:3px; font-size:17px; color: #808080; ">코스트코</a>\n                                </th>\n                                <th style="text-align: left;" *ngIf="i.name.indexOf(\'이마트트레이더스\')>-1" (click)="martview(i)">\n                                    <img src="./assets/imgs/013-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-이마트 트레이더스 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">\n                                    <a style="margin:3px; font-size:17px; color: #808080; ">이마트 트레이더스</a>\n                                </th>\n                                <th style="text-align: left;" *ngIf="i.name.indexOf(\'롯데백화점\')>-1" (click)="martview(i)">\n                                    <img src="./assets/imgs/020-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-롯데백화점 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">\n                                    <a style="margin:3px; font-size:17px; color: #808080; ">롯데백화점</a>\n                                </th>\n                                <th style="text-align: left;" *ngIf="i.name.indexOf(\'신세계\')>-1" (click)="martview(i)">\n                                    <img src="./assets/imgs/021-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-신세백화점 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">\n                                    <a style="margin:3px; font-size:17px; color: #808080; ">신세계백화점</a>\n                                </th>\n                                <th style="text-align: left;" *ngIf="i.name.indexOf(\'현대백화점\')>-1" (click)="martview(i)">\n                                    <img src="./assets/imgs/022-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-현대백화점 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">\n                                    <a style="margin:3px; font-size:17px; color: #808080; ">현대백화점</a>\n                                </th>\n                                <th style="text-align: left;" *ngIf="i.name.indexOf(\'롯데아울렛\')>-1" (click)="martview(i)">\n                                    <img src="./assets/imgs/023-버튼-PPT 4페이지의 가운데 이미지의 아울렛별 로고-롯데아울렛 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">\n                                    <a style="margin:3px; font-size:17px; color: #808080; ">롯데아울렛</a>\n                                </th>\n                                <th class="dayoffimg">\n                                    <img *ngIf="todayoff==\'영업\'" src="./assets/imgs/043-버튼-PPT 5페이지의 우측 이미지 영업 알림 버튼-오늘 영업.png " style="width:60%; ">\n                                    <img *ngIf="todayoff==\'휴무\'" src="./assets/imgs/044-버튼-PPT 5페이지의 우측 이미지 영업 알림 버튼-오늘 휴무.png " style="width:60%; ">\n\n                                    <button outline item-end (click)="bookmark(i, idx) " style="width:40px; height:40px; background-color: white;">\n                                <img class="heart" *ngIf="i.favorite==false" src="./assets/imgs/045-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-블랭크 하트(즐겨찾기전).png" style="width:100%; " alt=" ">\n                                <img class="heart" *ngIf="i.favorite==true" src="./assets/imgs/046-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-노란 하트(즐겨찾기후).png" style="width:100%; " alt=" ">\n                            </button>\n                                </th>\n                            </thead>\n                            <tbody style="width:100%;" (click)="martview(i)">\n                                <tr class="martname " style="font-weight: 900">\n                                    <span style="margin : 10px; margin-bottom:30px;">{{i.name}}</span>\n                                </tr>\n                            </tbody>\n                        </table>\n                        <table style="margin-left:auto; margin-right:auto">\n                            <tbody>\n                                <tr class="datespan">\n                                    <td class="tabletd" *ngFor="let i of today" (click)="martview(i)" style="margin-top:10px;">\n                                        <span *ngIf="i!=\'오늘\'" style="color:red; font-weight: 500;">{{i}}</span>\n                                        <span *ngIf="i==\'오늘\'" style="color:rgb(0, 119, 255); font-weight: 500;">{{i}}</span>\n                                    </td>\n                                </tr>\n                                <tr class="datespan " (click)="martview(i) ">\n                                    <td *ngFor="let i of week " class="tabletd">\n                                        <span>{{i.dayofweek}}</span>\n                                    </td>\n                                </tr>\n                                <tr class="datespan " (click)="martview(i) ">\n                                    <td *ngFor="let i of week " class="tabletd">\n                                        <span>{{i.month}}/{{i.day}}</span>\n                                    </td>\n                                </tr>\n                                <tr class="datespan " (click)="martview(i) ">\n                                    <td *ngFor="let m of i.dayoffarray" class="tabletd ">\n                                        <span *ngIf="m==\'휴무\'" class="mSpan1">{{m}}</span>\n                                        <span *ngIf="m==\'영업\'" class="mSpan2">{{m}}</span>\n                                    </td>\n                                </tr>\n                            </tbody>\n                        </table>\n                    </div>\n                </div>\n                <div class="borderr ">\n                    <button style="background-color:white; height:30%; margin-left:auto; margin-right:auto; " (click)="main(); "><img style="width:55% "src="./assets/imgs/047-버튼-PPT 7페이지의 우측 이미지-말얼굴+돋보기.png " alt=" "></button>\n                </div>\n            </div>\n        </ion-list>\n        <ion-list *ngSwitchCase=" \'tab2\' ">\n            <div class="topselector ">\n                <p>쇼핑 목록 만들기! 어디서 쇼핑하실 건가요?</p>\n                <table style="margin: auto; text-align: center; ">\n\n                    <tbody>\n                        <td>\n                            <button style="background-color:#fff; " (click)="addlist( \'mart\') "><img src="./assets/imgs/079-버튼-PPT 27페이지의 가운데 이미지-카트(마트).png " style="width:500px "></button>\n                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold; " (click)="addlist( \'mart\') ">마트</button>\n                        </td>\n                        <td>\n                            <button style="background-color:#fff; " (click)="addlist( \'dep\') "><img src="./assets/imgs/080-버튼-PPT 27페이지의 가운데 이미지-쇼핑백(백화점).png " style="width:500px "></button>\n                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold; " (click)="addlist( \'dep\') ">백화점</button>\n                        </td>\n                        <td>\n                            <button style="background-color:#fff; " (click)="addlist( \'outlet\') "><img src="./assets/imgs/081-버튼-PPT 27페이지의 가운데 이미지-보석+구두(아울렛).png " style="width:500px "></button>\n                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold; " (click)="addlist( \'outlet\') ">아울렛</button>\n                        </td>\n                        <td>\n                            <button style="background-color:#fff; " (click)="addlist( \'etc\') "><img src="./assets/imgs/081-버튼-PPT 27페이지의 가운데 이미지-etc(기타).png " style="width:500px "></button>\n                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold; " (click)="addlist( \'etc\') ">기타</button>\n                        </td>\n                    </tbody>\n                </table>\n            </div>\n            <div *ngIf="newarraylist.length==0 "><img src="./assets/imgs/078-버튼-PPT 27페이지의 가운데 이미지-쇼핑이라쓰고+말얼굴 (1).png " alt=" "></div>\n            <div *ngIf="newarraylist!=0 ">\n\n                <div *ngFor="let a of newarraylist " class="border ">\n                    <button (click)="viewshoppinglist(a) " style="background-color: #fff; width:80% ">\n                        <table>\n                            <tr style="text-align: left; ">\n                                <td>\n                                        <button *ngIf="a.flag==\'mart\' " style="background-color:#fff; width:80px "><img src="./assets/imgs/079-버튼-PPT 27페이지의 가운데 이미지-카트(마트).png " style="width:100% " alt=" "></button>\n                    <button *ngIf="a.flag==\'dep\' " style="background-color:#fff; width:80px "><img src="./assets/imgs/080-버튼-PPT 27페이지의 가운데 이미지-쇼핑백(백화점).png " style="width:100% "alt=" "></button>\n                    <button *ngIf="a.flag==\'outlet\' " style="background-color:#fff; width:80px "><img src="./assets/imgs/081-버튼-PPT 27페이지의 가운데 이미지-보석+구두(아울렛).png " style="width:100% " alt=" "></button>\n                    <button *ngIf="a.flag==\'etc\' " style="background-color:#fff; width:80px "><img src="./assets/imgs/081-버튼-PPT 27페이지의 가운데 이미지-etc(기타).png " style="width:100% " alt=" "></button>\n\n                    </td>\n                    <td>\n                        <div>\n                            <span *ngIf="a.flag==\'mart\' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">마트 </span>\n                            <span *ngIf="a.flag==\'dep\' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">백화점 </span>\n                            <span *ngIf="a.flag==\'outlet\' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">아울렛 </span>\n                            <span *ngIf="a.flag==\'etc\' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">기타 </span>\n                            <span style="font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">"{{a.title}} "</span>\n                            <br><br><span style="font-size:15px; font-weight:bold; color:rgb(74,190,190); margin-top:3px; ">{{a.time}} 작성</span><br><br>\n                            <span style="font-size:16px; font-weight: bold; color:rgb(74,190,190); margin-top:30px; " *ngIf="a.totallist!=a.totalchecked ">{{a.totallist+"개 항목 중 "+a.totalchecked+"개 구입 "}}</span>\n                            <span style="font-size:16px; font-weight: bold; color:rgb(74,190,190); margin-top:30px; " *ngIf="a.totallist==a.totalchecked ">구입 완료 "{{a.totallist}}품목 "</span>\n\n                        </div>\n                    </td>\n                    </table>\n\n                    </button>\n                    <div>\n                        <ion-fab style="margin-top:-50px; ">\n                            <img class="rotate " src="./assets/imgs/084-버튼-PPT 31페이지의 가운데 이미지-점3개-회전1단계(시작).png " style="width:30%;height: 30%;float:right; margin-right:30px; margin-top:20px; position:relative; z-index :9998 " alt=" " ion-fab>\n                            <ion-fab-list side="bottom " style="margin-left:-90%; margin-top:20px;text-align: left; background-color:#E9E9E9; position: absolute; z-index: 9999; ">\n                                <button style="background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="changeName(a) ">목록명 변경</button>\n                                <button style="background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="share(a) ">공유</button>\n                                <button style="background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="deleteDB(a) ">삭제</button>\n                                <button style="background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="openModal(a) ">복사</button>\n                            </ion-fab-list>\n                        </ion-fab>\n                    </div>\n                </div>\n\n            </div>\n\n        </ion-list>\n        <ion-list *ngSwitchCase=" \'tab3\' ">\n\n            <div style="padding:20px; ">\n                <select id="slt " name="sor ">\n                    <option value="rel " selected="selected ">랭킹순</option>\n                    <option value="price_asc ">낮은 가격순</option>\n                    <option value="price_dsc ">높은 가격순</option>\n                    <option value="date ">등록순</option>\n                    <option value="review ">리뷰 많은순</option>\n                </select>\n\n                <ion-input style="margin-right: 0px; margin-top: 2px; width: 55%; height:48px; display: inline-block; border: 2px solid rgb(0, 167, 179); border-radius: 5px; " name=\'text\' type="text " [(ngModel)]=\'srct.text\' placeholder="검색어를 입력해 주세요. ">\n\n                </ion-input>\n                <button style="padding-left:-15%; margin-left: -15%;margin-top: 1%; float: right; width:60px; height: 50px; background-color: #fff;z-index: 9999; " outline icon-only (click)=\'select_sort()\'>\n\n                    <ion-icon name=\'search\' style="color:rgb(0, 167, 179); font-size:30px " is-active="false "></ion-icon>\n                </button>\n\n            </div>\n            <div>\n                <img src="./assets/imgs/077-배경 이미지-PPT 23페이지의 가운데 이미지-인터넷은얼마+말얼굴.png " class="cropping " alt=" ">\n            </div>\n        </ion-list>\n\n\n    </div>\n\n</ion-content>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/home/home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ModalController */], __WEBPACK_IMPORTED_MODULE_10__ionic_native_social_sharing__["a" /* SocialSharing */], __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__["a" /* InAppBrowser */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_unique_device_id__["a" /* UniqueDeviceID */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_call_number___["a" /* CallNumber */],

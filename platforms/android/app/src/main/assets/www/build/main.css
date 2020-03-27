@@ -28713,6 +28713,10 @@ page-viewshoppinglist .text-input-md {
   margin: 10px 8px;
 }
 
+.opentrash {
+  background: url("./assets/imgs/094-버튼-PPT 54페이지의 가운데 이미지-휴지통 뚜껑 열린거.png");
+}
+
 .rotate {
   -webkit-transition: all ease 1s;
   transition: all ease 1s;

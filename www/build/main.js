@@ -1243,11 +1243,12 @@ var MartinfoviewPage = /** @class */ (function () {
             count++;
         }
     };
+    var _a, _b, _c;
     MartinfoviewPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-martinfoview',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/martinfoview/martinfoview.html"*/'<ion-header>\n    <ion-navbar>\n        <div style="text-align: center;" *ngIf="martinfo.name.indexOf(\'롯데마트\')>-1">\n            <img src="./assets/imgs/009-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-롯데마트 CI.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">\n            <a style="margin:3px; font-size:17px; font-weight: bold; color: #808080;">롯데마트</a>\n        </div>\n        <div style="text-align: center;" *ngIf="martinfo.name.indexOf(\'이마트\')>-1&&martinfo.name.indexOf(\'트레이더스\')==-1">\n            <img src="./assets/imgs/010-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-이마트 CI.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">\n            <a style="margin:3px; font-size:17px; font-weight: bold; color: #808080;">이마트</a>\n        </div>\n        <div style="text-align: center;" *ngIf="martinfo.name.indexOf(\'홈플러스\')>-1" (click)="martview(i)">\n            <img src="./assets/imgs/011-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-홈플러스 CI.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">\n            <a style="margin:3px; font-size:17px; color: #808080;">홈플러스</a>\n        </div>\n        <div style="text-align: center;" *ngIf="martinfo.name.indexOf(\'코스트코\')>-1" (click)="martview(i)">\n            <img src="./assets/imgs/012-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-코스트코 CI.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">\n            <a style="margin:3px; font-size:17px; color: #808080;">코스트코</a>\n        </div>\n        <div style="text-align: center;" *ngIf="martinfo.name.indexOf(\'이마트트레이더스\')>-1" (click)="martview(i)">\n            <img src="./assets/imgs/013-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-이마트 트레이더스 CI.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">\n            <a style="margin:3px; font-size:17px; color: #808080;">이마트트레이더스</a>\n        </div>\n        <div style="text-align: center;" *ngIf="martinfo.name.indexOf(\'롯데백화점\')>-1" (click)="martview(i)">\n            <img src="./assets/imgs/020-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-롯데백화점 CI.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">\n            <a style="margin:3px; font-size:17px; color: #808080;">롯데백화점</a>\n        </div>\n        <div style="text-align: center;" *ngIf="martinfo.name.indexOf(\'신세계\')>-1" (click)="martview(i)">\n            <img src="./assets/imgs/021-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-신세백화점 CI.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">\n            <a style="margin:3px; font-size:17px; color: #808080;">신세계백화점</a>\n        </div>\n        <div style="text-align: center;" *ngIf="martinfo.name.indexOf(\'현대백화점\')>-1" (click)="martview(i)">\n            <img src="./assets/imgs/022-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-현대백화점 CI.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">\n            <a style="margin:3px; font-size:17px; color: #808080;">현대백화점</a>\n        </div>\n        <div style="text-align: center;" *ngIf="martinfo.name.indexOf(\'롯데 아울렛\')>-1" (click)="martview(i)">\n            <img src="./assets/imgs/023-버튼-PPT 4페이지의 가운데 이미지의 아울렛별 로고-롯데아울렛 CI.png" class="logoimage " style="height:40px; margin-right: 10px; " alt=" ">\n            <a style="margin:3px; font-size:17px; color: #808080;">롯데아울렛</a>\n        </div>\n\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <div style="padding-top:20px; padding-left:20px; margin-bottom:10px; ">\n        <span style="font-weight: bold; font-size:18px; color:#808080 ">{{martinfo.storename}}</span>\n    </div>\n    <table class="tableStyle ">\n        <tbody>\n            <tr>\n                <p style="color:black; font-weight: normal; font-size:16px; text-align: left; margin:3px; ">1. 정기 휴무일 : {{martinfo.vacation}}</p>\n            </tr>\n            <tr>\n                <p style="color:black; font-weight: normal; font-size:16px; text-align: left; margin:3px; ">2. 대표번호 : {{martinfo.tel}}</p>\n            </tr>\n            <tr>\n                <p style="color:black; font-weight: normal; font-size:16px; text-align: left; margin:3px; ">3. 위치 : {{martinfo.addr}}</p>\n            </tr>\n            <tr>\n                <p style="color:black; font-weight: normal; font-size:16px; text-align: left; margin:3px; ">4. 영업시간 : {{martinfo.optime}}</p>\n            </tr>\n\n        </tbody>\n    </table>\n    <div style="margin-left:auto; margin-right:auto; text-align: center; ">\n        <button style="text-align:center; width:40%; letter-spacing: 3px; font-size:15px; background-color: #71E8E8; border-radius: 5px; " (click)="calling() "><img src="./assets/imgs/048-버튼-PPT 8페이지의 가운데 이미지의 전화걸기-수화기.png" style="width:20%; margin-right:3px; ">전화걸기</button>\n        <button style="text-align:center; width:40%; letter-spacing: 3px; font-size:15px; background-color: #71E8E8; border-radius: 5px; " (click)="map() "><img src="./assets/imgs/049-버튼-PPT 8페이지의 가운데 이미지의 지도 확인-지도.png" style="width:20%; margin-right:3px; ">지도확인</button>\n    </div>\n    <div class="calendar-body ">\n        <ion-grid>\n            <ion-row class="calendar-month ">\n                {{month}}월\n            </ion-row>\n            <ion-row class="calendar-weekday ">\n                <ion-col style="color:red ">일</ion-col>\n                <ion-col>월</ion-col>\n                <ion-col>화</ion-col>\n                <ion-col>수</ion-col>\n                <ion-col>목</ion-col>\n                <ion-col>금</ion-col>\n                <ion-col style="color:blue ">토</ion-col>\n            </ion-row>\n            <ion-row class="calendar-date ">\n                <ion-col col-1 *ngFor="let day of daysInThisMonth">\n                    <span class="currentDate " *ngIf="( currentDate===day && today.getMonth()+1===currentMonth && today.getFullYear()===currentYear ) ">{{day}}</span>\n                    <span class="otherDate" style="color:red" *ngIf="truecheck(day)==-1">{{day.substring(1)}}</span>\n                    <span class="otherDate" *ngIf="truecheck(day)==0&&( currentDate !=day && today.getMonth()+1===currentMonth && today.getFullYear()===currentYear );">{{day}}</span>\n                </ion-col>\n                <ion-col col-1 *ngFor="let nextDay of daysInNextMonth " class="next-month">{{nextDay}}</ion-col>\n            </ion-row>\n\n        </ion-grid>\n    </div>\n\n</ion-content>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/martinfoview/martinfoview.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_call_number__["a" /* CallNumber */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" ? _a : Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" ? _b : Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_call_number__["a" /* CallNumber */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_call_number__["a" /* CallNumber */]) === "function" ? _c : Object])
     ], MartinfoviewPage);
     return MartinfoviewPage;
 }());
@@ -1428,7 +1429,7 @@ var AddshopingPage = /** @class */ (function () {
         if (this.quantity == "") {
             this.quantity = 1;
         }
-        this.addinglist.push({ "name": this.adding, "checked": false, "price": this.price, "quantity": this.quantity });
+        this.addinglist.push({ "name": this.adding, "checked2": false, "checked": false, "price": this.price, "quantity": this.quantity });
         this.totalnumber = this.addinglist.length;
         this.addprice();
         this.adding = "";
@@ -1547,12 +1548,12 @@ var AddshopingPage = /** @class */ (function () {
     AddshopingPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad AddshopingPage');
     };
+    var _a, _b, _c, _d, _e;
     AddshopingPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-addshoping',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/addshoping/addshoping.html"*/'<!--\n  Generated template for the AddshopingPage page.\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<!-- <ion-header>\n    <ion-navbar>\n        <ion-title>{{title}}</ion-title>\n    </ion-navbar>\n</ion-header> -->\n<ion-content>\n    <div style="background-color: #71E8E8; display:flex;">\n        <button class="goback" (click)="goBack()"><img src="./assets/imgs/064-버튼-PPT 19페이지의  우측 이미지-뒤로가기 화살표.png" style="width:30px; margin:5px;" alt=""></button>\n        <span style="color:white; font-size:18px; font-weight: 900; margin-top:11px; margin-left:10px;">{{title}}</span>\n    </div>\n    <ion-item-divider color="light" style="height: 40px;"><img src="{{img}}" style="width:60px; margin-right:10px;">\n        <img *ngIf="value==\'mart\'" src="./assets/imgs/079-버튼-PPT 27페이지의 가운데 이미지-카트(마트).png" style="width:30px;" alt="">\n        <img *ngIf="value==\'dep\'" src="./assets/imgs/080-버튼-PPT 27페이지의 가운데 이미지-쇼핑백(백화점).png" style="width:30px;" alt="">\n        <img *ngIf="value==\'outlet\'" src="./assets/imgs/081-버튼-PPT 27페이지의 가운데 이미지-보석+구두(아울렛).png" style="width:30px;" alt="">\n        <img *ngIf="value==\'dep\'" src="./assets/imgs/081-버튼-PPT 27페이지의 가운데 이미지-etc(기타).png" style="width:30px;" alt="">\n\n        <span style="color:rgb(88, 189, 207); font-size:15px; font-weight: bold;">\n            <!--{{nowtime}}-->\n            {{fullyear}}년 {{month}}월 {{date}}일\n        </span>\n        <button class="saveButton" (click)="save()">저장</button>\n    </ion-item-divider>\n\n    <ion-row style="margin-top:6px; margin-left:auto; margin-right:auto; background-color:rgb(194, 243, 250); width:80%;border-radius: 6px;">\n        <ion-col col-8>\n            <span *ngIf="flag==false" style="color: #42B8B8; font-size:15px; font-weight: 900;">{{totalnumber}}</span>\n            <span *ngIf="flag==true" style="color: #42B8B8; font-size:15px; font-weight: 900;">{{totalnumber}}개 중 {{selected}}개 구입</span>\n\n        </ion-col>\n        <ion-col col-4>\n            <span style="color: #42B8B8; font-size:15px; font-weight: 900;">₩{{printsum}}</span>\n        </ion-col>\n    </ion-row>\n    <div class="main" *ngIf="addinglist.length!=0">\n        <ion-item *ngFor="let att of addinglist; let idx = index">\n            <ion-icon *ngIf="flag==false" name="close"></ion-icon>\n            <ion-checkbox [(ngModel)]="att.checked" style="z-index: 999999;" (ionChange)="addValue($event)" *ngIf="flag==true" color="dark" slot="start"></ion-checkbox>\n            <ion-input style="width: 20%;float: left;" placeholder="상품명" [(ngModel)]="addinglist[idx].name"></ion-input>\n            <ion-input style="width: 20%;float: right;" placeholder="수량" [(ngModel)]="addinglist[idx].quantity"></ion-input>\n            <ion-input style="width: 20%;float: right;" placeholder="가격" [(ngModel)]="addinglist[idx].price"></ion-input>\n        </ion-item>\n    </div>\n    <div style="margin-left:10px; position: absolute;bottom: 70px;width: 100%;" class="bottom">\n        <ion-input *ngIf="flag!=true" style="color:#808080; width: 63%; border-bottom-color:rgb(74, 190, 190); border-bottom: solid 1px;float: left;" [(ngModel)]="adding" placeholder="품목을 입력하세요."></ion-input>\n        <button *ngIf="flag!=true" style="height: 3.5rem;background: transparent;border-radius: 7px;margin-top: 5px;margin-left: 10px;" (click)="speeching()">\n            <img src="./assets/imgs/086-버튼-PPT 31페이지의 가운데 이미지-녹음 마이크.png" style="width:30px;" alt="">\n        </button>\n        <button *ngIf="flag!=true" style="height: 40px;background-color:#71E8E8;border-radius: 7px;margin-top: 5px;margin-left: 3px;" (click)="add()">추가하기</button>\n        <div *ngIf="flag!=true&&flagInput==false" class="inputprice">\n            <img *ngIf="flag!=true&&flagInput==false" src="./assets/imgs/084-버튼-PPT 31페이지의 가운데 이미지-점3개-회전1단계(시작).png " style="width:30px; " alt=" ">\n            <span *ngIf="flag!=true&&flagInput==false" style="color:rgb(74, 190, 190); font-size:14px; font-weight: bold;" (click)="priceandquantity()">가격 및 수량도 입력하기</span>\n\n        </div>\n        <div>\n            <button *ngIf="flagInput!=false" style="height: 3.5rem;background-color:#71E8E8;border-radius: 7px; margin-top: 3px;margin-left: 10px;" (click)="cancel()">상세취소</button>\n            <!-- <ion-input *ngIf="flagInput!=false" style="color:#808080; width: 34%; height: 3.5rem; border-bottom: solid 1px; float: left; margin-right: 2px; margin-left:2px;" [(ngModel)]="quantity" placeholder="수량"></ion-input> -->\n            <ion-select [(ngModel)]="number" *ngIf="flagInput!=false" style="color:#808080; width: 34%; height: 4rem; border-bottom: solid 1px; float: left; margin-right: 2px; margin-left:2px;" [(ngModel)]="quantity" placeholder="수량">\n                <ion-option>1</ion-option>\n                <ion-option>2</ion-option>\n                <ion-option>3</ion-option>\n                <ion-option>4</ion-option>\n                <ion-option>5</ion-option>\n                <ion-option>6</ion-option>\n                <ion-option>7</ion-option>\n\n            </ion-select>\n\n            <ion-input *ngIf="flagInput!=false" style="color:#808080; width: 34%; height: 4rem; border-bottom: solid 1px; float: left; margin-left: 2px; margin-right:5px;" [(ngModel)]="price" placeholder="가격"></ion-input>\n        </div>\n    </div>\n\n</ion-content>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/addshoping/addshoping.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_speech_recognition__["a" /* SpeechRecognition */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_speech_recognition__["a" /* SpeechRecognition */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_speech_recognition__["a" /* SpeechRecognition */]) === "function" ? _a : Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" ? _b : Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" ? _c : Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" ? _d : Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]) === "function" ? _e : Object])
     ], AddshopingPage);
     return AddshopingPage;
 }());
@@ -1621,12 +1622,14 @@ var ViewshoppinglistPage = /** @class */ (function () {
         this.count = 0;
         this.allbuy = false;
         this.number = [];
+        this.checkflag = false;
         this.srct = {
             text: '',
             url: ''
         };
         this.delflag1 = false;
         this.delflag2 = false;
+        this.delNameArray = [];
         this.a = this.navParams.get("obj");
         this.id = this.navParams.get("id");
         this.nextdirectory = this.firemain.child(this.id);
@@ -1636,6 +1639,8 @@ var ViewshoppinglistPage = /** @class */ (function () {
         console.log(this.shop);
         console.log(this.a);
         console.log(this.a.list);
+        for (var i = 0; i < this.a.list.length; i++) {
+        }
         console.log(this.id);
         console.log(this.title);
         console.log(this.key);
@@ -1651,34 +1656,31 @@ var ViewshoppinglistPage = /** @class */ (function () {
         this.totalnumber = this.a.list.length;
         this.checkedbuy();
         this.addprice();
-        __WEBPACK_IMPORTED_MODULE_4_jquery__(document).ready(function () {
-            console.log("ready!");
-        });
         for (var i = 1; i <= 50; i++) {
             this.number.push({ "count": i });
         }
-        console.log(this.number);
+        // console.log(this.number);
     }
     // closeFab(fab:FabContainer){
     //   fab.close();
     // }
     ViewshoppinglistPage.prototype.pressed = function () {
         console.log("pressed");
+        this.pressflag = true;
     };
     ViewshoppinglistPage.prototype.touchstart = function () {
         console.log("touchstart");
-        this.pressflag = true;
     };
     ViewshoppinglistPage.prototype.active = function () {
         console.log("active");
     };
     ViewshoppinglistPage.prototype.released = function () {
         // window.alert("released");
-        // console.log("releaseddddd"+this.pressflag);
-        // if(this.pressflag==true){
-        //   window.alert("released2")
-        // this.navCtrl.push(AddquestionPage,{"home":this.home,"first":this.firstvalue,"value":this.value,"flag:":"modify","array":v})
-        // }
+        console.log("releaseddddd" + this.pressflag);
+        if (this.pressflag == true) {
+            // window.alert("released2")
+            // this.navCtrl.push(AddquestionPage,{"home":this.home,"first":this.firstvalue,"value":this.value,"flag:":"modify","array":v})
+        }
         this.pressflag = false;
     };
     /*숫자에 콤마 찍기*/
@@ -1690,14 +1692,14 @@ var ViewshoppinglistPage = /** @class */ (function () {
         /*가격받아오기*/
         this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", function (snap) {
             for (var a = 0; a < snap.val().length; a++) {
-                console.log(snap.val()[a]);
-                console.log(Number(snap.val()[a].quantity) * Number(snap.val()[a].price));
-                console.log(_this.sum);
+                // console.log(snap.val()[a])
+                // console.log(Number(snap.val()[a].quantity) * Number(snap.val()[a].price));
+                // console.log(this.sum);
                 _this.sum += Number(snap.val()[a].quantity) * Number(snap.val()[a].price);
                 _this.printsum = _this.formatNumber(_this.sum);
             }
-            console.log(_this.sum);
-            console.log(_this.printsum);
+            // console.log(this.sum);
+            // console.log(this.printsum);
         });
     };
     /*check 여부 DB 불러오기 */
@@ -1706,15 +1708,15 @@ var ViewshoppinglistPage = /** @class */ (function () {
         var count = 0;
         this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", function (snap) {
             for (var a = 0; a < snap.val().length; a++) {
-                console.log(snap.val()[a]);
-                console.log(snap.val()[a].checked);
+                // console.log(snap.val()[a])
+                // console.log(snap.val()[a].checked);
                 if (snap.val()[a].checked == true) {
                     count++;
-                    console.log(count);
+                    // console.log(count);
                 }
             }
             _this.selected = count;
-            console.log(_this.selected);
+            // console.log(this.selected);
         });
     };
     /*새로고침*/
@@ -1730,7 +1732,7 @@ var ViewshoppinglistPage = /** @class */ (function () {
                 console.log(snap.val()[a].name, snap.val()[a].checked, snap.val()[a].price, snap.val()[a].quantity);
                 sum += Number(snap.val()[a].quantity) * Number(snap.val()[a].price); //가격 다시 받기
                 _this.printsum = _this.formatNumber(sum);
-                _this.a.list.push({ "name": snap.val()[a].name, "checked": snap.val()[a].checked, "price": snap.val()[a].price, "quantity": snap.val()[a].quantity });
+                _this.a.list.push({ "name": snap.val()[a].name, "checked2": false, "checked": snap.val()[a].checked, "price": snap.val()[a].price, "quantity": snap.val()[a].quantity, "del": _this.checkflag });
             }
             console.log(sum);
         });
@@ -1751,7 +1753,7 @@ var ViewshoppinglistPage = /** @class */ (function () {
         if (this.quantity == "") {
             this.quantity = 1;
         }
-        this.a.list.push({ "name": this.adding, "checked": false, "price": this.price, "quantity": this.quantity });
+        this.a.list.push({ "name": this.adding, "checked2": false, "checked": false, "price": this.price, "quantity": this.quantity });
         this.totalnumber = this.a.list.length;
         this.adding = "";
         this.price = "";
@@ -1769,6 +1771,7 @@ var ViewshoppinglistPage = /** @class */ (function () {
         var count = 0;
         console.log(v);
         console.log(v.checked);
+        v.checked = true;
         console.log(this.a.list);
         console.log(this.a.list.length);
         for (var i = 0; i < this.a.list.length; i++) {
@@ -1808,6 +1811,23 @@ var ViewshoppinglistPage = /** @class */ (function () {
         for (var i = 0; i < checked.length; i++) {
             this.a.list.push(checked[i]);
         }
+        console.log(this.a.list);
+    };
+    ViewshoppinglistPage.prototype.checkValue = function (v) {
+        var count = 0;
+        this.checkflag = true;
+        console.log(v);
+        console.log(v.checked);
+        v.checked = true;
+        console.log(this.a.list);
+        console.log(this.a.list.length);
+        for (var i = 0; i < this.a.list.length; i++) {
+            if (this.a.list[i].checked == true) {
+                count++;
+                console.log(count);
+            }
+        }
+        this.selected = count;
         console.log(this.a.list);
     };
     ViewshoppinglistPage.prototype.save = function () {
@@ -1852,25 +1872,30 @@ var ViewshoppinglistPage = /** @class */ (function () {
     /*수정*/
     ViewshoppinglistPage.prototype.insertData = function (fab) {
         this.flag = true;
-        this.closeFab(fab);
     };
     /*삭제*/
     ViewshoppinglistPage.prototype.delete = function (fab) {
         this.delflag1 = true;
-        this.flag = true;
+        if (!this.flag) {
+            this.flag = true;
+        }
         console.log(this.delflag1);
         var toast = this.toastCtrl.create({
             message: '삭제를 원하시는 품목을 눌러주세요.',
             duration: 2000,
         });
         toast.present();
+        // window.alert(this.flag);
     };
     ViewshoppinglistPage.prototype.del = function (name) {
-        var _this = this;
-        this.delflag2 = true;
+        // this.delflag1 = true;
         console.log(name);
-        // this.delNameArray.push(name);
-        // console.log(this.delNameArray)
+        name.checked2 = true;
+        this.delNameArray.push(name.name);
+        console.log(this.delNameArray);
+    };
+    ViewshoppinglistPage.prototype.del2 = function () {
+        var _this = this;
         var alert = this.alertCtrl.create({
             title: '정말로 삭제하시겠습니까?',
             buttons: [
@@ -1886,8 +1911,10 @@ var ViewshoppinglistPage = /** @class */ (function () {
                     handler: function (data) {
                         console.log(_this.a.list);
                         for (var i = 0; i < _this.a.list.length; i++) {
-                            if (_this.a.list[i].name == name) {
-                                _this.a.list[i] = "NC";
+                            for (var j in _this.delNameArray) {
+                                if (_this.a.list[i].name == _this.delNameArray[j]) {
+                                    _this.a.list[i] = "NC";
+                                }
                             }
                         }
                         var filtered = _this.a.list.filter(function (value) {
@@ -1918,54 +1945,54 @@ var ViewshoppinglistPage = /** @class */ (function () {
                             }
                             _this.refreshname(); //새로고침
                         });
-                        //         console.log(this.a.list); //this.a.list는 입력을 받은 배열
-                        //         for (var i = 0; i < this.a.list.length; i++) {
-                        //           /*a.list에 있는 항목이 체크가 되어있으면 newlist에 push*/
-                        //           if (this.a.list[i].checked == true) {
-                        //             console.log(this.a.list[i].checked);
-                        //             newlist.push(i);
-                        //             const toast = this.toastCtrl.create({
-                        //               message: '삭제되었습니다.',
-                        //               duration: 2000,
-                        //             });
-                        //             toast.present();
-                        //           }
-                        //         }
-                        //         for (var i = 0; i < newlist.length; i++) {
-                        //           this.a.list[newlist[i]] = "NC"
-                        //         }
-                        //         console.log(this.a.list)
-                        //         var filtered = this.a.list.filter(function (value) {
-                        //           console.log(value)
-                        //           return value != "NC";
-                        //         });
-                        //         console.log(filtered)
-                        //         this.a.list = filtered
-                        //         console.log(this.a.list);
-                        //         /*입력 리스트에서 삭제된 항목을 firebase에서 삭제하기위해 list 삭제*/
-                        //         this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
-                        //           for (var a in snap.val()) {
-                        //             this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").remove().then(() => {
-                        //               console.log("success")
-                        //             }).catch((e) => {
-                        //               console.log("error" + e);
-                        //             })
-                        //           }
-                        //           /*삭제한 list를 update를 통해 수정된 데이터로 다시 넣어줌 */
-                        //           this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list).then(() => {
-                        //             console.log(this.a.list);
-                        //           });
-                        //           /*totalNumber와 Select값 가져오기*/
-                        //           this.totalnumber = this.a.list.length;
-                        //           var count = 0;
-                        //           for (var i = 0; i < this.a.list.length; i++) {
-                        //             if (this.a.list[i].checked == true) {
-                        //               count++;
-                        //             }
-                        //           }
-                        //           this.selected = count;
-                        //           this.refreshname(); //새로고침
-                        //         })
+                        //         //         console.log(this.a.list); //this.a.list는 입력을 받은 배열
+                        //         //         for (var i = 0; i < this.a.list.length; i++) {
+                        //         //           /*a.list에 있는 항목이 체크가 되어있으면 newlist에 push*/
+                        //         //           if (this.a.list[i].checked == true) {
+                        //         //             console.log(this.a.list[i].checked);
+                        //         //             newlist.push(i);
+                        //         //             const toast = this.toastCtrl.create({
+                        //         //               message: '삭제되었습니다.',
+                        //         //               duration: 2000,
+                        //         //             });
+                        //         //             toast.present();
+                        //         //           }
+                        //         //         }
+                        //         //         for (var i = 0; i < newlist.length; i++) {
+                        //         //           this.a.list[newlist[i]] = "NC"
+                        //         //         }
+                        //         //         console.log(this.a.list)
+                        //         //         var filtered = this.a.list.filter(function (value) {
+                        //         //           console.log(value)
+                        //         //           return value != "NC";
+                        //         //         });
+                        //         //         console.log(filtered)
+                        //         //         this.a.list = filtered
+                        //         //         console.log(this.a.list);
+                        //         //         /*입력 리스트에서 삭제된 항목을 firebase에서 삭제하기위해 list 삭제*/
+                        //         //         this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").once("value", (snap) => {
+                        //         //           for (var a in snap.val()) {
+                        //         //             this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").remove().then(() => {
+                        //         //               console.log("success")
+                        //         //             }).catch((e) => {
+                        //         //               console.log("error" + e);
+                        //         //             })
+                        //         //           }
+                        //         //           /*삭제한 list를 update를 통해 수정된 데이터로 다시 넣어줌 */
+                        //         //           this.firemain.child("users").child(this.id).child(this.shop).child(this.title).child(this.key).child("list").update(this.a.list).then(() => {
+                        //         //             console.log(this.a.list);
+                        //         //           });
+                        //         //           /*totalNumber와 Select값 가져오기*/
+                        //         //           this.totalnumber = this.a.list.length;
+                        //         //           var count = 0;
+                        //         //           for (var i = 0; i < this.a.list.length; i++) {
+                        //         //             if (this.a.list[i].checked == true) {
+                        //         //               count++;
+                        //         //             }
+                        //         //           }
+                        //         //           this.selected = count;
+                        //         //           this.refreshname(); //새로고침
+                        //         //         })
                     }
                 }
             ]
@@ -2069,7 +2096,7 @@ var ViewshoppinglistPage = /** @class */ (function () {
     ], ViewshoppinglistPage.prototype, "onPressRelease", void 0);
     ViewshoppinglistPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-viewshoppinglist',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/viewshoppinglist/viewshoppinglist.html"*/'<ion-header>\n    <ion-navbar color="navbar">\n        <span style="color:white; font-size:23px; font-weight: 900">{{a.title}}</span>\n    </ion-navbar>\n</ion-header>\n<ion-content padding>\n    <ion-row>\n        <ion-col col-10>\n            <span style="font-size:18px; color:#42B8B8; font-weight: 900;">{{a.time}}</span>\n        </ion-col>\n        <ion-col col-2>\n            <button class="saveButton" (click)="save()">저장</button>\n        </ion-col>\n    </ion-row>\n    <ion-row style="background-color: #9FFAFA; border-radius: 6px;">\n        <ion-col col-8>\n            <span *ngIf="flag==false&&allbuy==false" style="color: #42B8B8; font-size:15px; font-weight: 900;">{{totalnumber}}개 중 {{selected}}개 구입</span>\n            <span *ngIf="flag==true&&allbuy==false" style="color: #42B8B8; font-size:15px; font-weight: 900;">{{totalnumber}}</span>\n            <span *ngIf="allbuy==true" style="color: #42B8B8; font-size:15px; font-weight: 900;">구입완료 {{totalnumber}}품목</span>\n\n        </ion-col>\n        <ion-col col-4>\n            <span style="color: #42B8B8; font-size:15px; font-weight: 900;">₩{{printsum}}</span>\n        </ion-col>\n    </ion-row>\n    <div>\n\n        <ion-item ion-long-press [interval]="3000" (pressed)="pressed()" (longPressed)="active()" (pressEnded)="released()" *ngFor="let att of a.list; let idx = index">\n\n            <ion-icon *ngIf="flag==true" class="iconwidth" style="margin:9px 3px 9px 4px;" name="close"></ion-icon>\n            <ion-checkbox [(ngModel)]="att.checked" style="z-index: 999999;" (ionChange)="addValue($event)" *ngIf="flag==false" color="dark" slot="start"></ion-checkbox>\n            <button outline item-start style="float:left; width:13%; background-color:white; z-index:999999" *ngIf="flag==true&&delflag1==true" (click)="del(a.list[idx].name)">\n                <img src="./assets/imgs/087-버튼-PPT 32페이지의 좌측 이미지-휴지통 뚜껑 닫힌거.png" alt="">\n            </button>\n            <ion-input text-center style="width: 10%;float: left; font-size:15px;" placeholder="상품명" [(ngModel)]="a.list[idx].name"></ion-input>\n            <ion-input text-center style="width: 5%;float: left; font-size:15px;" placeholder="수량" [(ngModel)]="a.list[idx].quantity"></ion-input>\n            <ion-input text-center style="width: calc(100%-0px-1px);float: left; font-size:13px;" placeholder="가격" [(ngModel)]="a.list[idx].price"></ion-input>\n            <button outline item-end style="float:right; width:15%;background-color: white;" (click)="select_sort(idx)"><img src="./assets/imgs/088-버튼-PPT 32페이지의 좌측 이미지-인터넷 지구+돋보기.png" alt=""></button>\n\n            <!-- <button ion-button outline item-end style="width:10%;" (click)="select_sort(idx)"><ion-icon name=\'search\' is-active="false"></ion-icon></button> -->\n        </ion-item>\n\n    </div>\n\n    <div style="width: 100%; margin-left:0px; margin-right:0px;" class="bottom">\n        <ion-input *ngIf="flag!=false" style="color:#808080; width: 65%;border-bottom: solid 1px;  border-bottom-color:rgb(74, 190, 190); float: left;" [(ngModel)]="adding" placeholder="품목을 입력하세요."></ion-input>\n        <button *ngIf="flag!=false" style="height: 3.5rem;background: transparent;border-radius: 7px;margin-left: 4px;" (click)="speeching()"><img src="./assets/imgs/086-버튼-PPT 31페이지의 가운데 이미지-녹음 마이크.png" style="width:30px;" alt=""></button>\n        <button *ngIf="flag!=false" style="height: 3.5rem;background: #9FFAFA;border: solid 1px #9FFAFA;border-radius: 7px;margin-top: 5px;margin-left: 4px;" (click)="add()">추가하기</button>\n        <div *ngIf="flag!=false&&flagInput==false" class="inputprice" style="margin-top:5px;">\n            <img *ngIf="flag!=false&&flagInput==false" src="./assets/imgs/084-버튼-PPT 31페이지의 가운데 이미지-점3개-회전1단계(시작).png " style="width:30px; " alt=" ">\n            <button *ngIf="flag!=false&&flagInput==false" style="background-color:white;color:rgb(74, 190, 190); font-size:14px; font-weight: bold;" (click)="priceandquantity()">가격 및 수량도 입력하기</button>\n        </div>\n        <div>\n            <button *ngIf="flagInput!=false" style="margin:0px; height: 3.5rem;background-color:#71E8E8;border-radius: 7px; margin-top: 3px;margin-left: 10px; margin-bottom:20px;" (click)="cancel()">상세취소</button>\n            <!-- <ion-input *ngIf="flagInput!=false" style="margin: 0px 0px; color:#808080; width: 30%; height: 3.5rem; border-bottom: solid 1px; float: left; margin-right: 2px; margin-left:2px;" [(ngModel)]="quantity" placeholder="수량"></ion-input> -->\n            <ion-select style="width:20%;height: 20%" [(ngModel)]="num" *ngIf="flagInput!=false" style="z-index:-999999; color:#808080; width: 34%; height: 4.3rem; border-bottom: solid 1px; float: left; margin-right: 2px; margin-left:2px;" [(ngModel)]="quantity"\n                placeholder="수량">\n                <ion-label>수량</ion-label>\n                <ion-option *ngFor="let number of number">{{number.count}}</ion-option>\n            </ion-select>\n            <ion-input *ngIf="flagInput!=false" style="margin: 0px 0px; color:#808080; width: 30%; height: 4.3rem; border-bottom: solid 1px; float: left; margin-left: 2px; margin-right:5px;" [(ngModel)]="price" placeholder="가격"></ion-input>\n        </div>\n    </div>\n\n    <div>\n        <ion-fab right bottom>\n            <button ion-fab mini style="background-color:white"><img class="rotate" src="./assets/imgs/084-버튼-PPT 31페이지의 가운데 이미지-점3개-회전1단계(시작).png " alt=" "></button>\n            <ion-fab-list side="top">\n                <button ion-fab class="fab-close" style="background-color:white" name="close" role="img" aria-label="close" ng-reflect-name="close"><img src="./assets/imgs/084-버튼-PPT 31페이지의 가운데 이미지-점3개-회전1단계(시작).png " alt=" "></button>\n                <button ion-fab style="background-color: white;" (click)="delete(a)"><img src="./assets/imgs/093-버튼-PPT 51페이지의 우측 이미지- 삭제하기 휴지통.png" alt=""></button>\n                <button ion-fab style="background-color: white;" (click)="insertData(a)"><img src="./assets/imgs/092-버튼-PPT 51페이지의 우측 이미지- 수정하기 연필모양.png" alt=""></button>\n                <button ion-fab style="background-color: white;" (click)="sortlist(a)"><img src="./assets/imgs/091-버튼-PPT 51페이지의 우측 이미지- 가나다순.png" style="width:100%" alt=""></button>\n\n            </ion-fab-list>\n        </ion-fab>\n    </div>\n</ion-content>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/viewshoppinglist/viewshoppinglist.html"*/,
+            selector: 'page-viewshoppinglist',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/viewshoppinglist/viewshoppinglist.html"*/'<ion-header>\n    <ion-navbar color="navbar">\n        <span style="color:white; font-size:23px; font-weight: 900">{{a.title}}</span>\n        <button ion-button *ngIf="delflag1==true" style="float:right; border-radius: 4px; width:45px; height:30px; background-color:#01DFD7; border:2px solid; border-color:#01DFD7" (click)="del2()">확인</button>\n    </ion-navbar>\n</ion-header>\n<ion-content padding>\n    <ion-row>\n        <ion-col col-10>\n            <span style="font-size:18px; color:#42B8B8; font-weight: 900;">{{a.time}}</span>\n        </ion-col>\n        <ion-col col-2>\n            <button class="saveButton" (click)="save()">저장</button>\n        </ion-col>\n    </ion-row>\n    <ion-row style="background-color: #9FFAFA; border-radius: 6px;">\n        <ion-col col-8>\n            <span *ngIf="flag==false&&allbuy==false" style="color: #42B8B8; font-size:15px; font-weight: 900;">{{totalnumber}}개 중 {{selected}}개 구입</span>\n            <span *ngIf="flag==true&&allbuy==false" style="color: #42B8B8; font-size:15px; font-weight: 900;">{{totalnumber}}</span>\n            <span *ngIf="allbuy==true" style="color: #42B8B8; font-size:15px; font-weight: 900;">구입완료 {{totalnumber}}품목</span>\n\n        </ion-col>\n        <ion-col col-4>\n            <span style="color: #42B8B8; font-size:15px; font-weight: 900;">₩{{printsum}}</span>\n        </ion-col>\n    </ion-row>\n    <div>\n\n        <ion-item ion-long-press [interval]="3000" (pressed)="pressed()" (longPressed)="active()" (pressEnded)="released()" *ngFor="let att of a.list; let idx = index">\n\n            <!-- <p>{{att.checked2}}</p> -->\n            <div class="wrap_chkbox">\n                <div class="chkbox">\n                    <input *ngIf="flag==false" type="checkbox" [(ngModel)]="att.checked" style="z-index:999999" class="chk" name="chk" id="chk" value="dasabled_val">\n                    <button *ngIf="delflag1==false" (click)="addValue(att)" style="background-color:white;width:30px; height: 30px;">\n                        <img *ngIf="att.checked==true" style="width:30px; height:25px"src="assets/imgs/090-btn-checkingBox2.png" alt=" ">\n                        <img *ngIf="att.checked==false" style="width:30px; height:25px" src="assets/imgs/089-btn-checkingBox1.png" alt=" ">\n                    </button>\n                    <!-- <input *ngIf="flag==true" type="checkbox" [(ngModel)]="att.checked" style="z-index:999999" class="chk" name="chk" id="chk" value="dasabled_val"> -->\n                    <button class="btntest" *ngIf="delflag1==true" (click)="del(a.list[idx])" style=" background-color: white; width:30px; height:30px; ">\n                        <img *ngIf="att.checked2==true" style="width:30px; height:30px " src="./assets/imgs/094-버튼-PPT 54페이지의 가운데 이미지-휴지통 뚜껑 열린거.png " alt=" ">\n                        <img *ngIf="att.checked2==false" style="width:30px; height:30px " src="./assets/imgs/087-버튼-PPT 32페이지의 좌측 이미지-휴지통 뚜껑 닫힌거.png " alt=" ">\n                    </button>\n                    <input type="text" style="width: 30%; font-size:15px; " placeholder="상품명 " [(ngModel)]="a.list[idx].name ">\n                    <input type="text" style="text-align:center; width: 10%; font-size:15px; " placeholder="수량 " [(ngModel)]="a.list[idx].quantity ">\n                    <input type="text" style="text-align:center; width: 30%; font-size:15px; " placeholder="가격 " [(ngModel)]="a.list[idx].price ">\n                    <button style="width:15%; background-color:#fff " (click)="select_sort(idx) ">\n                        <img src="./assets/imgs/088-버튼-PPT 32페이지의 좌측 이미지-인터넷 지구+돋보기.png ">\n                    </button>\n\n                </div>\n\n            </div>\n\n        </ion-item>\n\n    </div>\n\n    <div style="width: 100%; margin-left:0px; margin-right:0px;" class="bottom ">\n        <ion-input *ngIf="flag!=false" style="color:#808080; width: 65%;border-bottom: solid 1px; border-bottom-color:rgb(74, 190, 190); float: left; " [(ngModel)]="adding " placeholder="품목을 입력하세요. "></ion-input>\n        <button *ngIf="flag!=false" style="height: 3.5rem;background: transparent;border-radius: 7px;margin-left: 4px; " (click)="speeching() "><img src="./assets/imgs/086-버튼-PPT 31페이지의 가운데 이미지-녹음 마이크.png " style="width:30px; " alt=" "></button>\n        <button *ngIf="flag!=false" style="height: 3.5rem;background: #9FFAFA;border: solid 1px #9FFAFA;border-radius: 7px;margin-top: 5px;margin-left: 4px; " (click)="add() ">추가하기</button>\n        <div *ngIf="flag!=false&&flagInput==false" class="inputprice " style="margin-top:5px; ">\n            <img *ngIf="flag!=false&&flagInput==false" src="./assets/imgs/084-버튼-PPT 31페이지의 가운데 이미지-점3개-회전1단계(시작).png " style="width:30px; " alt=" ">\n            <button *ngIf="flag!=false&&flagInput==false" style="background-color:white;color:rgb(74, 190, 190); font-size:14px; font-weight: bold; " (click)="priceandquantity() ">가격 및 수량도 입력하기</button>\n        </div>\n        <div>\n            <button *ngIf="flagInput!=false " style="margin:0px; height: 3.5rem;background-color:#71E8E8;border-radius: 7px; margin-top: 3px;margin-left: 10px; margin-bottom:20px; " (click)="cancel() ">상세취소</button>\n            <!-- <ion-input *ngIf="flagInput!=false " style="margin: 0px 0px; color:#808080; width: 30%; height: 3.5rem; border-bottom: solid 1px; float: left; margin-right: 2px; margin-left:2px; " [(ngModel)]="quantity " placeholder="수량 "></ion-input> -->\n            <ion-select style="width:20%;height: 20% " [(ngModel)]="num " *ngIf="flagInput!=false " style="z-index:-999999; color:#808080; width: 34%; height: 4.3rem; border-bottom: solid 1px; float: left; margin-right: 2px; margin-left:2px;\n                        " [(ngModel)]="quantity " placeholder="수량 ">\n                <ion-label>수량</ion-label>\n                <ion-option *ngFor="let number of number ">{{number.count}}</ion-option>\n            </ion-select>\n            <ion-input *ngIf="flagInput!=false " style="margin: 0px 0px; color:#808080; width: 30%; height: 4.3rem; border-bottom: solid 1px; float: left; margin-left: 2px; margin-right:5px; " [(ngModel)]="price " placeholder="가격 "></ion-input>\n        </div>\n    </div>\n\n    <div>\n        <ion-fab right bottom>\n            <button ion-fab mini style="background-color:white"><img class="rotate" src="./assets/imgs/084-버튼-PPT 31페이지의 가운데 이미지-점3개-회전1단계(시작).png " alt=" "></button>\n            <ion-fab-list side="top">\n                <button ion-fab class="fab-close " style="background-color:white" name="close" role="img" aria-label="close" ng-reflect-name="close"><img src="./assets/imgs/084-버튼-PPT 31페이지의 가운데 이미지-점3개-회전1단계(시작).png" alt=" "></button>\n                <button ion-fab style="background-color: white;" (click)="delete(a)"><img src="./assets/imgs/093-버튼-PPT 51페이지의 우측 이미지- 삭제하기 휴지통.png" alt=" "></button>\n                <button ion-fab style="background-color: white;" (click)="insertData(a)"><img src="./assets/imgs/092-버튼-PPT 51페이지의 우측 이미지- 수정하기 연필모양.png" alt=" "></button>\n                <button ion-fab style="background-color: white;" (click)="sortlist(a)"><img src="./assets/imgs/091-버튼-PPT 51페이지의 우측 이미지- 가나다순.png" style="width:100% " alt=" "></button>\n            </ion-fab-list>\n        </ion-fab>\n    </div>\n</ion-content>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/viewshoppinglist/viewshoppinglist.html"*/,
         }),
         __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" ? _c : Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" ? _d : Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" ? _e : Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__["a" /* InAppBrowser */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__["a" /* InAppBrowser */]) === "function" ? _f : Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" ? _g : Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_native_admob_free__["a" /* AdMobFree */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_native_admob_free__["a" /* AdMobFree */]) === "function" ? _h : Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]) === "function" ? _j : Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ModalController */]) === "function" ? _k : Object, typeof (_l = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ViewController */]) === "function" ? _l : Object])
     ], ViewshoppinglistPage);
@@ -3987,8 +4014,8 @@ var HomePage = /** @class */ (function () {
     HomePage.prototype.newDate = function () {
         var days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
         var prefixes = ['첫째주', '둘째주', '셋째주', '넷째주', '다섯째주'];
-        // this.currentMonth = this.date.getMonth() + 1;
-        this.currentMonth = this.date.getMonth() - 1;
+        this.currentMonth = this.date.getMonth() + 1;
+        // this.currentMonth = this.date.getMonth() - 1;
         this.currentYear = this.date.getFullYear();
         var prevNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth(), 0).getDate();
         var thisNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDate();
@@ -4012,18 +4039,18 @@ var HomePage = /** @class */ (function () {
             }
             if (this.currentDate + i <= thisNumOfDays) {
                 this.week.push({ "week": prefixes[0 | (this.currentDate + i - 1) / 7], "month": this.currentMonth, "day": this.currentDate + i, "dayofweek": days[dow] }); //30일
-                console.log(dayofweek);
+                // console.log(dayofweek);
             }
             else if (this.currentDate + i > thisNumOfDays) {
                 count++;
                 this.week.push({ "week": prefixes[0 | (count + i - 1) / 7], "month": this.currentMonth + 1, "day": count, "dayofweek": days[dow] }); //30일
-                console.log(dayofweek);
+                // console.log(dayofweek);
             }
         }
-        console.log(this.week);
-        console.log(prevNumOfDays); //첫날과 마지막 날을 제외한 이 달의 일수
-        console.log(thisNumOfDays); //한 달의 날수
-        console.log(lastDayThisMonth); //이 달의 마지막 날의 요일.
+        // console.log(this.week);
+        // console.log(prevNumOfDays);//첫날과 마지막 날을 제외한 이 달의 일수
+        // console.log(thisNumOfDays);//한 달의 날수
+        // console.log(lastDayThisMonth);//이 달의 마지막 날의 요일.
     };
     HomePage.prototype.presentLoadingDefault = function () {
         var loading = this.loadingCtrl.create({
@@ -4035,31 +4062,31 @@ var HomePage = /** @class */ (function () {
         }, 3000);
     };
     HomePage.prototype.martview = function (martinfo) {
-        console.log(martinfo);
+        // console.log(martinfo);
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_18__martinfoview_martinfoview__["a" /* MartinfoviewPage */], { "martinfo": martinfo });
     };
     HomePage.prototype.favorite = function () {
         var _this = this;
         var count = 0;
         this.firemain.child("users").child(this.id).child("favorite").once("value", function (sn) {
-            console.log(sn.val());
+            // console.log(sn.val());
             for (var i in sn.val()) {
-                console.log(i);
+                // console.log(i);
                 _this.martkind.push(i);
                 console.log(sn.val()[i]);
                 for (var j in sn.val()[i]) {
                     count++;
                     _this.todayoff = sn.val()[i][j].dayoffarray[1];
-                    console.log(_this.todayoff);
-                    console.log(sn.val()[i][j].dayoffarray);
+                    // console.log(this.todayoff);
+                    // console.log(sn.val()[i][j].dayoffarray);
                     _this.favoriteList.push(sn.val()[i][j]);
-                    console.log(_this.favoriteList);
+                    // console.log(this.favoriteList);
                     _this.vacationFunc(_this.week, sn.val()[i][j], count);
                 }
             }
         });
-        console.log(this.favoriteList);
-        console.log(this.favoriteList.length);
+        // console.log(this.favoriteList);
+        // console.log(this.favoriteList.length);
         if (this.favoriteList.length >= 6) {
             var modal = this.modal.create(__WEBPACK_IMPORTED_MODULE_19__favoritemodal_favoritemodal__["a" /* FavoritemodalPage */]);
             modal.present();
@@ -4095,11 +4122,11 @@ var HomePage = /** @class */ (function () {
         return returnvalue;
     };
     HomePage.prototype.vacationFunc = function (week, mart, count) {
-        console.log(week);
-        console.log(mart.vacation);
-        console.log(count);
+        // console.log(week);
+        // console.log(mart.vacation);
+        // console.log(count);
         this.cnt = count;
-        console.log(this.cnt);
+        // console.log(this.cnt);
         var counting = 0;
         this.dayoffarray = [];
         for (var a in week) {
@@ -4375,19 +4402,19 @@ var HomePage = /** @class */ (function () {
                             if (_this.currentMonth == bb[0]) {
                                 if (_this.currentDate == bb[1]) {
                                     console.log("오늘");
-                                    _this.newarraylist.push({ "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": "오늘" + sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key });
+                                    _this.newarraylist.push({ "checked2": false, "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": "오늘" + sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key });
                                 }
                                 if (_this.currentDate - 1 == bb[1]) {
                                     console.log("어제");
-                                    _this.newarraylist.push({ "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": "어제" + sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key });
+                                    _this.newarraylist.push({ "checked2": false, "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": "어제" + sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key });
                                 }
                                 else if (_this.currentDate != bb[1] && _this.currentDate - 1 != bb[1]) {
                                     console.log("다른 날");
-                                    _this.newarraylist.push({ "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key });
+                                    _this.newarraylist.push({ "checked2": false, "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key });
                                 }
                             }
                             else if (_this.currentMonth != bb[0]) {
-                                _this.newarraylist.push({ "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key });
+                                _this.newarraylist.push({ "checked2": false, "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key });
                             }
                         }
                     }
@@ -4543,7 +4570,7 @@ var HomePage = /** @class */ (function () {
         console.log(a.flag);
         console.log(a.list);
         if (this.copyflag) {
-            var alert_1 = this.alertCtrl.create({
+            var alert = this.alertCtrl.create({
                 title: '해당 목록에 덧붙이시겠습니까?',
                 buttons: [
                     {
@@ -4696,7 +4723,7 @@ var HomePage = /** @class */ (function () {
                     }
                 ]
             });
-            alert_1.present();
+            alert.present();
         }
         else {
             console.log(a);
@@ -5048,17 +5075,12 @@ var HomePage = /** @class */ (function () {
         });
         this.oneSignal.endInit();
     };
-    var HomePage_1;
+    var HomePage_1, _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o;
     HomePage = HomePage_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-home',template:/*ion-inline-start:"/Users/limchae/martapp/src/pages/home/home.html"*/'<ion-content padding>\n    <div class="upper" style="background-color: #71E8E8; display:flex;">\n        <ion-searchbar style="float:left;width: 55%; padding:6px;" placeholder="검색,즐겨찾기추가" (click)="main();" [(ngModel)]="startPoint" clearInput></ion-searchbar>\n        <button style="background-color:#71E8E8;" (click)="NoneAd()"><img src="./assets/imgs/004-버튼-PPT 3페이지의 이미지의 상단 가운데-광고금지.png" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;" (click)="appstore()"><img src="./assets/imgs/005-버튼-PPT 3페이지의 이미지의 상단 우측-평가하기 별점주기.png" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;" (click)="regularShare()"><img src="./assets/imgs/006-버튼-PPT 3페이지의 이미지의 상단 우측-공유하기 점 세개.png" style="width:25px;"></button>\n        <button style="background-color:#71E8E8;" (click)="setting()"><img src="./assets/imgs/007-버튼-PPT 3페이지의 이미지의 상단 우측-설정하기 톱니바퀴.png" style="width:25px;"></button>\n\n    </div>\n\n    <ion-segment class="tabstyle" (ionChange)="segmentChanged($event)" [(ngModel)]="tab">\n        <ion-segment-button value="tab1" [ngClass]="tab==\'tab1\'?\'view\':\'notview\'">\n            <span class="tab-font">즐겨찾는곳</span>\n        </ion-segment-button>\n        <ion-segment-button value="tab2" [ngClass]="tab==\'tab2\'?\'view\':\'notview\'">\n            <span class="tab-font">쇼핑예정목록</span>\n        </ion-segment-button>\n        <ion-segment-button value="tab3" [ngClass]="tab==\'tab3\'?\'view\':\'notview\'">\n            <span class="tab-font">인터넷에선 얼마?</span>\n        </ion-segment-button>\n    </ion-segment>\n    <div [ngSwitch]="tab">\n        <ion-list *ngSwitchCase="\'tab1\'">\n            <div *ngIf="favoriteList.length == 0" style="margin-top:10%"><button style="background:white" (click)="main();"><img src="./assets/imgs/003-버튼-PPT 3페이지의 이미지의 정가운데-\'랜딩화면\' 다음에 나오는 화면의 \'말+돋보기 버튼\'.png"></button></div>\n            <div *ngIf="favoriteList != 0">\n                <div style="padding-left:5px; padding-right:5px;">\n                    <div *ngFor="let i of favoriteList; let idx=index" class="border" style="margin-right:auto; margin-left:auto; text-align: center;">\n                        <table>\n                            <thead>\n                                <th style="text-align: left;" *ngIf="i.name.indexOf(\'롯데마트\')>-1" (click)="martview(i)">\n                                    <img src="./assets/imgs/009-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-롯데마트 CI-2.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">\n                                    <a style="margin:3px; font-size:17px; color: #808080; ">롯데마트</a>\n                                </th>\n                                <th style="text-align: left;" *ngIf="i.name.indexOf(\'이마트\')>-1&&i.name.indexOf(\'트레이더스\')==-1" (click)="martview(i)">\n                                    <img src="./assets/imgs/010-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-이마트 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">\n                                    <a style="margin:3px; font-size:17px; color: #808080; ">이마트</a>\n                                </th>\n                                <th style="text-align: left;" *ngIf="i.name.indexOf(\'홈플러스\')>-1" (click)="martview(i)">\n                                    <img src="./assets/imgs/011-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-홈플러스 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">\n                                    <a style="margin:3px; font-size:17px; color: #808080; ">홈플러스</a>\n                                </th>\n                                <th style="text-align: left;" *ngIf="i.name.indexOf(\'코스트코\')>-1" (click)="martview(i)">\n                                    <img src="./assets/imgs/012-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-코스트코 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">\n                                    <a style="margin:3px; font-size:17px; color: #808080; ">코스트코</a>\n                                </th>\n                                <th style="text-align: left;" *ngIf="i.name.indexOf(\'이마트트레이더스\')>-1" (click)="martview(i)">\n                                    <img src="./assets/imgs/013-버튼-PPT 4페이지의 가운데 이미지의 마트별 로고-이마트 트레이더스 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">\n                                    <a style="margin:3px; font-size:17px; color: #808080; ">이마트 트레이더스</a>\n                                </th>\n                                <th style="text-align: left;" *ngIf="i.name.indexOf(\'롯데백화점\')>-1" (click)="martview(i)">\n                                    <img src="./assets/imgs/020-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-롯데백화점 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">\n                                    <a style="margin:3px; font-size:17px; color: #808080; ">롯데백화점</a>\n                                </th>\n                                <th style="text-align: left;" *ngIf="i.name.indexOf(\'신세계\')>-1" (click)="martview(i)">\n                                    <img src="./assets/imgs/021-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-신세백화점 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">\n                                    <a style="margin:3px; font-size:17px; color: #808080; ">신세계백화점</a>\n                                </th>\n                                <th style="text-align: left;" *ngIf="i.name.indexOf(\'현대백화점\')>-1" (click)="martview(i)">\n                                    <img src="./assets/imgs/022-버튼-PPT 4페이지의 가운데 이미지의 백화점별 로고-현대백화점 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">\n                                    <a style="margin:3px; font-size:17px; color: #808080; ">현대백화점</a>\n                                </th>\n                                <th style="text-align: left;" *ngIf="i.name.indexOf(\'롯데아울렛\')>-1" (click)="martview(i)">\n                                    <img src="./assets/imgs/023-버튼-PPT 4페이지의 가운데 이미지의 아울렛별 로고-롯데아울렛 CI.png" class="logoimage " style="height:10%; margin-right: 10px; " alt=" ">\n                                    <a style="margin:3px; font-size:17px; color: #808080; ">롯데아울렛</a>\n                                </th>\n                                <th class="dayoffimg">\n                                    <img *ngIf="todayoff==\'영업\'" src="./assets/imgs/043-버튼-PPT 5페이지의 우측 이미지 영업 알림 버튼-오늘 영업.png " style="width:60%; ">\n                                    <img *ngIf="todayoff==\'휴무\'" src="./assets/imgs/044-버튼-PPT 5페이지의 우측 이미지 영업 알림 버튼-오늘 휴무.png " style="width:60%; ">\n\n                                    <button outline item-end (click)="bookmark(i, idx) " style="width:40px; height:40px; background-color: white;">\n                                <img class="heart" *ngIf="i.favorite==false" src="./assets/imgs/045-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-블랭크 하트(즐겨찾기전).png" style="width:100%; " alt=" ">\n                                <img class="heart" *ngIf="i.favorite==true" src="./assets/imgs/046-버튼-PPT 5페이지의 우측 이미지 즐겨찾기 하트 버튼-노란 하트(즐겨찾기후).png" style="width:100%; " alt=" ">\n                            </button>\n                                </th>\n                            </thead>\n                            <tbody style="width:100%;" (click)="martview(i)">\n                                <tr class="martname " style="font-weight: 900">\n                                    <span style="margin : 10px; margin-bottom:30px;">{{i.name}}</span>\n                                </tr>\n                            </tbody>\n                        </table>\n                        <table style="margin-left:auto; margin-right:auto">\n                            <tbody>\n                                <tr class="datespan">\n                                    <td class="tabletd" *ngFor="let i of today" (click)="martview(i)" style="margin-top:10px;">\n                                        <span *ngIf="i!=\'오늘\'" style="color:red; font-weight: 500;">{{i}}</span>\n                                        <span *ngIf="i==\'오늘\'" style="color:rgb(0, 119, 255); font-weight: 500;">{{i}}</span>\n                                    </td>\n                                </tr>\n                                <tr class="datespan " (click)="martview(i) ">\n                                    <td *ngFor="let i of week " class="tabletd">\n                                        <span>{{i.dayofweek}}</span>\n                                    </td>\n                                </tr>\n                                <tr class="datespan " (click)="martview(i) ">\n                                    <td *ngFor="let i of week " class="tabletd">\n                                        <span>{{i.month}}/{{i.day}}</span>\n                                    </td>\n                                </tr>\n                                <tr class="datespan " (click)="martview(i) ">\n                                    <td *ngFor="let m of i.dayoffarray" class="tabletd ">\n                                        <span *ngIf="m==\'휴무\'" class="mSpan1">{{m}}</span>\n                                        <span *ngIf="m==\'영업\'" class="mSpan2">{{m}}</span>\n                                    </td>\n                                </tr>\n                            </tbody>\n                        </table>\n                    </div>\n                </div>\n                <div class="borderr ">\n                    <button style="background-color:white; height:30%; margin-left:auto; margin-right:auto; " (click)="main(); "><img style="width:55% "src="./assets/imgs/047-버튼-PPT 7페이지의 우측 이미지-말얼굴+돋보기.png " alt=" "></button>\n                </div>\n            </div>\n        </ion-list>\n        <ion-list *ngSwitchCase=" \'tab2\' ">\n            <div class="topselector ">\n                <p>쇼핑 목록 만들기! 어디서 쇼핑하실 건가요?</p>\n                <table style="margin: auto; text-align: center; ">\n\n                    <tbody>\n                        <td>\n                            <button style="background-color:#fff; " (click)="addlist( \'mart\') "><img src="./assets/imgs/079-버튼-PPT 27페이지의 가운데 이미지-카트(마트).png " style="width:500px "></button>\n                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold; " (click)="addlist( \'mart\') ">마트</button>\n                        </td>\n                        <td>\n                            <button style="background-color:#fff; " (click)="addlist( \'dep\') "><img src="./assets/imgs/080-버튼-PPT 27페이지의 가운데 이미지-쇼핑백(백화점).png " style="width:500px "></button>\n                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold; " (click)="addlist( \'dep\') ">백화점</button>\n                        </td>\n                        <td>\n                            <button style="background-color:#fff; " (click)="addlist( \'outlet\') "><img src="./assets/imgs/081-버튼-PPT 27페이지의 가운데 이미지-보석+구두(아울렛).png " style="width:500px "></button>\n                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold; " (click)="addlist( \'outlet\') ">아울렛</button>\n                        </td>\n                        <td>\n                            <button style="background-color:#fff; " (click)="addlist( \'etc\') "><img src="./assets/imgs/081-버튼-PPT 27페이지의 가운데 이미지-etc(기타).png " style="width:500px "></button>\n                            <button style="background-color:#fff; color:rgb(88, 189, 207); font-size: 16px; font-weight: bold; " (click)="addlist( \'etc\') ">기타</button>\n                        </td>\n                    </tbody>\n                </table>\n            </div>\n            <div *ngIf="newarraylist.length==0 "><img src="./assets/imgs/078-버튼-PPT 27페이지의 가운데 이미지-쇼핑이라쓰고+말얼굴 (1).png " alt=" "></div>\n            <div *ngIf="newarraylist!=0 ">\n\n                <div *ngFor="let a of newarraylist " class="border ">\n                    <button (click)="viewshoppinglist(a) " style="background-color: #fff; width:80% ">\n                        <table>\n                            <tr style="text-align: left; ">\n                                <td>\n                                        <button *ngIf="a.flag==\'mart\' " style="background-color:#fff; width:80px "><img src="./assets/imgs/079-버튼-PPT 27페이지의 가운데 이미지-카트(마트).png " style="width:100% " alt=" "></button>\n                    <button *ngIf="a.flag==\'dep\' " style="background-color:#fff; width:80px "><img src="./assets/imgs/080-버튼-PPT 27페이지의 가운데 이미지-쇼핑백(백화점).png " style="width:100% "alt=" "></button>\n                    <button *ngIf="a.flag==\'outlet\' " style="background-color:#fff; width:80px "><img src="./assets/imgs/081-버튼-PPT 27페이지의 가운데 이미지-보석+구두(아울렛).png " style="width:100% " alt=" "></button>\n                    <button *ngIf="a.flag==\'etc\' " style="background-color:#fff; width:80px "><img src="./assets/imgs/081-버튼-PPT 27페이지의 가운데 이미지-etc(기타).png " style="width:100% " alt=" "></button>\n\n                    </td>\n                    <td>\n                        <div>\n                            <span *ngIf="a.flag==\'mart\' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">마트 </span>\n                            <span *ngIf="a.flag==\'dep\' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">백화점 </span>\n                            <span *ngIf="a.flag==\'outlet\' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">아울렛 </span>\n                            <span *ngIf="a.flag==\'etc\' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">기타 </span>\n                            <span style="font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">"{{a.title}} "</span>\n                            <br><br><span style="font-size:15px; font-weight:bold; color:rgb(74,190,190); margin-top:3px; ">{{a.time}} 작성</span><br><br>\n                            <span style="font-size:16px; font-weight: bold; color:rgb(74,190,190); margin-top:30px; " *ngIf="a.totallist!=a.totalchecked ">{{a.totallist+"개 항목 중 "+a.totalchecked+"개 구입 "}}</span>\n                            <span style="font-size:16px; font-weight: bold; color:rgb(74,190,190); margin-top:30px; " *ngIf="a.totallist==a.totalchecked ">구입 완료 "{{a.totallist}}품목 "</span>\n\n                        </div>\n                    </td>\n                    </table>\n\n                    </button>\n                    <div>\n                        <ion-fab style="margin-top:-50px; ">\n                            <img class="rotate " src="./assets/imgs/084-버튼-PPT 31페이지의 가운데 이미지-점3개-회전1단계(시작).png " style="width:30%;height: 30%;float:right; margin-right:30px; margin-top:20px; position:relative; z-index :9998 " alt=" " ion-fab>\n                            <ion-fab-list side="bottom " style="margin-left:-90%; margin-top:20px;text-align: left; background-color:#E9E9E9; position: absolute; z-index: 9999; ">\n                                <button style="background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="changeName(a) ">목록명 변경</button>\n                                <button style="background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="share(a) ">공유</button>\n                                <button style="background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="deleteDB(a) ">삭제</button>\n                                <button style="background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="openModal(a) ">복사</button>\n                            </ion-fab-list>\n                        </ion-fab>\n                    </div>\n                </div>\n\n            </div>\n\n        </ion-list>\n        <ion-list *ngSwitchCase=" \'tab3\' ">\n\n            <div style="padding:20px; ">\n                <select id="slt " name="sor ">\n                    <option value="rel " selected="selected ">랭킹순</option>\n                    <option value="price_asc ">낮은 가격순</option>\n                    <option value="price_dsc ">높은 가격순</option>\n                    <option value="date ">등록순</option>\n                    <option value="review ">리뷰 많은순</option>\n                </select>\n\n                <ion-input style="margin-right: 0px; margin-top: 2px; width: 55%; height:48px; display: inline-block; border: 2px solid rgb(0, 167, 179); border-radius: 5px; " name=\'text\' type="text " [(ngModel)]=\'srct.text\' placeholder="검색어를 입력해 주세요. ">\n\n                </ion-input>\n                <button style="padding-left:-15%; margin-left: -15%;margin-top: 1%; float: right; width:60px; height: 50px; background-color: #fff;z-index: 9999; " outline icon-only (click)=\'select_sort()\'>\n\n                    <ion-icon name=\'search\' style="color:rgb(0, 167, 179); font-size:30px " is-active="false "></ion-icon>\n                </button>\n\n            </div>\n            <div>\n                <img src="./assets/imgs/077-배경 이미지-PPT 23페이지의 가운데 이미지-인터넷은얼마+말얼굴.png " class="cropping " alt=" ">\n            </div>\n        </ion-list>\n\n\n    </div>\n\n</ion-content>'/*ion-inline-end:"/Users/limchae/martapp/src/pages/home/home.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ModalController */], __WEBPACK_IMPORTED_MODULE_10__ionic_native_social_sharing__["a" /* SocialSharing */], __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__["a" /* InAppBrowser */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_unique_device_id__["a" /* UniqueDeviceID */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_call_number___["a" /* CallNumber */],
-            __WEBPACK_IMPORTED_MODULE_2__ionic_native_admob_free__["a" /* AdMobFree */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_16__ionic_native_onesignal__["a" /* OneSignal */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ModalController */]) === "function" ? _a : Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_10__ionic_native_social_sharing__["a" /* SocialSharing */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10__ionic_native_social_sharing__["a" /* SocialSharing */]) === "function" ? _b : Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__["a" /* InAppBrowser */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__["a" /* InAppBrowser */]) === "function" ? _c : Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_native_unique_device_id__["a" /* UniqueDeviceID */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_native_unique_device_id__["a" /* UniqueDeviceID */]) === "function" ? _d : Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" ? _e : Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_call_number___["a" /* CallNumber */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_call_number___["a" /* CallNumber */]) === "function" ? _f : Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_admob_free__["a" /* AdMobFree */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_admob_free__["a" /* AdMobFree */]) === "function" ? _g : Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" ? _h : Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */]) === "function" ? _j : Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" ? _k : Object, typeof (_l = typeof __WEBPACK_IMPORTED_MODULE_16__ionic_native_onesignal__["a" /* OneSignal */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_16__ionic_native_onesignal__["a" /* OneSignal */]) === "function" ? _l : Object, typeof (_m = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]) === "function" ? _m : Object, typeof (_o = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */]) === "function" ? _o : Object])
     ], HomePage);
     return HomePage;
 }());

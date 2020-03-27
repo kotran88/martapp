@@ -28713,8 +28713,30 @@ page-viewshoppinglist .text-input-md {
   margin: 10px 8px;
 }
 
+.chk {
+  display: none;
+}
+
+.first {
+  background-image: url("assets/imgs/090-btn-checkingBox2.png");
+  width: 30px;
+  height: 30px;
+}
+
+.last {
+  background-image: url("assets/imgs/089-btn-checkingBox1.png");
+  width: 30px;
+  height: 30px;
+}
+
 .opentrash {
-  background: url("./assets/imgs/094-버튼-PPT 54페이지의 가운데 이미지-휴지통 뚜껑 열린거.png");
+  background: url("./assets/imgs/094-버튼-PPT 54페이지의 가운데 이미지-휴지통 뚜껑 열린거.png") !important;
+  width: 30px;
+}
+
+.closetrash {
+  background: url("./assets/imgs/087-버튼-PPT 32페이지의 좌측 이미지-휴지통 뚜껑 닫힌거.png") !important;
+  width: 30px;
 }
 
 .rotate {
@@ -28760,6 +28782,11 @@ ion-fab-list {
 
 .button {
   border-radius: 4px;
+}
+
+.left {
+  float: left;
+  width: 30%;
 }
 
 .saveButton {

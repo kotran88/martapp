@@ -81,7 +81,7 @@ export class AddshopingPage {
     }
     if(this.price == ""){ this.price = 1; }
     if(this.quantity == "") { this.quantity = 1; }
-    this.addinglist.push({ "name": this.adding, "checked": false, "price": this.price, "quantity": this.quantity });
+    this.addinglist.push({ "name": this.adding, "checked2":false,"checked": false, "price": this.price, "quantity": this.quantity });
     this.totalnumber = this.addinglist.length;
     this.addprice();
 

@@ -6,10 +6,18 @@
   "config_munge": {
     "files": {}
   },
-  "installed_plugins": {},
+  "installed_plugins": {
+    "cordova-plugin-admob-free": {
+      "ADMOB_APP_ID": "ca-app-pub-3258580543591687~9540875496",
+      "PACKAGE_NAME": "io.ionic.inhand"
+    }
+  },
   "dependent_plugins": {
     "cordova-admob-sdk": {
       "PLAY_SERVICES_VERSION": "11.0.4",
+      "PACKAGE_NAME": "io.ionic.inhand"
+    },
+    "cordova-promise-polyfill": {
       "PACKAGE_NAME": "io.ionic.inhand"
     }
   }

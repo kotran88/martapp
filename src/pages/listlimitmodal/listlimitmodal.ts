@@ -49,6 +49,7 @@ export class ListlimitmodalPage {
     }
 
     console.log(this.value);
+    console.log(temp);
     this.viewCtrl.dismiss({ "value": temp })
 
   }

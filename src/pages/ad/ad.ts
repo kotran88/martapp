@@ -6,7 +6,7 @@ import { v } from '@angular/core/src/render3';
 
 /**
  * Generated class for the AdPage page.
- *
+ *cordova plugin add cordova-plugin-purchase --variable BILLING_KEY=2ffcb9950267246691efe8ecf2df99debc1bcf5a
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
@@ -16,7 +16,10 @@ import { v } from '@angular/core/src/render3';
   templateUrl: 'ad.html',
 })
 export class AdPage {
-
+  flag1:boolean = false;
+  flag2:boolean = false;
+  flag3:boolean = false;
+  flag4:boolean = false;
   more_info=false;
   select_option=-1;
   option=[
@@ -50,6 +53,60 @@ export class AdPage {
     console.log(i);
     if(this.select_option==i) this.select_option=-1;
     else this.select_option=i;
+    if(i==0){
+      this.flag2=false;
+      this.flag3=false;
+      this.flag4=false;
+      if(this.flag1==false){
+        this.flag1 = true;
+        console.log(this.flag1)
+      }else if(this.flag1==true){
+        this.flag1 = false;
+        console.log(this.flag1);
+      }
+      else{this.flag1 = false}
+    }
+    if(i==1){
+      this.flag1=true;
+      this.flag3=false;
+      this.flag4=false;
+      if(this.flag2==false){
+        this.flag2 = true;
+        console.log(this.flag2)
+      }else if(this.flag2==true){
+        this.flag2 = false;
+        console.log(this.flag2);
+      }
+      else{this.flag2 = false}
+    }
+    if(i==2){
+      this.flag1=true;
+      this.flag2=false;
+      this.flag4=false;
+      if(this.flag3==false){
+        this.flag3 = true;
+        console.log(this.flag3)
+      }else if(this.flag3==true){
+        this.flag3 = false;
+        console.log(this.flag3);
+      }
+      else{this.flag3 = false}
+    }
+    if(i==3){
+      this.flag1=true;
+      this.flag2=false;
+      this.flag3=false;
+      if(this.flag4==false){
+        this.flag4 = true;
+        console.log(this.flag4)
+      }else if(this.flag4==true){
+        this.flag4 = false;
+        console.log(this.flag4);
+      }
+      else{this.flag4 = false}
+    }
+    
+  
   }
   
   purchase(){
@@ -81,5 +138,8 @@ export class AdPage {
     this.viewCtrl.dismiss();
   }
 
+  dis(){
+    this.navCtrl.pop();
+  }
   
 }

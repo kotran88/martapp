@@ -1,17 +1,9 @@
-<!--
-  Generated template for the AddshopingPage page.
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<!-- <ion-header>
-    <ion-navbar>
-        <ion-title>{{title}}</ion-title>
-    </ion-navbar>
-</ion-header> -->
 <ion-content>
     <div style="background-color: #71E8E8; display:flex;">
-        <button class="goback" (click)="goBack()"><img src="./assets/imgs/064-버튼-PPT 19페이지의  우측 이미지-뒤로가기 화살표.png" style="width:30px; margin:5px;" alt=""></button>
+        <button class="goback" (click)="backbutton()"><img src="./assets/imgs/064-버튼-PPT 19페이지의  우측 이미지-뒤로가기 화살표.png" style="width:30px; margin:5px;" alt=""></button>
         <span style="color:white; font-size:18px; font-weight: 900; margin-top:11px; margin-left:10px;">{{title}}</span>
+        <button ion-button *ngIf="delflag==true" style="float:right; border-radius: 4px; width:45px; height:30px; background-color:#01DFD7; border:2px solid; border-color:#01DFD7; margin-left:140px;" (click)="del2()">확인</button>
+        <button ion-button *ngIf="delflag==true" style="float:right; border-radius: 4px; width:45px; height:30px; background-color:#01DFD7; border:2px solid; border-color:#01DFD7; " (click)="delcancle()">취소</button>
     </div>
     <ion-item-divider color="light" style="height: 40px;"><img src="{{img}}" style="width:60px; margin-right:10px;">
         <img *ngIf="value=='mart'" src="./assets/imgs/079-버튼-PPT 27페이지의 가운데 이미지-카트(마트).png" style="width:30px;" alt="">
@@ -38,11 +30,16 @@
     </ion-row>
     <div class="main" *ngIf="addinglist.length!=0">
         <ion-item *ngFor="let att of addinglist; let idx = index">
-            <ion-icon *ngIf="flag==false" name="close"></ion-icon>
-            <ion-checkbox [(ngModel)]="att.checked" style="z-index: 999999;" (ionChange)="addValue($event)" *ngIf="flag==true" color="dark" slot="start"></ion-checkbox>
-            <ion-input style="width: 20%;float: left;" placeholder="상품명" [(ngModel)]="addinglist[idx].name"></ion-input>
-            <ion-input style="width: 20%;float: right;" placeholder="수량" [(ngModel)]="addinglist[idx].quantity"></ion-input>
-            <ion-input style="width: 20%;float: right;" placeholder="가격" [(ngModel)]="addinglist[idx].price"></ion-input>
+            <button class="btntest" (click)="del(addinglist[idx])" style=" background-color: white; width:30px; height:30px; ">
+                <img *ngIf="att.checked2==true" style="width:25px; height:25px " src="./assets/imgs/094-버튼-PPT 54페이지의 가운데 이미지-휴지통 뚜껑 열린거.png " alt=" ">
+                <img *ngIf="att.checked2==false" style="width:25px; height:25px " src="./assets/imgs/087-버튼-PPT 32페이지의 좌측 이미지-휴지통 뚜껑 닫힌거.png " alt=" ">
+            </button>
+            <input type="text" style="width: 30%; font-size:15px; border: none " placeholder="상품명 " [(ngModel)]="addinglist[idx].name ">
+            <input type="text" style="text-align:center; width: 10%; font-size:15px; border: none " placeholder="수량 " [(ngModel)]="addinglist[idx].quantity ">
+            <input type="text" style="text-align:center; width: 30%; font-size:15px; border: none " placeholder="가격 " [(ngModel)]="addinglist[idx].price ">
+            <button style="width:15%; background-color:#fff " (click)="select_sort(idx) ">
+                <img src="./assets/imgs/088-버튼-PPT 32페이지의 좌측 이미지-인터넷 지구+돋보기.png ">
+            </button>
         </ion-item>
     </div>
     <div style="margin-left:10px; position: absolute;bottom: 70px;width: 100%;" class="bottom">
@@ -58,7 +55,6 @@
         </div>
         <div>
             <button *ngIf="flagInput!=false" style="height: 3.5rem;background-color:#71E8E8;border-radius: 7px; margin-top: 3px;margin-left: 10px;" (click)="cancel()">상세취소</button>
-            <!-- <ion-input *ngIf="flagInput!=false" style="color:#808080; width: 34%; height: 3.5rem; border-bottom: solid 1px; float: left; margin-right: 2px; margin-left:2px;" [(ngModel)]="quantity" placeholder="수량"></ion-input> -->
             <ion-select [(ngModel)]="number" *ngIf="flagInput!=false" style="color:#808080; width: 34%; height: 4rem; border-bottom: solid 1px; float: left; margin-right: 2px; margin-left:2px;" [(ngModel)]="quantity" placeholder="수량">
                 <ion-option>1</ion-option>
                 <ion-option>2</ion-option>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController } from 'ionic-angular';
+import { NavController,ViewController,App,Platform, NavParams, ModalController } from 'ionic-angular';
 import { MartmapPage } from '../martmap/martmap';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { AdPage } from '../ad/ad';
@@ -19,14 +19,20 @@ import { RatePage } from '../rate/rate';
 
 export class MartlistPage {
   martname:any;
+  id:any;
   martmap(id){
     console.log("hi");
     console.log(id);
-    this.navCtrl.push(MartmapPage,{"id":id})
+    console.log("user id : "+this.id);
+    this.navCtrl.push(MartmapPage,{"id":id,"userid":this.id})
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(public view:ViewController,public app:App,public platform:Platform,public navCtrl: NavController, public navParams: NavParams,
     private socialSharing: SocialSharing, public modal: ModalController) {
+      this.id=this.navParams.get("id")
+
+
+
   }
 
   regularShare() {

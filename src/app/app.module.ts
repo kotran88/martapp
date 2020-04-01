@@ -36,6 +36,11 @@ import { LongPressModule } from 'ionic-long-press';
 
 
 
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { ViewlimitmodalPage } from '../pages/viewlimitmodal/viewlimitmodal';
+import { DeletemodalPage } from '../pages/deletemodal/deletemodal';
+import { Copymodal2Page } from '../pages/copymodal2/copymodal2';
+import { ExitAppPage } from '../pages/exit-app/exit-app';
 var firebaseConfig = {
   apiKey: "AIzaSyDTw06TUezPym9Iu9Xw5tqkoMCa5kU7B3w",
   authDomain: "inhand-85421.firebaseapp.com",
@@ -64,7 +69,11 @@ firebase.initializeApp(firebaseConfig);
     MartmapPage,
     MartinfoPage,
     MartinfoviewPage,
-    FavoritemodalPage
+    FavoritemodalPage,
+    ViewlimitmodalPage,
+    DeletemodalPage,
+    Copymodal2Page,
+    ExitAppPage
   ],
   imports: [
     BrowserModule,
@@ -91,9 +100,15 @@ firebase.initializeApp(firebaseConfig);
     MartmapPage,
     MartinfoPage,
     MartinfoviewPage,
-    FavoritemodalPage
+    FavoritemodalPage,
+    ViewlimitmodalPage,
+    DeletemodalPage,
+    Copymodal2Page,
+    ExitAppPage
+
   ],
   providers: [
+    ScreenOrientation,
     StatusBar,
     SpeechRecognition,
     InAppPurchase,

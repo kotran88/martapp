@@ -20,6 +20,8 @@ import { OneSignal } from '@ionic-native/onesignal';
 import { MartlistPage } from '../martlist/martlist';
 import { MartinfoviewPage } from '../martinfoview/martinfoview';
 import { FavoritemodalPage } from '../favoritemodal/favoritemodal';
+import { DeletemodalPage } from '../deletemodal/deletemodal';
+import { Copymodal2Page } from '../copymodal2/copymodal2';
 
 
 @Component({
@@ -33,11 +35,12 @@ export class HomePage {
   firemain = firebase.database().ref();
   shoppingPlace: any;
   newarraylist = [];
-  id: any = "a2f05b91-956a-b480-3525-991002905558"
+  // id: any = "a2f05b91-956a-b480-3525-991002905558"
+  id: any;
   tab = "tab1";
   title: any;
   key: any;
-  nextdirectory = this.firemain.child("users").child(this.id);
+  nextdirectory: any;
   count: any = 0;
   selected: any;
   copyflag: any = false;
@@ -71,7 +74,7 @@ export class HomePage {
   thismonth = [];
   week = [];
   offdayyear = [];
-  offdayname : any;
+  offdayname: any;
   firstDate = new Date(this.year, this.month, 1).getDay();//첫날의 요일
   lastDate = new Date(this.year, this.month + 1, 0);//마지막 날의 요일
   newDate() {
@@ -81,11 +84,8 @@ export class HomePage {
     // this.currentMonth = this.date.getMonth() - 1;
 
     this.currentYear = this.date.getFullYear();
-    var prevNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth(), 0).getDate();
     var thisNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDate();
-    var lastDayThisMonth = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDay();
     var dayofweek = this.date.getDay();
-
     if (this.date.getMonth() === new Date().getMonth()) {
       this.currentDate = new Date().getDate();
     } else {
@@ -96,41 +96,28 @@ export class HomePage {
     console.log("1: " + this.currentDate);
     for (var i = 0; i < 7; i++) {
       console.log(thisNumOfDays);
-      // if(dayofweek+i>=7){dayofweek=0;}
       var dow = dayofweek++;
 
       if (dayofweek >= 7) { dayofweek = 0; }
       if (this.currentDate + i <= thisNumOfDays) {
-        this.week.push({ "week": prefixes[0 | (this.currentDate + i - 1) / 7], "month": this.currentMonth, "day": this.currentDate + i, "dayofweek": days[dow] }); //30일
-        // console.log(dayofweek);
+        count++;
+        this.week.push({ "week": prefixes[0 | (count + i - 1) / 7], "month": this.currentMonth, "day": this.currentDate + i, "dayofweek": days[dow] });
       }
       else if (this.currentDate + i > thisNumOfDays) {
         count++;
-        this.week.push({ "week": prefixes[0 | (count + i - 1) / 7], "month": this.currentMonth + 1, "day": count, "dayofweek": days[dow] }); //30일
-        // console.log(dayofweek);
+        this.week.push({ "week": prefixes[0 | (count + i - 1) / 7], "month": this.currentMonth + 1, "day": count, "dayofweek": days[dow] });
       }
     }
+    console.log(this.week);
     // console.log(this.week);
     // console.log(prevNumOfDays);//첫날과 마지막 날을 제외한 이 달의 일수
     // console.log(thisNumOfDays);//한 달의 날수
     // console.log(lastDayThisMonth);//이 달의 마지막 날의 요일.
   }
 
-  presentLoadingDefault() {
-    let loading = this.loadingCtrl.create({
-      content: 'loading'
-    });
-
-    loading.present();
-
-    setTimeout(() => {
-      loading.dismiss();
-    }, 3000);
-  }
-
   martview(martinfo) {
     // console.log(martinfo);
-    this.navCtrl.push(MartinfoviewPage, { "martinfo": martinfo });
+    this.navCtrl.push(MartinfoviewPage, { "martinfo": martinfo, "id": this.id });
   }
 
   area: any;
@@ -138,6 +125,8 @@ export class HomePage {
   kindofmart: any;
   favorite() {
     var count = 0;
+    this.favoriteList = [];
+    console.log("this id is : " + this.id);
     this.firemain.child("users").child(this.id).child("favorite").once("value", (sn) => {
       // console.log(sn.val());
       for (var i in sn.val()) {
@@ -156,13 +145,11 @@ export class HomePage {
       }
 
     })
-    // console.log(this.favoriteList);
-    // console.log(this.favoriteList.length);
-    if (this.favoriteList.length >= 6) {
+  
+    if (this.favoriteList.length >= 20) {
       let modal = this.modal.create(FavoritemodalPage);
       modal.present();
 
-      // this.firemain.child("users").child(this.id).child("favorte").remove();
     }
   }
 
@@ -194,13 +181,13 @@ export class HomePage {
     console.log(returnvalue);
     return returnvalue
   }
-  cnt:any;
+  cnt: any;
   dayoffarray = [];
   vacationFunc(week, mart, count) {
     // console.log(week);
     // console.log(mart.vacation);
     // console.log(count);
-    this.cnt=count;
+    this.cnt = count;
     // console.log(this.cnt);
     var counting = 0;
     this.dayoffarray = [];
@@ -330,25 +317,32 @@ export class HomePage {
         }
       }
       else {
-        console.log("hi");
-        
+
         if (this.dayoffarray.length <= 6) {
           this.dayoffarray.push("영업");
         }
       }
-
-      console.log(count);
-      console.log(this.favoriteList);
       this.favoriteList[count - 1].dayoffarray = this.dayoffarray;
-      // console.log(this.favoriteList[count-1].dayoffarry);
-
-
-      // this.favoriteList[count-1].dayoffarray = this.dayoffarray;
     }
 
   }
   favoriteIndex: any;
   bookmark(a, idx) {
+    var newnametoinput = "";
+    if (a.name.indexOf("롯데마트") > -1) { newnametoinput = "lotte"; }
+    if (a.name.indexOf("이마트") > -1 && a.name.indexOf("트레이더스") == -1) { newnametoinput = "emart"; }
+    if (a.name.indexOf("홈플러스") > -1) { newnametoinput = "homeplus"; }
+    if (a.name.indexOf("코스트코") > -1) { newnametoinput = "costco"; }
+    if (a.name.indexOf("이마트트레이더스") > -1) { newnametoinput = "traders"; }
+    if (a.name.indexOf("롯데백화점") > -1) { newnametoinput = "lottedep"; }
+    if (a.name.indexOf("신세계백화점") > -1) { newnametoinput = "sinsaegae"; }
+    if (a.name.indexOf("현대백화점") > -1) { newnametoinput = "hyundai"; }
+    if (a.name.indexOf("롯데 아울렛") > -1) { newnametoinput = "lotteoutlet"; }
+    if (a.name.indexOf("신세계 아울렛") > -1) { newnametoinput = ""; }
+    if (a.name.indexOf("현대 아울렛") > -1) { newnametoinput = ""; }
+
+
+    console.log(newnametoinput);
     this.favoriteIndex = idx;
     this.martinfo = a;
     console.log(this.martinfo);
@@ -356,19 +350,26 @@ export class HomePage {
     console.log(a);
     console.log(a.key)
     console.log(idx);
-    console.log(this.martkind[idx]);
-    this.firemain.child("users").child(this.id).child("favorite").child(this.martkind[idx]).child(a.key).remove();
+
+
+    this.firemain.child("users").child(this.id).child("favorite").child(newnametoinput).child(a.key).remove();
     const toast = this.toastCtrl.create({
-      message: '삭제되었습니다.',
+      message: '"즐겨찾는 곳"에서 삭제되었습니다.',
       duration: 2000,
     });
     toast.present();
+
     this.navCtrl.push(HomePage);
 
   }
 
   main() {
-    this.navCtrl.push(MartlistPage);
+    this.navCtrl.push(MartlistPage, { "id": this.id }).then(() => {
+      this.navCtrl.getActive().onDidDismiss(data => {
+        this.init();
+
+      });
+    });
   }
 
   openFabButton() {
@@ -381,28 +382,25 @@ export class HomePage {
 
   refreshname() {
     // console.log(this.newarraylist);
+    console.log("refresh come!!!");
+    console.log(this.id);
     this.newarraylist = [];
     this.firemain.child("users").child(this.id).once("value", (sn) => {
       for (var a in sn.val()) {
+        console.log("a is : " + a);
         if (a != "setting" && a != "favorite" && a != "deviceID") {
-          // console.log(sn.val()[a]);
           for (var b in sn.val()[a]) {
             this.listcount++;
-            // console.log("b" + b);
-            // console.log(sn.val()[a][b]);
             for (var c in sn.val()[a][b]) {
-              // console.log("c" + c);
-              // console.log(sn.val()[a][b][c]);
               var checked = 0;
               var listlength = 0;
               for (var d in sn.val()[a][b][c].list) {
-                // console.log(sn.val()[a][b][c].list.length)
                 listlength = sn.val()[a][b][c].list.length;
-                // console.log(sn.val()[a][b][c].list[d]);
                 if (sn.val()[a][b][c].list[d].checked == true) {
                   checked++;
                 }
               }
+              console.log(sn.val()[a][b][c])
               var aa = sn.val()[a][b][c].time.split("일");
               console.log(aa[0]);
               var bb = aa[0].split("월");
@@ -412,81 +410,80 @@ export class HomePage {
               console.log(this.currentDate);
               console.log(this.currentYear);
               this.offdayyear = [
-              {"year":"2020","seol":"1월25","chuseok":"10월1"},
-              {"year":"2021","seol":"2월12","chuseok":"9월21"},
-              {"year":"2022","seol":"2월1","chuseok":"9월10"},
-              {"year":"2023","seol":"1월22","chuseok":"9월29"},
-              {"year":"2024","seol":"2월10","chuseok":"9월17"},
-              {"year":"2025","seol":"1월29","chuseok":"10월6"},
-              {"year":"2026","seol":"2월17","chuseok":"9월25"},
-              {"year":"2027","seol":"2월7","chuseok":"9월15"},
-              {"year":"2028","seol":"1월27","chuseok":"10월3"},
-              {"year":"2029","seol":"2월13","chuseok":"9월22"},
-              {"year":"2030","seol":"2월3","chuseok":"9월12"},
-            ];
-            for(var off in this.offdayyear){
-              if(this.offdayyear[off].year == this.currentYear){
-                if(this.offdayyear[off].seol == this.currentMonth+"월"+this.currentDate){
-                  console.log(this.currentMonth+"월"+this.currentDate);
-                  this.offdayname = "설날";
+                { "year": "2020", "seol": "1월25", "chuseok": "10월1" },
+                { "year": "2021", "seol": "2월12", "chuseok": "9월21" },
+                { "year": "2022", "seol": "2월1", "chuseok": "9월10" },
+                { "year": "2023", "seol": "1월22", "chuseok": "9월29" },
+                { "year": "2024", "seol": "2월10", "chuseok": "9월17" },
+                { "year": "2025", "seol": "1월29", "chuseok": "10월6" },
+                { "year": "2026", "seol": "2월17", "chuseok": "9월25" },
+                { "year": "2027", "seol": "2월7", "chuseok": "9월15" },
+                { "year": "2028", "seol": "1월27", "chuseok": "10월3" },
+                { "year": "2029", "seol": "2월13", "chuseok": "9월22" },
+                { "year": "2030", "seol": "2월3", "chuseok": "9월12" },
+              ];
+              for (var off in this.offdayyear) {
+                if (this.offdayyear[off].year == this.currentYear) {
+                  if (this.offdayyear[off].seol == this.currentMonth + "월" + this.currentDate) {
+                    console.log(this.currentMonth + "월" + this.currentDate);
+                    this.offdayname = "설날";
+                  }
+                  if (this.offdayyear[off].chuseok == this.currentMonth + "월" + this.currentDate) {
+                    console.log(this.currentMonth + "월" + this.currentDate);
+                    this.offdayname = "추석";
+                  }
+                  else if (this.offdayyear[off].seol != this.currentMonth + "월" + this.currentDate && this.offdayyear[off].chuseok != this.currentMonth + "월" + this.currentDate) { this.offdayname = "" }
                 }
-                if(this.offdayyear[off].chuseok == this.currentMonth+"월"+this.currentDate){
-                  console.log(this.currentMonth+"월"+this.currentDate);
-                  this.offdayname = "추석";
-                }
-                else if(this.offdayyear[off].seol != this.currentMonth+"월"+this.currentDate && this.offdayyear[off].chuseok != this.currentMonth+"월"+this.currentDate){ this.offdayname = "" }
-                console.log(this.offdayname);
               }
-            }
-            console.log(this.week);
-            for(var off2 in this.week){
-              for(var off3 in this.offdayyear){
-                if(this.offdayyear[off3].year == this.currentYear){
+              console.log(this.week);
+              for (var off2 in this.week) {
+                for (var off3 in this.offdayyear) {
+                  if (this.offdayyear[off3].year == this.currentYear) {
 
-                if(this.week[off2].month+"월"+this.week[off2].day==this.offdayyear[off3].seol){
-                  console.log("설날");
-                  this.today[off2] = "설날";
-                  console.log(this.today);
-                  this.dayoffarray[off2] = "휴무";
-                  console.log(this.dayoffarray);
-                  console.log(this.cnt);
-                  for(var count=0; count<this.cnt;count++){
-                    console.log(count);
-                    this.favoriteList[count].dayoffarray = this.dayoffarray;
-                  }
-                }
-                if(this.week[off2].month+"월"+this.week[off2].day==this.offdayyear[off3].chuseok){
-                  console.log("추석");
-                  this.today[off2] = "추석";
-                  console.log(this.today);
-                  this.dayoffarray[off2] = "휴무";
-                  console.log(this.dayoffarray);
-                  console.log(this.cnt);
-                  for(var count=0; count<this.cnt;count++){
-                    console.log(count);
-                    this.favoriteList[count].dayoffarray = this.dayoffarray;
+                    if (this.week[off2].month + "월" + this.week[off2].day == this.offdayyear[off3].seol) {
+                      console.log("설날");
+                      this.today[off2] = "설날";
+                      console.log(this.today);
+                      this.dayoffarray[off2] = "휴무";
+                      console.log(this.dayoffarray);
+                      console.log(this.cnt);
+                      for (var count = 0; count < this.cnt; count++) {
+                        console.log(count);
+                        this.favoriteList[count].dayoffarray = this.dayoffarray;
+                      }
+                    }
+                    if (this.week[off2].month + "월" + this.week[off2].day == this.offdayyear[off3].chuseok) {
+                      console.log("추석");
+                      this.today[off2] = "추석";
+                      console.log(this.today);
+                      this.dayoffarray[off2] = "휴무";
+                      console.log(this.dayoffarray);
+                      console.log(this.cnt);
+                      for (var count = 0; count < this.cnt; count++) {
+                        console.log(count);
+                        this.favoriteList[count].dayoffarray = this.dayoffarray;
+                      }
+                    }
                   }
                 }
               }
-            }
-            }
               console.log(this.offdayyear);
               if (this.currentMonth == bb[0]) {
                 if (this.currentDate == bb[1]) {
                   console.log("오늘");
-                  this.newarraylist.push({"checked2":false, "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": "오늘" + sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key })
+                  this.newarraylist.push({ "checked2": false, "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": "오늘" + sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key })
                 }
                 if (this.currentDate - 1 == bb[1]) {
                   console.log("어제");
-                  this.newarraylist.push({"checked2":false, "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": "어제" + sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key })
+                  this.newarraylist.push({ "checked2": false, "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": "어제" + sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key })
                 }
                 else if (this.currentDate != bb[1] && this.currentDate - 1 != bb[1]) {
                   console.log("다른 날");
-                  this.newarraylist.push({"checked2":false, "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key })
+                  this.newarraylist.push({ "checked2": false, "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key })
                 }
               }
               else if (this.currentMonth != bb[0]) {
-                this.newarraylist.push({"checked2":false, "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key })
+                this.newarraylist.push({ "checked2": false, "totallist": listlength, "totalchecked": checked, "flag": a, "list": sn.val()[a][b][c].list, "title": b, "time": sn.val()[a][b][c].time, "key": sn.val()[a][b][c].key })
               }
 
             }
@@ -553,6 +550,8 @@ export class HomePage {
                       if (this.newarraylist[a].title == data.value.title) {
                         this.nextdirectory.child(this.newarraylist[a].flag).child(this.newarraylist[a].title).remove().then(() => {
                           console.log("success");
+                          this.refreshname();
+
                         })
                       }
                     }
@@ -566,7 +565,6 @@ export class HomePage {
             }
             else {
               var key = this.nextdirectory.push().key;
-              this.firemain.child("users").child(this.id).child(value).child(data.title).child(key).update({ "flag": "notyet" });
               console.log("selected value" + this.selectedvalue);
               this.navCtrl.push(AddshopingPage, { "flag": this.selectedvalue, "key": key, "id": this.id, "title": data.title }).then(() => {
                 this.navCtrl.getActive().onDidDismiss(data => {
@@ -588,60 +586,11 @@ export class HomePage {
     console.log(this.nextdirectory);
     console.log(key.title);
     console.log(key.flag);
-    let alert = this.alertCtrl.create({
-      title: '선택된 품목(들)을 정말로 삭제하시겠습니까?',
-      buttons: [
-        {
-          text: '취소',
-          role: 'cancel',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: '확인',
-          handler: data => {
-            if (key.flag == "mart") {
-              this.nextdirectory.child("mart").child(key.title).remove().then(() => {
-                window.alert("삭제되었습니다.")
-                console.log("success")
-                this.refreshname();
-              }).catch((e) => {
-                console.log("error" + e);
-              })
-            }
-            if (key.flag == "dep") {
-              this.nextdirectory.child("dep").child(key.title).remove().then(() => {
-                window.alert("삭제되었습니다.")
-                console.log("success")
-                this.refreshname();
-              }).catch((e) => {
-                console.log("error" + e);
-              })
-            }
-            if (key.flag == "outlet") {
-              this.nextdirectory.child("outlet").child(key.title).remove().then(() => {
-                window.alert("삭제되었습니다.")
-                console.log("success")
-                this.refreshname();
-              }).catch((e) => {
-                console.log("error" + e);
-              })
-            }
-            if (key.flag == "etc") {
-              this.nextdirectory.child("etc").child(key.title).remove().then(() => {
-                window.alert("삭제되었습니다.")
-                console.log("success")
-                this.refreshname();
-              }).catch((e) => {
-                console.log("error" + e);
-              })
-            }
-          }
-        }
-      ]
-    });
-    alert.present();
+    let modal = this.modal.create(DeletemodalPage, { "key": key, "Id":this.id })
+    modal.onDidDismiss(() => {
+      this.refreshname();
+    })
+    modal.present();
   }
 
   viewshoppinglist(a) {
@@ -652,166 +601,147 @@ export class HomePage {
     console.log(a.list);
 
     if (this.copyflag) {
-      let alert = this.alertCtrl.create({
-        title: '해당 목록에 덧붙이시겠습니까?',
-        buttons: [
-          {
-            text: '취소',
-            role: 'cancel',
-            handler: data => {
-              console.log('Cancel clicked');
-            }
-          },
-          {
-            text: '확인',
-            handler: data => {
-              /*전체항목 기존복사*/
-              if (this.selectedflagtocpy == 3) {
-                console.log(newarray);
-                var newarray = [];
-                for (var b = 0; b < a.list.length; b++) {
-                  newarray.push(a.list[b]);
-                }
-                for (var b = 0; b < this.tocopylist.length; b++) {
-                  newarray.push(this.tocopylist[b]);
-                }
-                if (a.flag == "mart") {
-                  var name = a.title;
-                  this.firemain.child("users").child(this.id).child("mart").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
-                    console.log(a.key);
-                  })
-                  this.refreshname();
-                }
+      if (this.selectedflagtocpy == 3) {
+        console.log(newarray);
+        var newarray = [];
+        for (var b = 0; b < a.list.length; b++) {
+          newarray.push(a.list[b]);
+        }
+        for (var b = 0; b < this.tocopylist.length; b++) {
+          newarray.push(this.tocopylist[b]);
+        }
+        if (a.flag == "mart") {
+          var name = a.title;
+          this.firemain.child("users").child(this.id).child("mart").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+            console.log(a.key);
+          })
+          this.refreshname();
+        }
 
-                if (a.flag == "dep") {
-                  var name = a.title;
-                  this.firemain.child("users").child(this.id).child("dep").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
-                    console.log(a.key);
-                  })
-                  this.refreshname();
-                }
-                if (a.flag == "outlet") {
-                  var name = a.title;
-                  this.firemain.child("users").child(this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
-                    console.log(a.key);
-                  })
-                  this.refreshname();
-                }
-                if (a.flag == "etc") {
-                  var name = a.title;
-                  this.firemain.child("users").child(this.id).child("etc").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
-                    console.log(a.key);
-                  })
-                  this.refreshname();
-                }
-                this.copyflag = false;
-              }
-              /*구입한 항목 기존복사*/
-              else if (this.selectedflagtocpy == 2) {
-                var newarray = [];
+        if (a.flag == "dep") {
+          var name = a.title;
+          this.firemain.child("users").child(this.id).child("dep").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+            console.log(a.key);
+          })
+          this.refreshname();
+        }
+        if (a.flag == "outlet") {
+          var name = a.title;
+          this.firemain.child("users").child(this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+            console.log(a.key);
+          })
+          this.refreshname();
+        }
+        if (a.flag == "etc") {
+          var name = a.title;
+          this.firemain.child("users").child(this.id).child("etc").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+            console.log(a.key);
+          })
+          this.refreshname();
+        }
+        this.copyflag = false;
+      }
+      /*구입한 항목 기존복사*/
+      else if (this.selectedflagtocpy == 2) {
+        var newarray = [];
 
-                for (var b = 0; b < a.list.length; b++) {
-                  newarray.push(a.list[b]);
-                }
-                for (var i = 0; i < this.tocopylist.length; i++) {
-                  if (this.tocopylist[i].checked == true) {
-                    newarray.push(this.tocopylist[i]);
-                    console.log(newarray);
-                  }
-                }
-                console.log(newarray);
-                a.list = [];
-                for (var i = 0; i < newarray.length; i++) {
-                  a.list.push(newarray[i])
-                }
-                console.log(newarray);
-
-                if (a.flag == "mart") {
-                  var name = a.title;
-                  this.firemain.child("users").child(this.id).child("mart").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
-                    console.log(a);
-                  })
-                  this.refreshname();
-                }
-                if (a.flag == "dep") {
-                  var name = a.title;
-                  this.firemain.child("users").child(this.id).child("dep").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
-                    console.log(a);
-                  })
-                  this.refreshname();
-                }
-                if (a.flag == "outlet") {
-                  var name = a.title;
-                  this.firemain.child("users").child(this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
-                    console.log(a);
-                  })
-                  this.refreshname();
-                }
-                if (a.flag == "etc") {
-                  var name = a.title;
-                  this.firemain.child("users").child(this.id).child("etc").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
-
-                    console.log(a);
-                  })
-                  this.refreshname();
-                }
-                this.copyflag = false;
-              }
-              /*구입하지 않은 항목 기존복사 */
-              else if (this.selectedflagtocpy == 1) {
-                var newarray = [];
-
-                for (var b = 0; b < a.list.length; b++) {
-                  newarray.push(a.list[b]);
-                }
-                for (var i = 0; i < this.tocopylist.length; i++) {
-                  if (this.tocopylist[i].checked == false) {
-                    newarray.push(this.tocopylist[i]);
-                    console.log(newarray);
-                  }
-                }
-                console.log(newarray);
-                a.list = [];
-                for (var i = 0; i < newarray.length; i++) {
-                  a.list.push(newarray[i])
-                }
-                console.log(newarray);
-                if (a.flag == "mart") {
-                  var name = a.title;
-                  this.firemain.child("users").child(this.id).child("mart").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
-                    console.log(a);
-                  })
-                  this.refreshname();
-                }
-
-                if (a.flag == "dep") {
-                  var name = a.title;
-                  this.firemain.child("users").child(this.id).child("dep").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
-                    console.log(a);
-                  })
-                  this.refreshname();
-                }
-                if (a.flag == "outlet") {
-                  var name = a.title;
-                  this.firemain.child("users").child(this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
-                    console.log(a);
-                  })
-                  this.refreshname();
-                }
-                if (a.flag == "etc") {
-                  var name = a.title;
-                  this.firemain.child("users").child(this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
-                    console.log(a);
-                  })
-                  this.refreshname();
-                }
-                this.copyflag = false;
-              }
-            }
+        for (var b = 0; b < a.list.length; b++) {
+          newarray.push(a.list[b]);
+        }
+        for (var i = 0; i < this.tocopylist.length; i++) {
+          if (this.tocopylist[i].checked == true) {
+            newarray.push(this.tocopylist[i]);
+            console.log(newarray);
           }
-        ]
-      });
-      alert.present();
+        }
+        console.log(newarray);
+        a.list = [];
+        for (var i = 0; i < newarray.length; i++) {
+          a.list.push(newarray[i])
+        }
+        console.log(newarray);
+
+        if (a.flag == "mart") {
+          var name = a.title;
+          this.firemain.child("users").child(this.id).child("mart").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+            console.log(a);
+          })
+          this.refreshname();
+        }
+        if (a.flag == "dep") {
+          var name = a.title;
+          this.firemain.child("users").child(this.id).child("dep").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+            console.log(a);
+          })
+          this.refreshname();
+        }
+        if (a.flag == "outlet") {
+          var name = a.title;
+          this.firemain.child("users").child(this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+            console.log(a);
+          })
+          this.refreshname();
+        }
+        if (a.flag == "etc") {
+          var name = a.title;
+          this.firemain.child("users").child(this.id).child("etc").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+
+            console.log(a);
+          })
+          this.refreshname();
+        }
+        this.copyflag = false;
+      }
+      /*구입하지 않은 항목 기존복사 */
+      else if (this.selectedflagtocpy == 1) {
+        var newarray = [];
+
+        for (var b = 0; b < a.list.length; b++) {
+          newarray.push(a.list[b]);
+        }
+        for (var i = 0; i < this.tocopylist.length; i++) {
+          if (this.tocopylist[i].checked == false) {
+            newarray.push(this.tocopylist[i]);
+            console.log(newarray);
+          }
+        }
+        console.log(newarray);
+        a.list = [];
+        for (var i = 0; i < newarray.length; i++) {
+          a.list.push(newarray[i])
+        }
+        console.log(newarray);
+        if (a.flag == "mart") {
+          var name = a.title;
+          this.firemain.child("users").child(this.id).child("mart").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+            console.log(a);
+          })
+          this.refreshname();
+        }
+
+        if (a.flag == "dep") {
+          var name = a.title;
+          this.firemain.child("users").child(this.id).child("dep").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+            console.log(a);
+          })
+          this.refreshname();
+        }
+        if (a.flag == "outlet") {
+          var name = a.title;
+          this.firemain.child("users").child(this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+            console.log(a);
+          })
+          this.refreshname();
+        }
+        if (a.flag == "etc") {
+          var name = a.title;
+          this.firemain.child("users").child(this.id).child("outlet").child(name).child(a.key).update({ flag: a.flag, key: a.key, list: newarray, time: a.time }).then(() => {
+            console.log(a);
+          })
+          this.refreshname();
+        }
+        this.copyflag = false;
+      }
     }
     else {
       console.log(a);
@@ -829,9 +759,25 @@ export class HomePage {
 
   }
   select_sort() {
-    this.srct.url = 'https://msearch.shopping.naver.com/search/all.nhn?origQuery=' + this.srct.text + '&pagingIndex=1&pagingSize=40&viewType=list&sort=' + $("#slt").val() + '&frm=NVSHATC&query=' + this.srct.text;
-    //            https://search.shopping.naver.com/search/all.nhn?origQuery=신라면&pagingIndex=1&pagingSize=40&viewType=list&sort=review&frm=NVSHATC&query=신라면
+    if ($('.slt').val() == 'rel') {
+      this.srct.url = 'https://msearch.shopping.naver.com/search/all.nhn?origQuery=' + this.srct.text + '&pagingIndex=1&pagingSize=40&viewType=list&sort=' + $("#slt").val() + '&frm=NVSHATC&query=' + this.srct.text;
+    }
+    if ($('.slt').val() == 'price_asc') {
+      this.srct.url = 'https://msearch.shopping.naver.com/search/all?query=' + this.srct.text + '&pagingIndex=1&viewType=undefined&productSet=total&gender=all&age=999&sort=price_asc'
+    }
+    if ($('.slt').val() == 'price_dsc') {
+      this.srct.url = 'https://msearch.shopping.naver.com/search/all?query=' + this.srct.text + '&pagingIndex=1&viewType=undefined&productSet=total&gender=all&age=999&sort=price_dsc'
+    }
+    if ($('.slt').val() == 'date') {
+      this.srct.url = 'https://msearch.shopping.naver.com/search/all?query=' + this.srct.text + '&pagingIndex=1&viewType=undefined&productSet=total&gender=all&age=999&sort=date'
+    }
+    if ($('.slt').val() == 'review') {
+      this.srct.url = 'https://msearch.shopping.naver.com/search/all?query=' + this.srct.text + '&pagingIndex=1&viewType=undefined&productSet=total&gender=all&age=999&sort=review'
+    }
 
+
+
+    console.log($('.slt').val());
     console.log($('#slt').val());
     console.log(this.srct.text);
     console.log(this.srct.url);
@@ -954,7 +900,14 @@ export class HomePage {
 
     var msg = "[백화점 마트 헛걸음 방지 앱\n '백마헛방'\n 쇼핑가기전엔 언제나\n '백마헛방']\n1)구입제목 : " + key.title + "\n2)작성일 : " + key.time + "\n3)리스트\n" + name;
 
-    this.socialSharing.share(msg, null, null, null);
+    this.socialSharing.share(msg, null, null, null).then(() => {
+
+      const toast = this.toastCtrl.create({
+        message: '공유 완료되었습니다.',
+        duration: 2000,
+      });
+      toast.present();
+    })
   }
 
   /*전체 항목 복사*/
@@ -1118,8 +1071,8 @@ export class HomePage {
     this.tocopylist = key.list;
     this.tocopy = key;
     console.log(this.tocopylist);
-    let modal = this.modal.create(CopymodalPage, null, {
-      cssClass: "modalcopy"
+    let modal = this.modal.create(CopymodalPage, { "key": key }, {
+      cssClass: "modalcopy",
     });
     modal.onDidDismiss(data => {
       console.log(key);
@@ -1203,18 +1156,59 @@ export class HomePage {
     public platform: Platform, public navParams: NavParams,
     public oneSignal: OneSignal, public toastCtrl: ToastController,
     public loadingCtrl: LoadingController) {
-    this.presentLoadingDefault();
-    this.fabButtonOpened = false;
-    this.refreshname();
-    this.favorite();
-    this.today.push("오늘","","","","","","");
-    console.log(this.today);
-    this.newDate();
-    setTimeout(() => {
 
+
+
+
+    //   this.platform.registerBackButtonAction(() => {
+    //     const overlay = this.app._appRoot._overlayPortal.getActive();
+    //     const modallay = this.app._appRoot._modalPortal.getActive();
+    //     if(overlay && overlay.dismiss) {
+    //         overlay.dismiss({}, "", {animate:false});
+    //     } else if(modallay && modallay.dismiss) {
+    //         modallay.dismiss({}, "", {animate:false});
+    //     } else if(this.navCtrl.canGoBack()){
+    //         this.navCtrl.pop({animate:false});
+    //     } else {
+    //       if( this.navCtrl.getActive().component !== HomePage) {
+
+    //           this.app.getActiveNav().pop();
+    //       }
+    //       else {
+    //         let alert1 = this.alertCtrl.create({      
+    //           subTitle: '앱을 종료하시겠습니까?',
+    //           buttons: [
+    //               {
+    //                   text: '취소',
+    //                   cssClass: 'cancel',
+    //                   handler: data => {
+    //                       // console.log("Cancel...", id);
+    //                   }
+    //               },
+    //               {
+    //                   text: '확인',
+    //                   cssClass: 'confirm',
+    //                   handler: data => {
+    //                       this.platform.exitApp();
+    //                   }
+    //               }
+    //           ]
+    //         });
+    //         alert1.present({animate:false});
+    //       }
+    //     }
+    // }, 1);
+
+    setTimeout(() => {
       this.uniqueDeviceID.get()
-        .then((uuid: any) => { this.id = uuid; console.log(uuid) })
-        .catch((error: any) => console.log(error));
+        .then((uuid: any) => { this.id = uuid; console.log(uuid); this.init(); })
+        .catch((error: any) => {
+          console.log(error)
+
+
+          this.id = "00000000-0000-0000-39d1-f26acbf711b3";
+          this.init();
+        });
       const bannerConfig: AdMobFreeBannerConfig = {
         // add your config here
         // for the sake of this example we will just use the test config
@@ -1235,7 +1229,26 @@ export class HomePage {
           // if we set autoShow to false, then we will need to call the show method here
         })
         .catch(e => console.log(e));
-    }, 3000)
+    }, 500)
+
+
+
+  }
+
+  init() {
+    this.today = [];
+    this.week = [];
+    this.dayoffarray = [];
+    console.log("first id is : " + this.id);
+    this.nextdirectory = this.firemain.child("users").child(this.id);
+    // this.presentLoadingDefault();
+    this.fabButtonOpened = false;
+    this.refreshname();
+    this.favorite();
+    this.today.push("오늘", "", "", "", "", "", "");
+    console.log(this.today);
+    this.newDate();
+
   }
 
 }

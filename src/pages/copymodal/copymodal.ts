@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController } from 'ionic-angular';
+import { NavController, NavParams, ViewController, ModalController } from 'ionic-angular';
 import { HomePage } from '../home/home';
+import { Copymodal2Page } from '../copymodal2/copymodal2';
 
 /**
  * Generated class for the CopymodalPage page.
@@ -27,7 +28,10 @@ export class CopymodalPage {
     this.data2 = false;
     this.data3 = false;
   }
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
+  key: any;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public modal: ModalController) {
+    this.key = this.navParams.get("key");
+    console.log(this.key);
   }
 
   allValue1() {
@@ -54,10 +58,21 @@ export class CopymodalPage {
   }
 
   btn() {
-    this.viewCtrl.dismiss({ "flag":"old", "value": this.selectedvalue })
+    let modal = this.modal.create(Copymodal2Page, { "key": this.key });
+
+    modal.onDidDismiss(data => {
+      console.log(data.flag);
+      if (data.flag == "cancle") {
+        this.viewCtrl.dismiss({ "flag": "cancel" });
+      }
+      if (data.flag == "old") {
+        this.viewCtrl.dismiss({ "flag": "old", "value": this.selectedvalue })
+      }
+    })
+    modal.present();
   }
 
   dismiss() {
-    this.viewCtrl.dismiss({"flag":"cancel"});
+    this.viewCtrl.dismiss({ "flag": "cancel" });
   }
 }

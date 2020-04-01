@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController, ModalController } from 'ionic-angular';
+import { NavController,App,Platform,ViewController, NavParams, ToastController, ModalController } from 'ionic-angular';
 import firebase from 'firebase';
 import * as $ from 'jquery';
 import { first } from 'rxjs/operators';
@@ -38,20 +38,23 @@ export class MartinfoPage {
   dayy: any;
   today: any;
   todayy = [];
-  userId: "a2f05b91-956a-b480-3525-991002905558";
+  userId:any;
   vacation: any;
   vacationArr = [];
   userarr = [];
   fav : any;
+  favmart = [];
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController,
+  constructor(public app:App,public platform:Platform,public view:ViewController,public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController,
     private socialSharing: SocialSharing, public modal: ModalController) {
     this.mart = this.navParams.get("mart");
     this.area = this.navParams.get("area");
+    this.userId=this.navParams.get("id");
+    console.log("user id is :::::"+this.userId);
+
     this.martfunc();
     this.todayy.push("오늘", "", "", "", "", "", "");
-
     console.log(this.mart);
     console.log(this.area);
     this.year = this.day.getFullYear();
@@ -60,6 +63,8 @@ export class MartinfoPage {
     this.dayOfweek = this.day.getDay();
     // this.theDate();
     console.log(this.martArray);
+ 
+
     this.firemain.child("users").child(this.userId).child("favorite").once("value", (sn) => {
       console.log(sn.val());
       for (var i in sn.val()) {
@@ -80,19 +85,6 @@ export class MartinfoPage {
       }
       
     });
-    // for(var fav in this.favoriteList){
-    //   console.log(this.favoriteList);
-    //   for(var mart in this.martArray){
-    //     console.log("mart");
-    //     if(this.favoriteList[fav].name == this.martArray[mart].name){
-    //       console.log(this.favoriteList[fav].name);
-    //       console.log(this.martArray[mart].name);
-    //       if(this.favoriteList[fav].favorite == true){
-    //         this.martArray[mart].favorite = true;
-    //       }
-    //     }
-    //   }
-    // }
     this.favchange();
     console.log(this.favoriteList);
     console.log(this.martArray);
@@ -117,7 +109,7 @@ export class MartinfoPage {
 
   martview(martinfo) {
     console.log(martinfo);
-    this.navCtrl.push(MartinfoviewPage, { "martinfo": martinfo });
+    this.navCtrl.push(MartinfoviewPage, { "martinfo": martinfo, "id":this.userId });
   }
 
   regularShare() {
@@ -148,7 +140,6 @@ export class MartinfoPage {
   newfunction(name) {
     console.log(name);
     console.log(this.favoriteList);
-    this.userId = "a2f05b91-956a-b480-3525-991002905558"
     console.log(this.area);
     this.firemain.child("mart").once("value", (sn) => {
       for (var a in sn.val()) {
@@ -639,8 +630,8 @@ export class MartinfoPage {
     var days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
     var prefixes = ['첫째주', '둘째주', '셋째주', '넷째주', '다섯째주'];
 
-    // this.currentMonth = this.date.getMonth() + 1;
-    this.currentMonth = this.date.getMonth() - 1;
+    this.currentMonth = this.date.getMonth() + 1;
+    // this.currentMonth = this.date.getMonth() - 1;
 
     this.currentYear = this.date.getFullYear();
     var prevNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth(), 0).getDate();
@@ -661,8 +652,8 @@ export class MartinfoPage {
 
       if (dayofweek >= 7) { dayofweek = 0; }
       if (this.currentDate + i <= thisNumOfDays) {
-
-        this.week.push({ "week": prefixes[0 | (this.currentDate + i - 1) / 7], "month": this.currentMonth, "day": this.currentDate + i, "dayofweek": days[dow] }); //30일
+        count++;
+        this.week.push({ "week": prefixes[0 | (count + i - 1) / 7], "month": this.currentMonth, "day": this.currentDate + i, "dayofweek": days[dow] }); //30일
         console.log(dayofweek);
       }
       else if (this.currentDate + i > thisNumOfDays) {
@@ -769,36 +760,41 @@ export class MartinfoPage {
       this.firemain.child("users").child(this.userId).child("favorite").once("value", (sn) => {
         console.log(sn.val());
       })
-      // for(var fav in this.favoriteList){
-      //   for(var mart in this.martArray){
-      //     if(this.favoriteList[fav].name == this.martArray[mart].name){
-      //       if(this.favoriteList[fav].favorite == true){
-      //         this.martArray[mart].favorite = true;
-      //       }
-      //     }
-      //   }
-      // }
+var listarray = [];
+      this.firemain.child("users").child(this.userId).child("favorite").once("value", (sn) => {
+        console.log(sn.val());
+        for (var i in sn.val()) {
+          console.log(sn.val()[i]);
+          for (var j in sn.val()[i]) {
+            console.log(sn.val()[i][j]);
+            listarray.push(sn.val()[i][j]);
+          }
+        }
+        console.log(listarray.length);
+      
       console.log(this.martArray);
         console.log(this.favoriteList);
-        if (this.favoriteList.length < 20) {
+        if (listarray.length < 20) {
           this.martArray[idx].favorite = true;
           this.firemain.child("users").child(this.userId).child("favorite").child(newnametoinput).child(a.key).update(this.martArray[idx]);
           console.log(this.martArray[idx]);
-
           const toast = this.toastCtrl.create({
             message: '첫 화면 "즐겨찾기"에 추가되었습니다.',
             duration: 2000,
           });
           toast.present();
+
         }
-        else if (this.favoriteList.length >= 20) {
+        
+        else if (listarray.length >= 20) {
           let modal = this.modal.create(FavoritemodalPage, null, {
             cssClass: "modalSize"
           });
           modal.present();
         }
-   
+        console.log(this.favoriteList.length);
 
+      });
     }
     else {
       flag = false;
@@ -806,7 +802,7 @@ export class MartinfoPage {
       this.martArray[idx].favorite = false;
       this.firemain.child("users").child(this.userId).child("favorite").child(newnametoinput).child(a.key).remove();
       const toast = this.toastCtrl.create({
-        message: '삭제되었습니다.',
+        message: '첫 화면 "즐겨찾기"에서 삭제되었습니다.',
         duration: 2000,
       });
       toast.present();

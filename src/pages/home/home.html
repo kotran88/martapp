@@ -1,6 +1,6 @@
 <ion-content padding>
     <div class="upper" style="background-color: #71E8E8; display:flex;">
-        <ion-searchbar style="float:left;width: 55%; padding:6px;" placeholder="검색,즐겨찾기추가" (click)="main();" [(ngModel)]="startPoint" clearInput></ion-searchbar>
+        <ion-searchbar style="float:left;width: 55%; padding:6px;" placeholder="검색, 즐겨찾기추가" (click)="main();" [(ngModel)]="startPoint" clearInput></ion-searchbar>
         <button style="background-color:#71E8E8;" (click)="NoneAd()"><img src="./assets/imgs/004-버튼-PPT 3페이지의 이미지의 상단 가운데-광고금지.png" style="width:25px;"></button>
         <button style="background-color:#71E8E8;" (click)="appstore()"><img src="./assets/imgs/005-버튼-PPT 3페이지의 이미지의 상단 우측-평가하기 별점주기.png" style="width:25px;"></button>
         <button style="background-color:#71E8E8;" (click)="regularShare()"><img src="./assets/imgs/006-버튼-PPT 3페이지의 이미지의 상단 우측-공유하기 점 세개.png" style="width:25px;"></button>
@@ -83,7 +83,7 @@
                             <tbody>
                                 <tr class="datespan">
                                     <td class="tabletd" *ngFor="let i of today" (click)="martview(i)" style="margin-top:10px;">
-                                        <span *ngIf="i!='오늘'" style="color:red; font-weight: 500;">{{i}}</span>
+                                        <span *ngIf="i!='오늘'" style="color:orange; font-weight: 500;">{{i}}</span>
                                         <span *ngIf="i=='오늘'" style="color:rgb(0, 119, 255); font-weight: 500;">{{i}}</span>
                                     </td>
                                 </tr>
@@ -153,45 +153,52 @@
                     </td>
                     <td>
                         <div>
-                            <span *ngIf="a.flag=='mart' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">마트 </span>
-                            <span *ngIf="a.flag=='dep' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">백화점 </span>
-                            <span *ngIf="a.flag=='outlet' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">아울렛 </span>
-                            <span *ngIf="a.flag=='etc' " style="margin-right:10px; font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">기타 </span>
-                            <span style="font-size:16px; font-weight:bold; color:rgb(74, 190, 190) ">"{{a.title}} "</span>
+                            <span *ngIf="a.flag=='mart' " style="margin-right:10px; font-size:15px; font-weight:bold; color:rgb(74, 190, 190) ">마트 </span>
+                            <span *ngIf="a.flag=='dep' " style="margin-right:10px; font-size:15px; font-weight:bold; color:rgb(74, 190, 190) ">백화점 </span>
+                            <span *ngIf="a.flag=='outlet' " style="margin-right:10px; font-size:15px; font-weight:bold; color:rgb(74, 190, 190) ">아울렛 </span>
+                            <span *ngIf="a.flag=='etc' " style="margin-right:10px; font-size:15px; font-weight:bold; color:rgb(74, 190, 190) ">기타 </span>
+                            <span style="font-size:15px; font-weight:bold; color:rgb(74, 190, 190) ">"{{a.title}} "</span>
                             <br><br><span style="font-size:15px; font-weight:bold; color:rgb(74,190,190); margin-top:3px; ">{{a.time}} 작성</span><br><br>
-                            <span style="font-size:16px; font-weight: bold; color:rgb(74,190,190); margin-top:30px; " *ngIf="a.totallist!=a.totalchecked ">{{a.totallist+"개 항목 중 "+a.totalchecked+"개 구입 "}}</span>
-                            <span style="font-size:16px; font-weight: bold; color:rgb(74,190,190); margin-top:30px; " *ngIf="a.totallist==a.totalchecked ">구입 완료 "{{a.totallist}}품목 "</span>
-
+                            <span style="font-size:15px; font-weight: bold; color:rgb(74,190,190); margin-top:30px; " *ngIf="a.totallist!=a.totalchecked ">{{a.totallist+"개 항목 중 "+a.totalchecked+"개 구입 "}}</span>
+                            <span style="font-size:15px; font-weight: bold; color:rgb(74,190,190); margin-top:30px; " *ngIf="a.totallist==a.totalchecked ">구입 완료 "{{a.totallist}}품목 "</span>
                         </div>
                     </td>
+
                     </table>
 
+
                     </button>
+
+
                     <div>
                         <ion-fab style="margin-top:-50px; ">
                             <img class="rotate " src="./assets/imgs/084-버튼-PPT 31페이지의 가운데 이미지-점3개-회전1단계(시작).png " style="width:30%;height: 30%;float:right; margin-right:30px; margin-top:20px; position:relative; z-index :9998 " alt=" " ion-fab>
-                            <ion-fab-list side="bottom " style="margin-left:-90%; margin-top:20px;text-align: left; background-color:#E9E9E9; position: absolute; z-index: 9999; ">
-                                <button style="background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="changeName(a) ">목록명 변경</button>
-                                <button style="background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="share(a) ">공유</button>
-                                <button style="background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="deleteDB(a) ">삭제</button>
-                                <button style="background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="openModal(a) ">복사</button>
+                            <ion-fab-list side="bottom " style="width:100px; height:150px; margin-left:-90%; margin-top:20px;text-align: left; background-color:#E9E9E9; position: absolute; z-index: 9999; ">
+                                <button style="height:37px; background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="changeName(a) ">목록명 변경</button>
+                                <button style="height:37px; background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="share(a) ">공유</button>
+                                <button style="height:37px; background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="deleteDB(a) ">삭제</button>
+                                <button style="height:37px; background-color: #E9E9E9; margin-top:5px; font-size:15px; " (click)="openModal(a) ">복사</button>
                             </ion-fab-list>
                         </ion-fab>
                     </div>
                 </div>
+                <div class="border" style="text-align: center;">
+                    <img src="./assets/imgs/083-버튼-PPT 29페이지의 가운데 이미지-쇼핑리스트 추가+말얼굴.png " style="width:170px;height:160px; " alt=" ">
+                </div>
 
             </div>
 
+            <!--/Users/limchae/martapp/src/assets/imgs/078-버튼-PPT 27페이지의 가운데 이미지-쇼핑이라쓰고+말얼굴 (1).png-->
         </ion-list>
         <ion-list *ngSwitchCase=" 'tab3' ">
 
-            <div style="padding:20px; ">
-                <select id="slt " name="sor ">
-                    <option value="rel " selected="selected ">랭킹순</option>
-                    <option value="price_asc ">낮은 가격순</option>
-                    <option value="price_dsc ">높은 가격순</option>
-                    <option value="date ">등록순</option>
-                    <option value="review ">리뷰 많은순</option>
+            <div style="padding:15px;">
+                <select class='slt' id="slt" name="sor" [(ngModel)]="kindof">
+                    <option value="rel" selected="selected">랭킹순</option>
+                    <option value="price_asc">낮은 가격순</option>
+                    <option value="price_dsc">높은 가격순</option>
+                    <option value="date">등록순</option>
+                    <option value="review">리뷰 많은순</option>
                 </select>
 
                 <ion-input style="margin-right: 0px; margin-top: 2px; width: 55%; height:48px; display: inline-block; border: 2px solid rgb(0, 167, 179); border-radius: 5px; " name='text' type="text " [(ngModel)]='srct.text' placeholder="검색어를 입력해 주세요. ">

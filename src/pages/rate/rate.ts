@@ -22,7 +22,7 @@ export class RatePage {
   }
 
   appstore(){
-    window.open('market://details?id=com.kakao.talk', '_system');
+    window.open('market://details?id=io.ionic.baekma', '_system');
   }
 
   dismiss(){

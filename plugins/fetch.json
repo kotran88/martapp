@@ -123,14 +123,6 @@
     "is_top_level": false,
     "variables": {}
   },
-  "cordova-plugin-inapppurchase": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-inapppurchase@^1.2.0"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "onesignal-cordova-plugin": {
     "source": {
       "type": "registry",
@@ -153,6 +145,24 @@
       "id": "cordova-plugin-compat@^1.0.0"
     },
     "is_top_level": false,
+    "variables": {}
+  },
+  "cordova-plugin-purchase": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-purchase"
+    },
+    "is_top_level": true,
+    "variables": {
+      "BILLING_KEY": "2ffcb9950267246691efe8ecf2df99debc1bcf5a"
+    }
+  },
+  "cordova-plugin-screen-orientation": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-screen-orientation"
+    },
+    "is_top_level": true,
     "variables": {}
   }
 }

@@ -28026,6 +28026,26 @@ page-ad .B_off {
   color: black;
 }
 
+::-webkit-input-placeholder {
+  font-size: 13px;
+}
+
+::-moz-placeholder {
+  font-size: 13px;
+}
+
+::-ms-input-placeholder {
+  font-size: 13px;
+}
+
+::placeholder {
+  font-size: 13px;
+}
+
+.select-text {
+  font-size: 13px;
+}
+
 .modalcopy {
   margin-left: auto;
   margin-right: auto;
@@ -28035,6 +28055,60 @@ page-ad .B_off {
   right: 0% !important;
   bottom: 0% !important;
   left: 0% !important;
+}
+
+.place {
+  position: fixed;
+  bottom: 10px;
+  right: 60px;
+  background-color: #f0f0f0;
+  color: #008cff;
+  font-size: 14px;
+}
+
+.place2 {
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  background-color: #f0f0f0;
+  color: #008cff;
+  font-size: 14px;
+}
+
+.place {
+  position: fixed;
+  bottom: 10px;
+  right: 60px;
+  background-color: #f0f0f0;
+  color: #008cff;
+  font-size: 14px;
+}
+
+.place2 {
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  background-color: #f0f0f0;
+  color: #008cff;
+  font-size: 14px;
+}
+
+.place {
+  position: fixed;
+  bottom: 10px;
+  right: 60px;
+  background-color: #f0f0f0;
+  color: #008cff;
+  font-size: 14px;
+}
+
+.place2 {
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  background-color: #f0f0f0;
+  color: #008cff;
+  font-size: 14px;
 }
 
 page-home .scroll-content {
@@ -28068,6 +28142,11 @@ page-home ion-fab {
   float: right;
   left: 80%;
   z-index: 9999;
+}
+
+.searchbar-md .searchbar-input {
+  padding: 6px 35px;
+  font-size: 1.4rem;
 }
 
 .rotate {
@@ -28303,8 +28382,8 @@ div.segmentText {
 
 .buttonSize {
   border-radius: 4px;
-  border: solid 2px #01DFD7;
-  background-color: #9FFAFA;
+  border: solid 2px #00bbb2;
+  background-color: #00bbb2;
   width: auto;
   height: 50px;
   font-size: 15px;
@@ -28701,20 +28780,51 @@ page-viewshoppinglist .input-cover {
   touch-action: manipulation;
 }
 
-page-viewshoppinglist .fab-md {
-  background-color: black;
-}
-
 page-viewshoppinglist .fab-in-list {
-  margin: 2px;
+  margin-top: 2px;
+  margin-bottom: 2px;
 }
 
 page-viewshoppinglist .text-input-md {
   margin: 10px 8px;
 }
 
+page-viewshoppinglist .labelClass {
+  top: -30px;
+  right: 90px;
+  border-radius: 4px;
+}
+
+.modalSize {
+  top: 8%;
+  height: 95%;
+  opacity: 0.8;
+}
+
+.chk {
+  display: none;
+}
+
+.first {
+  background-image: url("assets/imgs/090-btn-checkingBox2.png");
+  width: 30px;
+  height: 30px;
+}
+
+.last {
+  background-image: url("assets/imgs/089-btn-checkingBox1.png");
+  width: 30px;
+  height: 30px;
+}
+
 .opentrash {
-  background: url("./assets/imgs/094-버튼-PPT 54페이지의 가운데 이미지-휴지통 뚜껑 열린거.png");
+  background: url("./assets/imgs/094-버튼-PPT 54페이지의 가운데 이미지-휴지통 뚜껑 열린거.png") !important;
+  width: 30px;
+}
+
+.closetrash {
+  background: url("./assets/imgs/087-버튼-PPT 32페이지의 좌측 이미지-휴지통 뚜껑 닫힌거.png") !important;
+  width: 30px;
 }
 
 .rotate {
@@ -28744,10 +28854,6 @@ ion-fab-list {
   position: relative;
 }
 
-.fabstyle {
-  background: black;
-}
-
 .item-cover {
   left: 0;
   top: 0;
@@ -28758,8 +28864,9 @@ ion-fab-list {
   cursor: pointer;
 }
 
-.button {
-  border-radius: 4px;
+.left {
+  float: left;
+  width: 30%;
 }
 
 .saveButton {
@@ -28780,4 +28887,24 @@ ion-fab-list {
 
 .iconwidth {
   margin: 9px 3px 9px 4px;
+}
+
+::-webkit-input-placeholder {
+  font-size: 13px;
+}
+
+::-moz-placeholder {
+  font-size: 13px;
+}
+
+::-ms-input-placeholder {
+  font-size: 13px;
+}
+
+::placeholder {
+  font-size: 13px;
+}
+
+.select-text {
+  font-size: 13px;
 }

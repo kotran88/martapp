@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController } from 'ionic-angular';
+import { NavController,App, NavParams,ViewController,Platform, ModalController } from 'ionic-angular';
 import { MartinfoPage } from '../martinfo/martinfo';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { AdPage } from '../ad/ad';
@@ -23,10 +23,27 @@ export class MartmapPage {
   name:any;
   img:any;
   map:any;
+  userid:any;
   martflag:any=0;
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(public app:App,public platform:Platform,public view:ViewController,public navCtrl: NavController, public navParams: NavParams,
     private socialSharing: SocialSharing, public modal: ModalController) {
     this.id = this.navParams.get("id");
+    this.userid = this.navParams.get("userid");
+    // this.platform.registerBackButtonAction(() => {
+    //   let nav = app.getActiveNav();
+    //   let activeView = nav.getActive();
+    
+    
+    //   if(activeView != null){
+    //     if(nav.canGoBack()) {
+    //       window.alert(nav.getActive().name)
+    //       nav.pop();
+    //     }else if (typeof activeView.instance.backButtonAction === 'function')
+    //       activeView.instance.backButtonAction();
+    //     else nav.parent.select(0); // goes to the first tab
+    //   }
+    // });
+
     this.listPrint();
     
   }
@@ -115,56 +132,110 @@ export class MartmapPage {
 
   lottemartlist(area){
     console.log(area);
-    this.navCtrl.push(MartinfoPage,{"mart":"lottemart", "area":area})
+    this.navCtrl.push(MartinfoPage,{"mart":"lottemart", "area":area,"id":this.userid}).then(() => {
+      this.navCtrl.getActive().onDidDismiss(data => {
+       
+      });
+    });
   }
 
   emartlist(area){
     console.log(area);
-    this.navCtrl.push(MartinfoPage,{"mart":"emart", "area":area})
+    this.navCtrl.push(MartinfoPage,{"mart":"emart", "area":area,"id":this.userid}).then(() => {
+      this.navCtrl.getActive().onDidDismiss(data => {
+       
+
+      });
+    });
   }
 
   homepluslist(area){
     console.log(area);
-    this.navCtrl.push(MartinfoPage,{"mart":"homeplus", "area":area})
+    this.navCtrl.push(MartinfoPage,{"mart":"homeplus", "area":area,"id":this.userid}).then(() => {
+      this.navCtrl.getActive().onDidDismiss(data => {
+       
+
+      });
+    });
   }
 
   costcolist(area){
     console.log(area);
-    this.navCtrl.push(MartinfoPage,{"mart":"costco", "area":area})
+    this.navCtrl.push(MartinfoPage,{"mart":"costco", "area":area,"id":this.userid}).then(() => {
+      this.navCtrl.getActive().onDidDismiss(data => {
+       
+
+      });
+    });
   }
 
   traderslist(area){
     console.log(area);
-    this.navCtrl.push(MartinfoPage,{"mart":"traders", "area":area})
+    this.navCtrl.push(MartinfoPage,{"mart":"traders", "area":area,"id":this.userid}).then(() => {
+      this.navCtrl.getActive().onDidDismiss(data => {
+       
+
+      });
+    });
   }
 
   lottedeplist(area){
     console.log(area);
-    this.navCtrl.push(MartinfoPage,{"mart":"lottedep", "area":area})
+    this.navCtrl.push(MartinfoPage,{"mart":"lottedep", "area":area,"id":this.userid}).then(() => {
+      this.navCtrl.getActive().onDidDismiss(data => {
+       
+
+      });
+    });
   }
 
   ssgdeplist(area){
     console.log(area);
-    this.navCtrl.push(MartinfoPage,{"mart":"ssgdep", "area":area})
+    this.navCtrl.push(MartinfoPage,{"mart":"ssgdep", "area":area,"id":this.userid}).then(() => {
+      this.navCtrl.getActive().onDidDismiss(data => {
+       
+
+      });
+    });
   }
 
   hyundeplist(area){
     console.log(area);
-    this.navCtrl.push(MartinfoPage,{"mart":"hyundep", "area":area})
+    this.navCtrl.push(MartinfoPage,{"mart":"hyundep", "area":area,"id":this.userid}).then(() => {
+      this.navCtrl.getActive().onDidDismiss(data => {
+       
+
+      });
+    });
   }
 
   lotteoutlist(area){
     console.log(area);
-    this.navCtrl.push(MartinfoPage,{"mart":"lotteout", "area":area})
+    this.navCtrl.push(MartinfoPage,{"mart":"lotteout", "area":area,"id":this.userid}).then(() => {
+      this.navCtrl.getActive().onDidDismiss(data => {
+       
+
+      });
+    });
   }
 
   ssgoutlist(area){
     console.log(area);
-    this.navCtrl.push(MartinfoPage,{"mart":"ssgout", "area":area})
+    this.navCtrl.push(MartinfoPage,{"mart":"ssgout", "area":area,"id":this.userid}).then(() => {
+      this.navCtrl.getActive().onDidDismiss(data => {
+       
+
+      });
+    });
   }
 
   hyunoutlist(area){
     console.log(area);
-    this.navCtrl.push(MartinfoPage,{"mart":"hyunout", "area":area})
+    this.navCtrl.push(MartinfoPage,{"mart":"hyunout", "area":area,"id":this.userid}).then(() => {
+      this.navCtrl.getActive().onDidDismiss(data => {
+       
+
+      });
+    });
   }
 }

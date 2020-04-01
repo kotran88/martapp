@@ -62,13 +62,13 @@
         </tbody>
     </table>
     <div style="margin-left:auto; margin-right:auto; text-align: center; ">
-        <button style="text-align:center; width:40%; letter-spacing: 3px; font-size:15px; background-color: #71E8E8; border-radius: 5px; " (click)="calling() "><img src="./assets/imgs/048-버튼-PPT 8페이지의 가운데 이미지의 전화걸기-수화기.png" style="width:20%; margin-right:3px; ">전화걸기</button>
-        <button style="text-align:center; width:40%; letter-spacing: 3px; font-size:15px; background-color: #71E8E8; border-radius: 5px; " (click)="map() "><img src="./assets/imgs/049-버튼-PPT 8페이지의 가운데 이미지의 지도 확인-지도.png" style="width:20%; margin-right:3px; ">지도확인</button>
+        <button style="text-align:center; width:40%; letter-spacing: 3px; font-size:15px; background-color: #71E8E8; border-radius: 5px; " (click)="calling()"><img src="./assets/imgs/048-버튼-PPT 8페이지의 가운데 이미지의 전화걸기-수화기.png" style="width:20%; margin-right:3px; ">전화걸기</button>
+        <button style="text-align:center; width:40%; letter-spacing: 3px; font-size:15px; background-color: #71E8E8; border-radius: 5px; " (click)="map()"><img src="./assets/imgs/049-버튼-PPT 8페이지의 가운데 이미지의 지도 확인-지도.png" style="width:20%; margin-right:3px; ">지도확인</button>
     </div>
     <div class="calendar-body ">
         <ion-grid>
             <ion-row class="calendar-month ">
-                {{month}}월
+                {{month+1}}월
             </ion-row>
             <ion-row class="calendar-weekday ">
                 <ion-col style="color:red ">일</ion-col>
@@ -80,8 +80,9 @@
                 <ion-col style="color:blue ">토</ion-col>
             </ion-row>
             <ion-row class="calendar-date ">
+                <ion-col style="height: 45px !important;" col-1 *ngFor="let lastDay of daysInLastMonth" class="last-month" (click)="goToLastMonth()">{{lastDay}}</ion-col>
                 <ion-col col-1 *ngFor="let day of daysInThisMonth">
-                    <span class="currentDate " *ngIf="( currentDate===day && today.getMonth()+1===currentMonth && today.getFullYear()===currentYear ) ">{{day}}</span>
+                    <span class="currentDate" *ngIf="( currentDate===day && today.getMonth()+1===currentMonth && today.getFullYear()===currentYear )">{{day}}</span>
                     <span class="otherDate" style="color:red" *ngIf="truecheck(day)==-1">{{day.substring(1)}}</span>
                     <span class="otherDate" *ngIf="truecheck(day)==0&&( currentDate !=day && today.getMonth()+1===currentMonth && today.getFullYear()===currentYear );">{{day}}</span>
                 </ion-col>

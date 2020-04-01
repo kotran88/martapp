@@ -16,15 +16,25 @@ page-viewshoppinglist {
         -ms-touch-action: manipulation;
         touch-action: manipulation;
     }
-    .fab-md {
-        background-color: black;
-    }
     .fab-in-list {
-        margin: 2px;
+        margin-top: 2px;
+        margin-bottom: 2px;
     }
     .text-input-md {
         margin: 10px 8px;
     }
+    .labelClass {
+        // position: relative;
+        top: -30px;
+        right: 90px;
+        border-radius: 4px;
+    }
+}
+
+.modalSize {
+    top: 8%;
+    height: 95%;
+    opacity: 0.8;
 }
 
 .chk {
@@ -79,26 +89,6 @@ ion-fab-list {
     position: relative;
 }
 
-.fabstyle {
-    background: black;
-}
-
-// button[ion-fab] {
-//     overflow: visible;
-//     position: relative;
-//     ion-label {
-//         position: absolute;
-//         top: -5px;
-//         right: 40px;
-//         color: white;
-//         background-color: rgba(0, 0, 0, 0.7);
-//         line-height: 20px;
-//         padding: 4px 8px;
-//         border-radius: 4px;
-//         font-size: 11px;
-//     }
-//     contain: layout;
-// }
 .item-cover {
     left: 0;
     top: 0;
@@ -109,10 +99,9 @@ ion-fab-list {
     cursor: pointer;
 }
 
-.button {
-    border-radius: 4px;
-}
-
+// .button {
+//     border-radius: 4px;
+// }
 .left {
     float: left;
     width: 30%;
@@ -136,4 +125,12 @@ ion-fab-list {
 
 .iconwidth {
     margin: 9px 3px 9px 4px;
+}
+
+::placeholder {
+    font-size: 13px;
+}
+
+.select-text {
+    font-size: 13px;
 }

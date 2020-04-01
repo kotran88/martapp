@@ -86,7 +86,7 @@ export class SettingPage {
 
   evaluation(){
     //window.alert('evaluation');
-    window.open('market://details?id=com.kakao.talk', '_system');
+    window.open('market://details?id=io.ionic.baekma', '_system');
   }
 
   license(){
